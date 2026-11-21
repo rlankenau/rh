@@ -20,13 +20,6 @@ BOOK = [
         ("2", "zeta", "The zeta function"),
         ("3", "waves", "Zeros as waves"),
     ]),
-    ("Alpöge with Claude", "A Lean 4 formalization: a one-sided bound on a smoothed prime sum.", [
-        ("A", "alpoge", "Map of the whole proof"),
-        ("A1", "a1-smoothed-error", "The smoothed error"),
-        ("A2", None, "Why a one-sided bound is enough"),
-        ("A3", None, "The chain of theta lifts"),
-        ("A4", None, "The squeeze"),
-    ]),
     ("Masullo", "A 940-page paper: a trace formula that only hears zeros near the line.", [
         ("M", "masullo", "Map of the whole proof"),
         ("M1", "m1-trace-two-ways", "A trace computed two ways"),
@@ -34,6 +27,13 @@ BOOK = [
         ("M3", None, "The thin strip"),
         ("M4", None, "One circle per prime"),
         ("M5", None, "Reading off the zeros"),
+    ]),
+    ("Alpöge with Claude", "A Lean 4 formalization: a one-sided bound on a smoothed prime sum.", [
+        ("A", "alpoge", "Map of the whole proof"),
+        ("A1", "a1-smoothed-error", "The smoothed error"),
+        ("A2", None, "Why a one-sided bound is enough"),
+        ("A3", None, "The chain of theta lifts"),
+        ("A4", None, "The squeeze"),
     ]),
 ]
 ATLASES = ("alpoge", "masullo")
