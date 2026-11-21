@@ -44,6 +44,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-circle-slots">
+  <li data-a="2"><p>Two different functions on (0, ∞) give the same function on the circle after summing over powers of <i>γ</i>. What must be true of their Mellin transforms?</p>
+    <ul><li>They are identical</li><li>They agree at every slot 2π<i>im</i>/ln <i>γ</i>, and may differ everywhere else</li><li>They have nothing in common</li></ul>
+    <p class="why">Their difference is sent to 0, so its transform is a multiple of 1 − <i>γ</i><sup>−<i>s</i></sup> and vanishes at the slots. The values at the slots are precisely the Fourier coefficients of the function on the circle.</p></li>
+  <li data-a="1"><p>Polynomials "modulo multiples of <i>x</i> − 3" are determined by one number, the value at 3. What is the corresponding statement in this chapter?</p>
+    <ul><li>Transforms modulo multiples of 1 − <i>γ</i><sup>−<i>s</i></sup> are determined by their values at its zeros</li><li>Transforms are determined by their value at <i>s</i> = 3</li><li>Transforms modulo 1 − <i>γ</i><sup>−<i>s</i></sup> are all equal</li></ul>
+    <p class="why">Adding a multiple of a function cannot change the value where that function is zero, and can change it anywhere else. One slot per zero of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p></li>
+  <li data-a="3"><p>Why is the orange curve in the lab zero at every dot, whatever bump you choose?</p>
+    <ul><li>Because the bump is symmetric</li><li>It is a numerical coincidence</li><li>Because it is the transform of <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>), which is (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>)(<i>s</i>), and the first factor vanishes there</li></ul>
+    <p class="why">The zeros belong to the operation "subtract the rescaling", not to the function it is applied to. The same thing happens with <i>ζ</i> in the next chapter.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

@@ -64,6 +64,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-circle-per-prime">
+  <li data-a="2"><p>Why does the argument need the test function to be zero near <i>t</i> = 1?</p>
+    <ul><li>To make <i>φ</i> smooth</li><li>Every prime has the power <i>p</i><sup>0</sup> = 1, so if <i>φ</i>(1) ≠ 0 every prime would contribute and the reduction to finitely many primes would fail</li><li>Because 1 is not prime</li></ul>
+    <p class="why">With support in [<i>A</i>, <i>B</i>] and <i>A</i> &gt; 1, only the powers <i>p<sup>k</sup></i> with <i>k</i> ≥ 1 inside the interval count, and primes beyond <i>B</i> have none.</p></li>
+  <li data-a="1"><p>What plays the role of the circle's <i>γ</i> for the prime 7, and what is the "length" of its circle?</p>
+    <ul><li><i>γ</i> = 7, length ln 7</li><li><i>γ</i> = ln 7, length 7</li><li><i>γ</i> = √7, length ½</li></ul>
+    <p class="why">The factor 1 − 7<sup>−<i>s</i></sup> is the circle factor with <i>γ</i> = 7. In the coordinate ln <i>t</i> the circle has circumference ln 7, which is the weight in front of its contribution.</p></li>
+  <li data-a="3"><p>The lab adds up ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>)/<i>p</i><sup><i>k</i>/2</sup>. What does that establish about the paper?</p>
+    <ul><li>That the paper's splitting of the kernel is correct</li><li>That only finitely many primes exist</li><li>Only what the construction is meant to reproduce; the splitting itself is a claim about operators on the completed spaces that the lab does not touch</li></ul>
+    <p class="why">The arithmetic is classical. The new and unverified part is that the operator's kernel really decomposes this way after completion, and that the pieces outside the finite set S integrate to 0.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

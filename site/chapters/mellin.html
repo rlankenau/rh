@@ -49,6 +49,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-mellin">
+  <li data-a="2"><p>Why is the measure d<i>t</i>/<i>t</i> used in place of d<i>t</i>?</p>
+    <ul><li>It makes every integral converge</li><li>It is unchanged by rescaling <i>t</i> ↦ <i>γt</i>, which is what makes rescaling turn into multiplication by <i>γ</i><sup>−<i>s</i></sup></li><li>It is just a convention with no consequences</li></ul>
+    <p class="why">With <i>u</i> = <i>γt</i>, d<i>u</i>/<i>u</i> = d<i>t</i>/<i>t</i>. With plain d<i>t</i> an extra factor <i>γ</i> would appear. In the coordinate ln <i>t</i> it is ordinary length, and rescaling is translation.</p></li>
+  <li data-a="1"><p>A function <i>f</i> ≥ 0 is zero outside [0.1, 0.5]. As <i>σ</i> increases from 0, M(<i>f</i>)(<i>σ</i>):</p>
+    <ul><li>shrinks, because <i>t<sup>σ</sup></i> &lt; 1 where <i>f</i> lives</li><li>grows</li><li>stays the same</li></ul>
+    <p class="why">By property 2 the value lies between 0.1<sup><i>σ</i></sup> and 0.5<sup><i>σ</i></sup> times M(<i>f</i>)(0). Functions living at <i>t</i> &gt; 1 behave the opposite way, which matters later because the proof uses test functions supported at <i>t</i> &gt; 1.</p></li>
+  <li data-a="3"><p>You make the bump narrower. Its transform along a vertical line:</p>
+    <ul><li>becomes narrower too</li><li>is unchanged</li><li>spreads out to larger heights <i>y</i></li></ul>
+    <p class="why">A function concentrated in a short range of ln <i>t</i> needs high frequencies to describe it. Later this means a narrow test function "sees" zeros at greater heights.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

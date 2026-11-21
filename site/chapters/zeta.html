@@ -66,6 +66,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-zeta">
+  <li data-a="2"><p>The Euler product shows <i>ζ</i> has no zeros for <i>σ</i> &gt; 1. Why does the same argument say nothing inside the critical strip?</p>
+    <ul><li>Because the primes are different there</li><li>Because the product only converges for <i>σ</i> &gt; 1; inside the strip <i>ζ</i> is defined by analytic continuation, not by the product</li><li>Because <i>ζ</i> is not defined inside the strip</li></ul>
+    <p class="why">"A product of nonzero factors is nonzero" needs a convergent product. Lab 2.1 shows the truncated product still shadowing <i>ζ</i> for <i>σ</i> ≤ 1, but it never settles, so it proves nothing there.</p></li>
+  <li data-a="1"><p>In Lab 2.1 every dip touches zero at <i>σ</i> = ½ and lifts off as <i>σ</i> increases. If the Riemann Hypothesis were false, what would you see somewhere far up the axis?</p>
+    <ul><li>A dip that touches zero at some <i>σ</i> &gt; ½ and not at ½</li><li>A dip that touches zero at every <i>σ</i></li><li>The curve becoming negative</li></ul>
+    <p class="why">A zero off the line at <i>β</i> + <i>it</i> means |<i>ζ</i>| = 0 on the vertical line <i>σ</i> = <i>β</i>, and by the mirror symmetry also on <i>σ</i> = 1 − <i>β</i>, but not at ½. An absolute value is never negative.</p></li>
+  <li data-a="3"><p>Why do the zeros of <i>ζ</i> have anything to do with primes?</p>
+    <ul><li>The zeros are located at prime numbers</li><li><i>ζ</i>(<i>p</i>) = 0 for every prime <i>p</i></li><li>The prime weights Λ(<i>n</i>) are the coefficients of −<i>ζ</i>′/<i>ζ</i>, and that function is singular exactly where <i>ζ</i> = 0</li></ul>
+    <p class="why">The Euler product ties <i>ζ</i> to the primes, and taking the logarithmic derivative turns it into Σ Λ(<i>n</i>)/<i>n<sup>s</sup></i>. Dividing by <i>ζ</i> puts a pole at each zero.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab, N = 600, T0 = 0.5, T1 = 60;

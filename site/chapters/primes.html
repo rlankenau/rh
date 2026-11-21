@@ -56,6 +56,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-primes">
+  <li data-a="2"><p>Why does <i>ψ</i> give a prime <i>p</i> the weight ln <i>p</i> instead of counting it as 1?</p>
+    <ul><li>So that the sum is always a whole number</li><li>Near <i>x</i> about one number in ln <i>x</i> is prime, so weights of ln <i>p</i> make the total grow like <i>x</i> itself</li><li>Because large primes matter less than small ones</li><li>So that the sum converges</li></ul>
+    <p class="why">The weight cancels the thinning-out of the primes. The comparison function for <i>ψ</i> is then simply <i>x</i>, where for <i>π</i> it is the integral li(<i>x</i>). Note the weight makes large primes count <em>more</em>.</p></li>
+  <li data-a="3"><p>The prime number theorem says <i>ψ</i>(<i>x</i>) is "close to" <i>x</i>. Which reading is correct?</p>
+    <ul><li><i>ψ</i>(<i>x</i>) − <i>x</i> stays below some fixed number</li><li><i>ψ</i>(<i>x</i>) − <i>x</i> eventually becomes 0</li><li>The ratio <i>ψ</i>(<i>x</i>)/<i>x</i> tends to 1, while the difference can still grow</li></ul>
+    <p class="why">The theorem controls the error only relative to <i>x</i>. The difference <i>ψ</i>(<i>x</i>) − <i>x</i> is unbounded; how fast it can grow is exactly what the Riemann Hypothesis is about.</p></li>
+  <li data-a="1"><p>There are 78,498 primes below one million. Without computing, how many would you expect between one million and two million?</p>
+    <ul><li>Somewhat fewer, because the density 1/ln <i>x</i> keeps falling slowly</li><li>The same number, because the stretch has the same length</li><li>About half as many</li><li>More, because the numbers are larger</li></ul>
+    <p class="why">The density falls from about 1/13.8 at one million to 1/14.5 at two million. The true count is 70,435, about 10% fewer.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab, pow = function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); };

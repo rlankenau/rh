@@ -64,6 +64,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-m2-one-slot-per-zero">
+  <li data-a="2"><p>The lab of the previous chapter shows that the transform of a θ-function is a multiple of <i>ζ</i>. Why is the converse also needed for "one slot per zero"?</p>
+    <ul><li>It is not needed</li><li>If some multiples of <i>ζ</i> were not transforms of θ-functions, the quotient H would be larger than one slot per zero</li><li>Because otherwise H would be empty</li></ul>
+    <p class="why">H is S modulo θ-functions. Dividing by a smaller subspace leaves a bigger quotient, with extra elements unrelated to the zeros. The paper's Structure Theorems are what rule that out.</p></li>
+  <li data-a="3"><p>For a test function supported at <i>t</i> &gt; 1, compare the eigenvalue of a hypothetical zero with <i>β</i> = 0.8 with that of its mirror image at <i>β</i> = 0.2.</p>
+    <ul><li>Equal in size</li><li>The one for 0.2 is larger</li><li>The one for 0.8 is larger, because <i>t</i><sup><i>β</i> − ½</sup> is larger for <i>t</i> &gt; 1</li></ul>
+    <p class="why">The eigenvalue is M(<i>φ</i>)(<i>ρ</i> − ½), an integral against <i>t</i><sup><i>ρ</i> − ½</sup>. Zeros to the right of the line are amplified, which is why the full sum over zeros is not obviously the trace of a well-behaved operator.</p></li>
+  <li data-a="1"><p>Why is A(<i>φ</i>) allowed to act on the quotient H at all?</p>
+    <ul><li>Because it sends θ-functions to θ-functions, so "equal up to a θ-function" is preserved</li><li>Because it sends every function to a θ-function</li><li>Because H is finite-dimensional</li></ul>
+    <p class="why">An operator passes to a quotient exactly when it maps the subspace being divided out into itself. On transforms: multiplying a multiple of <i>ζ</i> by M(<i>φ</i>) gives a multiple of <i>ζ</i>.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

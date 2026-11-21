@@ -41,6 +41,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-theta-sums">
+  <li data-a="2"><p>The transform of Θ<sub><i>f</i></sub> vanishes at <i>s</i> = <i>ρ</i> − ½ for every zero <i>ρ</i>, whichever <i>f</i> you choose. What does that tell you?</p>
+    <ul><li>That <i>f</i> was chosen specially</li><li>The zeros are a property of summing over the whole numbers, not of <i>f</i></li><li>That Θ<sub><i>f</i></sub> is identically 0</li></ul>
+    <p class="why">M(Θ<sub><i>f</i></sub>)(<i>s</i>) = <i>ζ</i>(<i>s</i> + ½) · M(<i>f</i>)(<i>s</i> + ½). The factor <i>ζ</i> comes from Σ <i>n</i><sup>−<i>s</i></sup> and is the same for every <i>f</i>.</p></li>
+  <li data-a="1"><p>What is the effect of the factor √<i>x</i> in the definition of Θ<sub><i>f</i></sub>?</p>
+    <ul><li>It shifts <i>s</i> by ½, so zeros on the critical line appear at purely imaginary <i>s</i></li><li>It makes the sum converge</li><li>It removes the zeros</li></ul>
+    <p class="why">Multiplying by <i>x</i><sup>½</sup> shifts the Mellin variable by ½. The critical line Re <i>s</i> = ½ becomes the imaginary axis, where the transform is an ordinary Fourier transform in ln <i>x</i>.</p></li>
+  <li data-a="3"><p>Suppose you summed <i>f</i>(<i>nx</i>) over the odd <i>n</i> only. Which factor would appear in front of M(<i>f</i>)?</p>
+    <ul><li><i>ζ</i>(<i>s</i>) + 2<sup>−<i>s</i></sup></li><li><i>ζ</i>(2<i>s</i>)</li><li><i>ζ</i>(<i>s</i>) · (1 − 2<sup>−<i>s</i></sup>)</li></ul>
+    <p class="why">The even <i>n</i> contribute Σ (2<i>m</i>)<sup>−<i>s</i></sup> = 2<sup>−<i>s</i></sup><i>ζ</i>(<i>s</i>). Removing them leaves <i>ζ</i>(<i>s</i>)(1 − 2<sup>−<i>s</i></sup>): the Euler product without the factor for the prime 2.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

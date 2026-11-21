@@ -71,6 +71,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-waves">
+  <li data-a="2"><p>Why is "all zeros on the line <i>σ</i> = ½" the <em>best possible</em> case for the size of the error?</p>
+    <ul><li>Because ½ is the smallest real part a zero can have</li><li>Because zeros come in mirror pairs <i>β</i> and 1 − <i>β</i>, so the largest real part is at least ½, with equality only if all are on the line</li><li>Because waves with <i>β</i> = ½ cancel each other</li></ul>
+    <p class="why">The error is as large as its largest wave, <i>x</i><sup>max <i>β</i></sup>. A zero with <i>β</i> &lt; ½ forces a partner with 1 − <i>β</i> &gt; ½, so nothing can beat √<i>x</i>.</p></li>
+  <li data-a="3"><p>Each wave is cos(<i>γ</i> ln <i>x</i>). How do its wiggles look near <i>x</i> = 1,000,000 compared with near <i>x</i> = 1,000?</p>
+    <ul><li>The same width</li><li>Narrower</li><li>A thousand times wider</li></ul>
+    <p class="why">The wave is periodic in ln <i>x</i>: one cycle is a fixed <em>ratio</em> of <i>x</i> (1.56 for the first zero). So the width in <i>x</i> is proportional to <i>x</i>. This is why the labs use a logarithmic axis.</p></li>
+  <li data-a="1"><p>What do the zeros at large height add to the reconstruction of the prime staircase?</p>
+    <ul><li>Fine detail: the sharpness of each individual jump</li><li>The overall slope</li><li>Nothing; only the first few zeros matter</li></ul>
+    <p class="why">A large <i>γ</i> is a high frequency. The first few zeros give the broad shape; resolving a single jump at a prime needs zeros with periods shorter than the gap between primes.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

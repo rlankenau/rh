@@ -70,6 +70,19 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-m1-trace-two-ways">
+  <li data-a="1"><p>For <i>φ</i> ≥ 0 supported inside (1, <i>γ</i>) the trace is 0, yet the eigenvalue of the constant mode, M(<i>φ</i>)(0) = ∫ <i>φ</i> d<i>t</i>/<i>t</i>, is positive. How can both be true?</p>
+    <ul><li>The other eigenvalues are complex numbers with varying phases, and together they cancel it exactly</li><li>The other eigenvalues are all 0</li><li>The trace formula fails for such <i>φ</i></li></ul>
+    <p class="why">The trace is the sum of all eigenvalues, not a statement about each one. That an infinite sum of nonzero terms must total exactly 0 is real information about where the modes are.</p></li>
+  <li data-a="2"><p>Where does the term <i>φ</i>(<i>γ<sup>k</sup></i>) on the geometric side come from?</p>
+    <ul><li>From the <i>k</i>-th eigenvalue</li><li>On the circle, <i>x</i> and <i>γ<sup>k</sup>x</i> are the same point, so the kernel on the diagonal collects <i>φ</i> once for each way of going round <i>k</i> times</li><li>From the <i>k</i>-th derivative of <i>φ</i></li></ul>
+    <p class="why">K(<i>x</i>, <i>x</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>): the operator moves a point by the factor <i>t</i> with weight <i>φ</i>(<i>t</i>), and it returns to where it started exactly when <i>t</i> is a power of <i>γ</i>.</p></li>
+  <li data-a="3"><p>Replace <i>γ</i> = 2 by <i>γ</i> = 4. What happens to the two sides?</p>
+    <ul><li>Nothing changes</li><li>The modes move twice as far apart, and all powers of 2 still appear</li><li>The modes become twice as dense, and only the even powers of 2 appear, each with weight ln 4</li></ul>
+    <p class="why">Modes sit at 2π<i>im</i>/ln <i>γ</i>, and ln 4 = 2 ln 2 halves the spacing. The geometric side is ln 4 · Σ <i>φ</i>(4<sup><i>k</i></sup>). A longer circle has more modes and fewer returns.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

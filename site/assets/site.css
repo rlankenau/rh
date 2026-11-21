@@ -124,7 +124,8 @@ ol.quiz .opt.right::after{content:" ✓";color:var(--ok);font-weight:600}
 ol.quiz .opt.wrong{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn);opacity:1}
 ol.quiz .opt.wrong::after{content:" ✗";color:var(--warn);font-weight:600}
 ol.quiz .why{margin:.5rem 0 0;padding:.5rem .8rem;background:var(--accent-soft);border-radius:4px}
-.qbar{max-width:68ch;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding:.6rem .9rem;border:1px solid var(--rule);border-radius:6px;background:var(--panel);position:sticky;bottom:.5rem}
+.qbar{max-width:68ch;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding:.6rem .9rem;border:1px solid var(--rule);border-radius:6px;background:var(--panel)}
+.qbar.stick{position:sticky;bottom:.5rem}
 .qbar button{font:inherit;color:var(--accent);background:none;border:1px solid var(--rule);border-radius:6px;padding:.25rem .7rem;cursor:pointer}
 
 /* chapter footer + landing */

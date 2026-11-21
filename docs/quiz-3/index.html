@@ -14,28 +14,25 @@
 <div class="kicker">Part III · Quiz</div>
 <script src="../assets/lab.js"></script>
 <h1>Quiz: Part III</h1>
-<p class="lede">Six questions on the chapters of Part III written so far. More will be added with the remaining chapters.</p>
-<p class="note">Choose an answer to see whether it is right and why. Your best score is kept in this browser only.</p>
+<p class="lede">Five questions on the chapters of Part III written so far. More will be added with the remaining chapters.</p>
+<p class="note">These questions ask you to combine ideas from several chapters. Choose an answer to see whether it is right and why. Your best score is kept in this browser only.</p>
 
 <ol class="quiz" data-quiz="part-3">
-  <li data-a="3"><p>The weight that <code>Sz</code>(<i>x</i>) gives to a prime power <i>n</i> ≤ <i>x</i> is:</p>
-    <ul><li>Λ(<i>n</i>)</li><li>Λ(<i>n</i>)/√<i>n</i></li><li>Λ(<i>n</i>) · (<i>x</i>/<i>n</i> − 1)</li><li>Λ(<i>n</i>) · ln(<i>x</i>/<i>n</i>)</li></ul>
-    <p class="why">The weight falls to 0 at <i>n</i> = <i>x</i>, so <code>Sz</code> is continuous where <i>ψ</i> jumps. Equivalently <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>.</p></li>
-  <li data-a="2"><p>What does the smoothing do to the term of a zero at height <i>γ</i>?</p>
-    <ul><li>Removes it</li><li>Changes its amplitude from about 2/<i>γ</i> to about 2/<i>γ</i>², so the sum over zeros converges absolutely</li><li>Doubles its frequency</li><li>Moves it onto the critical line</li></ul>
-    <p class="why"><i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)). The sum of 2/(¼ + <i>γ</i>²) over all zeros is about 0.0462, a finite number, whereas the sum of 2/<i>γ</i> diverges.</p></li>
-  <li data-a="1"><p>If the Riemann Hypothesis holds, (Gz(<i>x</i>) − ln 2π)/√<i>x</i> stays within about:</p>
-    <ul><li>±0.0462</li><li>±1</li><li>±ln <i>x</i></li><li>±0.5</li></ul>
-    <p class="why">That is the sum of the amplitudes of all the waves. The first zero alone accounts for 0.0100 of it.</p></li>
-  <li data-a="4"><p>The formalization proves only an upper bound on the smoothed error. Why is that enough?</p>
-    <ul><li>The lower bound is obvious</li><li>The error is always positive</li><li>Lean cannot express lower bounds</li><li>By a theorem of Landau, a zero off the line forces the error to exceed the bound in both directions</li></ul>
-    <p class="why">A zero with real part <i>β</i> &gt; <i>θ</i> contributes an oscillating term of size <i>x<sup>β</sup></i> that takes both signs, and Landau's theorem shows the other terms cannot cancel it. So a one-sided bound <i>C</i> · <i>x<sup>θ</sup></i> already excludes such zeros.</p></li>
-  <li data-a="3"><p>A hypothetical zero with <i>β</i> = 0.55 would make its wave larger than an on-line wave by a factor of <i>x</i><sup>0.05</sup>. At <i>x</i> = 20,000 that factor is about:</p>
-    <ul><li>20</li><li>141</li><li>1.6</li><li>1.05</li></ul>
-    <p class="why">20,000<sup>0.05</sup> = e<sup>0.05 · 9.9</sup> ≈ 1.6. This is why no computation over a feasible range of <i>x</i> can settle the hypothesis: an off-line zero close to the line shows itself only at enormous <i>x</i>.</p></li>
-  <li data-a="2"><p>In a Lean file, <code>sorry</code> means:</p>
-    <ul><li>The statement is false</li><li>The proof of that statement is missing</li><li>The statement is an axiom of Mathlib</li><li>The proof was checked by hand</li></ul>
-    <p class="why">Lean accepts <code>sorry</code> in place of any proof and reports that it did so. A development is complete only when none remain and the final theorem depends on no extra axioms.</p></li>
+  <li data-a="2"><p>Why does the formalization work with a smoothed prime sum?</p>
+    <ul><li>Smoothing removes the zeros</li><li>After smoothing the amplitudes are about 2/<i>γ</i>², so the sum over all zeros converges absolutely and can be bounded</li><li>Lean cannot handle step functions</li></ul>
+    <p class="why">The total of all amplitudes is about 0.0462 in units of √<i>x</i>. Without smoothing the corresponding sum diverges.</p></li>
+  <li data-a="3"><p>Under the hypothesis the scaled error stays within ±0.0462. What is that number?</p>
+    <ul><li>A measured maximum from the lab</li><li>The first zero's amplitude</li><li>The sum of the amplitudes of all the waves: the worst case, in which every wave peaks at once</li></ul>
+    <p class="why">It is Σ 2/(¼ + <i>γ</i>²) over all zeros, equal to 2 + <i>γ</i><sub>Euler</sub> − ln 4π. The first zero alone contributes 0.0100.</p></li>
+  <li data-a="1"><p>The formalization proves only an upper bound. Why does that exclude zeros off the line?</p>
+    <ul><li>An off-line zero adds an oscillation of size <i>x<sup>β</sup></i> that takes both signs, and by Landau's theorem the other terms cannot cancel it, so it would break an upper bound too</li><li>Because the error is always negative</li><li>It does not; a lower bound is still needed</li></ul>
+    <p class="why">Lab 15.2 shows it: with <i>β</i> &gt; ½ the curve leaves the band through the top and the bottom.</p></li>
+  <li data-a="2"><p>A Lean development compiles, but one lemma that the main theorem uses is closed with <code>sorry</code>. What has been proved?</p>
+    <ul><li>The main theorem</li><li>The main theorem on the assumption that the lemma is true</li><li>Nothing at all</li></ul>
+    <p class="why">Lean accepts <code>sorry</code> in place of any proof and records the dependency. Everything else is checked; the result is conditional until the gap is filled. This is the situation of <code>trace_identity</code> in this site's own Lean experiments.</p></li>
+  <li data-a="3"><p>How does this proof's strategy differ in kind from Masullo's?</p>
+    <ul><li>Both use a trace formula</li><li>This one counts zeros by computer</li><li>This one bounds a prime sum from one side and converts the bound into a statement about zeros; Masullo's compares the two sides of a trace formula</li></ul>
+    <p class="why">They share only the fundamentals of Part I: the explicit link between a zero's real part and the size of its wave.</p></li>
 </ol>
 <nav class="pager" aria-label="Chapter"><a href="../a1-smoothed-error/">← 15 The smoothed error</a><a href="../">Contents →</a></nav>
 </main>

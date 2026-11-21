@@ -244,9 +244,11 @@ def main():
         for num, slug, name in chapters:
             if slug is None or slug in ATLASES:
                 continue
-            quiz = slug.startswith("quiz")  # no glossary buttons inside the answer buttons
+            quiz = slug.startswith("quiz")
             body = tokens((ROOT / "site" / "chapters" / f"{slug}.html").read_text(), num)
-            body = body if quiz else link_terms(body, glossary)
+            held = []  # quizzes are set aside so no glossary button lands inside an answer button
+            body = re.sub(r'<ol class="quiz".*?</ol>', lambda m: held.append(m.group(0)) or f"@@QUIZ{len(held) - 1}@@", body, flags=re.S)
+            body = re.sub(r"@@QUIZ(\d+)@@", lambda m: held[int(m.group(1))], link_terms(body, glossary))
             page = (HEAD.format(title=name if quiz else f"{num} {name}", fonts=FONTS, up="../", toc=toc("../", slug))
                     + f'<div class="kicker">{html.escape(part.split(" · ")[0])} · {"Quiz" if quiz else "Chapter " + num}</div>\n'
                     + '<script src="../assets/lab.js"></script>\n' + body + pager(slug) + TAIL.format(up="../"))

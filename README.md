@@ -40,7 +40,7 @@ cd lean && lake exe cache get && lake build                          # Lean
 https://rlankenau.github.io/rh/ is laid out like a textbook companion: shared background chapters,
 then one chapter per step of each proof, each with interactive labs computed in the browser.
 
-- `site/chapters/<slug>.html` — chapter bodies; add a chapter by writing one and listing it in `PARTS` in `build.py` (Part I fundamentals, Part II Masullo, Part III Alpöge). Chapter numbers are assigned by the build: write `@@n@@` for the chapter's own number and `@@ch:slug@@` for another chapter's. Each chapter ends with a `<div class="ex">` of exercises with solutions in `<details>`; each part ends with a `quiz-N.html` (`<ol class="quiz">`, see `site/assets/quiz.js`)
+- `site/chapters/<slug>.html` — chapter bodies; add a chapter by writing one and listing it in `PARTS` in `build.py` (Part I fundamentals, Part II Masullo, Part III Alpöge). Chapter numbers are assigned by the build: write `@@n@@` for the chapter's own number and `@@ch:slug@@` for another chapter's. Each chapter ends with a `<div class="ex">` of exercises with solutions in `<details>`; each chapter also has a three-question `<ol class="quiz">` ("Check your understanding": why/what-if questions, not recall), and each part ends with a `quiz-N.html` (`<ol class="quiz">`, see `site/assets/quiz.js`)
 - `site/assets/lab.js` — shared numerics (primes, ψ, li, ζ, zeros) and the plot/slider helpers
 - `site/assets/site.css` — shared styles
 - `python3 build.py` writes everything to `docs/`, which GitHub Pages serves

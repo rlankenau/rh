@@ -75,6 +75,19 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-a1-smoothed-error">
+  <li data-a="2"><p>What is gained by bounding the smoothed error Gz and not <i>ψ</i>(<i>x</i>) − <i>x</i> directly?</p>
+    <ul><li>Gz has no contribution from zeros</li><li>The amplitudes become about 2/<i>γ</i>², whose sum over all zeros is finite, so the sum over zeros converges absolutely</li><li>Gz is easier to compute by hand</li></ul>
+    <p class="why">For <i>ψ</i> the amplitudes are about 2/<i>γ</i>, and their sum diverges; the explicit formula then converges only through cancellation. The smoothed version can be bounded term by term.</p></li>
+  <li data-a="1"><p>Why is <code>Sz</code> continuous although <i>ψ</i> jumps at every prime power?</p>
+    <ul><li>Because the weight <i>x</i>/<i>n</i> − 1 is 0 at the moment <i>n</i> enters the sum</li><li>Because primes are ignored</li><li>Because it is rounded</li></ul>
+    <p class="why">A new term appears at <i>x</i> = <i>n</i> with weight 0 and then grows linearly. That gives a corner, not a jump. Integrating a function with jumps always does this.</p></li>
+  <li data-a="3"><p>In Lab 15.2 a hypothetical zero with <i>β</i> = 0.55 stays inside the band up to 20,000. What does that say about testing the hypothesis by computing with primes?</p>
+    <ul><li>It confirms the hypothesis</li><li>That such a zero is impossible</li><li>A zero close to the line would be invisible in any range of <i>x</i> one can compute, so such tests cannot settle it</li></ul>
+    <p class="why">The excess factor is <i>x</i><sup>0.05</sup>, only 1.6 at 20,000, and a zero at great height has a tiny amplitude as well. Evidence from primes in a finite range is not a proof.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab, BAND = 2 + L.EULER - Math.log(4 * Math.PI), N = 1500;

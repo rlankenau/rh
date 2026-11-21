@@ -70,6 +70,19 @@
   </ol>
 </div>
 
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-trace-formula">
+  <li data-a="2"><p>Why can't the lab tell the classical formula and Masullo's formula apart?</p>
+    <ul><li>It uses too few primes</li><li>Every zero it uses is on the critical line, which lies inside every strip, so both sums are the same</li><li>Its numerical error is too large</li></ul>
+    <p class="why">The formulas differ only in zeros at distance ≥ <i>a</i> from the line. No such zero is known, so no computation with known zeros can separate them.</p></li>
+  <li data-a="3"><p>Suppose a zero existed at 0.8 + 100<i>i</i>. With <i>a</i> = 0.1, what follows?</p>
+    <ul><li>Both formulas hold</li><li>The classical formula fails</li><li>The classical formula still holds and includes that zero; Masullo's omits it, so Masullo's would be false</li></ul>
+    <p class="why">The classical formula is a theorem regardless. Two true identities with the same left side cannot have different right sides, so the restricted formula for all <i>a</i> is equivalent to the hypothesis.</p></li>
+  <li data-a="1"><p>In the lab, the prime sum and the pole terms are close to each other. Why?</p>
+    <ul><li>M(<i>φ</i>)(½) = ∫ <i>φ</i>(<i>t</i>)/√<i>t</i> d<i>t</i> is what the prime sum would be if Λ(<i>n</i>) were replaced by its average value 1</li><li>Coincidence</li><li>Because the zeros contribute nothing</li></ul>
+    <p class="why">This is the prime number theorem inside the formula: the pole of <i>ζ</i> gives the main term, and the zeros give the fluctuation around it.</p></li>
+</ol>
+
 <script>
 (function () {
   var L = Lab;

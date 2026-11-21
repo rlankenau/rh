@@ -1,42 +1,36 @@
 <h1>Quiz: Part II</h1>
-<p class="lede">Twelve questions on Masullo's argument, in the order of the chapters.</p>
-<p class="note">Choose an answer to see whether it is right and why. Your best score is kept in this browser only.</p>
+<p class="lede">Ten questions on Masullo's argument as a whole.</p>
+<p class="note">These questions ask you to combine ideas from several chapters. Choose an answer to see whether it is right and why. Your best score is kept in this browser only.</p>
 
 <ol class="quiz" data-quiz="part-2">
-  <li data-a="1"><p>"A trace computed two ways" refers to which two computations?</p>
-    <ul><li>Adding the eigenvalues, and integrating the kernel along its diagonal</li><li>Summing over primes, and summing over whole numbers</li><li>A proof on paper, and a proof in Lean</li><li>Integrating over <i>t</i> &gt; 1, and over <i>t</i> &lt; 1</li></ul>
-    <p class="why">The sum of eigenvalues is the spectral side; the integral of K(<i>x</i>, <i>x</i>) is the geometric side. A trace formula says they are equal.</p></li>
-  <li data-a="3"><p>On the circle (0, ∞) modulo <i>γ</i>, the function <i>x</i><sup>−<i>s</i></sup> is well defined exactly when:</p>
-    <ul><li><i>s</i> is real</li><li><i>s</i> is a zero of <i>ζ</i></li><li><i>γ<sup>s</sup></i> = 1</li><li><i>s</i> = ½</li></ul>
-    <p class="why">The function must agree at <i>x</i> and <i>γx</i>, and (<i>γx</i>)<sup>−<i>s</i></sup> = <i>γ</i><sup>−<i>s</i></sup><i>x</i><sup>−<i>s</i></sup>. So <i>s</i> = 2π<i>im</i>/ln <i>γ</i>: the zeros of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p></li>
-  <li data-a="4"><p>For the circle with <i>γ</i> = 3 and a test function <i>φ</i> that is zero outside [1.2, 2.5], the trace of A(<i>φ</i>) is:</p>
-    <ul><li>ln 3 · <i>φ</i>(3)</li><li>M(<i>φ</i>)(0)</li><li>It depends on the shape of <i>φ</i></li><li>0</li></ul>
-    <p class="why">The geometric side is ln 3 · Σ<sub><i>k</i></sub> <i>φ</i>(3<sup><i>k</i></sup>), and no power of 3 lies in [1.2, 2.5]. The eigenvalues are not individually zero, but they add up to zero.</p></li>
-  <li data-a="1"><p>The Mellin transform of <i>f</i>(<i>γt</i>) is:</p>
-    <ul><li><i>γ</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>)</li><li>M(<i>f</i>)(<i>s</i> + <i>γ</i>)</li><li>M(<i>f</i>)(<i>γs</i>)</li><li><i>γ</i> · M(<i>f</i>)(<i>s</i>)</li></ul>
-    <p class="why">Substitute <i>u</i> = <i>γt</i>; the measure d<i>t</i>/<i>t</i> is unchanged and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Rescaling becomes multiplication, which is why the Mellin transform suits this problem.</p></li>
-  <li data-a="2"><p>Summing <i>f</i>(<i>nx</i>) over all whole numbers <i>n</i> multiplies the Mellin transform of <i>f</i> by:</p>
-    <ul><li>1 − <i>γ</i><sup>−<i>s</i></sup></li><li><i>ζ</i>(<i>s</i>)</li><li>1/<i>ζ</i>(<i>s</i>)</li><li><i>s</i></li></ul>
-    <p class="why">Each term contributes <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>), and Σ <i>n</i><sup>−<i>s</i></sup> = <i>ζ</i>(<i>s</i>). So the transform of a θ-function vanishes at the zeros of <i>ζ</i> (shifted by ½).</p></li>
-  <li data-a="3"><p>In the quotient H (smooth functions modulo θ-functions), an element is determined by:</p>
-    <ul><li>Its values at the primes</li><li>Its integral</li><li>The values of its transform at the zeros of the L-function</li><li>Its values at whole numbers</li></ul>
-    <p class="why">Adding a θ-function changes the transform by a multiple of the L-function, which leaves the values at the zeros alone. That is "one slot per zero". The full claim rests on the paper's Structure Theorems.</p></li>
-  <li data-a="4"><p>On the slot of a zero <i>ρ</i>, the operator A(<i>φ</i>) multiplies by:</p>
-    <ul><li><i>φ</i>(<i>ρ</i>)</li><li><i>ζ</i>′(<i>ρ</i>)</li><li>ln <i>ρ</i></li><li>M(<i>φ</i>)(<i>ρ</i> − ½)</li></ul>
-    <p class="why">On transforms A(<i>φ</i>) is multiplication by M(<i>φ</i>)(<i>s</i>), and the slot of <i>ρ</i> sits at <i>s</i> = <i>ρ</i> − ½. The sum of these numbers is the spectral side.</p></li>
-  <li data-a="1"><p>With strip half-width <i>a</i> = 0.1, which hypothetical zero would still contribute to Masullo's spectral side?</p>
-    <ul><li>Re <i>ρ</i> = 0.55</li><li>Re <i>ρ</i> = 0.6</li><li>Re <i>ρ</i> = 0.75</li><li>All of them</li></ul>
-    <p class="why">Only zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> keep their slot in the completed space. 0.55 is at distance 0.05; 0.6 is exactly on the edge and is lost.</p></li>
-  <li data-a="2"><p>A test function <i>φ</i> is zero outside [2, 20]. The contribution of the prime 23 to the geometric side is:</p>
-    <ul><li>ln 23 · <i>φ</i>(23)/√23, which is small</li><li>0</li><li>ln 23</li><li>Unknown without computing</li></ul>
-    <p class="why">The contribution is ln <i>p</i> · Σ <i>φ</i>(<i>p<sup>k</sup></i>)/<i>p</i><sup><i>k</i>/2</sup>, and no power of 23 is in [2, 20]. Only finitely many primes contribute for any one test function.</p></li>
-  <li data-a="4"><p>Masullo's formula differs from the classical explicit formula in:</p>
-    <ul><li>The prime sum</li><li>The term from the pole of <i>ζ</i></li><li>Nothing: they are the same formula</li><li>Which zeros are summed over</li></ul>
-    <p class="why">The classical formula sums over every zero; Masullo's only over those within <i>a</i> of the critical line. The two agree for every <i>a</i> exactly when the hypothesis is true.</p></li>
-  <li data-a="1"><p>In the last step, why does the formula for the test functions <i>φ<sub>z</sub></i> exclude zeros with Re <i>ρ</i> &gt; ½ + <i>a</i>?</p>
-    <ul><li>Such a zero would be a pole of <i>ζ</i>′/<i>ζ</i> in a region where every other term is holomorphic</li><li>Such a zero would make the prime sum negative</li><li>The lab checks all such zeros numerically</li><li>Because the functional equation forbids them</li></ul>
-    <p class="why">Every term other than <i>ζ</i>′/<i>ζ</i> has no pole with Re <i>z</i> &gt; <i>a</i> except <i>z</i> = ½, so <i>ζ</i>′/<i>ζ</i> cannot have one either. The functional equation only mirrors zeros; it does not forbid them.</p></li>
-  <li data-a="3"><p>Which statement about the status of the proof is accurate?</p>
-    <ul><li>The labs on this site confirm it</li><li>It has been checked in Lean</li><li>It is unverified; the steps that carry it are the ones this site has not checked</li><li>It has been refuted</li></ul>
-    <p class="why">The labs test the classical arithmetic that the construction reproduces. The completion of the exact sequence and the computation of the geometric side in the completed spaces are the load-bearing steps, and nobody has verified them yet.</p></li>
+  <li data-a="2"><p>The circle example and the real case have the same structure. What plays the role of the circle's factor 1 − <i>γ</i><sup>−<i>s</i></sup>?</p>
+    <ul><li>The test function <i>φ</i></li><li>The L-function (for the lab, <i>ζ</i>(<i>s</i> + ½)): its zeros are the slots</li><li>The Mellin transform</li></ul>
+    <p class="why">On the circle one divides out multiples of 1 − <i>γ</i><sup>−<i>s</i></sup> and gets one slot per mode. In the paper one divides out θ-functions, whose transforms are multiples of the L-function, and gets one slot per zero.</p></li>
+  <li data-a="3"><p>For the circle with <i>γ</i> = 3 and a test function that is zero outside [1.2, 2.5], the trace of A(<i>φ</i>) is:</p>
+    <ul><li>ln 3 · <i>φ</i>(3)</li><li>It depends on the shape of <i>φ</i></li><li>0</li></ul>
+    <p class="why">No power of 3 lies in [1.2, 2.5], so the geometric side is 0. The eigenvalues are not individually zero; they cancel. The same mechanism later removes all but finitely many primes.</p></li>
+  <li data-a="1"><p>Why is the thin strip introduced <em>before</em> the trace is computed?</p>
+    <ul><li>Without it, the eigenvalues of off-line zeros are amplified for test functions supported at <i>t</i> &gt; 1, and nothing shows the sum over all zeros is the trace of an operator on a Hilbert space</li><li>To make the labs faster</li><li>Because the zeros are only defined inside a strip</li></ul>
+    <p class="why">The completion in the norm with weight max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) gives a Hilbert space on which the operator is trace class, at the price of keeping only the slots inside the strip.</p></li>
+  <li data-a="1"><p>With strip half-width <i>a</i> = 0.1, which hypothetical zero would still contribute to the spectral side?</p>
+    <ul><li>Re <i>ρ</i> = 0.55</li><li>Re <i>ρ</i> = 0.6</li><li>Re <i>ρ</i> = 0.75</li></ul>
+    <p class="why">Only |Re <i>ρ</i> − ½| &lt; <i>a</i> keeps a slot. 0.6 is exactly on the edge, where the bound of chapter @@ch:thin-strip@@ no longer exists.</p></li>
+  <li data-a="2"><p>A test function is zero outside [2, 20]. Which describes the geometric side?</p>
+    <ul><li>Every prime contributes a little</li><li>Only primes with a power inside [2, 20] contribute; 23 and all larger primes contribute 0</li><li>Only the prime 2 contributes</li></ul>
+    <p class="why">Each prime is a circle of length ln <i>p</i>, contributing ln <i>p</i> · Σ <i>φ</i>(<i>p<sup>k</sup></i>)/<i>p</i><sup><i>k</i>/2</sup>. This is the circle example's "trace is zero when <i>φ</i> is supported in (1, <i>γ</i>)" applied prime by prime.</p></li>
+  <li data-a="3"><p>Masullo's formula and the classical explicit formula have the same prime side. What does that imply?</p>
+    <ul><li>That the paper is correct</li><li>Nothing</li><li>That the zeros outside the strip must contribute 0 for every test function, which is possible only if there are none</li></ul>
+    <p class="why">Subtracting the two leaves only the far zeros. So the restricted formula, for every <i>a</i>, is equivalent to the hypothesis. This comparison is this site's reading, not the paper's.</p></li>
+  <li data-a="2"><p>Suppose the Riemann Hypothesis were false. Which part of the argument would have to be wrong?</p>
+    <ul><li>The classical explicit formula</li><li>A claim about the completed spaces: the exact sequence after completion, or the independent computation of the geometric side</li><li>The step with the test functions <i>φ<sub>z</sub></i></li></ul>
+    <p class="why">The classical formula is a theorem, and the last step is a short deduction from the trace formula. The weight of the proof is on the two completed-space claims, neither of which this site has checked.</p></li>
+  <li data-a="1"><p>In the last step, why does a zero with Re <i>ρ</i> &gt; ½ + <i>a</i> lead to a contradiction?</p>
+    <ul><li>It would be a pole of <i>ζ</i>′/<i>ζ</i> in a half-plane where every other term of the formula is holomorphic</li><li>It would make the prime sum negative</li><li>The functional equation forbids it</li></ul>
+    <p class="why">An identity cannot have a pole on one side only. The functional equation merely mirrors zeros; it forbids nothing.</p></li>
+  <li data-a="3"><p>What do the labs in Part II establish?</p>
+    <ul><li>That the proof is correct</li><li>That the proof is wrong</li><li>That the classical identities the construction is built to reproduce hold numerically; they do not test the new steps</li></ul>
+    <p class="why">Poisson summation on the circle, the factor <i>ζ</i> in front of a θ-function's transform, and the explicit formula are all established mathematics. The labs make them visible.</p></li>
+  <li data-a="2"><p>Where does the paper say the ½ of the hypothesis comes from?</p>
+    <ul><li>From the first zero</li><li>From converting between the multiplicative measure d<i>t</i>/<i>t</i> of the norm and the additive measure d<i>x</i> of the Fourier transform, which needs the weight <i>t</i><sup>2<i>a</i></sup> with <i>a</i> = ½</li><li>From the factor ½ in ln 2</li></ul>
+    <p class="why">In the paper's words, this "forces the 1/2 in the very statement of GRH". On this site the same ½ shows up as the √<i>x</i> in a θ-function.</p></li>
 </ol>

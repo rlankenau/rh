@@ -5,7 +5,7 @@
   'use strict';
   Array.prototype.forEach.call(document.querySelectorAll('ol.quiz'), function (quiz) {
     var qs = Array.prototype.slice.call(quiz.children), key = 'quiz:' + quiz.getAttribute('data-quiz'), done = 0, right = 0;
-    var bar = document.createElement('div'); bar.className = 'qbar'; bar.setAttribute('role', 'status');
+    var bar = document.createElement('div'); bar.className = qs.length > 5 ? 'qbar stick' : 'qbar'; bar.setAttribute('role', 'status');
     var score = document.createElement('span'), again = document.createElement('button');
     again.type = 'button'; again.textContent = 'Start again'; bar.appendChild(score); bar.appendChild(again);
     quiz.parentNode.insertBefore(bar, quiz.nextSibling);
