@@ -5,13 +5,13 @@
 <h2>The circle (0, ∞) modulo <i>γ</i></h2>
 <p>Fix <i>γ</i> &gt; 1 and identify <i>t</i> with <i>γt</i> for every <i>t</i> &gt; 0. In the coordinate <i>u</i> = ln <i>t</i> this is the real line modulo ln <i>γ</i>: a circle of circumference ln <i>γ</i>. Lengths on it are measured by d<i>t</i>/<i>t</i> = d<i>u</i>.</p>
 <p>Fix a smooth function <i>φ</i> on (0, ∞) that is zero outside a bounded interval away from 0 (a test function). It defines a convolution operator on functions <i>f</i> on the circle:</p>
-<p class="note">(A(<i>φ</i>)<i>f</i>)(<i>x</i>) = ∫<sub>0</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) <i>f</i>(<i>x</i>/<i>t</i>) d<i>t</i>/<i>t</i>. Each value of <i>f</i> is replaced by a <i>φ</i>-weighted average of its values at rescaled points.</p>
+<p class="note">$$\bigl(A(\varphi)f\bigr)(x) \;=\; \int_{0}^{\infty} \varphi(t)\, f\!\left(\frac{x}{t}\right) \frac{dt}{t}$$ Each value of <i>f</i> is replaced by a <i>φ</i>-weighted average of its values at rescaled points.</p>
 <p>A(<i>φ</i>) is linear, and its trace is the sum of its eigenvalues. The trace can be computed in two ways. Both use the Mellin transform, M(<i>φ</i>)(<i>s</i>) = ∫<sub>0</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i>.</p>
 <ul>
   <li><b>From the eigenvalues (the spectral side).</b> The function <i>x</i><sup>−<i>s</i></sup> is well defined on the circle exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> = 2π<i>im</i>/ln <i>γ</i> for an integer <i>m</i>. These are the Fourier modes of the circle. Substituting into the definition gives A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>, so each mode is an eigenfunction with eigenvalue M(<i>φ</i>)(2π<i>im</i>/ln <i>γ</i>). The trace is the sum of these over all <i>m</i>.</li>
   <li><b>From the integral kernel (the geometric side).</b> Written as an integral over one turn of the circle, (A(<i>φ</i>)<i>f</i>)(<i>x</i>) = ∫ K(<i>x</i>, <i>y</i>) <i>f</i>(<i>y</i>) d<i>y</i>/<i>y</i> with K(<i>x</i>, <i>y</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup>x</i>/<i>y</i>), one term for each number of times around. The trace of an integral operator is the integral of its kernel along the diagonal <i>x</i> = <i>y</i>. There K(<i>x</i>, <i>x</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), a constant, and the circle has length ln <i>γ</i>.</li>
 </ul>
-<p class="note">Σ<sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), both sums over all integers. In the coordinate <i>u</i> = ln <i>t</i> this is the Poisson summation formula.</p>
+<p class="note">$$\sum_{m} M(\varphi)\!\left(\frac{2\pi i m}{\ln\gamma}\right) \;=\; \ln\gamma \cdot \sum_{k} \varphi(\gamma^{k})$$ Both sums run over all integers. In the coordinate <i>u</i> = ln <i>t</i> this is the Poisson summation formula.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>both sides of the toy trace formula</small></div>
@@ -64,7 +64,7 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Check that A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>.<details><summary>Solution</summary><p>(A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup>)(<i>x</i>) = ∫ <i>φ</i>(<i>t</i>) (<i>x</i>/<i>t</i>)<sup>−<i>s</i></sup> d<i>t</i>/<i>t</i> = <i>x</i><sup>−<i>s</i></sup> ∫ <i>φ</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i> = <i>x</i><sup>−<i>s</i></sup> · M(<i>φ</i>)(<i>s</i>).</p></details></li>
+    <li>Check that A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>.<details><summary>Solution</summary><p>$$\int_{0}^{\infty}\varphi(t)\left(\frac{x}{t}\right)^{-s}\frac{dt}{t} \;=\; x^{-s}\int_{0}^{\infty}\varphi(t)\,t^{s}\,\frac{dt}{t} \;=\; x^{-s}\cdot M(\varphi)(s)$$</p></details></li>
     <li>Why is <i>x</i><sup>−<i>s</i></sup> a function on the circle only when <i>γ<sup>s</sup></i> = 1?<details><summary>Solution</summary><p>On the circle <i>x</i> and <i>γx</i> are the same point, so a function must take the same value at both. (<i>γx</i>)<sup>−<i>s</i></sup> = <i>γ</i><sup>−<i>s</i></sup> · <i>x</i><sup>−<i>s</i></sup>, which equals <i>x</i><sup>−<i>s</i></sup> exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> ln <i>γ</i> = 2π<i>im</i>.</p></details></li>
     <li>Take <i>γ</i> = 3 and a test function <i>φ</i> that is zero outside the interval [2, 10]. Write down the geometric side.<details><summary>Solution</summary><p>The powers of 3 inside [2, 10] are 3 and 9. The trace is ln 3 · (<i>φ</i>(3) + <i>φ</i>(9)).</p></details></li>
   </ol>

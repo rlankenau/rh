@@ -5,14 +5,14 @@
 <h2>The test functions</h2>
 <p>For a complex number <i>z</i>, let <i>φ<sub>z</sub></i>(<i>t</i>) = <i>t</i><sup>−<i>z</i></sup> for <i>t</i> &gt; 1 and 0 for <i>t</i> ≤ 1. Two computations:</p>
 <ul>
-  <li><b>Its transform.</b> M(<i>φ<sub>z</sub></i>)(<i>w</i>) = ∫<sub>1</sub><sup>∞</sup> <i>t</i><sup><i>w</i> − <i>z</i> − 1</sup> d<i>t</i> = 1/(<i>z</i> − <i>w</i>), valid when Re <i>z</i> &gt; Re <i>w</i>.</li>
-  <li><b>The prime sum.</b> Σ Λ(<i>n</i>) <i>φ<sub>z</sub></i>(<i>n</i>)/√<i>n</i> = Σ Λ(<i>n</i>)/<i>n</i><sup><i>z</i> + ½</sup> = −<i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½), by chapter @@ch:zeta@@.</li>
+  <li><b>Its transform.</b> \(\displaystyle M(\varphi_z)(w) = \int_{1}^{\infty} t^{\,w-z-1}\,dt = \frac{1}{z-w}\), valid when Re <i>z</i> &gt; Re <i>w</i>.</li>
+  <li><b>The prime sum.</b> \(\displaystyle \sum_{n} \frac{\Lambda(n)\,\varphi_z(n)}{\sqrt{n}} = \sum_{n} \frac{\Lambda(n)}{n^{\,z+1/2}} = -\frac{\zeta^{\prime}(z+\tfrac12)}{\zeta(z+\tfrac12)}\), by chapter @@ch:zeta@@.</li>
 </ul>
 <p><i>φ<sub>z</sub></i> is not smooth at <i>t</i> = 1 and is not zero for large <i>t</i>, so it is not itself an allowed test function. The paper approximates it by allowed ones and passes to the limit; that takes most of the three pages.</p>
 
 <h2>The formula for <i>φ<sub>z</sub></i></h2>
 <p>Insert <i>φ<sub>z</sub></i> into Masullo's formula of chapter @@ch:trace-formula@@ with strip half-width <i>a</i>:</p>
-<p class="note">−<i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½) + G(<i>z</i>) = 1/(<i>z</i> − ½) + 1/(<i>z</i> + ½) − Σ N(<i>ρ</i>) / (<i>z</i> − (<i>ρ</i> − ½)), summed over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i>.</p>
+<p class="note">$$-\frac{\zeta^{\prime}(z+\tfrac12)}{\zeta(z+\tfrac12)} \;+\; G(z) \;=\; \frac{1}{z-\tfrac12} \;+\; \frac{1}{z+\tfrac12} \;-\; \sum_{\rho} \frac{N(\rho)}{z-(\rho-\tfrac12)}$$ The sum is over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i>.</p>
 <p>G(<i>z</i>) is the term from the real numbers. It is an explicit function with no poles in the half-plane Re <i>z</i> &gt; 0.</p>
 
 <h2>Where the poles are</h2>
@@ -79,7 +79,7 @@
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Compute M(<i>φ<sub>z</sub></i>)(<i>w</i>) and say where the integral converges.<details><summary>Solution</summary><p>∫<sub>1</sub><sup>∞</sup> <i>t</i><sup>−<i>z</i></sup> <i>t<sup>w</sup></i> d<i>t</i>/<i>t</i> = [<i>t</i><sup><i>w</i> − <i>z</i></sup>/(<i>w</i> − <i>z</i>)]<sub>1</sub><sup>∞</sup> = 1/(<i>z</i> − <i>w</i>), provided <i>t</i><sup><i>w</i> − <i>z</i></sup> → 0 as <i>t</i> → ∞, that is, Re <i>z</i> &gt; Re <i>w</i>.</p></details></li>
+    <li>Compute M(<i>φ<sub>z</sub></i>)(<i>w</i>) and say where the integral converges.<details><summary>Solution</summary><p>$$\int_{1}^{\infty} t^{-z}\,t^{w}\,\frac{dt}{t} \;=\; \left[\frac{t^{\,w-z}}{w-z}\right]_{1}^{\infty} \;=\; \frac{1}{z-w}$$ provided <i>t</i><sup><i>w</i> − <i>z</i></sup> → 0 as <i>t</i> → ∞, that is, Re <i>z</i> &gt; Re <i>w</i>.</p></details></li>
     <li>Show that if <i>f</i> has a zero of multiplicity <i>N</i> at <i>ρ</i>, then <i>f</i>′/<i>f</i> has a simple pole there with residue <i>N</i>.<details><summary>Solution</summary><p>Write <i>f</i>(<i>s</i>) = (<i>s</i> − <i>ρ</i>)<sup><i>N</i></sup> <i>g</i>(<i>s</i>) with <i>g</i>(<i>ρ</i>) ≠ 0. Then <i>f</i>′/<i>f</i> = <i>N</i>/(<i>s</i> − <i>ρ</i>) + <i>g</i>′/<i>g</i>, and <i>g</i>′/<i>g</i> is holomorphic near <i>ρ</i>. This is why the multiplicity N(<i>ρ</i>) appears as the coefficient in the formula.</p></details></li>
     <li>Suppose the formula were known only for one value, <i>a</i> = 0.2. What would it prove?<details><summary>Solution</summary><p>That <i>ζ</i> has no zero with Re <i>ρ</i> &gt; 0.7, and by the functional equation none with Re <i>ρ</i> &lt; 0.3. Any such zero-free region would already be a major result; the hypothesis itself needs every <i>a</i> &gt; 0.</p></details></li>
   </ol>

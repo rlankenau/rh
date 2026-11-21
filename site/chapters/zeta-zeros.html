@@ -49,7 +49,7 @@
 <ul>
   <li><b>None with <i>σ</i> &gt; 1.</b> There the product over primes converges, and none of its factors is 0 (chapter @@ch:complex-zeta@@).</li>
   <li><b>The functional equation.</b> Riemann proved a formula connecting the values at <i>s</i> and at 1 − <i>s</i>:
-    <i>ζ</i>(<i>s</i>) = 2<sup><i>s</i></sup> π<sup><i>s</i> − 1</sup> sin(π<i>s</i>/2) Γ(1 − <i>s</i>) <i>ζ</i>(1 − <i>s</i>). Here Γ is the gamma function, which extends the factorial. The point <i>s</i> = <i>σ</i> + <i>it</i> and the point 1 − <i>s</i> are mirror images through the point ½, so the formula determines <i>ζ</i> to the left of the line <i>σ</i> = ½ from its values to the right.</li>
+    $$\zeta(s) \;=\; 2^{s}\,\pi^{s-1}\,\sin\!\left(\frac{\pi s}{2}\right)\,\Gamma(1-s)\,\zeta(1-s)$$ Here Γ is the gamma function, which extends the factorial. The point <i>s</i> = <i>σ</i> + <i>it</i> and the point 1 − <i>s</i> are mirror images through the point ½, so the formula determines <i>ζ</i> to the left of the line <i>σ</i> = ½ from its values to the right.</li>
   <li><b>The trivial zeros.</b> The factor sin(π<i>s</i>/2) is 0 at <i>s</i> = −2, −4, −6, …, and <i>ζ</i> is 0 there. These are called the trivial zeros. They are fully understood.</li>
 </ul>
 <p>Together: for <i>σ</i> &lt; 0 the functional equation expresses <i>ζ</i>(<i>s</i>) through <i>ζ</i>(1 − <i>s</i>), where 1 − <i>s</i> has real part greater than 1 and <i>ζ</i> is not 0. So the only zeros with <i>σ</i> &lt; 0 are the trivial ones. Every other zero lies in the band 0 ≤ <i>σ</i> ≤ 1, called the critical strip. The line <i>σ</i> = ½ down its middle is the critical line.</p>
@@ -67,7 +67,7 @@
 
 <h2>How many zeros there are</h2>
 <p>The zeros become denser with height. Riemann stated, and von Mangoldt proved, a formula for the number N(<i>T</i>) of zeros in the strip with height between 0 and <i>T</i>:</p>
-<p class="note">N(<i>T</i>) ≈ (<i>T</i>/2π) · ln(<i>T</i>/2πe) + 7/8, with an error that grows only like ln <i>T</i>.</p>
+<p class="note">$$N(T) \;\approx\; \frac{T}{2\pi}\,\ln\frac{T}{2\pi e} \;+\; \frac78$$ The error grows only like ln <i>T</i>.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.4 <small>counting zeros up to height T</small></div>

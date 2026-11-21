@@ -7,7 +7,7 @@
   the Claude artifact publisher takes); each gets a bare document skeleton.
 - The landing page is generated from the same table of contents.
 """
-import html, json, pathlib, re, shutil
+import html, json, pathlib, re, shutil, subprocess
 
 ROOT = pathlib.Path(__file__).parent
 FONTS = ("https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600"
@@ -69,6 +69,31 @@ BOOK = _number(PARTS)
 NUM = {s: n for _, _, ch in BOOK for n, s, _ in ch if s}
 
 
+MATH = []  # formulas found so far; each is replaced by a placeholder until the page is finished
+
+
+def hold_math(text):
+    """Set aside $$display$$ and \\(inline\\) formulas so nothing else in the build touches them."""
+    def keep(display):
+        def f(m):
+            MATH.append({"tex": html.unescape(m.group(1).strip()), "display": display})
+            return f"@@MATH{len(MATH) - 1}@@"
+        return f
+    text = re.sub(r"\$\$(.+?)\$\$", keep(True), text, flags=re.S)
+    return re.sub(r"\\\((.+?)\\\)", keep(False), text, flags=re.S)
+
+
+def render_math(pages):
+    """Render every held formula with KaTeX (one node process) and put the HTML back."""
+    if not MATH:
+        return pages
+    if not (ROOT / "node_modules" / "katex").exists():
+        raise SystemExit("KaTeX is missing: run `npm install` in the repository root first.")
+    done = json.loads(subprocess.run(["node", str(ROOT / "tools" / "math.js")], input=json.dumps(MATH),
+                                     capture_output=True, text=True, check=True).stdout)
+    return {path: re.sub(r"@@MATH(\d+)@@", lambda m: done[int(m.group(1))], page) for path, page in pages.items()}
+
+
 def tokens(text, num=""):
     """Fill in @@n@@ (this chapter's number) and @@ch:slug@@ (another chapter's number)."""
     text = text.replace("@@n@@", num)
@@ -82,6 +107,7 @@ HEAD = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <link rel="stylesheet" href="{fonts}">
+<link rel="stylesheet" href="{up}assets/katex/katex.min.css">
 <link rel="stylesheet" href="{up}assets/site.css">
 </head>
 <body>
@@ -233,6 +259,12 @@ def main():
     docs = ROOT / "docs"
     glossary = load_glossary()
     shutil.copytree(ROOT / "site" / "assets", docs / "assets", dirs_exist_ok=True)
+    katex = ROOT / "node_modules" / "katex" / "dist"
+    if katex.exists():  # the stylesheet and the woff2 fonts it asks for first
+        (docs / "assets" / "katex" / "fonts").mkdir(parents=True, exist_ok=True)
+        shutil.copy(katex / "katex.min.css", docs / "assets" / "katex")
+        for font in (katex / "fonts").glob("*.woff2"):
+            shutil.copy(font, docs / "assets" / "katex" / "fonts")
     for name in ATLASES:
         (docs / name).mkdir(parents=True, exist_ok=True)
         fragment = (ROOT / "atlas" / f"{name}.html").read_text()
@@ -243,12 +275,13 @@ def main():
         assert fragment.count("</main>") == 1, name
         fragment = fragment.replace("</main>", nav + "</main>")
         (docs / name / "index.html").write_text(ATLAS_WRAP.format(fragment=fragment))
+    pages = {}
     for part, _, chapters in BOOK:
         for num, slug, name in chapters:
             if slug is None or slug in ATLASES:
                 continue
             quiz = slug.startswith("quiz")
-            body = tokens((ROOT / "site" / "chapters" / f"{slug}.html").read_text(), num)
+            body = hold_math(tokens((ROOT / "site" / "chapters" / f"{slug}.html").read_text(), num))
             held = []  # quizzes are set aside so no glossary button lands inside an answer button
             body = re.sub(r'<ol class="quiz".*?</ol>', lambda m: held.append(m.group(0)) or f"@@QUIZ{len(held) - 1}@@", body, flags=re.S)
             body = re.sub(r"@@QUIZ(\d+)@@", lambda m: held[int(m.group(1))], link_terms(body, glossary))
@@ -256,7 +289,9 @@ def main():
                     + f'<div class="kicker">{html.escape(part.split(" · ")[0])} · {"Quiz" if quiz else "Chapter " + num}</div>\n'
                     + '<script src="../assets/lab.js"></script>\n' + body + pager(slug) + TAIL.format(up="../"))
             (docs / slug).mkdir(parents=True, exist_ok=True)
-            (docs / slug / "index.html").write_text(page)
+            pages[docs / slug / "index.html"] = page
+    for path, page in render_math(pages).items():
+        path.write_text(page)
     table = {e["key"]: {k: e[k] for k in ("term", "def", "wiki") if k in e} for e in glossary}
     (docs / "assets" / "glossary.js").write_text("window.GLOSSARY = " + json.dumps(table, ensure_ascii=False) + ";\n")
     (docs / "glossary").mkdir(exist_ok=True)

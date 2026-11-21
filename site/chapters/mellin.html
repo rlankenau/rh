@@ -4,16 +4,16 @@
 
 <h2>Definition</h2>
 <p>For a function <i>f</i> on (0, ∞) and a complex number <i>s</i>,</p>
-<p class="note">M(<i>f</i>)(<i>s</i>) = ∫<sub>0</sub><sup>∞</sup> <i>f</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i>.</p>
+<p class="note">$$M(f)(s) \;=\; \int_{0}^{\infty} f(t)\, t^{s}\, \frac{dt}{t}$$</p>
 <p>The substitution <i>t</i> = e<sup><i>u</i></sup> turns this into ∫ <i>f</i>(e<sup><i>u</i></sup>) e<sup><i>su</i></sup> d<i>u</i> over the whole real line. For <i>s</i> = <i>iy</i> that is the Fourier transform of <i>f</i> in the variable <i>u</i> = ln <i>t</i>. If <i>f</i> is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0, the integral converges for every complex <i>s</i>, and M(<i>f</i>) is an entire function.</p>
 
 <h2>Property 1: rescaling becomes multiplication</h2>
-<p class="note">The transform of <i>f</i>(<i>γt</i>) is <i>γ</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>).</p>
+<p class="note">The transform of <i>f</i>(<i>γt</i>) is $$\gamma^{-s}\cdot M(f)(s)$$</p>
 <p>Proof: substitute <i>u</i> = <i>γt</i>. The measure d<i>t</i>/<i>t</i> does not change, and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Consequently convolution on (0, ∞), which is a weighted sum of rescalings, becomes multiplication of transforms: M(A(<i>φ</i>)<i>f</i>)(<i>s</i>) = M(<i>φ</i>)(<i>s</i>) · M(<i>f</i>)(<i>s</i>) for the operator A(<i>φ</i>) of chapter @@ch:m1-trace-two-ways@@.</p>
 
 <h2>Property 2: the real part of <i>s</i> weighs large <i>t</i> against small <i>t</i></h2>
 <p>Write <i>s</i> = <i>σ</i> + <i>iy</i>. Then |<i>t<sup>s</sup></i>| = <i>t<sup>σ</sup></i>. For <i>σ</i> &gt; 0 this factor is large where <i>t</i> &gt; 1 and small where <i>t</i> &lt; 1. So if <i>f</i> ≥ 0 is zero outside [<i>A</i>, <i>B</i>],</p>
-<p class="note"><i>A<sup>σ</sup></i> · M(<i>f</i>)(0) ≤ M(<i>f</i>)(<i>σ</i>) ≤ <i>B<sup>σ</sup></i> · M(<i>f</i>)(0) for <i>σ</i> ≥ 0.</p>
+<p class="note">$$A^{\sigma}\cdot M(f)(0) \;\le\; M(f)(\sigma) \;\le\; B^{\sigma}\cdot M(f)(0) \qquad \text{for } \sigma\ge 0$$</p>
 <p>A function concentrated at <i>t</i> &gt; 1 has a transform that grows as <i>σ</i> increases, and one concentrated at <i>t</i> &lt; 1 has a transform that shrinks.</p>
 
 <figure class="lab">
@@ -43,9 +43,9 @@
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Let <i>f</i>(<i>t</i>) = 1 for 1 ≤ <i>t</i> ≤ <i>T</i> and 0 otherwise. Compute M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>∫<sub>1</sub><sup><i>T</i></sup> <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = (<i>T<sup>s</sup></i> − 1)/<i>s</i> for <i>s</i> ≠ 0, and ln <i>T</i> for <i>s</i> = 0.</p></details></li>
+    <li>Let <i>f</i>(<i>t</i>) = 1 for 1 ≤ <i>t</i> ≤ <i>T</i> and 0 otherwise. Compute M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>$$\int_{1}^{T} t^{\,s-1}\,dt \;=\; \frac{T^{s}-1}{s} \quad (s\ne 0), \qquad \ln T \quad (s=0)$$</p></details></li>
     <li>For which <i>s</i> does rescaling by <i>γ</i> = 2 leave the transform unchanged?<details><summary>Solution</summary><p>The factor is 2<sup>−<i>s</i></sup>, which equals 1 when <i>s</i> ln 2 = 2π<i>im</i>, that is, <i>s</i> = 2π<i>im</i>/ln 2 for an integer <i>m</i>. These are the Fourier modes of the circle in chapter @@ch:m1-trace-two-ways@@.</p></details></li>
-    <li>Show that the transform of <i>t</i> · <i>f</i>′(<i>t</i>) is −<i>s</i> · M(<i>f</i>)(<i>s</i>), for smooth <i>f</i> that is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0.<details><summary>Solution</summary><p>∫ <i>t f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i> = ∫ <i>f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>. Integrate by parts; the boundary terms vanish, leaving −<i>s</i> ∫ <i>f</i>(<i>t</i>) <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = −<i>s</i> · M(<i>f</i>)(<i>s</i>).</p></details></li>
+    <li>Show that the transform of <i>t</i> · <i>f</i>′(<i>t</i>) is −<i>s</i> · M(<i>f</i>)(<i>s</i>), for smooth <i>f</i> that is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0.<details><summary>Solution</summary><p>$$\int_{0}^{\infty} t\,f^{\prime}(t)\,t^{s}\,\frac{dt}{t} \;=\; \int_{0}^{\infty} f^{\prime}(t)\,t^{s}\,dt \;=\; -s\int_{0}^{\infty} f(t)\,t^{\,s-1}\,dt \;=\; -s\cdot M(f)(s)$$ The middle step is integration by parts; the boundary terms vanish because <i>f</i> is zero outside [<i>A</i>, <i>B</i>].</p></details></li>
   </ol>
 </div>
 

@@ -9,7 +9,7 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 
 <h2>What the zeros do to it</h2>
 <p>Apply the same integral to the explicit formula of chapter @@ch:waves@@, term by term. The term <i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)):</p>
-<p class="note">Gz(<i>x</i>) = ln 2π − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If every zero is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
+<p class="note">$$\mathrm{Gz}(x) \;=\; \ln 2\pi \;-\; \sum_{\rho} \frac{x^{\rho}}{\rho\,(\rho-1)} \;-\; (\text{tiny terms})$$ If every zero is on the line this is $$\ln 2\pi \;+\; \sqrt{x}\,\sum_{\gamma>0} \frac{2\cos(\gamma \ln x)}{\tfrac14+\gamma^{2}}$$</p>
 <p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter @@ch:waves@@ it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the Riemann Hypothesis holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
 
 <figure class="lab">
@@ -55,8 +55,8 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
   <h3>Exercises</h3>
   <ol>
     <li>Compute <code>Sz</code>(4).<details><summary>Solution</summary><p>The prime powers up to 4 are 2, 3, 4. Sz(4) = ln 2 · (4/2 − 1) + ln 3 · (4/3 − 1) + ln 2 · (4/4 − 1) = ln 2 + (ln 3)/3 + 0 ≈ 1.059. The prime power 4 itself contributes nothing yet.</p></details></li>
-    <li>Verify that <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>.<details><summary>Solution</summary><p><i>ψ</i>(<i>t</i>) is the sum of Λ(<i>n</i>) over <i>n</i> ≤ <i>t</i>, so each <i>n</i> ≤ <i>x</i> contributes Λ(<i>n</i>) · ∫<sub><i>n</i></sub><sup><i>x</i></sup> d<i>t</i>/<i>t</i>² = Λ(<i>n</i>) · (1/<i>n</i> − 1/<i>x</i>). Multiplying by <i>x</i> gives Λ(<i>n</i>) · (<i>x</i>/<i>n</i> − 1).</p></details></li>
-    <li>Apply the same integral to a single term <i>t<sup>ρ</sup></i>/<i>ρ</i> of the explicit formula.<details><summary>Solution</summary><p><i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>t</i><sup><i>ρ</i> − 2</sup>/<i>ρ</i> d<i>t</i> = <i>x</i> · (<i>x</i><sup><i>ρ</i> − 1</sup> − 1)/(<i>ρ</i>(<i>ρ</i> − 1)) = (<i>x<sup>ρ</sup></i> − <i>x</i>)/(<i>ρ</i>(<i>ρ</i> − 1)). The <i>x<sup>ρ</sup></i> part is the oscillating term; the parts proportional to <i>x</i> are absorbed into the main term.</p></details></li>
+    <li>Verify that \(\displaystyle \mathrm{Sz}(x) = x\int_{1}^{x}\frac{\psi(t)}{t^{2}}\,dt\).<details><summary>Solution</summary><p><i>ψ</i>(<i>t</i>) is the sum of Λ(<i>n</i>) over <i>n</i> ≤ <i>t</i>, so each <i>n</i> ≤ <i>x</i> contributes $$\Lambda(n)\int_{n}^{x}\frac{dt}{t^{2}} \;=\; \Lambda(n)\left(\frac{1}{n}-\frac{1}{x}\right)$$ Multiplying by <i>x</i> gives Λ(<i>n</i>) · (<i>x</i>/<i>n</i> − 1).</p></details></li>
+    <li>Apply the same integral to a single term <i>t<sup>ρ</sup></i>/<i>ρ</i> of the explicit formula.<details><summary>Solution</summary><p>$$x\int_{1}^{x}\frac{t^{\,\rho-2}}{\rho}\,dt \;=\; x\cdot\frac{x^{\,\rho-1}-1}{\rho\,(\rho-1)} \;=\; \frac{x^{\rho}-x}{\rho\,(\rho-1)}$$ The <i>x<sup>ρ</sup></i> part is the oscillating term; the parts proportional to <i>x</i> are absorbed into the main term.</p></details></li>
   </ol>
 </div>
 

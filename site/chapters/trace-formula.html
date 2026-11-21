@@ -4,7 +4,7 @@
 
 <h2>The classical explicit formula</h2>
 <p>Let <i>φ</i> be a smooth function that is zero outside an interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 1. The following identity is a theorem, proved by the methods of Riemann and Weil:</p>
-<p class="note">Σ<sub><i>n</i></sub> Λ(<i>n</i>) <i>φ</i>(<i>n</i>)/√<i>n</i> + ∫<sub>1</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) · <i>t</i><sup>½</sup>/(<i>t</i>² − 1) d<i>t</i> = M(<i>φ</i>)(½) + M(<i>φ</i>)(−½) − Σ<sub><i>ρ</i></sub> M(<i>φ</i>)(<i>ρ</i> − ½).</p>
+<p class="note">$$\sum_{n} \frac{\Lambda(n)\,\varphi(n)}{\sqrt{n}} \;+\; \int_{1}^{\infty} \varphi(t)\,\frac{t^{1/2}}{t^{2}-1}\,dt$$ $$=\; M(\varphi)\!\left(\tfrac12\right) \;+\; M(\varphi)\!\left(-\tfrac12\right) \;-\; \sum_{\rho} M(\varphi)\!\left(\rho-\tfrac12\right)$$</p>
 <ul>
   <li><b>Left side, first term.</b> The sum over prime powers of chapter @@ch:circle-per-prime@@.</li>
   <li><b>Left side, second term.</b> The contribution of the real numbers, which play the role of one more "prime". It comes from the trivial zeros of <i>ζ</i>.</li>
@@ -27,13 +27,13 @@
 
 <h2>Masullo's formula</h2>
 <p>For the same test functions, the paper's trace formula has the same left side and the same first two terms on the right. The sum over zeros is different:</p>
-<p class="note">… = M(<i>φ</i>)(½) + M(<i>φ</i>)(−½) − Σ N(<i>ρ</i>) · M(<i>φ</i>)(<i>ρ</i> − ½), summed over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> only.</p>
+<p class="note">$$\dots \;=\; M(\varphi)\!\left(\tfrac12\right) + M(\varphi)\!\left(-\tfrac12\right) \;-\; \sum_{\lvert\operatorname{Re}\rho-\frac12\rvert<a} N(\rho)\cdot M(\varphi)\!\left(\rho-\tfrac12\right)$$ The sum is over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> only.</p>
 <p>Here <i>a</i> &gt; 0 is the half-width of the strip of chapter @@ch:thin-strip@@, and it can be any positive number. The paper proves the formula for test functions that vanish near <i>t</i> = 1. In the general case (a number field and a character) the left side has one term for each place of the field, and <i>ζ</i> is replaced by the L-function.</p>
 <p>The paper also explains where the ½ in the Riemann Hypothesis enters. The remainder term of chapter @@ch:circle-per-prime@@ is computed with a Fourier transform, which is defined with the additive measure d<i>x</i>, while the norm is defined with the multiplicative measure d<i>t</i>/<i>t</i>. Converting one into the other requires the weight <i>t</i><sup>2<i>a</i></sup> with <i>a</i> = ½. In the paper's words, "this forces the 1/2 in the very statement of GRH".</p>
 
 <h2>Comparing the two</h2>
 <p>Subtract Masullo's formula from the classical one. Everything cancels except the zeros outside the strip:</p>
-<p class="note">Σ M(<i>φ</i>)(<i>ρ</i> − ½) over the zeros with |Re <i>ρ</i> − ½| ≥ <i>a</i> = 0, for every allowed <i>φ</i> and every <i>a</i> &gt; 0.</p>
+<p class="note">$$\sum_{\lvert\operatorname{Re}\rho-\frac12\rvert\ge a} M(\varphi)\!\left(\rho-\tfrac12\right) \;=\; 0$$ for every allowed <i>φ</i> and every <i>a</i> &gt; 0.</p>
 <p>That can hold for every test function only if there are no such zeros (chapter @@ch:reading-off-zeros@@ gives the paper's argument). So Masullo's formula, for all <i>a</i>, is equivalent to the Riemann Hypothesis.</p>
 <p class="note warn">This comparison is mine, not the paper's. Its consequence: the lab above cannot distinguish the two formulas, because every zero it uses is on the critical line and so inside every strip. Whether the paper's formula is true is exactly the question of whether the hypothesis is true. The proof stands or falls on the derivation of the left side inside the completed spaces (chapters @@ch:thin-strip@@ and @@ch:circle-per-prime@@), which must not use the classical formula and which I have not checked.</p>
 
@@ -51,7 +51,7 @@
   <ol>
     <li>For a zero on the critical line, <i>ρ</i> = ½ + <i>iγ</i>, and real-valued <i>φ</i>, write the combined term of <i>ρ</i> and its conjugate as a single real integral.<details><summary>Solution</summary><p>M(<i>φ</i>)(<i>iγ</i>) + M(<i>φ</i>)(−<i>iγ</i>) = 2 ∫ <i>φ</i>(<i>t</i>) cos(<i>γ</i> ln <i>t</i>) d<i>t</i>/<i>t</i>. This is how the lab computes the sum over zeros.</p></details></li>
     <li>Suppose there were a zero at <i>ρ</i> = 0.8 + 100<i>i</i>. For which <i>a</i> would it be missing from Masullo's sum?<details><summary>Solution</summary><p>Its distance from the critical line is 0.3, so it is missing whenever <i>a</i> ≤ 0.3. Its mirror image 0.2 + 100<i>i</i> is missing for the same <i>a</i>.</p></details></li>
-    <li>Why does the integral ∫ <i>φ</i>(<i>t</i>) <i>t</i><sup>½</sup>/(<i>t</i>² − 1) d<i>t</i> require <i>φ</i> to vanish near <i>t</i> = 1?<details><summary>Solution</summary><p>Near <i>t</i> = 1 the denominator is <i>t</i>² − 1 ≈ 2(<i>t</i> − 1), so the integrand behaves like <i>φ</i>(1)/(2(<i>t</i> − 1)), and ∫ d<i>t</i>/(<i>t</i> − 1) diverges. If <i>φ</i> is zero near 1 the problem does not arise. The paper's formula for general <i>φ</i> uses a principal value.</p></details></li>
+    <li>Why does the integral \(\displaystyle\int \varphi(t)\,\frac{t^{1/2}}{t^{2}-1}\,dt\) require <i>φ</i> to vanish near <i>t</i> = 1?<details><summary>Solution</summary><p>Near <i>t</i> = 1 the denominator is <i>t</i>² − 1 ≈ 2(<i>t</i> − 1), so the integrand behaves like \(\dfrac{\varphi(1)}{2(t-1)}\), and \(\displaystyle\int \frac{dt}{t-1}\) diverges. If <i>φ</i> is zero near 1 the problem does not arise. The paper's formula for general <i>φ</i> uses a principal value.</p></details></li>
   </ol>
 </div>
 

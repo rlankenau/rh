@@ -1,0 +1,6 @@
+{
+  "name": "rh-site",
+  "private": true,
+  "description": "Build-time dependency of build.py: KaTeX renders the $$...$$ and \\(...\\) formulas to static HTML.",
+  "dependencies": { "katex": "^0.16.11" }
+}

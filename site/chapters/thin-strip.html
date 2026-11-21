@@ -4,14 +4,14 @@
 
 <h2>The norm</h2>
 <p>Fix <i>a</i> &gt; 0. For a function <i>ϕ</i> on (0, ∞), set</p>
-<p class="note">‖<i>ϕ</i>‖<sub><i>a</i></sub>² = ∫<sub>0</sub><sup>∞</sup> |<i>ϕ</i>(<i>t</i>)|² · max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) d<i>t</i>/<i>t</i>.</p>
+<p class="note">$$\lVert\phi\rVert_a^{2} \;=\; \int_{0}^{\infty} \lvert\phi(t)\rvert^{2}\cdot \max\!\left(t^{2a},\,t^{-2a}\right) \frac{dt}{t}$$</p>
 <p>In the coordinate <i>u</i> = ln <i>t</i> the weight is e<sup>2<i>a</i>|<i>u</i>|</sup>: a function has finite norm when it decays faster than e<sup>−<i>a</i>|<i>u</i>|</sup> in both directions. This is the paper's Hardy–Sobolev norm with base interval [−<i>a</i>, <i>a</i>] and smoothness index 0, written here for (0, ∞) in place of the paper's group. Completing a space in this norm means adding the limits of all sequences that converge in it. The result is a Hilbert space. The paper says these spaces "were never considered in the literature".</p>
 <p>The paper also gives the norm on the transform side: it is equivalent to the size of M(<i>ϕ</i>) along the two vertical lines Re <i>s</i> = <i>a</i> and Re <i>s</i> = −<i>a</i>, the edges of a strip of width 2<i>a</i>.</p>
 
 <h2>Which slots remain</h2>
 <p>The slot at a point <i>z</i> is the number M(<i>ϕ</i>)(<i>z</i>). It remains meaningful on the completed space only if it is controlled by the norm, so that it passes to limits. Let <i>x</i> = Re <i>z</i>.</p>
 <ul>
-  <li><b>Inside the strip, |<i>x</i>| &lt; <i>a</i>.</b> By the Cauchy–Schwarz inequality, |M(<i>ϕ</i>)(<i>z</i>)| ≤ ‖<i>ϕ</i>‖<sub><i>a</i></sub> · √(<i>a</i>/(<i>a</i>² − <i>x</i>²)). The slot is controlled.</li>
+  <li><b>Inside the strip, |<i>x</i>| &lt; <i>a</i>.</b> By the Cauchy–Schwarz inequality, \(\displaystyle \lvert M(\phi)(z)\rvert \;\le\; \lVert\phi\rVert_a\cdot\sqrt{\frac{a}{a^{2}-x^{2}}}\). The slot is controlled.</li>
   <li><b>On the edge or outside, |<i>x</i>| ≥ <i>a</i>.</b> There are functions <i>ϕ<sub>T</sub></i> with M(<i>ϕ<sub>T</sub></i>)(<i>x</i>)/‖<i>ϕ<sub>T</sub></i>‖<sub><i>a</i></sub> → ∞ as <i>T</i> → ∞. No bound exists, and the slot is lost.</li>
 </ul>
 <p>The lab uses <i>ϕ<sub>T</sub></i>(<i>t</i>) = <i>t<sup>x</sup></i> / max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) for 1/<i>T</i> ≤ <i>t</i> ≤ <i>T</i> and 0 elsewhere, which is the function that makes the Cauchy–Schwarz inequality an equality.</p>
@@ -30,7 +30,7 @@
 
 <h2>The spectral side in the completed space</h2>
 <p>Complete the three spaces of the divisor exact sequence in this norm. The paper's claim is that the sequence stays exact, that A(<i>φ</i>) acts on the completed quotient as a trace-class operator, and that its trace is</p>
-<p class="note">Σ N(<i>ρ</i>) · M(<i>φ</i>)(<i>ρ</i> − ½), summed over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> only.</p>
+<p class="note">$$\sum_{\lvert\operatorname{Re}\rho-\frac12\rvert<a} N(\rho)\cdot M(\varphi)\!\left(\rho-\tfrac12\right)$$ The sum is over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> only.</p>
 <p>So a zero at distance <i>a</i> or more from the critical line contributes nothing to this trace. The half-width <i>a</i> can be chosen as small as desired. The paper places this between two earlier approaches: in Meyer's work every zero contributes, wherever it is, and Connes's "spectral interpretation" is described as the limiting case in which the strip is the critical line alone.</p>
 <p class="note warn">Removing terms from one side of an identity is only useful if the other side can still be computed. The classical explicit formula (chapter @@ch:trace-formula@@) is a theorem, and it contains every zero. The proof therefore depends on computing the other side of the trace <em>inside the completed space</em>, without using the classical formula. Chapters @@ch:circle-per-prime@@ and @@ch:trace-formula@@ describe how the paper does that.</p>
 
@@ -45,7 +45,7 @@
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>For the lab's <i>ϕ<sub>T</sub></i>, show that M(<i>ϕ<sub>T</sub></i>)(<i>x</i>) = ‖<i>ϕ<sub>T</sub></i>‖<sub><i>a</i></sub>² and compute it for |<i>x</i>| &lt; <i>a</i>.<details><summary>Solution</summary><p>Write <i>w</i>(<i>t</i>) for the weight. Both quantities equal I<sub><i>T</i></sub> = ∫ <i>t</i><sup>2<i>x</i></sup>/<i>w</i>(<i>t</i>) d<i>t</i>/<i>t</i> over [1/<i>T</i>, <i>T</i>]. On [1, <i>T</i>] the integrand is <i>t</i><sup>2<i>x</i> − 2<i>a</i></sup>, giving (1 − <i>T</i><sup>−2(<i>a</i> − <i>x</i>)</sup>)/(2(<i>a</i> − <i>x</i>)). On [1/<i>T</i>, 1] it is <i>t</i><sup>2<i>x</i> + 2<i>a</i></sup>, giving (1 − <i>T</i><sup>−2(<i>a</i> + <i>x</i>)</sup>)/(2(<i>a</i> + <i>x</i>)). The ratio in the lab is √I<sub><i>T</i></sub>. As <i>T</i> → ∞, I<sub><i>T</i></sub> → 1/(2(<i>a</i> − <i>x</i>)) + 1/(2(<i>a</i> + <i>x</i>)) = <i>a</i>/(<i>a</i>² − <i>x</i>²).</p></details></li>
+    <li>For the lab's <i>ϕ<sub>T</sub></i>, show that M(<i>ϕ<sub>T</sub></i>)(<i>x</i>) = ‖<i>ϕ<sub>T</sub></i>‖<sub><i>a</i></sub>² and compute it for |<i>x</i>| &lt; <i>a</i>.<details><summary>Solution</summary><p>Write <i>w</i>(<i>t</i>) for the weight. Both quantities equal $$I_T \;=\; \int_{1/T}^{T} \frac{t^{2x}}{w(t)}\,\frac{dt}{t}$$ On [1, <i>T</i>] the integrand is <i>t</i><sup>2<i>x</i> − 2<i>a</i></sup>, and on [1/<i>T</i>, 1] it is <i>t</i><sup>2<i>x</i> + 2<i>a</i></sup>, so $$I_T \;=\; \frac{1-T^{-2(a-x)}}{2(a-x)} \;+\; \frac{1-T^{-2(a+x)}}{2(a+x)}$$ The ratio in the lab is √I<sub><i>T</i></sub>. As <i>T</i> → ∞, $$I_T \;\to\; \frac{1}{2(a-x)}+\frac{1}{2(a+x)} \;=\; \frac{a}{a^{2}-x^{2}}$$</p></details></li>
     <li>With <i>a</i> = 0.1, which of these hypothetical zeros would keep a slot: <i>β</i> = 0.55, <i>β</i> = 0.6, <i>β</i> = 0.7?<details><summary>Solution</summary><p>The slot is at real part <i>β</i> − ½: 0.05, 0.1 and 0.2. Only the first is strictly inside the strip. The zero at <i>β</i> = 0.6 is exactly on the edge and is lost, as is the one at 0.7.</p></details></li>
     <li>Show that max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) = e<sup>2<i>a</i>|<i>u</i>|</sup> for <i>u</i> = ln <i>t</i>.<details><summary>Solution</summary><p><i>t</i><sup>±2<i>a</i></sup> = e<sup>±2<i>au</i></sup>. The larger of e<sup>2<i>au</i></sup> and e<sup>−2<i>au</i></sup> is the one with the positive exponent, e<sup>2<i>a</i>|<i>u</i>|</sup>.</p></details></li>
   </ol>

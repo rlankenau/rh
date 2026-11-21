@@ -4,7 +4,7 @@
 <h2>Why Riemann wanted complex <i>s</i></h2>
 <p>In 1859 Riemann wrote one short paper on number theory, "On the Number of Primes Less Than a Given Magnitude". Gauss had an approximation for the number of primes up to <i>x</i> (chapter @@ch:primes@@). Riemann wanted an exact formula.</p>
 <p>The link between <i>ζ</i> and the primes at the end of chapter @@ch:zeta@@ can be written as an integral:</p>
-<p class="note">−<i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) = <i>s</i> · ∫<sub>1</sub><sup>∞</sup> <i>ψ</i>(<i>x</i>) <i>x</i><sup>−<i>s</i> − 1</sup> d<i>x</i>.</p>
+<p class="note">$$-\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; s\int_{1}^{\infty} \psi(x)\, x^{-s-1}\, dx$$</p>
 <p>This gives a function of <i>s</i> in terms of the prime-counting function <i>ψ</i>. Riemann wanted the reverse: <i>ψ</i> in terms of <i>ζ</i>. The integral is a transform of the same kind as the Fourier and Laplace transforms, and the formula that inverts such a transform is an integral over <em>complex</em> values of <i>s</i>. So to solve for the primes, <i>ζ</i> has to be understood as a function of a complex variable. Riemann was the leading expert of his time on such functions, and he carried the inversion through.</p>
 
 <h2>Complex numbers in three facts</h2>
@@ -16,7 +16,7 @@
 
 <h2>What 1/<i>n<sup>s</sup></i> means</h2>
 <p>Write <i>s</i> = <i>σ</i> + <i>it</i>, with <i>σ</i> the real part and <i>t</i> the imaginary part. Since <i>n</i> = e<sup>ln <i>n</i></sup>,</p>
-<p class="note"><i>n</i><sup>−<i>s</i></sup> = e<sup>−<i>s</i> ln <i>n</i></sup> = <i>n</i><sup>−<i>σ</i></sup> · e<sup>−<i>it</i> ln <i>n</i></sup>: an arrow of length <i>n</i><sup>−<i>σ</i></sup>, at the angle −<i>t</i> ln <i>n</i>.</p>
+<p class="note">$$n^{-s} \;=\; e^{-s\ln n} \;=\; n^{-\sigma}\cdot e^{-it\ln n}$$ This is an arrow of length <i>n</i><sup>−<i>σ</i></sup>, at the angle −<i>t</i> ln <i>n</i>.</p>
 <p>The real part <i>σ</i> sets the length, exactly as for real <i>s</i>. The imaginary part <i>t</i> does not change the length at all. It only turns the arrow, and it turns the arrow for a large <i>n</i> further than the arrow for a small <i>n</i>.</p>
 
 <figure class="lab">

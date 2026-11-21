@@ -147,3 +147,10 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
   h1{font-size:1.7rem}
 }
 @media (min-width:861px){ .toc details>summary{display:none} }
+
+/* formulas (KaTeX, rendered at build time) */
+.katex{font-size:1.08em}
+.katex-display{margin:.45em 0;text-align:left;overflow-x:auto;overflow-y:hidden;padding:.15em 0}
+.katex-display>.katex{text-align:left}
+.note .katex-display:first-child{margin-top:.1em}
+.note .katex-display:last-child{margin-bottom:.1em}

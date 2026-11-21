@@ -4,12 +4,12 @@
 
 <h2>Removing one Euler factor</h2>
 <p>Take the sum over whole numbers of chapter @@ch:theta-sums@@, F(<i>x</i>) = Σ<sub><i>n</i> ≥ 1</sub> <i>f</i>(<i>nx</i>), and subtract its rescaling by <i>p</i>:</p>
-<p class="note">F(<i>x</i>) − F(<i>px</i>) = Σ <i>f</i>(<i>nx</i>) over the <i>n</i> that are <em>not</em> divisible by <i>p</i>.</p>
+<p class="note">$$F(x) - F(px) \;=\; \sum_{p\,\nmid\,n} f(nx)$$ The sum on the right runs over the <i>n</i> that are <em>not</em> divisible by <i>p</i>.</p>
 <p>On Mellin transforms, rescaling by <i>p</i> is multiplication by <i>p</i><sup>−<i>s</i></sup> (chapter @@ch:mellin@@), so the operation F(<i>x</i>) ↦ F(<i>x</i>) − F(<i>px</i>) multiplies the transform by 1 − <i>p</i><sup>−<i>s</i></sup>. That turns <i>ζ</i>(<i>s</i>) · M(<i>f</i>)(<i>s</i>) into <i>ζ</i>(<i>s</i>)(1 − <i>p</i><sup>−<i>s</i></sup>) · M(<i>f</i>)(<i>s</i>): the Euler product with the factor for <i>p</i> removed. The paper calls its version of this operation PV<sub><i>p</i></sub>.</p>
 
 <h2>The circle of a prime</h2>
 <p>The functions of the form <i>g</i>(<i>x</i>) − <i>g</i>(<i>px</i>) are exactly the ones that Φ<sub><i>p</i></sub> sends to 0 in chapter @@ch:circle-slots@@. Regarding them as zero leaves the functions on the circle (0, ∞) modulo <i>p</i>, with one slot at each zero of 1 − <i>p</i><sup>−<i>s</i></sup>. The trace of A(<i>φ</i>) on that circle was computed in chapter @@ch:m1-trace-two-ways@@: ln <i>p</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>p<sup>k</sup></i>). In the paper's normalization (the factor √<i>x</i> in a θ-function) the term for <i>p<sup>k</sup></i> is divided by <i>p</i><sup><i>k</i>/2</sup>, and if <i>φ</i> is zero for <i>t</i> ≤ 1 only <i>k</i> ≥ 1 occurs:</p>
-<p class="note">contribution of the prime <i>p</i> = ln <i>p</i> · Σ<sub><i>k</i> ≥ 1</sub> <i>φ</i>(<i>p<sup>k</sup></i>) / <i>p</i><sup><i>k</i>/2</sup>.</p>
+<p class="note">$$\text{contribution of the prime } p \;=\; \ln p \cdot \sum_{k\ge 1} \frac{\varphi(p^{k})}{p^{k/2}}$$</p>
 <p>Added over all primes this is Σ<sub><i>n</i></sub> Λ(<i>n</i>) <i>φ</i>(<i>n</i>)/√<i>n</i>, with the weights Λ(<i>n</i>) of chapter @@ch:primes@@. The paper relates this picture to a proposal of Deninger: a space on which each prime <i>p</i> appears as a closed orbit of length ln <i>p</i>.</p>
 
 <h2>Only finitely many primes contribute</h2>
