@@ -136,8 +136,10 @@
       var u = g.a + (px - g.l) / (g.W - g.l - g.r) * g.w, x = o.log ? Math.exp(u) : u;
       var h = '<b>' + (o.xn || 'x') + ' = ' + (o.log ? fmt(x, x < 100 ? 1 : 0) : fmt(x, o.xdp == null ? 1 : o.xdp)) + '</b>';
       o.series.forEach(function (se) {
-        var v = se.pts[0][1], i;
+        var v = se.pts[0][1], i, p, q;
         for (i = 0; i < se.pts.length && se.pts[i][0] <= x; i++) v = se.pts[i][1];
+        // between two samples, read the value off the drawn line
+        if (i > 0 && i < se.pts.length) { p = se.pts[i - 1]; q = se.pts[i]; if (q[0] > p[0]) v = p[1] + (q[1] - p[1]) * (x - p[0]) / (q[0] - p[0]); }
         h += '<span><i style="background:' + se.c + '"></i>' + se.n + ': ' + fmt(v, o.dp) + '</span>';
       });
       tip.innerHTML = h; tip.hidden = false;
