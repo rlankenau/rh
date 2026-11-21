@@ -86,9 +86,11 @@ def toc(up, current):
                 items.append(f'<li><a href="{up}{slug}/"{cur}>{label}</a></li>')
         parts.append(f"<div><h2>{html.escape(title)}</h2><ol>{''.join(items)}</ol></div>")
     cur_g = ' aria-current="page"' if current == "glossary" else ""
+    cur_s = ' aria-current="page"' if current == "symbols" else ""
     return (f'<nav class="toc" aria-label="Contents"><a class="brand" href="{up or "./"}">Two Riemann Proofs</a>'
             f'<details open><summary>Contents</summary>{"".join(parts)}'
-            f'<div class="extra"><a href="{up}glossary/"{cur_g}>Glossary</a></div></details></nav>')
+            f'<div class="extra"><a href="{up}glossary/"{cur_g}>Glossary</a>'
+            f'<a href="{up}symbols/"{cur_s}>Greek letters and symbols</a></div></details></nav>')
 
 
 def slugify(term):
@@ -212,6 +214,10 @@ def main():
     (docs / "glossary").mkdir(exist_ok=True)
     (docs / "glossary" / "index.html").write_text(
         HEAD.format(title="Glossary", fonts=FONTS, up="../", toc=toc("../", "glossary")) + glossary_page(glossary) + TAIL.format(up="../"))
+    (docs / "symbols").mkdir(exist_ok=True)
+    (docs / "symbols" / "index.html").write_text(
+        HEAD.format(title="Greek letters and symbols", fonts=FONTS, up="../", toc=toc("../", "symbols"))
+        + (ROOT / "site" / "symbols.html").read_text() + TAIL.format(up="../"))
     (docs / "index.html").write_text(landing(glossary))
     (docs / ".nojekyll").touch()
 
