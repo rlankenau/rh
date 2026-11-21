@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin:0">
+<title>Masullo Proof Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a fixed contents rail beside one reading column, like a monograph with its table of contents open. */
+:root{
+  --bg:#f5f7fa; --panel:#ffffff; --fg:#17202e; --muted:#586579; --rule:#d5dce6;
+  --accent:#1f4e8c; --accent-soft:#e3ecf8;
+  --ok:#17694a; --ok-soft:#dff2e9; --warn:#8a5a00; --warn-soft:#fbefd2; --open:#8f2f3c; --open-soft:#f9e1e4;
+  --code-bg:#eef1f6;
+  --display:"STIX Two Text","Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#10151d; --panel:#18202b; --fg:#e4e9f1; --muted:#9aa7ba; --rule:#2c3747;
+  --accent:#8db8f2; --accent-soft:#1d2c44;
+  --ok:#6fd0a6; --ok-soft:#153427; --warn:#e6b85a; --warn-soft:#3a2d10; --open:#f09aa5; --open-soft:#3d1c22;
+  --code-bg:#0c1118; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#10151d; --panel:#18202b; --fg:#e4e9f1; --muted:#9aa7ba; --rule:#2c3747;
+  --accent:#8db8f2; --accent-soft:#1d2c44;
+  --ok:#6fd0a6; --ok-soft:#153427; --warn:#e6b85a; --warn-soft:#3a2d10; --open:#f09aa5; --open-soft:#3d1c22;
+  --code-bg:#0c1118; color-scheme:dark }
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6}
+.shell{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.5rem;max-width:72rem;margin:0 auto;padding-block:2rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.5rem);align-self:start;display:flex;flex-direction:column;gap:.25rem}
+.brand{font-family:var(--display);font-size:1.35rem;font-weight:600;line-height:1.2;margin-bottom:.25rem}
+.sub{color:var(--muted);font-size:.8rem;margin-bottom:1rem}
+nav a{color:var(--fg);text-decoration:none;padding:.4rem .6rem;border-left:2px solid var(--rule);font-size:.95rem}
+nav a:hover{border-left-color:var(--accent)}
+nav a[aria-current="page"]{border-left-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+nav a:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{min-width:0}
+section{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:3rem}
+h1{font-family:var(--display);font-weight:600;font-size:2.1rem;line-height:1.15;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:1.4rem;margin:1rem 0 0;text-wrap:balance}
+h3{font-size:1rem;font-weight:600;margin:.4rem 0 0}
+p,ul,ol{margin:0;max-width:68ch}
+li{margin-bottom:.35rem}
+.lede{font-size:1.1rem;color:var(--muted);max-width:62ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);padding:.08em .3em;border-radius:3px;overflow-wrap:anywhere}
+pre{font-family:var(--mono);font-size:.8rem;line-height:1.5;background:var(--code-bg);border:1px solid var(--rule);border-radius:4px;padding:.8rem 1rem;margin:0;overflow-x:auto;white-space:pre}
+.path{font-family:var(--mono);font-size:.76rem;color:var(--muted);overflow-wrap:anywhere}
+.chip{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.03em;padding:.1rem .5rem;border-radius:999px;white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.open{background:var(--open-soft);color:var(--open)}
+.ladder{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:6px;background:var(--panel);overflow:hidden}
+.rung{display:grid;grid-template-columns:2.2rem minmax(0,1fr) auto;gap:.9rem;align-items:start;padding:.85rem 1rem;border-bottom:1px solid var(--rule)}
+.rung:last-child{border-bottom:0}
+.rung .n{font-family:var(--display);font-size:1.5rem;color:var(--accent);line-height:1.1}
+.rung b{display:block}
+.rung span.d{color:var(--muted);font-size:.9rem}
+.rung .meta{text-align:right;display:flex;flex-direction:column;gap:.3rem;align-items:flex-end;font-size:.78rem;color:var(--muted)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:.7rem 1rem;max-width:68ch}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+details{border:1px solid var(--rule);border-radius:6px;background:var(--panel)}
+summary{cursor:pointer;padding:.8rem 1rem;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+summary .n{font-family:var(--display);color:var(--accent);font-size:1.2rem}
+summary b{flex:1 1 14rem}
+details .in{padding:0 1rem 1rem;display:flex;flex-direction:column;gap:.8rem;min-width:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.45rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+dl{margin:0;display:grid;grid-template-columns:minmax(8rem,13rem) minmax(0,1fr);gap:.2rem 1.2rem}
+dt{font-family:var(--mono);font-size:.85rem;padding-top:.5rem;border-top:1px solid var(--rule);overflow-wrap:anywhere}
+dd{margin:0;padding-top:.5rem;border-top:1px solid var(--rule)}
+dd .path{display:block;margin-top:.2rem}
+figure{margin:0;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:.8rem}
+figure .tw svg{display:block;width:100%;min-width:30rem;height:auto}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:.5rem;max-width:68ch}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+:root{--s1:#1f6fd1;--s2:#c2560a}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--s1:#3987e5;--s2:#cf7a30} }
+:root[data-theme="dark"]{--s1:#3987e5;--s2:#cf7a30}
+.plot{position:relative;min-width:30rem}
+.plot svg{display:block;width:100%;height:auto}
+.plot .gr{stroke:var(--rule);stroke-width:1}
+.plot .rf{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 4}
+.plot .ch{stroke:var(--muted);stroke-width:1}
+.plot .tk{fill:var(--muted);font-family:var(--body);font-size:11px}
+.tip{position:absolute;top:.4rem;pointer-events:none;background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:.3rem .55rem;font-size:.78rem;display:flex;flex-direction:column;white-space:nowrap}
+.tip[hidden]{display:none}
+.tip i,.lg i{display:inline-block;width:.9rem;height:3px;vertical-align:middle;margin-right:.4rem;border-radius:2px}
+.lg{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.85rem;margin-bottom:.4rem}
+.ctl{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;font-size:.9rem;margin-bottom:.5rem}
+.ctl input{accent-color:var(--accent);width:14rem;max-width:100%}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:600;min-width:1.5rem}
+svg.dg{color:var(--fg)}
+.dg text{fill:currentColor;font-family:var(--body);font-size:12px}
+.dg .mu{fill:var(--muted)}
+.dg .b{fill:var(--bg);stroke:currentColor;stroke-width:1.2}
+.dg .hl{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.dg .ln{stroke:currentColor;stroke-width:1.2;fill:none}
+.dg .ac{stroke:var(--accent);stroke-width:2;fill:none}
+.dg .dot{fill:var(--accent)}
+@media (max-width:820px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:1.2rem}
+  nav{position:static;flex-direction:row;flex-wrap:wrap}
+  .brand,.sub{flex-basis:100%;margin-bottom:0}
+  nav a{border-left:0;border-bottom:2px solid var(--rule)}
+  nav a[aria-current="page"]{border-bottom-color:var(--accent)}
+  .rung{grid-template-columns:1.8rem minmax(0,1fr)} .rung .meta{grid-column:2;text-align:left;align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  dl{grid-template-columns:minmax(0,1fr)} dd{border-top:0;padding-top:0}
+  h1{font-size:1.7rem}
+}
+.dg .miss{fill:var(--open-soft);stroke:var(--open);stroke-width:1.5;stroke-dasharray:5 4}
+</style>
+
+<div class="shell">
+<nav aria-label="Pages">
+  <div class="brand">Masullo Proof Atlas</div>
+  <div class="sub">A reader's map of “The Music of the Primes” by Alessandro Maria Masullo, release of 20 Nov 2026 (940 pages). <a href="https://rlankenau.github.io/rh/">Both atlases</a></div>
+  <a href="#overview">Overview</a>
+  <a href="#idea">The idea</a>
+  <a href="#chain">The argument by chapter</a>
+  <a href="#gaps">What is missing</a>
+  <a href="#compare">Two proofs compared</a>
+  <a href="#lean">Lean notes</a>
+</nav>
+
+<main>
+
+<section data-view="overview">
+  <h1>How Masullo's claimed proof of GRH is put together</h1>
+  <p class="lede">On the same day as the Alpöge–Claude Lean release, Ravi Vakil's blog posted a 940-page paper by Alessandro Masullo claiming the Riemann Hypothesis for the Hecke L-functions of every number field. It is a human-written paper, twelve years in the making, released before it was finished.</p>
+  <div class="note warn"><b>Nothing here says the proof is correct.</b> This map is based on the introduction (pages 11 to 33), the statement of the main theorem (pages 519 to 522), and a text scan of the whole document for unfinished parts. The other 900 pages have not been read.</div>
+
+  <h2>What is claimed</h2>
+  <p>For any number field F and any unitary Hecke character χ, every zero of the completed L-function L(s, χ) in the critical strip has real part ½. Taking F to be the rationals gives the Riemann zeta function and all Dirichlet L-functions, which is the case the Lean proof covers. General number fields go further.</p>
+
+  <h2>The argument in seven steps</h2>
+  <div class="ladder">
+    <div class="rung"><div class="n">1</div><div><b>Tate's thesis as a stage</b><span class="d">L-functions come from averaging functions on the adeles. Set up the spaces of those averages, the “theta functions”.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 2, 3, 5, 6</span></div></div>
+    <div class="rung"><div class="n">2</div><div><b>A space whose points are the zeros</b><span class="d">Divide all test functions by the theta functions. What is left is a space with one slot for each zero of L.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 5 to 7</span></div></div>
+    <div class="rung"><div class="n">3</div><div><b>Listen only to a thin strip</b><span class="d">Complete everything in a new norm, chosen so that only zeros within distance a of the critical line survive. This gives the spectral side.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 9, 10</span></div></div>
+    <div class="rung"><div class="n">4</div><div><b>Cut the kernel into one piece per prime</b><span class="d">The difference between the convolution kernel and the spectral kernel is split along the primes, using explicit bases.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 4, 7, 8, 11</span></div></div>
+    <div class="rung"><div class="n">5</div><div><b>Almost every piece has trace zero</b><span class="d">For each prime outside a finite set S, Poisson summation shows the piece contributes nothing.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 11</span></div></div>
+    <div class="rung"><div class="n">6</div><div><b>Compute what is left</b><span class="d">The remaining piece is computed with a trace formula of Connes from 1998. The result is the main theorem, a trace formula.</span></div><div class="meta"><span class="chip ok">written out</span><span>ch. 12, p. 519</span></div></div>
+    <div class="rung"><div class="n">7</div><div><b>Read off the zeros</b><span class="d">Feed a family of test functions into the trace formula to show the logarithmic derivative of L has no poles to the right of ½.</span></div><div class="meta"><span class="chip open">not written</span><span>ch. 13 is a stub</span></div></div>
+  </div>
+  <div class="legend"><span><span class="chip ok">written out</span> a full chapter exists; I have not checked it</span><span><span class="chip warn">sketched</span> described in the introduction only</span><span><span class="chip open">not written</span> placeholder in this release</span></div>
+
+  <h2>Where to go</h2>
+  <ul>
+    <li><a href="#idea">The idea</a> explains the strategy without the machinery, starting from the author's own toy example.</li>
+    <li><a href="#chain">The argument by chapter</a> follows the seven steps through the paper with page numbers.</li>
+    <li><a href="#gaps">What is missing</a> lists every unfinished part the scan found.</li>
+    <li><a href="#compare">Two proofs compared</a> sets this beside the Lean proof.</li>
+    <li><a href="#lean">Lean notes</a> tracks the pieces we formalize as we go.</li>
+  </ul>
+</section>
+
+<section data-view="idea">
+  <h1>The idea, without the machinery</h1>
+  <p class="lede">The explicit formula says a sum over zeros equals a sum over primes. Masullo's plan is to realize both sides as the trace of one operator, then change the space the operator acts on until the zeros away from the critical line can no longer be heard.</p>
+
+  <h2>A trace computed two ways</h2>
+  <p>The trace of a matrix can be computed as the sum of its eigenvalues or as the sum of its diagonal entries. A trace formula is that equality for an operator on an infinite-dimensional space. One side, the spectral side, sums eigenvalues. The other, the geometric side, integrates the operator's kernel along the diagonal.</p>
+  <p>Since Weil and Connes the hope has been to find an operator whose eigenvalues are the zeros of an L-function and whose geometric side is a sum over primes. That would make the explicit formula a trace formula. Masullo's paper is in this tradition and builds on Tate's thesis, Connes's 1998 paper, and work of Ralf Meyer.</p>
+
+  <h2>The toy example</h2>
+  <p>The introduction gives a model of the whole argument on a circle. Take a number γ greater than 1 and wrap the positive reals around so that t and γt are the same point. Functions on this circle have a basis of pure tones t<sup>2πim/log γ</sup>, one for each whole number m.</p>
+  <p>Let a test function φ act by convolution. Each tone is an eigenvector, so the trace is the sum of the eigenvalues, which are values of the Mellin transform of φ. Poisson summation turns that sum into something else:</p>
+<pre>Σ_m  M(φ)(2πim / log γ)   =   log γ · Σ_k  φ(γ^k)</pre>
+  <figure>
+    <div class="tw"><svg class="dg" viewBox="0 0 640 150" role="img" aria-label="A test function supported strictly between 1 and gamma misses every power of gamma, so the trace is zero">
+      <line class="ln" x1="30" y1="100" x2="610" y2="100"/>
+      <line class="ln" x1="110" y1="92" x2="110" y2="108"/><line class="ln" x1="250" y1="92" x2="250" y2="108"/><line class="ln" x1="390" y1="92" x2="390" y2="108"/><line class="ln" x1="530" y1="92" x2="530" y2="108"/>
+      <text x="110" y="126" text-anchor="middle">1/γ</text><text x="250" y="126" text-anchor="middle">1</text><text x="390" y="126" text-anchor="middle">γ</text><text x="530" y="126" text-anchor="middle">γ²</text>
+      <path class="ac" d="M270 100 C295 100 300 40 320 40 C340 40 345 100 370 100"/>
+      <text x="320" y="28" text-anchor="middle">test function φ</text>
+      <text class="mu" x="610" y="126" text-anchor="end">t, log scale</text>
+      <text class="mu" x="110" y="80" text-anchor="middle">φ = 0</text><text class="mu" x="250" y="80" text-anchor="middle">φ = 0</text><text class="mu" x="390" y="80" text-anchor="middle">φ = 0</text><text class="mu" x="530" y="80" text-anchor="middle">φ = 0</text>
+    </svg></div>
+    <figcaption>If φ lives strictly between 1 and γ it is zero at every power of γ, so the right-hand side vanishes and the trace is 0. In the paper γ becomes the size of a prime, and this is why a prime larger than the reach of φ contributes nothing.</figcaption>
+  </figure>
+
+  <h2>The real version: one circle per prime</h2>
+  <p>In the real setting the space is built from the adeles, and the operator's kernel has a contribution from every prime. The paper constructs a basis, which it calls an orbital Schauder basis, on the piece belonging to each prime. On that piece the calculation is the toy example, with γ replaced by the norm of the prime.</p>
+  <p>A test function φ supported between 1 and some bound T then sees only the finitely many primes of norm below T. Everything else has trace zero. The finite remainder is computed by Connes's method and gives the prime side of the explicit formula.</p>
+
+  <h2>The thin strip</h2>
+  <p>The new move is on the other side. Previous work used spaces in which every zero of L contributes an eigenvalue, wherever it lies. Masullo completes the spaces in a norm he calls Hardy–Sobolev, with a parameter a. In that completion only the zeros within distance a of the critical line still give eigenvalues. Evaluation at a zero further out is no longer a continuous operation, so it drops out of the trace.</p>
+  <figure>
+    <div class="tw"><svg class="dg" viewBox="0 0 640 210" role="img" aria-label="Only zeros inside a strip of half-width a around the critical line contribute to the spectral side">
+      <rect x="270" y="14" width="100" height="150" style="fill:var(--accent-soft)"/>
+      <line class="ln" x1="200" y1="14" x2="200" y2="164"/><line class="ln" x1="440" y1="14" x2="440" y2="164"/><line class="ac" x1="320" y1="14" x2="320" y2="164"/>
+      <line class="ln" x1="40" y1="164" x2="600" y2="164"/>
+      <text x="200" y="182" text-anchor="middle">0</text><text x="320" y="182" text-anchor="middle">½</text><text x="440" y="182" text-anchor="middle">1</text>
+      <text class="mu" x="270" y="182" text-anchor="middle">½ − a</text><text class="mu" x="370" y="182" text-anchor="middle">½ + a</text>
+      <circle class="dot" cx="320" cy="40" r="4"/><circle class="dot" cx="320" cy="75" r="4"/><circle class="dot" cx="320" cy="98" r="4"/><circle class="dot" cx="320" cy="140" r="4"/>
+      <circle class="b" cx="405" cy="60" r="5"/><circle class="b" cx="235" cy="60" r="5"/>
+      <text x="450" y="56">a zero out here would be</text><text x="450" y="72">silent in this space</text>
+      <text x="190" y="120" text-anchor="end">zeros inside the band</text><text x="190" y="136" text-anchor="end">are counted</text>
+      <text class="mu" x="320" y="202" text-anchor="middle">the prime side of the formula comes out the same for every a</text>
+    </svg></div>
+    <figcaption>The claim that carries the proof: the geometric side can be computed inside the thin-strip space and gives the same answer however small a is. The spectral side then only ever contains zeros within a of the line.</figcaption>
+  </figure>
+
+  <h2>Reading off the zeros</h2>
+  <p>The last step uses the test functions t<sup>s</sup> on t &gt; 1, approximated by allowed ones. With these the prime side becomes the logarithmic derivative of L, and the trace formula expresses it through zeros inside the band alone. A logarithmic derivative has a pole at every zero. So L has no zeros with real part beyond ½ + a, and since a can be as small as you like, none beyond ½. The functional equation gives the other side.</p>
+  <p>The introduction notes two things about this route. It does not use Weil's positivity criterion, the usual target in this tradition. And it uses known facts about L as inputs: no zeros on the line Re s = 1, and growth bounds in vertical strips.</p>
+
+  <div class="note"><b>Where a reader should look hardest.</b> Weil's explicit formula has every zero on its spectral side. Masullo's has only those in the band, with the same prime side. Subtract the two and the zeros outside the band must contribute nothing, which is the theorem. So the whole proof rests on the claim that the geometric side really can be computed inside the thin-strip space: steps 4 to 6. That is an observation about the structure of the argument, not a finding that anything is wrong.</div>
+</section>
+
+<section data-view="chain">
+  <h1>The argument by chapter</h1>
+  <p class="lede">The seven steps, with where each lives in the 940 pages. Page numbers are those printed in the release of 20 November 2026.</p>
+  <figure>
+    <div class="tw"><svg class="dg" viewBox="0 0 640 470" role="img" aria-label="The seven steps of the argument in order, with the last step marked as not written">
+      <defs><marker id="arM" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="currentColor"/></marker></defs>
+      <rect class="b" x="20" y="10" width="290" height="34" rx="3"/><text x="165" y="32" text-anchor="middle">1 · theta functions and zeta integrals</text>
+      <rect class="b" x="20" y="80" width="290" height="34" rx="3"/><text x="165" y="102" text-anchor="middle">2 · quotient space: one slot per zero</text>
+      <rect class="hl" x="20" y="150" width="290" height="34" rx="3"/><text x="165" y="172" text-anchor="middle">3 · thin-strip completion: spectral side</text>
+      <rect class="b" x="330" y="80" width="290" height="34" rx="3"/><text x="475" y="102" text-anchor="middle">4 · split the kernel prime by prime</text>
+      <rect class="b" x="330" y="150" width="290" height="34" rx="3"/><text x="475" y="172" text-anchor="middle">5 · pieces outside S have trace 0</text>
+      <rect class="b" x="330" y="220" width="290" height="34" rx="3"/><text x="475" y="242" text-anchor="middle">6 · the S-piece, by Connes's formula</text>
+      <rect class="hl" x="175" y="300" width="290" height="34" rx="3"/><text x="320" y="322" text-anchor="middle">trace formula, Theorem 12.5.1.1</text>
+      <rect class="miss" x="175" y="370" width="290" height="34" rx="3"/><text x="320" y="392" text-anchor="middle">7 · log-derivative has no poles past ½</text>
+      <rect class="b" x="175" y="430" width="290" height="30" rx="3"/><text x="320" y="450" text-anchor="middle">GRH for Hecke L-functions</text>
+      <line class="ln" x1="165" y1="44" x2="165" y2="77" marker-end="url(#arM)"/><line class="ln" x1="165" y1="114" x2="165" y2="147" marker-end="url(#arM)"/>
+      <line class="ln" x1="310" y1="27" x2="475" y2="27"/><line class="ln" x1="475" y1="27" x2="475" y2="77" marker-end="url(#arM)"/>
+      <line class="ln" x1="475" y1="114" x2="475" y2="147" marker-end="url(#arM)"/><line class="ln" x1="475" y1="184" x2="475" y2="217" marker-end="url(#arM)"/>
+      <line class="ln" x1="165" y1="184" x2="270" y2="297" marker-end="url(#arM)"/><line class="ln" x1="475" y1="254" x2="372" y2="297" marker-end="url(#arM)"/>
+      <line class="ln" x1="320" y1="334" x2="320" y2="367" marker-end="url(#arM)"/><line class="ln" x1="320" y1="404" x2="320" y2="427" marker-end="url(#arM)"/>
+      <text class="mu" x="150" y="250" text-anchor="end">spectral side</text><text class="mu" x="440" y="282">geometric side</text>
+    </svg></div>
+    <figcaption>The left column builds the side that sums over zeros, the right column the side that sums over primes. They meet in the trace formula. The dashed box is the step this release does not contain.</figcaption>
+  </figure>
+
+  <details open><summary><span class="n">1</span><b>Tate's thesis as a stage</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>Take a rapidly decaying function f on the adeles of F and sum it over the multiplicative orbit of F: Φ(f)(g) = Σ f(ξg). The result is a function on the idele class group C<sub>F</sub>, which the paper calls an adelic theta function. Tate showed in 1950 that the Mellin transform of such a function is an L-function times something entire. The first chapters build these spaces carefully, both globally and “S-locally”, using only a finite set S of places.</p>
+    <p class="path">Chapter 2, Adelic θ-functions (p. 57) · Chapter 3, Idelic Zeta Functions (p. 117) · Chapter 5, Spaces of adelic θ-functions (p. 221) · Chapter 6, Local-Global structures (p. 287) · Appendices A, C, D</p>
+  </div></details>
+
+  <details open><summary><span class="n">2</span><b>A space whose points are the zeros</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>The theta functions sit inside the space of all rapidly decaying functions on C<sub>F</sub>. Under the Mellin transform they become exactly the multiples of L(s + ½, χ). So the quotient, all functions modulo theta functions, is a space of functions on the zero set of L: one dimension for each zero, counted with multiplicity. The paper calls this the fundamental divisor exact sequence.</p>
+<pre>0 → (theta functions) → (all test functions) → H_F → 0
+           ↓ Mellin transform
+0 → L(s+½, χ)·(entire) → (entire) → ⊕ over zeros z of ℂ^N(z) → 0</pre>
+    <p>Showing this is exact with the right topologies is what the five “Structure Theorems” are for. It uses the convexity bound and polynomial growth of 1/L along a sequence of horizontal lines.</p>
+    <p class="path">§1.2.1 (p. 13) · Chapter 5 Structure Theorems I to III · Chapter 6 Structure Theorems IV, V · Chapter 7, Schauder Bases of Idelic Zeta functions (p. 311)</p>
+  </div></details>
+
+  <details open><summary><span class="n">3</span><b>Listen only to a thin strip</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>Fix an interval I = [−a, a]. The Hardy–Sobolev space W<sup>s,2</sup><sub>I</sub> is the completion of the test functions in a weighted L² norm, with weight max(|g|<sup>2a</sup>, |g|<sup>−2a</sup>). Complete all three terms of the exact sequence. The quotient is now a Hilbert space spanned by the zeros in the strip ½ + I, and convolution by a test function φ acts on it with trace</p>
+<pre>Σ over zeros ρ with ρ − ½ in the strip of   N(ρ) · M(φ)(χ|·|^(ρ−½))</pre>
+    <p>That is the spectral side. The paper says these spaces were not considered by Connes or Meyer, and that the case a = 0 recovers Connes's 1998 spectral interpretation.</p>
+    <p class="path">§1.1.3, §1.2.1, §1.4.8 (pp. 11 to 14, 31) · Chapter 9, Hardy-Sobolev topologies (p. 395) · Chapter 10, Trace formula: Spectral Side (p. 433)</p>
+  </div></details>
+
+  <details open><summary><span class="n">4</span><b>Cut the kernel into one piece per prime</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>Convolution by φ has kernel φ(xy⁻¹). If φ is supported away from 1 this kernel is zero on the diagonal, so its trace is zero. Define the geometric kernel as φ(xy⁻¹) minus the spectral kernel. Its diagonal integral is then minus the spectral side, by definition. The work is to compute that integral a second way.</p>
+    <p>The kernel is lifted to the ideles and cut along a filtration indexed by the primes, giving k<sub>geom</sub> = k<sub>S</sub> + Σ<sub>p</sub> k<sub>p</sub>. Each k<sub>p</sub> acts on an “orbital subquotient” that carries an explicit basis, a copy of the pure tones in the toy example. The paper calls these orbital Schauder bases and says they are its main novelty.</p>
+    <p class="path">§1.2.2, §1.2.9, §1.3 (pp. 15 to 27) · Chapter 4, Periodic Schauder Bases (p. 155) · Chapter 8, Periodic Orbits and Fixed Points (p. 381) · Chapter 11, The Shell Structure (p. 475)</p>
+  </div></details>
+
+  <details open><summary><span class="n">5</span><b>Almost every piece has trace zero</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>On each orbital piece the trace is a sum over the zeros of a local Euler factor, and Poisson summation rewrites it as a sum of values of φ at powers of the prime's norm, exactly as in the toy example. If the support of φ lies below the norm of the prime, every term is zero. So for a fixed φ only the primes in a finite set S contribute.</p>
+    <p>Carrying the bases from the S-local spaces to the global ones is where the non-vanishing of L on the line Re s = 1 is used.</p>
+    <p class="path">§1.2.8, §1.2.9, §1.4.7 (pp. 16 to 19, 30) · Theorem 11.3.2.1 · Chapter 11.3, Orbital Kernels and Orbital Traces (p. 491)</p>
+  </div></details>
+
+  <details open><summary><span class="n">6</span><b>Compute what is left</b><span class="chip ok">written out</span></summary><div class="in">
+    <p>The remaining piece k<sub>S</sub> involves only the places in S. Its diagonal integral is computed with a version of the S-local trace formula from Connes's 1998 paper. The Fourier transform on the S-adeles turns a factor |x|<sup>a</sup> into the change from multiplicative to additive measure only when a = ½, which the paper presents as the reason ½ appears in the hypothesis.</p>
+    <p>The outcome is the theorem the paper calls its main result. For a test function φ vanishing on the norm-one classes:</p>
+<pre>Σ over all places v of   (local integral of φ(g)·|g|^½ / |1 − g| at v)
+    =  M(φ)(|·|^½) + M(φ)(|·|^−½)  −  Σ over zeros c in the strip of  N(c)·M(φ)(c·|·|^−½)</pre>
+    <p>The left side is the prime side of Weil's explicit formula. The right side has the two pole terms and the zeros in the strip ½ + I.</p>
+    <p class="path">§1.2.3 (p. 16) · Chapter 12, Trace formula: Geometric Side (p. 497) · Theorem 12.4.1.1 · Theorem 12.5.1.1 (p. 519)</p>
+  </div></details>
+
+  <details open><summary><span class="n">7</span><b>Read off the zeros</b><span class="chip open">not written</span></summary><div class="in">
+    <p>The introduction sketches this in two pages. Approximate the functions φ<sub>z</sub>(t) = t<sup>z</sup> for t &gt; 1 by allowed test functions. Montel's theorem gives uniform convergence of both sides as holomorphic functions of z. The prime side converges to the logarithmic derivative of the finite L-function. The conclusion is that L′/L(s + ½, χ) is holomorphic for Re s &gt; a, apart from the pole of zeta, for every a &gt; 0.</p>
+    <p>Chapter 13, which should contain this, consists of two empty section headings, a restatement of the trace formula marked “Correct statement”, and a theorem with no statement at all. See <a href="#gaps">What is missing</a>.</p>
+    <p>The restated theorem also contains a multiplicity cap: each zero is counted min(N, [F : ℚ]) times, where N is its multiplicity. For the rationals that would count every zero once.</p>
+    <p class="path">§1.4.2 to §1.4.5 (pp. 28 to 30) · Chapter 13, Zeros of Hecke L-functions (pp. 521 to 522)</p>
+  </div></details>
+</section>
+
+<section data-view="gaps">
+  <h1>What is missing</h1>
+  <p class="lede">The author says the mathematics is complete and the writing is not. This page lists what a text scan of all 940 pages found unfinished. It does not assess the parts that are written.</p>
+
+  <h2>The step that matters</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Where</th><th>What is there</th></tr></thead>
+    <tbody>
+      <tr><td>§13.1 Recollections on the Explicit Formulas (p. 522)</td><td><span class="chip open">empty</span> Heading only.</td></tr>
+      <tr><td>§13.2 Holomorphic families of test functions (p. 522)</td><td><span class="chip open">empty</span> Heading only. This is the approximation argument of §1.4.2 to §1.4.3.</td></tr>
+      <tr><td>Theorem 13.3.1.1, Trace Formula restated (p. 522)</td><td><span class="chip warn">flagged</span> Footnote: “Correct statement.”</td></tr>
+      <tr><td>Theorem 13.3.1.2, Divisor of L(s, χ) (p. 522)</td><td><span class="chip open">empty</span> No statement. Footnotes: “Insert statement.” and “State and prove the Main Theorems, also explaining how to deduce them by approximation”. It is derived from “Theorem ??”.</td></tr>
+    </tbody>
+  </table></div>
+  <p>So the release proves a trace formula and stops. The deduction of GRH from it exists only as the sketch in the introduction.</p>
+
+  <h2>The introduction</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Where</th><th>What is there</th></tr></thead>
+    <tbody>
+      <tr><td>§1.1.1 Tate's Thesis (p. 11)</td><td><span class="chip open">empty</span></td></tr>
+      <tr><td>§1.2.4 to §1.2.6: poles of S-idelic zeta functions, Sarnak's long horocycles, periodic orbits (p. 16)</td><td><span class="chip open">empty</span> Three headings in a row.</td></tr>
+      <tr><td>§1.3.3 The Shell structure, §1.3.4 Paley-Wiener Levels (p. 27)</td><td><span class="chip warn">flagged</span> Two or three sentences each, footnoted “Finish!”</td></tr>
+      <tr><td>§1.6 How this work was conducted, and why (p. 33)</td><td><span class="chip open">empty</span> Including §1.6.2, “The role of Brian Conrad”.</td></tr>
+      <tr><td>§1.7.1 (p. 33)</td><td><span class="chip warn">flagged</span> Refers to “Caveat ??”.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Elsewhere in the body</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Where</th><th>What is there</th></tr></thead>
+    <tbody>
+      <tr><td>Chapter 12 (p. 514)</td><td><span class="chip warn">flagged</span> Footnote: “Include section.”</td></tr>
+      <tr><td>§14.1.2 Expected Multiplicity Bound (p. 528)</td><td><span class="chip warn">flagged</span> Footnote: “Correct this subsection.” Pages 528 and 533 cite a “Positivity Criterion … Theorem ??” that is not in the document. The introduction says positivity is not used for the main result.</td></tr>
+      <tr><td>Chapter 5 (p. 230, 234)</td><td><span class="chip warn">flagged</span> “Include version with I-exponentially decaying target”; one undefined equation reference.</td></tr>
+      <tr><td>Chapters 2, 4 (pp. 69, 88, 178)</td><td><span class="chip warn">flagged</span> Three undefined references to lemmas and a definition.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Appendices</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Where</th><th>What is there</th></tr></thead>
+    <tbody>
+      <tr><td>Appendix E, Topological stacks (p. 823)</td><td><span class="chip warn">flagged</span> Footnote on the title: “Complete this Appendix, correcting it and shortening it.” Also “Check this definition is correct” (p. 862), “This proof needs correction” (p. 850), and eight undefined references.</td></tr>
+      <tr><td>Appendix B, analytic number theory (pp. 591, 603, 626, 648)</td><td><span class="chip warn">flagged</span> Four reviewer-style queries, including one asking whether a bound is meant to be uniform, and a reference to “Chapter ??”.</td></tr>
+      <tr><td>Appendices C, D (pp. 667 to 809)</td><td><span class="chip warn">flagged</span> About eight queries asking for references, expansions or clarifications.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Totals from the scan</h2>
+  <ul>
+    <li>16 undefined cross-references (printed as “??”), most of them in Appendix E.</li>
+    <li>33 footnotes that are editing notes or questions to the author.</li>
+    <li>8 section headings with no text under them, all in Chapter 1 and Chapter 13.</li>
+  </ul>
+  <p>The scan works on extracted text and matches patterns, so it can miss gaps that are not marked, such as a proof that is present but incomplete. The script is <code>tools/gapscan.py</code> in the <a href="https://github.com/rlankenau/rh">repository</a> and the page-by-page results are in <code>notes/masullo-gaps.md</code>.</p>
+</section>
+
+<section data-view="compare">
+  <h1>Two proofs compared</h1>
+  <p class="lede">Both appeared on 20 November 2026. They share a conclusion and almost nothing else.</p>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>Alpöge with Claude</th><th>Masullo</th></tr></thead>
+    <tbody>
+      <tr><td><b>Claim</b></td><td>RH and GRH for Dirichlet L-functions</td><td>GRH for Hecke L-functions of every number field, which includes the Dirichlet case</td></tr>
+      <tr><td><b>Form</b></td><td>Lean 4 source: 175,187 files, about 1 GB, no comments, no paper</td><td>A 940-page paper, no formalization</td></tr>
+      <tr><td><b>Made by</b></td><td>One mathematician working with an AI system over about six weeks</td><td>One mathematician over about twelve years, advised by Brian Conrad</td></tr>
+      <tr><td><b>Tradition</b></td><td>Stepanov's elementary proof for curves over finite fields, carried to number fields</td><td>Tate's thesis, Weil's explicit formulas, Connes's trace formula</td></tr>
+      <tr><td><b>Key device</b></td><td>A chain of about √x theta lifts between unitary groups, standing in for “vanishing to high order”</td><td>A function space that only registers zeros in a thin strip, plus explicit bases that split a kernel prime by prime</td></tr>
+      <tr><td><b>How zeros are excluded</b></td><td>Landau: a one-sided bound on a smoothed prime sum</td><td>The logarithmic derivative of L is shown to have no poles right of ½</td></tr>
+      <tr><td><b>Heavy inputs</b></td><td>Galois representations, base change, about 195 theorems from the literature re-proved in Lean</td><td>Functional analysis of nuclear spaces, non-vanishing on Re s = 1, growth bounds for L</td></tr>
+      <tr><td><b>Function fields</b></td><td>The method descends from the function-field proof</td><td>The author explains why the method does not work for function fields (§1.7.1, §14.2)</td></tr>
+      <tr><td><b>What is checkable today</b></td><td>Everything, by machine, once the kernel replay finishes. Nobody yet understands it.</td><td>The trace formula can be read by experts. The final deduction is not written.</td></tr>
+      <tr><td><b>Status</b></td><td><span class="chip warn">kernel check in progress</span></td><td><span class="chip open">incomplete manuscript</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>If both were right they would be independent proofs by unrelated methods, and Masullo's would be the more general theorem. Neither has been verified.</p>
+</section>
+
+<section data-view="lean">
+  <h1>Lean notes</h1>
+  <p class="lede">Small pieces of the argument stated, and where possible proved, in Lean 4 with Mathlib. The aim is to pin down exactly what each step says. It is not an attempt to formalize the paper.</p>
+  <div class="note">The files are in the <a href="https://github.com/rlankenau/rh/tree/main/lean/RH">repository</a> under <code>lean/RH/</code>, built against Lean 4.29.0 and Mathlib v4.29.0. A statement followed by <code>sorry</code> has been checked to make sense to Lean but has no proof yet.</div>
+  <div class="tw"><table>
+    <thead><tr><th>File</th><th>What it says</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td><code>Targets.lean</code></td><td>The target for the rationals: <code>DirichletGRH</code>, every zero of a Dirichlet L-function in the open strip has real part ½. Also <code>NoZerosRightOfHalf</code>, what step 7 delivers before reflection; it is the same statement the Alpöge proof calls <code>EveryCharacter</code>.</td><td><span class="chip ok">compiles</span> definitions only</td></tr>
+      <tr><td><code>Toy.lean</code></td><td><code>trace_identity</code>: the toy trace computed two ways, Σ<sub>m</sub> M(φ)(2πim/log γ) = log γ · Σ<sub>k</sub> φ(γ<sup>k</sup>).</td><td><span class="chip warn">stated</span> proof is <code>sorry</code></td></tr>
+      <tr><td><code>Toy.lean</code></td><td><code>trace_eq_zero</code>: if φ is supported strictly between 1 and γ, the trace is 0.</td><td><span class="chip ok">proved</span> from <code>trace_identity</code></td></tr>
+      <tr><td><code>LogDeriv.lean</code></td><td><code>ne_zero_of_logDeriv_analyticAt</code>: if the logarithmic derivative of an analytic function extends analytically across a point, the function is not zero there. This is how step 7 turns “no poles” into “no zeros”.</td><td><span class="chip warn">stated</span> proof is <code>sorry</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What Mathlib has and lacks for this paper</h2>
+  <ul>
+    <li><b>Has:</b> the Riemann zeta function and Dirichlet L-functions with their functional equations, the statement <code>RiemannHypothesis</code>, the Mellin transform, Fourier analysis and Poisson summation on the real line, adele rings of number fields.</li>
+    <li><b>Lacks, as far as I can tell:</b> Hecke characters with their L-functions for general number fields, Tate's thesis, Schwartz–Bruhat spaces on adeles, nuclear spaces and trace-class operators at the generality the paper needs.</li>
+  </ul>
+  <p>So the target theorem can be stated today only for the rationals. The toy example and the final complex-analysis step need nothing beyond what Mathlib has.</p>
+
+  <h2>Candidates for next</h2>
+  <ul>
+    <li>Prove the toy trace identity from Mathlib's Poisson summation.</li>
+    <li>State the Hardy–Sobolev norm on the positive reals and prove that evaluation of the Mellin transform at a point outside the strip is not continuous for it. This is step 3 in miniature.</li>
+    <li>State the trace formula for F = ℚ and the trivial character as a hypothesis, and derive RH from it formally. That would write down the missing Chapter 13 in the simplest case and show exactly what it needs.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // Hash routing between the views.
+  var views=[].slice.call(document.querySelectorAll('section[data-view]')),links=[].slice.call(document.querySelectorAll('nav a[href^="#"]'));
+  function show(){var h=(location.hash||'#overview').slice(1);if(!views.some(function(v){return v.dataset.view===h}))h='overview';
+    views.forEach(function(v){v.hidden=v.dataset.view!==h});
+    links.forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    window.scrollTo(0,0)}
+  window.addEventListener('hashchange',show);show();
+})();
+</script>
+
+</body>
+</html>

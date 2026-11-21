@@ -1,0 +1,32 @@
+# rh
+
+Reader's notes on the two claimed proofs of the generalized Riemann Hypothesis released on
+2026-11-20. Neither has been verified; nothing here says either is correct.
+
+- **Alpöge with Claude**: a Lean 4 formalization, mirrored at
+  [Deicyde/riemann-hypothesis](https://github.com/Deicyde/riemann-hypothesis).
+- **Masullo, "The Music of the Primes"**: a 940-page paper, announced on
+  [Ravi Vakil's blog](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/).
+
+Site: https://rlankenau.github.io/rh/
+
+## Layout
+
+| Path | What |
+|---|---|
+| `atlas/alpoge.html`, `atlas/masullo.html` | The two atlases, as HTML fragments (the form the Claude artifact publisher takes). |
+| `site/index.html` | Landing page. |
+| `build.py` | Wraps the fragments into standalone pages under `docs/`, which GitHub Pages serves. |
+| `notes/masullo-gaps.md` | Unfinished parts of Masullo's paper found by text scan. |
+| `tools/pdftext.swift` | Extracts text from a PDF with macOS PDFKit. |
+| `tools/gapscan.py` | Produces the gap notes from the extracted text. |
+| `lean/` | Small Lean 4 statements and proofs of pieces of the arguments (Lean 4.29.0, Mathlib v4.29.0). |
+
+The papers themselves are not stored here.
+
+## Updating
+
+```sh
+python3 build.py && git add -A && git commit -m "..." && git push   # Pages serves docs/ on main
+cd lean && lake exe cache get && lake build                          # Lean
+```
