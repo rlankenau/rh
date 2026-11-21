@@ -76,6 +76,24 @@ pre{font-family:var(--mono);font-size:.82rem;line-height:1.5;background:var(--co
 .try{border:1px dashed var(--rule);border-radius:6px;padding:.8rem 1.1rem;max-width:68ch}
 .try h3{margin:0 0 .4rem;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
 
+/* glossary */
+button.g{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-align:inherit;
+  text-decoration:underline dotted var(--accent);text-decoration-thickness:1.5px;text-underline-offset:3px}
+button.g:hover,button.g[aria-expanded="true"]{background:var(--accent-soft)}
+button.g:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.gpop{position:absolute;z-index:10;width:min(22rem,calc(100vw - 16px));background:var(--panel);color:var(--fg);border:1px solid var(--rule);
+  border-top:3px solid var(--accent);border-radius:6px;padding:.7rem .9rem;font-size:.9rem;line-height:1.5;box-shadow:0 6px 24px rgba(0,0,0,.25);
+  display:flex;flex-direction:column;gap:.35rem}
+.gpop[hidden]{display:none}
+.gpop p{margin:0;max-width:none}
+.gpop .gl{display:flex;gap:1rem;font-size:.85rem}
+.glist{display:flex;flex-direction:column;gap:.9rem;max-width:68ch;margin:0;padding:0}
+.glist div{display:flex;flex-direction:column;gap:.15rem;scroll-margin-top:1rem}
+.glist dt{font-weight:600}
+.glist dd{margin:0}
+.glist div:target{background:var(--accent-soft);outline:.5rem solid var(--accent-soft)}
+.toc .extra a{display:block;padding:.3rem .6rem;text-decoration:none}
+
 /* chapter footer + landing */
 .pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem}
 .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}

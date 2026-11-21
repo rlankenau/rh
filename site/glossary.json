@@ -1,0 +1,654 @@
+[
+ {
+  "term": "prime",
+  "match": [
+   "primes",
+   "prime number",
+   "prime"
+  ],
+  "def": "A whole number bigger than 1 that cannot be divided evenly by anything except 1 and itself: 2, 3, 5, 7, 11, 13…",
+  "wiki": "Prime_number"
+ },
+ {
+  "term": "prime power",
+  "match": [
+   "prime powers",
+   "prime power"
+  ],
+  "def": "A prime multiplied by itself some number of times: 2, 4, 8, 16… or 3, 9, 27… A prime itself counts as its own first power.",
+  "wiki": "Prime_power"
+ },
+ {
+  "term": "natural logarithm (ln)",
+  "match": [
+   "natural logarithm",
+   "ln"
+  ],
+  "def": "ln x answers the question “e to what power gives x?”, where e ≈ 2.718. For a feel of its size: ln x is about 2.3 times the number of digits of x, so it grows very slowly. ln 10 ≈ 2.3, ln 1000 ≈ 6.9, ln 1,000,000 ≈ 13.8.",
+  "wiki": "Natural_logarithm"
+ },
+ {
+  "term": "logarithmic scale",
+  "match": [
+   "logarithmic scale",
+   "log scale",
+   "logarithmic ruler",
+   "logarithmic axis"
+  ],
+  "def": "An axis where each step multiplies instead of adding: 1, 10, 100, 1000 are evenly spaced. It lets one picture show both small and very large numbers.",
+  "wiki": "Logarithmic_scale"
+ },
+ {
+  "term": "logarithmic integral li(x)",
+  "match": [
+   "logarithmic integral"
+  ],
+  "def": "The running total of 1 / ln t for all t from 2 up to x. Since about one number in ln t is prime near t, this total is the natural smooth estimate for how many primes there are up to x.",
+  "wiki": "Logarithmic_integral_function"
+ },
+ {
+  "term": "integral (∫)",
+  "match": [
+   "integral",
+   "∫"
+  ],
+  "def": "A running total of a quantity that changes continuously: the area under its curve. ∫ from a to b of f(t) dt adds up f(t) for every t between a and b.",
+  "wiki": "Integral"
+ },
+ {
+  "term": "sum sign (Σ)",
+  "match": [
+   "Σ"
+  ],
+  "def": "Σ means “add up”. The small print underneath says which things to add: Σ over n ≤ x means add one term for every whole number n up to x.",
+  "wiki": "Summation"
+ },
+ {
+  "term": "product sign (Π)",
+  "match": [
+   "Π"
+  ],
+  "def": "Π means “multiply together”, in the same way Σ means “add up”. Π over primes p means one factor for each prime."
+ },
+ {
+  "term": "von Mangoldt function Λ(n)",
+  "match": [
+   "von Mangoldt function",
+   "Λ"
+  ],
+  "def": "A weight given to each whole number n. If n is a power of a prime p (p, p², p³…), the weight is ln p. Every other number gets weight 0. It is the bookkeeping device that makes prime-counting formulas come out clean.",
+  "wiki": "Von_Mangoldt_function"
+ },
+ {
+  "term": "Chebyshev's function ψ(x)",
+  "match": [
+   "Chebyshev's function",
+   "weighted staircase",
+   "weighted count"
+  ],
+  "def": "The running total of the von Mangoldt weights Λ(n) for all n up to x. It counts primes (and prime powers) with each one weighted by ln p, and it stays close to x itself.",
+  "wiki": "Chebyshev_function"
+ },
+ {
+  "term": "prime number theorem",
+  "match": [
+   "prime number theorem"
+  ],
+  "def": "Proved in 1896: the number of primes up to x is approximately x / ln x, and the approximation gets better (as a percentage) the larger x is.",
+  "wiki": "Prime_number_theorem"
+ },
+ {
+  "term": "complex number",
+  "match": [
+   "complex number",
+   "complex numbers",
+   "complex inputs"
+  ],
+  "def": "A number with two parts, written a + bi, where i is a new number whose square is −1. Think of it as a point on a map: a is how far east, b is how far north. Ordinary numbers are the ones with b = 0.",
+  "wiki": "Complex_number"
+ },
+ {
+  "term": "real part and imaginary part",
+  "match": [
+   "real part",
+   "imaginary part",
+   "real and imaginary parts"
+  ],
+  "def": "The two coordinates of a complex number a + bi: a is the real part (left–right position), b is the imaginary part (up–down position)."
+ },
+ {
+  "term": "complex plane",
+  "match": [
+   "complex plane",
+   "in the plane",
+   "whole plane"
+  ],
+  "def": "The map on which complex numbers live: real part along the horizontal axis, imaginary part along the vertical axis.",
+  "wiki": "Complex_plane"
+ },
+ {
+  "term": "absolute value",
+  "match": [
+   "absolute value",
+   "size of ζ"
+  ],
+  "def": "The size of a number, ignoring its direction. For a complex number it is the distance from zero on the complex plane. It is 0 only when the number itself is 0. Written |z|.",
+  "wiki": "Absolute_value"
+ },
+ {
+  "term": "zeta function ζ(s)",
+  "match": [
+   "zeta function",
+   "Riemann zeta"
+  ],
+  "def": "The function ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … extended to complex numbers s. It encodes all the primes at once through Euler's product, and the places where it equals zero control how evenly primes are spread.",
+  "wiki": "Riemann_zeta_function"
+ },
+ {
+  "term": "Euler product",
+  "match": [
+   "Euler product",
+   "product over primes",
+   "product with one factor per prime"
+  ],
+  "def": "Euler's discovery that the zeta sum over all whole numbers equals a product with one factor for each prime. It works because every whole number factors into primes in exactly one way.",
+  "wiki": "Euler_product"
+ },
+ {
+  "term": "zero (of a function)",
+  "match": [
+   "zeros of zeta",
+   "zeros of the zeta function",
+   "zero of zeta",
+   "no zeros",
+   "every zero",
+   "a zero"
+  ],
+  "def": "An input where a function's output is 0. The zeros of zeta are the complex numbers s where ζ(s) = 0.",
+  "wiki": "Zero_of_a_function"
+ },
+ {
+  "term": "pole",
+  "match": [
+   "a pole",
+   "its pole",
+   "poles"
+  ],
+  "def": "An input where a function blows up to infinity, like 1/x at x = 0. Zeta has exactly one, at s = 1.",
+  "wiki": "Zeros_and_poles"
+ },
+ {
+  "term": "analytic continuation",
+  "match": [
+   "analytic continuation",
+   "extends to the whole plane"
+  ],
+  "def": "A way of extending a function beyond where its original formula works. The zeta sum only makes sense when the real part of s is bigger than 1, but there is exactly one natural way to extend it to (almost) all complex numbers, and that extension is what “ζ” means.",
+  "wiki": "Analytic_continuation"
+ },
+ {
+  "term": "critical strip",
+  "match": [
+   "critical strip"
+  ],
+  "def": "The vertical band of complex numbers whose real part is between 0 and 1. All the interesting zeros of zeta are inside it.",
+  "wiki": "Riemann_hypothesis"
+ },
+ {
+  "term": "critical line",
+  "match": [
+   "critical line"
+  ],
+  "def": "The vertical line down the middle of the critical strip: complex numbers with real part exactly ½. The Riemann Hypothesis says every interesting zero of zeta is on this line.",
+  "wiki": "Riemann_hypothesis"
+ },
+ {
+  "term": "functional equation",
+  "match": [
+   "functional equation"
+  ],
+  "def": "A formula relating ζ(s) to ζ(1 − s). Its practical meaning: the zeros of zeta are arranged symmetrically, as mirror images across the critical line.",
+  "wiki": "Functional_equation_(L-function)"
+ },
+ {
+  "term": "trivial zeros",
+  "match": [
+   "\"trivial\" zeros",
+   "trivial zeros"
+  ],
+  "def": "The zeros of zeta at −2, −4, −6, … They are easy to find and explain, and have no effect on the prime-counting question. “Zeros of zeta” usually means the other ones.",
+  "wiki": "Riemann_zeta_function"
+ },
+ {
+  "term": "Riemann Hypothesis (RH)",
+  "match": [
+   "Riemann Hypothesis",
+   "RH"
+  ],
+  "def": "The conjecture, made by Riemann in 1859, that every zero of zeta inside the critical strip has real part exactly ½. Equivalent to saying the primes are spread as evenly as they possibly could be.",
+  "wiki": "Riemann_hypothesis"
+ },
+ {
+  "term": "generalized Riemann Hypothesis (GRH)",
+  "match": [
+   "generalized Riemann Hypothesis",
+   "GRH"
+  ],
+  "def": "The same statement as RH for a whole family of zeta-like functions (L-functions). It controls how primes are spread among patterns such as “primes ending in 3”.",
+  "wiki": "Generalized_Riemann_hypothesis"
+ },
+ {
+  "term": "L-function",
+  "match": [
+   "L-functions",
+   "L-function"
+  ],
+  "def": "A relative of the zeta function: the same kind of sum, but with each term multiplied by a repeating pattern of coefficients. Each has its own zeros and its own version of the Riemann Hypothesis.",
+  "wiki": "L-function"
+ },
+ {
+  "term": "Dirichlet character",
+  "match": [
+   "Dirichlet characters",
+   "Dirichlet character",
+   "character-twisted",
+   "characters"
+  ],
+  "def": "A repeating pattern of numbers (such as +1, −1, +1, −1…) attached to the whole numbers, which respects multiplication. Putting one into the zeta sum gives a Dirichlet L-function, used to study primes in patterns like “one more than a multiple of 4”.",
+  "wiki": "Dirichlet_character"
+ },
+ {
+  "term": "explicit formula",
+  "match": [
+   "explicit formula"
+  ],
+  "def": "An exact equation that writes the prime staircase as a smooth main term minus one wave for each zero of zeta. It is the precise link between primes and zeros.",
+  "wiki": "Explicit_formulae_for_L-functions"
+ },
+ {
+  "term": "Euler's constant",
+  "match": [
+   "Euler's constant",
+   "eulerMascheroniConstant"
+  ],
+  "def": "A fixed number, about 0.5772, that turns up whenever sums like 1 + 1/2 + 1/3 + … are compared with logarithms. Usually written γ (not to be confused with the γ used for the height of a zero).",
+  "wiki": "Euler's_constant"
+ },
+ {
+  "term": "ringing",
+  "match": [
+   "ringing",
+   "overshoot"
+  ],
+  "def": "The wiggle and overshoot you get next to a sharp jump when you try to build it out of smooth waves. Also called the Gibbs phenomenon; it is why a square wave built from sine waves has little horns at its corners.",
+  "wiki": "Gibbs_phenomenon"
+ },
+ {
+  "term": "Lean",
+  "match": [
+   "Lean 4",
+   "Lean"
+  ],
+  "def": "A programming language for writing mathematical proofs so that a computer can check every step. If the checker accepts a proof, each step follows from the definitions and axioms.",
+  "wiki": "Lean_(proof_assistant)"
+ },
+ {
+  "term": "formalization",
+  "match": [
+   "formalization",
+   "formalized"
+  ],
+  "def": "A proof written out in full detail in a language like Lean, so a computer can verify it. Much longer than a paper proof, but nothing is left to trust.",
+  "wiki": "Proof_assistant"
+ },
+ {
+  "term": "Mathlib",
+  "match": [
+   "Mathlib"
+  ],
+  "def": "The large shared library of already-proved mathematics for Lean. New Lean proofs build on it instead of starting from scratch."
+ },
+ {
+  "term": "sorry (Lean)",
+  "match": [
+   "sorry"
+  ],
+  "def": "A placeholder in Lean meaning “proof missing here”. Lean accepts the file but marks everything that depends on it as unproved."
+ },
+ {
+  "term": "Landau's theorem",
+  "match": [
+   "theorem of Landau",
+   "Landau's theorem",
+   "Landau's criterion"
+  ],
+  "def": "A classical result (1905) with this consequence: if a prime-counting error stays below a ceiling of a certain size, on one side only, then zeta has no zeros to the right of the matching vertical line. You do not need to control both sides."
+ },
+ {
+  "term": "one-sided bound",
+  "match": [
+   "one-sided bound",
+   "one-sided statement",
+   "one-sided"
+  ],
+  "def": "A limit on a quantity from one direction only: “never above this ceiling”, with nothing said about how low it can go (or the reverse).",
+  "wiki": "Upper_and_lower_bounds"
+ },
+ {
+  "term": "Mellin transform",
+  "match": [
+   "Mellin transform",
+   "Mellin side"
+  ],
+  "def": "A way of breaking a function on the positive numbers into pure “power” pieces t^s, the same way a sound is broken into pure tones. It is the Fourier transform done on a logarithmic scale. Its key property: stretching the function just multiplies its transform by a simple factor.",
+  "wiki": "Mellin_transform"
+ },
+ {
+  "term": "Fourier transform",
+  "match": [
+   "Fourier transform",
+   "Fourier"
+  ],
+  "def": "The mathematical version of splitting a sound into its pure tones: it rewrites a function as a combination of simple waves and tells you how much of each frequency is present.",
+  "wiki": "Fourier_transform"
+ },
+ {
+  "term": "Poisson summation",
+  "match": [
+   "Poisson summation"
+  ],
+  "def": "An identity: adding up a function's values at evenly spaced points gives the same answer as adding up its Fourier transform at evenly spaced frequencies. It is why a trace can be computed two ways.",
+  "wiki": "Poisson_summation_formula"
+ },
+ {
+  "term": "linear operator",
+  "match": [
+   "linear operator",
+   "smearing operator",
+   "operator"
+  ],
+  "def": "A rule that turns one function into another and respects adding and scaling. Blurring a photo is an example: blur two images and add them, or add them and then blur, and you get the same result.",
+  "wiki": "Linear_map"
+ },
+ {
+  "term": "eigenvalue",
+  "match": [
+   "eigenvalues",
+   "eigenvalue"
+  ],
+  "def": "Some inputs come out of an operator unchanged except for being multiplied by a number. That number is an eigenvalue. A pure tone passed through a blur comes out as the same tone, just quieter; “how much quieter” is the eigenvalue.",
+  "wiki": "Eigenvalues_and_eigenvectors"
+ },
+ {
+  "term": "trace",
+  "match": [
+   "trace"
+  ],
+  "def": "One number that summarizes an operator: the sum of all its eigenvalues. The same number can also be computed a completely different way, by adding up how strongly the operator connects each point to itself.",
+  "wiki": "Trace_class"
+ },
+ {
+  "term": "trace formula",
+  "match": [
+   "trace formula"
+  ],
+  "def": "An equation obtained by computing one trace in two ways: once as a sum over frequencies (the “spectral side”), once as a sum over ways of returning to where you started (the “geometric side”).",
+  "wiki": "Selberg_trace_formula"
+ },
+ {
+  "term": "spectral side and geometric side",
+  "match": [
+   "spectral side",
+   "geometric side"
+  ],
+  "def": "The two halves of a trace formula. Spectral: the sum of eigenvalues, one per frequency (or per zero). Geometric: a sum over closed loops (or over primes). The formula says they are equal."
+ },
+ {
+  "term": "test function (bump)",
+  "match": [
+   "test function",
+   "smooth bump",
+   "test bump",
+   "single bump"
+  ],
+  "def": "A smooth hill-shaped function that is exactly zero outside a limited range. It is a probe you get to choose: different bumps make a formula reveal different things.",
+  "wiki": "Bump_function"
+ },
+ {
+  "term": "convolution (smearing)",
+  "match": [
+   "convolution",
+   "smear"
+  ],
+  "def": "Blurring: replace each value of a function with a weighted average of nearby values, with the weights given by a bump.",
+  "wiki": "Convolution"
+ },
+ {
+  "term": "number field",
+  "match": [
+   "number fields",
+   "number field"
+  ],
+  "def": "A number system made by adding a few extra numbers (like √2 or i) to the fractions. Each has its own “primes” and its own zeta-like functions.",
+  "wiki": "Algebraic_number_field"
+ },
+ {
+  "term": "completions of a number field",
+  "match": [
+   "completions"
+  ],
+  "def": "For each prime there is a different way of measuring how close two numbers are, plus the ordinary way. Each gives a filled-in version of the number system. Working with all of them at once (the “adeles”) is the standard modern way to treat every prime on an equal footing.",
+  "wiki": "Adele_ring"
+ },
+ {
+  "term": "Hecke character and Hecke L-function",
+  "match": [
+   "Hecke L-functions",
+   "Hecke characters",
+   "Hecke"
+  ],
+  "def": "The version of Dirichlet characters and their L-functions that works over any number field, not just the ordinary whole numbers. Masullo's paper claims GRH for all of them.",
+  "wiki": "Hecke_character"
+ },
+ {
+  "term": "θ-function (theta function)",
+  "match": [
+   "θ-functions",
+   "θ-function",
+   "theta functions",
+   "theta function",
+   "theta lifts"
+  ],
+  "def": "A function made by adding up the values of another function along all the multiples of a point: Σ f(nx). The sum over whole numbers is what links it to the zeta function.",
+  "wiki": "Theta_function"
+ },
+ {
+  "term": "Tate's thesis",
+  "match": [
+   "Tate's thesis"
+  ],
+  "def": "John Tate's 1950 doctoral thesis, which re-derived the main properties of zeta and L-functions using Fourier analysis over all primes at once. It is the starting point for Masullo's approach.",
+  "wiki": "Tate's_thesis"
+ },
+ {
+  "term": "quotient space",
+  "match": [
+   "quotient",
+   "modulo"
+  ],
+  "def": "What you get by declaring certain things equal and then forgetting the difference. Clock arithmetic is a quotient: 13 o'clock and 1 o'clock are declared the same. Here, two functions are declared the same when they differ by a θ-function.",
+  "wiki": "Quotient_space_(linear_algebra)"
+ },
+ {
+  "term": "exact sequence",
+  "match": [
+   "exact sequence"
+  ],
+  "def": "A compact way of recording “this small space sits inside that big one, and here is what is left when you divide it out”.",
+  "wiki": "Exact_sequence"
+ },
+ {
+  "term": "multiplicity",
+  "match": [
+   "multiplicity"
+  ],
+  "def": "How many times a zero counts. The function (x − 3)² is zero at 3 “twice over”, so that zero has multiplicity 2. Every zero of zeta ever computed has multiplicity 1, but that is not proven in general.",
+  "wiki": "Multiplicity_(mathematics)"
+ },
+ {
+  "term": "entire function",
+  "match": [
+   "entire functions",
+   "entire function"
+  ],
+  "def": "A function of a complex number that is smooth everywhere on the complex plane, with no poles or other bad points.",
+  "wiki": "Entire_function"
+ },
+ {
+  "term": "Hilbert space",
+  "match": [
+   "Hilbert space"
+  ],
+  "def": "A space of functions with a notion of length and angle, like ordinary 3D space but with infinitely many directions. Having lengths is what makes sums of infinitely many terms, and traces, behave.",
+  "wiki": "Hilbert_space"
+ },
+ {
+  "term": "topology (of a function space)",
+  "match": [
+   "topological spaces",
+   "topology"
+  ],
+  "def": "A precise notion of when two functions count as “close”. Different notions of closeness give genuinely different spaces, and a statement can be true for one and false for another.",
+  "wiki": "Topological_vector_space"
+ },
+ {
+  "term": "norm",
+  "match": [
+   "norm"
+  ],
+  "def": "A way of assigning a size to a function. Changing the norm changes which functions count as small, and therefore which infinite sums settle down.",
+  "wiki": "Norm_(mathematics)"
+ },
+ {
+  "term": "convexity bound",
+  "match": [
+   "convexity bound"
+  ],
+  "def": "A standard, already-proved estimate for how large an L-function can get inside the critical strip. Weaker than what RH would give, but known unconditionally."
+ },
+ {
+  "term": "kernel check",
+  "match": [
+   "kernel check",
+   "kernel"
+  ],
+  "def": "Lean's final, independent verification of a finished proof by its small trusted core program. Until this passes, a Lean proof has not actually been verified."
+ },
+ {
+  "term": "Carl Friedrich Gauss",
+  "match": [
+   "Gauss"
+  ],
+  "def": "German mathematician (1777–1855). As a teenager he guessed from tables of primes that about one number in ln x is prime near x, which is the starting point of this whole subject.",
+  "person": true,
+  "wiki": "Carl_Friedrich_Gauss"
+ },
+ {
+  "term": "Leonhard Euler",
+  "match": [
+   "Euler"
+  ],
+  "def": "Swiss mathematician (1707–1783). He discovered that the zeta sum equals a product over the primes, the first link between primes and a smooth function.",
+  "person": true,
+  "wiki": "Leonhard_Euler"
+ },
+ {
+  "term": "Bernhard Riemann",
+  "match": [
+   "Riemann"
+  ],
+  "def": "German mathematician (1826–1866). His single 1859 paper on primes extended zeta to complex numbers, related primes to its zeros, and stated the hypothesis that carries his name.",
+  "person": true,
+  "wiki": "Bernhard_Riemann"
+ },
+ {
+  "term": "Hans von Mangoldt",
+  "match": [
+   "von Mangoldt"
+  ],
+  "def": "German mathematician (1854–1925) who supplied rigorous proofs of formulas Riemann had only sketched, including the explicit formula.",
+  "person": true,
+  "wiki": "Hans_Carl_Friedrich_von_Mangoldt"
+ },
+ {
+  "term": "Pafnuty Chebyshev",
+  "match": [
+   "Chebyshev"
+  ],
+  "def": "Russian mathematician (1821–1894). He introduced the weighted prime counts used throughout these chapters and proved the first solid bounds on how many primes there are.",
+  "person": true,
+  "wiki": "Pafnuty_Chebyshev"
+ },
+ {
+  "term": "Edmund Landau",
+  "match": [
+   "Landau"
+  ],
+  "def": "German mathematician (1877–1938) who systematized the theory of prime numbers. One of his theorems is why a bound on one side is enough.",
+  "person": true,
+  "wiki": "Edmund_Landau"
+ },
+ {
+  "term": "John Tate",
+  "match": [
+   "Tate"
+  ],
+  "def": "American mathematician (1925–2019). His 1950 thesis rebuilt the theory of zeta and L-functions using Fourier analysis over all primes at once.",
+  "person": true,
+  "wiki": "John_Tate_(mathematician)"
+ },
+ {
+  "term": "Alain Connes",
+  "match": [
+   "Connes"
+  ],
+  "def": "French mathematician (born 1947), Fields Medal 1982. In the 1990s he proposed approaching the Riemann Hypothesis through a trace formula on a space built from all primes; Masullo's paper starts from that picture.",
+  "person": true,
+  "wiki": "Alain_Connes"
+ },
+ {
+  "term": "Peter Borwein",
+  "match": [
+   "Borwein"
+  ],
+  "def": "Canadian mathematician (1953–2020). He found a fast, simple method for computing the zeta function, which the labs on this site use.",
+  "person": true,
+  "wiki": "Peter_Borwein"
+ },
+ {
+  "term": "Siméon Denis Poisson",
+  "match": [
+   "Poisson"
+  ],
+  "def": "French mathematician (1781–1840), for whom the Poisson summation formula is named.",
+  "person": true,
+  "wiki": "Siméon_Denis_Poisson"
+ },
+ {
+  "term": "Hjalmar Mellin",
+  "match": [
+   "Mellin"
+  ],
+  "def": "Finnish mathematician (1854–1933), for whom the Mellin transform is named.",
+  "person": true,
+  "wiki": "Hjalmar_Mellin"
+ },
+ {
+  "term": "Ralf Meyer",
+  "match": [
+   "Meyer"
+  ],
+  "def": "German mathematician who, following Connes, studied the function spaces behind this approach in the 2000s.",
+  "person": true
+ }
+]

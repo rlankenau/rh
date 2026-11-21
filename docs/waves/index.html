@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-up="../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,20 +9,21 @@
 </head>
 <body>
 <div class="shell">
-<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/" aria-current="page"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div></details></nav>
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/" aria-current="page"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a></div></details></nav>
 <main>
 <div class="kicker">Background · Chapter 3</div>
 <script src="../assets/lab.js"></script>
 <h1>Zeros as waves</h1>
-<p class="lede">The prime staircase can be rebuilt from the zeros of zeta, one wave per zero. This is the picture behind the title of Masullo's paper, and it is the reason the position of the zeros decides the size of the error.</p>
+<p class="lede">The <button type="button" class="g" data-g="prime" aria-expanded="false">prime</button> staircase can be rebuilt from the <button type="button" class="g" data-g="zero-of-a-function" aria-expanded="false">zeros of zeta</button>, one wave per zero. That is why the position of the zeros decides how far the staircase strays from its smooth guess.</p>
 
 <h2>The explicit formula</h2>
-<p>Riemann's explicit formula, in the form von Mangoldt proved, is an exact identity between the weighted staircase and the zeros <i>ρ</i> of zeta in the critical strip:</p>
-<p class="note"><i>ψ</i>(<i>x</i>) = <i>x</i> − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i>/<i>ρ</i> − ln 2π − ½ ln(1 − <i>x</i><sup>−2</sup>)</p>
-<p>The first term is the smooth guess. The last two are tiny. Everything interesting is the sum over zeros. Write a zero as <i>ρ</i> = <i>β</i> + <i>iγ</i>. Together with its mirror image below the axis it contributes a real wave:</p>
+<p><button type="button" class="g" data-g="bernhard-riemann" aria-expanded="false">Riemann</button> wrote down, and <button type="button" class="g" data-g="hans-von-mangoldt" aria-expanded="false">von Mangoldt</button> later proved, an exact equation between the <button type="button" class="g" data-g="chebyshev-s-function-x" aria-expanded="false">weighted staircase</button> <i>ψ</i>(<i>x</i>) of chapter 1 and the zeros of zeta in the <button type="button" class="g" data-g="critical-strip" aria-expanded="false">critical strip</button>. It is called the <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button>. Each zero is a <button type="button" class="g" data-g="complex-number" aria-expanded="false">complex number</button>, written <i>ρ</i>:</p>
+<p class="note"><i>ψ</i>(<i>x</i>) = <i>x</i> − <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i>/<i>ρ</i> − <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> 2π − ½ ln(1 − <i>x</i><sup>−2</sup>)</p>
+<p>Read it left to right. The first term, <i>x</i>, is the smooth guess. Then comes one term for every zero. The last two terms are tiny corrections. So everything interesting is in the terms for the zeros.</p>
+<p>Write a zero as <i>ρ</i> = <i>β</i> + <i>iγ</i>: it sits <i>β</i> across and <i>γ</i> up. Raising <i>x</i> to a complex power like this produces a wave, and each zero, taken together with its twin at the same distance below the horizontal axis, contributes one ordinary wave to the formula:</p>
 <ul>
-  <li>its <b>pitch</b> is <i>γ</i>: the wave is cos(<i>γ</i> ln <i>x</i>), so it oscillates evenly on a logarithmic scale;</li>
-  <li>its <b>loudness</b> grows like <i>x<sup>β</sup></i>, and is divided by roughly <i>γ</i>, so high zeros are quiet.</li>
+  <li>its <b>pitch</b> is set by the height <i>γ</i>: the wave is cos(<i>γ</i> ln <i>x</i>), which rises and falls evenly on a <button type="button" class="g" data-g="logarithmic-scale" aria-expanded="false">logarithmic scale</button>, faster for higher zeros;</li>
+  <li>its <b>loudness</b> is set by the across-position <i>β</i>: the wave's size grows like <i>x<sup>β</sup></i>, divided by roughly <i>γ</i>, so high zeros are quiet.</li>
 </ul>
 
 <figure class="lab">
@@ -33,12 +34,12 @@
   </div>
   <div class="lg"><span><i style="background:var(--s1)"></i>ψ(x), the true staircase</span><span><i style="background:var(--s2)"></i>explicit formula with K pairs of zeros</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Chebyshev staircase and its reconstruction from zeta zeros"></svg><div class="tip" hidden></div></div></div>
-  <figcaption>With K = 0 the formula is just the straight line. Each added zero bends the curve toward the steps. The overshoot beside each riser never goes away: a sum of smooth waves cannot make a perfectly sharp corner, the same ringing as a square wave built from sines.</figcaption>
+  <figcaption>With K = 0 the formula is just the straight line. Each added zero bends the curve toward the steps. The <button type="button" class="g" data-g="ringing" aria-expanded="false">overshoot</button> beside each riser never goes away: a sum of smooth waves cannot make a perfectly sharp corner, the same ringing as a square wave built from sines.</figcaption>
 </figure>
 
 <h2>What a zero off the line would do</h2>
-<p>If every zero has <i>β</i> = ½, every wave has loudness about √<i>x</i>, and the total error is about √<i>x</i>: the bound from chapter 1. A single zero with <i>β</i> &gt; ½ would contribute a wave of size <i>x<sup>β</sup></i>, which eventually drowns out all the others. That is the entire content of the equivalence between RH and the square-root error bound.</p>
-<p>The mirror symmetry matters here. A zero at <i>β</i> &lt; ½ forces a partner at 1 − <i>β</i> &gt; ½, so any zero off the line produces a too-loud wave.</p>
+<p>If every zero is on the <button type="button" class="g" data-g="critical-line" aria-expanded="false">critical line</button>, <i>β</i> = ½, then every wave has loudness about <i>x</i><sup>½</sup> = √<i>x</i>, and the total gap is about √<i>x</i>: the bound from chapter 1. A single zero with <i>β</i> bigger than ½ would contribute a wave of size <i>x<sup>β</sup></i>, which eventually drowns out all the others. This is why the <button type="button" class="g" data-g="riemann-hypothesis-rh" aria-expanded="false">Riemann Hypothesis</button> and the square-root bound on the gap are the same statement.</p>
+<p>The mirror symmetry of chapter 2 matters here. A zero to the left of the line has a partner the same distance to the right, so any zero off the line produces a too-loud wave.</p>
 
 <figure class="lab">
   <div class="title">Lab 3.2 <small>one zero's wave, measured in units of √x, as its real part β moves off the line</small></div>
@@ -55,7 +56,7 @@
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab 3.1, set K = 1. The single wave already has a bump near every prime power below 20.</li>
+    <li>In Lab 3.1, set K = 1. The single wave already has a bump near every <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime power</button> below 20.</li>
     <li>Slide the window to around 113. The flat stretch with no primes takes many zeros to flatten.</li>
     <li>In Lab 3.2, set <i>β</i> = 0.51. The growth is invisible at first and unmistakable by 10,000. This is why checking trillions of zeros by computer cannot settle the question.</li>
   </ul>
@@ -84,6 +85,8 @@
 <nav class="pager" aria-label="Chapter"><a href="../zeta/">← 2 The zeta function</a><a href="../a1-smoothed-error/">A1 The smoothed error →</a></nav>
 </main>
 </div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>

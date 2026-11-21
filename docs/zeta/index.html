@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-up="../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,26 +9,27 @@
 </head>
 <body>
 <div class="shell">
-<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/" aria-current="page"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div></details></nav>
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/" aria-current="page"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a></div></details></nav>
 <main>
 <div class="kicker">Background · Chapter 2</div>
 <script src="../assets/lab.js"></script>
 <h1>The zeta function</h1>
-<p class="lede">One function packages every prime at once. Where it vanishes controls how far the prime staircase strays from its smooth guess, and the Riemann Hypothesis says exactly where those places are.</p>
+<p class="lede">One function packages every <button type="button" class="g" data-g="prime" aria-expanded="false">prime</button> at once. The inputs where it equals zero control how far the prime staircase strays from its smooth guess, and the <button type="button" class="g" data-g="riemann-hypothesis-rh" aria-expanded="false">Riemann Hypothesis</button> says where those inputs are.</p>
 
 <h2>A sum that is also a product</h2>
-<p>For a number <i>s</i> bigger than 1, the zeta function is the sum <i>ζ</i>(<i>s</i>) = 1 + 1/2<sup><i>s</i></sup> + 1/3<sup><i>s</i></sup> + 1/4<sup><i>s</i></sup> + … Euler found that the same number is a product with one factor per prime:</p>
-<p class="note"><i>ζ</i>(<i>s</i>) = Π<sub><i>p</i> prime</sub> 1 / (1 − <i>p</i><sup>−<i>s</i></sup>). Multiply the factors out and every whole number appears exactly once, because every whole number factors into primes in exactly one way.</p>
-<p>This identity is the bridge. The left side knows only about whole numbers; the right side knows only about primes. Taking the logarithmic derivative of the product gives −<i>ζ</i>′/<i>ζ</i>(<i>s</i>) = Σ Λ(<i>n</i>) / <i>n<sup>s</sup></i>, with the same weights Λ(<i>n</i>) as in chapter 1. So the weighted prime count is hidden in <i>ζ</i>′/<i>ζ</i>, and that quotient blows up exactly where <i>ζ</i> is zero.</p>
+<p>Pick a number <i>s</i> bigger than 1. The <button type="button" class="g" data-g="zeta-function-s" aria-expanded="false">zeta function</button> is the endless sum <i>ζ</i>(<i>s</i>) = 1 + 1/2<sup><i>s</i></sup> + 1/3<sup><i>s</i></sup> + 1/4<sup><i>s</i></sup> + …, one term for every whole number. For example <i>ζ</i>(2) = 1 + 1/4 + 1/9 + 1/16 + … ≈ 1.645. <button type="button" class="g" data-g="leonhard-euler" aria-expanded="false">Euler</button> found that the same number is a <button type="button" class="g" data-g="euler-product" aria-expanded="false">product with one factor per prime</button>:</p>
+<p class="note"><i>ζ</i>(<i>s</i>) = <button type="button" class="g" data-g="product-sign" aria-expanded="false">Π</button><sub><i>p</i> prime</sub> 1 / (1 − <i>p</i><sup>−<i>s</i></sup>). Multiply the factors out and every whole number appears exactly once, because every whole number factors into primes in exactly one way.</p>
+<p>This identity is the bridge between two worlds. The sum knows only about whole numbers; the product knows only about primes. Because they are equal, anything learned about the smooth function <i>ζ</i> is a fact about primes. In particular, some algebra turns the product into a formula for the weighted prime count of chapter 1, and in that formula the inputs where <i>ζ</i> equals zero play the leading role.</p>
 
 <h2>Complex inputs and the critical strip</h2>
-<p>Riemann's step was to let <i>s</i> be a complex number, <i>s</i> = <i>σ</i> + <i>it</i>. The sum only converges for <i>σ</i> &gt; 1, but the function it defines extends to the whole plane (except a pole at <i>s</i> = 1). Three facts organize everything that follows:</p>
+<p><button type="button" class="g" data-g="bernhard-riemann" aria-expanded="false">Riemann</button>'s step was to let the input <i>s</i> be a <button type="button" class="g" data-g="complex-number" aria-expanded="false">complex number</button>: a point on a flat map instead of a point on a line. It is written <i>s</i> = <i>σ</i> + <i>it</i>, where <i>σ</i> says how far right the point is and <i>t</i> says how far up (its "height"). The output <i>ζ</i>(<i>s</i>) is then also a point on a map.</p>
+<p>The endless sum only settles on a value when <i>σ</i> is bigger than 1. But there is exactly one sensible way to extend the function to every other point, a process called <button type="button" class="g" data-g="analytic-continuation" aria-expanded="false">analytic continuation</button>, and it works everywhere except at <i>s</i> = 1, where the function has <button type="button" class="g" data-g="pole" aria-expanded="false">a pole</button>. Three facts about the extended function organize the subject:</p>
 <ul>
-  <li><b>Right of 1 there are no zeros.</b> The product converges there and no factor is zero.</li>
-  <li><b>A symmetry.</b> The functional equation relates <i>ζ</i>(<i>s</i>) to <i>ζ</i>(1 − <i>s</i>), so zeros come in mirror pairs about the line <i>σ</i> = ½.</li>
-  <li><b>What is left.</b> Apart from easy "trivial" zeros at −2, −4, −6…, every zero lies in the critical strip 0 &lt; <i>σ</i> &lt; 1.</li>
+  <li><b>Right of 1 there are <button type="button" class="g" data-g="zero-of-a-function" aria-expanded="false">no zeros</button>.</b> There the product over primes is valid, and a product of nonzero factors is not zero.</li>
+  <li><b>A symmetry.</b> A formula called the <button type="button" class="g" data-g="functional-equation" aria-expanded="false">functional equation</button> ties the value at <i>s</i> to the value at 1 − <i>s</i>. Its effect is that zeros come in mirror pairs on either side of the vertical line <i>σ</i> = ½.</li>
+  <li><b>What is left.</b> Apart from some easy <button type="button" class="g" data-g="trivial-zeros" aria-expanded="false">"trivial" zeros</button> at −2, −4, −6…, every zero lies in the band between <i>σ</i> = 0 and <i>σ</i> = 1, called the <button type="button" class="g" data-g="critical-strip" aria-expanded="false">critical strip</button>. The line <i>σ</i> = ½ down its middle is the <button type="button" class="g" data-g="critical-line" aria-expanded="false">critical line</button>.</li>
 </ul>
-<p class="note"><b>The Riemann Hypothesis:</b> every zero in the critical strip has <i>σ</i> = ½ exactly. Because of the mirror symmetry, it is enough to show there are none with <i>σ</i> &gt; ½. Both proofs on this site aim at that one-sided statement.</p>
+<p class="note"><b>The Riemann Hypothesis:</b> every zero in the critical strip is on the critical line. Because zeros come in mirror pairs, this is the same as saying there are none to the right of the line, with <i>σ</i> &gt; ½.</p>
 
 <figure class="lab">
   <div class="title">Lab 2.1 <small>the size of ζ along a vertical line, and the product over primes up to P</small></div>
@@ -39,11 +40,11 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>|ζ(σ + it)|</span><span><i style="background:var(--s2)"></i>|product over primes ≤ P|</span><span>● known zeros (σ = ½)</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Absolute value of zeta along a vertical line, with a truncated Euler product"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>At <i>σ</i> = ½ the curve touches zero at each dot. Move <i>σ</i> to the right and every dip lifts off the axis. For <i>σ</i> &gt; 1 the product over primes converges to <i>ζ</i>; for <i>σ</i> ≤ 1 it does not converge, yet it still shadows the curve and dips where the zeros are.</figcaption>
+  <figcaption>The curve shows the <button type="button" class="g" data-g="absolute-value" aria-expanded="false">absolute value</button> of <i>ζ</i>: its distance from zero. At <i>σ</i> = ½ the curve touches zero at each dot. Move <i>σ</i> to the right and every dip lifts off the axis. For <i>σ</i> &gt; 1 the product over primes converges to <i>ζ</i>; for <i>σ</i> ≤ 1 it never settles down as more primes are added, yet it still shadows the curve and dips where the zeros are.</figcaption>
 </figure>
 
 <h2>Watching a zero happen</h2>
-<p>A complex function has a zero only when its real and imaginary parts vanish together. Trace the point <i>ζ</i>(<i>σ</i> + <i>it</i>) in the plane as <i>t</i> climbs: it loops around, and a zero is a loop that passes exactly through the origin.</p>
+<p>The output of <i>ζ</i> is a point on a map, and it is zero only when that point sits exactly at the centre of the map (the origin). Follow the output <i>ζ</i>(<i>σ</i> + <i>it</i>) as the height <i>t</i> climbs: it loops around, and a zero is a loop that passes exactly through the origin.</p>
 
 <figure class="lab">
   <div class="title">Lab 2.2 <small>the path of ζ(σ + it) as t runs from 1 to T</small></div>
@@ -54,7 +55,7 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>ζ(σ + it), 1 ≤ t ≤ T</span><span>● the origin</span><span>○ the point at t = T</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Path of zeta in the complex plane"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>Horizontal axis: real part of <i>ζ</i>. Vertical axis: imaginary part. On the critical line every loop threads the origin; nudge <i>σ</i> up by a hair and all of them miss.</figcaption>
+  <figcaption>Horizontal axis: <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> of <i>ζ</i>. Vertical axis: imaginary part. On the critical line every loop threads the origin; nudge <i>σ</i> up by a hair and all of them miss.</figcaption>
 </figure>
 
 <div class="try">
@@ -68,7 +69,7 @@
 
 <div class="box">
   <h3>How the lab computes ζ</h3>
-  <p>The defining sum does not converge in the critical strip, so the lab uses Borwein's alternating-series method with 70 terms. Checked against published values it is accurate to about six decimal places for heights up to 60, which is why the labs stop there.</p>
+  <p>The defining sum does not settle on a value inside the critical strip, so the lab uses a method due to <button type="button" class="g" data-g="peter-borwein" aria-expanded="false">Borwein</button> that does, with 70 terms. Checked against published values it is accurate to about six decimal places for heights up to 60, which is why the labs stop there.</p>
 </div>
 
 <script>
@@ -101,6 +102,8 @@
 <nav class="pager" aria-label="Chapter"><a href="../primes/">← 1 Counting primes</a><a href="../waves/">3 Zeros as waves →</a></nav>
 </main>
 </div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>

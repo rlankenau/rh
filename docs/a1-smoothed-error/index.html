@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-up="../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,23 +9,23 @@
 </head>
 <body>
 <div class="shell">
-<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/" aria-current="page"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div></details></nav>
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/" aria-current="page"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a></div></details></nav>
 <main>
 <div class="kicker">Alpöge with Claude · Chapter A1</div>
 <script src="../assets/lab.js"></script>
 <h1>The smoothed error</h1>
-<p class="lede">The Alpöge formalization never bounds the prime staircase itself. It bounds a smoothed version of the error, called <code>Gz</code> in the Lean source. This chapter shows what smoothing buys: the ringing from chapter 3 disappears, and the sum over zeros becomes tame enough to add up.</p>
+<p class="lede">The Alpöge <button type="button" class="g" data-g="formalization" aria-expanded="false">formalization</button> never bounds the <button type="button" class="g" data-g="prime" aria-expanded="false">prime</button> staircase itself. It bounds a smoothed version of the error, called <code>Gz</code> in the <button type="button" class="g" data-g="lean" aria-expanded="false">Lean</button> source. This chapter shows what smoothing buys: the <button type="button" class="g" data-g="ringing" aria-expanded="false">ringing</button> from chapter 3 disappears, and the sum over zeros becomes tame enough to add up.</p>
 <p class="note">Based on the definitions of <code>Sz</code>, <code>Gz</code> and <code>ZetaLandau</code> in the Lean source, which I read as statements. The curves are computed here from those definitions and from the first 30 zeros; the match between the two is a check I ran, not part of the formalization.</p>
 
 <h2>The definition</h2>
 <pre>def Sz (x : ℝ) : ℝ := ∑ n ∈ Finset.Icc 1 ⌊x⌋₊, Λ n * (x / n - 1)
 def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConstant) * x</pre>
-<p>In words: instead of adding the weight Λ(<i>n</i>) for each <i>n</i> ≤ <i>x</i>, add Λ(<i>n</i>)·(<i>x</i>/<i>n</i> − 1). A prime power contributes nothing at the moment <i>x</i> reaches it and then phases in gradually, so the sum has corners but no jumps. The other two terms subtract what the sum would be if primes were perfectly regular. <code>Gz</code> is what is left over.</p>
+<p>In words: instead of adding the weight <button type="button" class="g" data-g="von-mangoldt-function-n" aria-expanded="false">Λ</button>(<i>n</i>) for each <i>n</i> ≤ <i>x</i>, add Λ(<i>n</i>)·(<i>x</i>/<i>n</i> − 1). A <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime power</button> contributes nothing at the moment <i>x</i> reaches it and then phases in gradually, so the sum has corners but no jumps. The other two terms subtract what the sum would be if primes were perfectly regular. <code>Gz</code> is what is left over.</p>
 
 <h2>What the zeros do to it</h2>
-<p>The explicit formula for the smoothed sum is the one from chapter 3 with each wave divided once more by the height of its zero:</p>
-<p class="note">Gz(<i>x</i>) = ln 2π − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If every zero is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
-<p>The wave for the zero at height <i>γ</i> now has size about 2/<i>γ</i>² instead of 2/<i>γ</i>. Those sizes add up to a finite total, 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So on RH the scaled error can never leave the band ±0.0462, and a few zeros already describe it almost perfectly.</p>
+<p>The <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> for the smoothed sum is the one from chapter 3 with each wave divided once more by the height of its zero:</p>
+<p class="note">Gz(<i>x</i>) = <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> 2π − <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If <button type="button" class="g" data-g="zero-of-a-function" aria-expanded="false">every zero</button> is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
+<p>The wave for the zero at height <i>γ</i> now has size about 2/<i>γ</i>² instead of 2/<i>γ</i>. Those sizes add up to a finite total, 2 + <i>γ</i><sub><button type="button" class="g" data-g="leonhard-euler" aria-expanded="false">Euler</button></sub> − ln 4π ≈ 0.0462. So on <button type="button" class="g" data-g="riemann-hypothesis-rh" aria-expanded="false">RH</button> the scaled error can never leave the band ±0.0462, and a few zeros already describe it almost perfectly.</p>
 
 <figure class="lab">
   <div class="title">Lab A1.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
@@ -37,8 +37,8 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 </figure>
 
 <h2>Why one side is enough</h2>
-<p>The formalization's target is a ceiling on <code>Gz</code>, with no floor. A theorem of Landau makes that sufficient, and the Lean statement <code>ZetaLandau</code> says it for either sign: if <i>s</i><sub>0</sub>·Gz(<i>x</i>) ≤ <i>C</i>·<i>x<sup>θ</sup></i> for all large <i>x</i>, with <i>s</i><sub>0</sub> = +1 or −1, then zeta has no zeros with real part above <i>θ</i>.</p>
-<p>The reason is the picture from Lab 3.2. A zero with real part <i>β</i> &gt; <i>θ</i> contributes a wave of size <i>x<sup>β</sup></i> that swings both ways. A wave cannot stay under a ceiling of <i>x<sup>θ</sup></i> while swinging to height <i>x<sup>β</sup></i>, and Landau's theorem says the other waves cannot conspire to hide it.</p>
+<p>The formalization's target is a ceiling on <code>Gz</code>, with no floor. A <button type="button" class="g" data-g="landau-s-theorem" aria-expanded="false">theorem of Landau</button> makes that sufficient, and the Lean statement <code>ZetaLandau</code> says it for either sign: if <i>s</i><sub>0</sub>·Gz(<i>x</i>) ≤ <i>C</i>·<i>x<sup>θ</sup></i> for all large <i>x</i>, with <i>s</i><sub>0</sub> = +1 or −1, then zeta has no zeros with <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> above <i>θ</i>.</p>
+<p>The reason is the picture from Lab 3.2. A zero with real part <i>β</i> &gt; <i>θ</i> contributes a wave of size <i>x<sup>β</sup></i> that swings both ways. A wave cannot stay under a ceiling of <i>x<sup>θ</sup></i> while swinging to height <i>x<sup>β</sup></i>, and <button type="button" class="g" data-g="edmund-landau" aria-expanded="false">Landau</button>'s theorem says the other waves cannot conspire to hide it.</p>
 
 <figure class="lab">
   <div class="title">Lab A1.2 <small>add a hypothetical off-line zero and watch the ceiling break</small></div>
@@ -63,7 +63,7 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 
 <div class="box">
   <h3>Where this sits in the proof</h3>
-  <p>The proof actually bounds a combined error <code>Gm</code>, which adds character-twisted versions of <code>Gz</code> so that all Dirichlet L-functions are handled together, and it only needs the bound on a sparse set of scales. The <a href="../alpoge/">map of the whole proof</a> has the statements. Where the ceiling comes from is the subject of chapters A3 and A4.</p>
+  <p>The proof actually bounds a combined error <code>Gm</code>, which adds <button type="button" class="g" data-g="dirichlet-character" aria-expanded="false">character-twisted</button> versions of <code>Gz</code> so that all Dirichlet <button type="button" class="g" data-g="l-function" aria-expanded="false">L-functions</button> are handled together, and it only needs the bound on a sparse set of scales. The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
 </div>
 
 <script>
@@ -99,6 +99,8 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <nav class="pager" aria-label="Chapter"><a href="../waves/">← 3 Zeros as waves</a><a href="../m1-trace-two-ways/">M1 A trace computed two ways →</a></nav>
 </main>
 </div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-up="../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,22 +9,22 @@
 </head>
 <body>
 <div class="shell">
-<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/" aria-current="page"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div></details></nav>
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Background</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li></ol></div><div><h2>Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">A</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">A1</span>The smoothed error</a></li><li><span><span class="num">A2</span>Why a one-sided bound is enough</span></li><li><span><span class="num">A3</span>The chain of theta lifts</span></li><li><span><span class="num">A4</span>The squeeze</span></li></ol></div><div><h2>Masullo</h2><ol><li><a href="../masullo/"><span class="num">M</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/" aria-current="page"><span class="num">M1</span>A trace computed two ways</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">M2</span>One slot per zero</a></li><li><span><span class="num">M3</span>The thin strip</span></li><li><span><span class="num">M4</span>One circle per prime</span></li><li><span><span class="num">M5</span>Reading off the zeros</span></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a></div></details></nav>
 <main>
 <div class="kicker">Masullo · Chapter M1</div>
 <script src="../assets/lab.js"></script>
 <h1>A trace computed two ways</h1>
-<p class="lede">Masullo's proof is a trace formula: one number computed twice, once as a sum over zeros and once as a sum over primes. The introduction of the paper explains the mechanism on a toy example small enough to compute by hand. This chapter is that toy, with knobs.</p>
-<p class="note">Based on the toy example in the paper's introduction (pages 11–33), which I read in full. The lab computes both sides numerically; the Lean file <code>RH/Toy.lean</code> states the identity and proves one consequence from it.</p>
+<p class="lede">Masullo's proof is a <button type="button" class="g" data-g="trace-formula" aria-expanded="false">trace formula</button>: one number computed twice, once as a sum over zeros and once as a sum over <button type="button" class="g" data-g="prime" aria-expanded="false">primes</button>. The introduction of the paper explains the mechanism on a toy example small enough to compute by hand. This chapter is that toy, with knobs.</p>
+<p class="note">Based on the toy example in the paper's introduction (pages 11–33), which I read in full. The lab computes both sides numerically; the <button type="button" class="g" data-g="lean" aria-expanded="false">Lean</button> file <code>RH/Toy.lean</code> states the identity and proves one consequence from it.</p>
 
 <h2>A circle made by multiplying</h2>
-<p>Take the positive real numbers and pick a number <i>γ</i> &gt; 1. Declare <i>t</i> and <i>γt</i> to be the same point, so 1, <i>γ</i>, <i>γ</i>², … all coincide. On a logarithmic ruler this rolls the line up into a circle of circumference ln <i>γ</i>.</p>
-<p>Now pick a smooth bump <i>φ</i> on the positive reals and use it to smear functions on the circle: replace the value at each point by a <i>φ</i>-weighted average of nearby values. That smearing is a linear operator, and it has a trace: the sum of its eigenvalues. There are two ways to compute it.</p>
+<p>Take the positive real numbers and pick a number <i>γ</i> &gt; 1. Declare <i>t</i> and <i>γt</i> to be the same point, so 1, <i>γ</i>, <i>γ</i>², … all coincide. On a <button type="button" class="g" data-g="logarithmic-scale" aria-expanded="false">logarithmic ruler</button> this rolls the line up into a circle of circumference <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>γ</i>.</p>
+<p>Now pick a <button type="button" class="g" data-g="test-function-bump" aria-expanded="false">smooth bump</button> <i>φ</i> on the positive reals and use it to <button type="button" class="g" data-g="convolution-smearing" aria-expanded="false">smear</button> functions on the circle: replace the value at each point by a <i>φ</i>-weighted average of nearby values. That smearing is a <button type="button" class="g" data-g="linear-operator" aria-expanded="false">linear operator</button>, and it has a <button type="button" class="g" data-g="trace" aria-expanded="false">trace</button>: the sum of its <button type="button" class="g" data-g="eigenvalue" aria-expanded="false">eigenvalues</button>. There are two ways to compute it.</p>
 <ul>
-  <li><b>By frequencies (the spectral side).</b> The pure tones on the circle are the waves that fit a whole number <i>m</i> of times around. Smearing multiplies tone <i>m</i> by a number, the Mellin transform of <i>φ</i> at 2π<i>im</i>/ln <i>γ</i>. The trace is the sum of those numbers over all <i>m</i>.</li>
+  <li><b>By frequencies (the <button type="button" class="g" data-g="spectral-side-and-geometric-side" aria-expanded="false">spectral side</button>).</b> The pure tones on the circle are the waves that fit a whole number <i>m</i> of times around. Smearing multiplies tone <i>m</i> by a number, the <button type="button" class="g" data-g="mellin-transform" aria-expanded="false">Mellin transform</button> of <i>φ</i> at 2π<i>im</i>/ln <i>γ</i>. The trace is the sum of those numbers over all <i>m</i>.</li>
   <li><b>By wrapping (the geometric side).</b> The smear connects a point to itself once for every way of going around the circle <i>k</i> times, with strength <i>φ</i>(<i>γ<sup>k</sup></i>). The trace is the circumference times the sum of those strengths.</li>
 </ul>
-<p class="note">Σ<sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>). This is Poisson summation, written multiplicatively.</p>
+<p class="note"><button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>). This is <button type="button" class="g" data-g="poisson-summation" aria-expanded="false">Poisson summation</button>, written multiplicatively.</p>
 
 <figure class="lab">
   <div class="title">Lab M1.1 <small>both sides of the toy trace formula</small></div>
@@ -43,19 +43,19 @@
 </figure>
 
 <h2>The dictionary to the real thing</h2>
-<p>In the actual proof the circle is replaced by a much larger space built from all the completions of a number field at once, but the two sides keep their character:</p>
+<p>In the actual proof the circle is replaced by a much larger space built from all the <button type="button" class="g" data-g="completions-of-a-number-field" aria-expanded="false">completions</button> of a <button type="button" class="g" data-g="number-field" aria-expanded="false">number field</button> at once, but the two sides keep their character:</p>
 <ul>
-  <li>the <b>frequencies</b> become the zeros of the L-function, one term for each;</li>
-  <li>the <b>wraps</b> become prime powers, each prime <i>p</i> contributing its own circle of circumference ln <i>p</i>, with terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>).</li>
+  <li>the <b>frequencies</b> become the zeros of the <button type="button" class="g" data-g="l-function" aria-expanded="false">L-function</button>, one term for each;</li>
+  <li>the <b>wraps</b> become <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime powers</button>, each prime <i>p</i> contributing its own circle of circumference ln <i>p</i>, with terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>).</li>
 </ul>
-<p>Read that way, a trace formula is the explicit formula of chapter 3: a sum over zeros equal to a sum over primes, for any test bump <i>φ</i> you like.</p>
+<p>Read that way, a trace formula is the <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> of chapter 3: a sum over zeros equal to a sum over primes, for any test bump <i>φ</i> you like.</p>
 
 <h2>Making a trace vanish</h2>
 <p>One feature of the toy carries a lot of weight in the paper. If the bump sits strictly between 1 and <i>γ</i>, no power of <i>γ</i> lands inside it. The geometric side is then zero, so the sum over frequencies must be zero too, although the individual terms are not. In the paper this is how all but finitely many primes are made to drop out: for a fixed bump, every prime larger than the bump's reach contributes nothing.</p>
 
 <div class="box">
   <h3>In Lean</h3>
-  <p>The repository states the identity and proves the vanishing from it. The identity itself is still a <code>sorry</code>; Mathlib has Poisson summation, and deriving this form from it is the next Lean task.</p>
+  <p>The repository states the identity and proves the vanishing from it. The identity itself is still a <code>sorry</code>; <button type="button" class="g" data-g="mathlib" aria-expanded="false">Mathlib</button> has <button type="button" class="g" data-g="sim-on-denis-poisson" aria-expanded="false">Poisson</button> summation, and deriving this form from it is the next Lean task.</p>
 <pre>theorem trace_identity {γ : ℝ} (hγ : 1 &lt; γ) {φ : ℝ → ℂ}
     (hφ : ContDiff ℝ ∞ φ) (hc : HasCompactSupport φ) (h0 : tsupport φ ⊆ Ioi 0) :
     ∑' m : ℤ, mellin φ (2 * π * Complex.I * m / Real.log γ)
@@ -105,6 +105,8 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
 <nav class="pager" aria-label="Chapter"><a href="../a1-smoothed-error/">← A1 The smoothed error</a><a href="../m2-one-slot-per-zero/">M2 One slot per zero →</a></nav>
 </main>
 </div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>
