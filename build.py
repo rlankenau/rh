@@ -30,7 +30,7 @@ BOOK = [
     ("Masullo", "A 940-page paper: a trace formula that only hears zeros near the line.", [
         ("M", "masullo", "Map of the whole proof"),
         ("M1", "m1-trace-two-ways", "A trace computed two ways"),
-        ("M2", None, "One slot per zero"),
+        ("M2", "m2-one-slot-per-zero", "One slot per zero"),
         ("M3", None, "The thin strip"),
         ("M4", None, "One circle per prime"),
         ("M5", None, "Reading off the zeros"),
