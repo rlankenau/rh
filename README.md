@@ -44,5 +44,5 @@ then one chapter per step of each proof, each with interactive labs computed in 
 - `site/assets/lab.js` — shared numerics (primes, ψ, li, ζ, zeros) and the plot/slider helpers
 - `site/assets/site.css` — shared styles
 - `python3 build.py` writes everything to `docs/`, which GitHub Pages serves
-- Formulas: write `$$…$$` (display) or `\\(…\\)` (inline) LaTeX in a chapter; `build.py` renders them to static HTML with KaTeX at build time (run `npm install` once; no JavaScript is shipped for math). Short inline symbols stay as plain HTML italics
+- Formulas: write `$$…$$` (display) or `\(…\)` (inline) LaTeX in a chapter; `build.py` renders them to static HTML with KaTeX at build time (run `npm install` once; no JavaScript is shipped for math). Short inline symbols stay as plain HTML italics
 - `site/glossary.json` — plain-language glossary (terms and people, with Wikipedia links); `build.py` links the first use of each term per chapter as a pop-up and writes the Glossary page
