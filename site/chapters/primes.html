@@ -6,7 +6,7 @@
 <p>If the chance of being prime near <i>t</i> is 1 / ln <i>t</i>, then adding up those chances for every <i>t</i> from 2 to <i>x</i> should estimate how many primes there are up to <i>x</i>. That running total is called the logarithmic integral, written li(<i>x</i>) = ∫<sub>2</sub><sup><i>x</i></sup> d<i>t</i> / ln <i>t</i>. A cruder estimate, <i>x</i> / ln <i>x</i>, has the right shape but runs low.</p>
 
 <figure class="lab">
-  <div class="title">Lab 1.1 <small>the prime staircase against its smooth guesses</small></div>
+  <div class="title">Lab @@n@@.1 <small>the prime staircase against its smooth guesses</small></div>
   <div class="ctl"><label>Count primes up to <input type="range" id="x1" min="1.5" max="4.3" step="0.02" value="2"><output id="x1v"></output></label></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>π(x), the count</span><span><i style="background:var(--s2)"></i>li(x)</span><span><i style="background:var(--muted)"></i>x / ln x</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Staircase of the prime count with the logarithmic integral and x over log x"></svg><div class="tip" hidden></div></div></div>
@@ -19,7 +19,7 @@
 <p>The weights exactly cancel the thinning-out. Primes near <i>x</i> are rarer by a factor of ln <i>x</i>, but each one counts for ln <i>x</i>, so the weighted total should grow like <i>x</i> itself. The prime number theorem says that it does: <i>ψ</i>(<i>x</i>) divided by <i>x</i> gets closer and closer to 1.</p>
 
 <figure class="lab">
-  <div class="title">Lab 1.2 <small>the weighted staircase ψ(x) against the line y = x</small></div>
+  <div class="title">Lab @@n@@.2 <small>the weighted staircase ψ(x) against the line y = x</small></div>
   <div class="ctl"><label>Up to <input type="range" id="x2" min="1.3" max="4.3" step="0.02" value="1.7"><output id="x2v"></output></label></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>ψ(x)</span><span><i style="background:var(--s2)"></i>x</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Chebyshev psi staircase against the diagonal"></svg><div class="tip" hidden></div></div></div>
@@ -32,7 +32,7 @@
 <p class="note">The Riemann Hypothesis is true exactly when the gap between <i>ψ</i>(<i>x</i>) and <i>x</i> is never more than about √<i>x</i>. Precisely: the gap is at most <i>C</i> · √<i>x</i> · (ln <i>x</i>)² for some fixed number <i>C</i>. What has actually been proved so far is much weaker: the gap is known to be smaller than <i>x</i>, but not smaller than any fixed root of <i>x</i>.</p>
 
 <figure class="lab">
-  <div class="title">Lab 1.3 <small>the error, measured in units of √x</small></div>
+  <div class="title">Lab @@n@@.3 <small>the error, measured in units of √x</small></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>(ψ(x) − x) / √x</span></div>
   <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Error of psi divided by square root of x, up to 20000"></svg><div class="tip" hidden></div></div></div>
   <figcaption>The gap divided by √<i>x</i>. If the Riemann Hypothesis is true this stays in a narrow band forever (apart from the slowly growing (ln <i>x</i>)² allowance). From 10 up to 20,000 it stays inside ±1.</figcaption>
@@ -41,9 +41,9 @@
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab 1.1, look for a place past the first few primes where π(<i>x</i>) is above li(<i>x</i>). You will not find one: a crossing is known to exist, but it lies beyond 10<sup>19</sup>.</li>
-    <li>In Lab 1.2, set the slider to about 30 and compare the jump at 25 with the jump at 27. The jump at 25 is ln 5 ≈ 1.61, because 25 = 5². The jump at 27 is ln 3 ≈ 1.10, because 27 = 3³. The height depends on which prime the number is a power of, not on how large the number is. At 26, which is not a prime power, there is no jump.</li>
-    <li>In Lab 1.3, hover near 110 to 130. The long flat run of the staircase (no primes from 113 to 127) shows up as a steady slide downward.</li>
+    <li>In Lab @@n@@.1, look for a place past the first few primes where π(<i>x</i>) is above li(<i>x</i>). You will not find one: a crossing is known to exist, but it lies beyond 10<sup>19</sup>.</li>
+    <li>In Lab @@n@@.2, set the slider to about 30 and compare the jump at 25 with the jump at 27. The jump at 25 is ln 5 ≈ 1.61, because 25 = 5². The jump at 27 is ln 3 ≈ 1.10, because 27 = 3³. The height depends on which prime the number is a power of, not on how large the number is. At 26, which is not a prime power, there is no jump.</li>
+    <li>In Lab @@n@@.3, hover near 110 to 130. The long flat run of the staircase (no primes from 113 to 127) shows up as a steady slide downward.</li>
   </ul>
 </div>
 

@@ -8,9 +8,9 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <p><code>Sz</code> weights each <i>n</i> ≤ <i>x</i> by Λ(<i>n</i>)·(<i>x</i>/<i>n</i> − 1) instead of Λ(<i>n</i>). Equivalently, <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>. The weight is 0 at <i>n</i> = <i>x</i>, so <code>Sz</code> is continuous: it has corners at the prime powers but no jumps. Its main term is <i>x</i> ln <i>x</i> − (1 + <i>γ</i><sub>Euler</sub>)<i>x</i>, and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
 
 <h2>What the zeros do to it</h2>
-<p>Apply the same integral to the explicit formula of chapter 3, term by term. The term <i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)):</p>
+<p>Apply the same integral to the explicit formula of chapter @@ch:waves@@, term by term. The term <i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)):</p>
 <p class="note">Gz(<i>x</i>) = ln 2π − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If every zero is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
-<p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter 3 it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the Riemann Hypothesis holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
+<p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter @@ch:waves@@ it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the Riemann Hypothesis holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
@@ -18,7 +18,7 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
   <div class="lg"><span><i style="background:var(--s1)"></i>(Gz(x) − ln 2π) / √x, from the primes</span><span><i style="background:var(--s2)"></i>sum of the first K waves, from the zeros</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Smoothed prime error scaled by root x, with its reconstruction from zeta zeros"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>One curve is computed from primes up to 20,000, the other from zeros of zeta. With K = 1 they already agree in shape; by K = 10 they are hard to tell apart. In Lab 3.1 the sum of 30 terms still overshoots at every jump.</figcaption>
+  <figcaption>One curve is computed from primes up to 20,000, the other from zeros of zeta. With K = 1 they already agree in shape; by K = 10 they are hard to tell apart. In Lab @@ch:waves@@.1 the sum of 30 terms still overshoots at every jump.</figcaption>
 </figure>
 
 <h2>Why one side is enough</h2>

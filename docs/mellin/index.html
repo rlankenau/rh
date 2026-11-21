@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6 The Mellin transform</title>
+<title>9 The Mellin transform</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
 <div class="shell">
-<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Part I · Fundamentals</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li><li><a href="../quiz-1/"><span class="num"></span>Quiz: Part I</a></li></ol></div><div><h2>Part II · Masullo</h2><ol><li><a href="../masullo/"><span class="num">4</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">5</span>A trace computed two ways</a></li><li><a href="../mellin/" aria-current="page"><span class="num">6</span>The Mellin transform</a></li><li><a href="../circle-slots/"><span class="num">7</span>One slot per mode</a></li><li><a href="../theta-sums/"><span class="num">8</span>Summing over whole numbers</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">9</span>One slot per zero</a></li><li><a href="../thin-strip/"><span class="num">10</span>The thin strip</a></li><li><a href="../circle-per-prime/"><span class="num">11</span>One circle per prime</a></li><li><a href="../trace-formula/"><span class="num">12</span>The trace formula</a></li><li><a href="../reading-off-zeros/"><span class="num">13</span>Reading off the zeros</a></li><li><a href="../quiz-2/"><span class="num"></span>Quiz: Part II</a></li></ol></div><div><h2>Part III · Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">14</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">15</span>The smoothed error</a></li><li><span><span class="num">16</span>Why a one-sided bound is enough</span></li><li><span><span class="num">17</span>The chain of theta lifts</span></li><li><span><span class="num">18</span>The squeeze</span></li><li><a href="../quiz-3/"><span class="num"></span>Quiz: Part III</a></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a><a href="../symbols/">Greek letters and symbols</a></div></details></nav>
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Part I · Fundamentals</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../complex-zeta/"><span class="num">3</span>Complex inputs</a></li><li><a href="../continuation/"><span class="num">4</span>Analytic continuation</a></li><li><a href="../zeta-zeros/"><span class="num">5</span>The zeros and the Riemann Hypothesis</a></li><li><a href="../waves/"><span class="num">6</span>Zeros as waves</a></li><li><a href="../quiz-1/"><span class="num"></span>Quiz: Part I</a></li></ol></div><div><h2>Part II · Masullo</h2><ol><li><a href="../masullo/"><span class="num">7</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">8</span>A trace computed two ways</a></li><li><a href="../mellin/" aria-current="page"><span class="num">9</span>The Mellin transform</a></li><li><a href="../circle-slots/"><span class="num">10</span>One slot per mode</a></li><li><a href="../theta-sums/"><span class="num">11</span>Summing over whole numbers</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">12</span>One slot per zero</a></li><li><a href="../thin-strip/"><span class="num">13</span>The thin strip</a></li><li><a href="../circle-per-prime/"><span class="num">14</span>One circle per prime</a></li><li><a href="../trace-formula/"><span class="num">15</span>The trace formula</a></li><li><a href="../reading-off-zeros/"><span class="num">16</span>Reading off the zeros</a></li><li><a href="../quiz-2/"><span class="num"></span>Quiz: Part II</a></li></ol></div><div><h2>Part III · Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">17</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">18</span>The smoothed error</a></li><li><span><span class="num">19</span>Why a one-sided bound is enough</span></li><li><span><span class="num">20</span>The chain of theta lifts</span></li><li><span><span class="num">21</span>The squeeze</span></li><li><a href="../quiz-3/"><span class="num"></span>Quiz: Part III</a></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a><a href="../symbols/">Greek letters and symbols</a></div></details></nav>
 <main>
-<div class="kicker">Part II · Chapter 6</div>
+<div class="kicker">Part II · Chapter 9</div>
 <script src="../assets/lab.js"></script>
 <h1>The Mellin transform</h1>
 <p class="lede">The <button type="button" class="g" data-g="mellin-transform" aria-expanded="false">Mellin transform</button> is the <button type="button" class="g" data-g="fourier-transform" aria-expanded="false">Fourier transform</button> for functions on (0, ∞), with rescaling <i>t</i> ↦ <i>γt</i> in the role of translation. This chapter states the definition and the two properties that the rest of Part II uses.</p>
@@ -24,7 +24,7 @@
 
 <h2>Property 1: rescaling becomes multiplication</h2>
 <p class="note">The transform of <i>f</i>(<i>γt</i>) is <i>γ</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>).</p>
-<p>Proof: substitute <i>u</i> = <i>γt</i>. The measure d<i>t</i>/<i>t</i> does not change, and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Consequently <button type="button" class="g" data-g="convolution" aria-expanded="false">convolution</button> on (0, ∞), which is a weighted sum of rescalings, becomes multiplication of transforms: M(A(<i>φ</i>)<i>f</i>)(<i>s</i>) = M(<i>φ</i>)(<i>s</i>) · M(<i>f</i>)(<i>s</i>) for the <button type="button" class="g" data-g="linear-operator" aria-expanded="false">operator</button> A(<i>φ</i>) of chapter 5.</p>
+<p>Proof: substitute <i>u</i> = <i>γt</i>. The measure d<i>t</i>/<i>t</i> does not change, and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Consequently <button type="button" class="g" data-g="convolution" aria-expanded="false">convolution</button> on (0, ∞), which is a weighted sum of rescalings, becomes multiplication of transforms: M(A(<i>φ</i>)<i>f</i>)(<i>s</i>) = M(<i>φ</i>)(<i>s</i>) · M(<i>f</i>)(<i>s</i>) for the <button type="button" class="g" data-g="linear-operator" aria-expanded="false">operator</button> A(<i>φ</i>) of chapter 8.</p>
 
 <h2>Property 2: the real part of <i>s</i> weighs large <i>t</i> against small <i>t</i></h2>
 <p>Write <i>s</i> = <i>σ</i> + <i>iy</i>. Then |<i>t<sup>s</sup></i>| = <i>t<sup>σ</sup></i>. For <i>σ</i> &gt; 0 this factor is large where <i>t</i> &gt; 1 and small where <i>t</i> &lt; 1. So if <i>f</i> ≥ 0 is zero outside [<i>A</i>, <i>B</i>],</p>
@@ -32,7 +32,7 @@
 <p>A function concentrated at <i>t</i> &gt; 1 has a transform that grows as <i>σ</i> increases, and one concentrated at <i>t</i> &lt; 1 has a transform that shrinks.</p>
 
 <figure class="lab">
-  <div class="title">Lab 6.1 <small>the transform of a bump along the vertical line Re s = σ</small></div>
+  <div class="title">Lab 9.1 <small>the transform of a bump along the vertical line Re s = σ</small></div>
   <div class="ctl">
     <label>Bump centre <input type="range" id="cc" min="-1.5" max="1.5" step="0.01" value="0.7"><output id="ccv"></output></label>
     <label>Bump width <input type="range" id="ww" min="0.1" max="1" step="0.01" value="0.4"><output id="wwv"></output></label>
@@ -59,7 +59,7 @@
   <h3>Exercises</h3>
   <ol>
     <li>Let <i>f</i>(<i>t</i>) = 1 for 1 ≤ <i>t</i> ≤ <i>T</i> and 0 otherwise. Compute M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>∫<sub>1</sub><sup><i>T</i></sup> <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = (<i>T<sup>s</sup></i> − 1)/<i>s</i> for <i>s</i> ≠ 0, and ln <i>T</i> for <i>s</i> = 0.</p></details></li>
-    <li>For which <i>s</i> does rescaling by <i>γ</i> = 2 leave the transform unchanged?<details><summary>Solution</summary><p>The factor is 2<sup>−<i>s</i></sup>, which equals 1 when <i>s</i> ln 2 = 2π<i>im</i>, that is, <i>s</i> = 2π<i>im</i>/ln 2 for an integer <i>m</i>. These are the <button type="button" class="g" data-g="fourier-mode" aria-expanded="false">Fourier modes</button> of the circle in chapter 5.</p></details></li>
+    <li>For which <i>s</i> does rescaling by <i>γ</i> = 2 leave the transform unchanged?<details><summary>Solution</summary><p>The factor is 2<sup>−<i>s</i></sup>, which equals 1 when <i>s</i> ln 2 = 2π<i>im</i>, that is, <i>s</i> = 2π<i>im</i>/ln 2 for an integer <i>m</i>. These are the <button type="button" class="g" data-g="fourier-mode" aria-expanded="false">Fourier modes</button> of the circle in chapter 8.</p></details></li>
     <li>Show that the transform of <i>t</i> · <i>f</i>′(<i>t</i>) is −<i>s</i> · M(<i>f</i>)(<i>s</i>), for smooth <i>f</i> that is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0.<details><summary>Solution</summary><p>∫ <i>t f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i> = ∫ <i>f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>. Integrate by parts; the boundary terms vanish, leaving −<i>s</i> ∫ <i>f</i>(<i>t</i>) <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = −<i>s</i> · M(<i>f</i>)(<i>s</i>).</p></details></li>
   </ol>
 </div>
@@ -106,7 +106,7 @@
   });
 })();
 </script>
-<nav class="pager" aria-label="Chapter"><a href="../m1-trace-two-ways/">← 5 A trace computed two ways</a><a href="../circle-slots/">7 One slot per mode →</a></nav>
+<nav class="pager" aria-label="Chapter"><a href="../m1-trace-two-ways/">← 8 A trace computed two ways</a><a href="../circle-slots/">10 One slot per mode →</a></nav>
 </main>
 </div>
 <script src="../assets/glossary.js"></script>

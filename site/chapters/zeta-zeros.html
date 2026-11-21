@@ -1,0 +1,160 @@
+<h1>The zeros and the Riemann Hypothesis</h1>
+<p class="lede">A zero of <i>ζ</i> is a complex number <i>s</i> with <i>ζ</i>(<i>s</i>) = 0. This chapter shows what a zero looks like, where zeros can and cannot be, and states the Riemann Hypothesis.</p>
+
+<h2>What a zero is</h2>
+<p><i>ζ</i>(<i>s</i>) is a complex number, with a real part and an imaginary part. It is 0 only when both parts are 0 at the same <i>s</i>. Fix the real part <i>σ</i> of <i>s</i> and let the imaginary part <i>t</i> vary: the real part of <i>ζ</i> crosses 0 at some values of <i>t</i>, and the imaginary part of <i>ζ</i> crosses 0 at others. A zero of <i>ζ</i> needs both crossings to coincide.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the real and imaginary parts of ζ(σ + it), near a chosen height</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="s1" min="0.5" max="1" step="0.01" value="0.5"><output id="s1v"></output></label>
+    <label>Centre of the window <input type="range" id="c1" min="5" max="55" step="0.05" value="14"><output id="c1v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>real part of ζ</span><span><i style="background:var(--s2)"></i>imaginary part of ζ</span><span>● heights of the known zeros</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Real and imaginary parts of zeta along a vertical line"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>At <i>σ</i> = ½ the two curves cross the axis together at each dot. For any other <i>σ</i> in the range they still each cross the axis, but no longer at the same height.</figcaption>
+</figure>
+
+<p>The absolute value |<i>ζ</i>| combines the two parts into one number, the distance of <i>ζ</i>(<i>s</i>) from 0. A zero is where it touches 0.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>the size of ζ along a vertical line</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="sg" min="0.5" max="2" step="0.01" value="0.5"><output id="sgv"></output></label>
+    <label>Primes up to P <input type="range" id="pp" min="0.3" max="3.7" step="0.02" value="1.5"><output id="ppv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>|ζ(σ + it)|</span><span><i style="background:var(--s2)"></i>|product over primes ≤ P|</span><span>● known zeros (σ = ½)</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Absolute value of zeta along a vertical line, with a truncated Euler product"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>At <i>σ</i> = ½ the curve touches zero at each dot. Move <i>σ</i> to the right and every dip lifts off the axis. The orange curve is the product over primes of chapter @@ch:zeta@@, cut off at P. For <i>σ</i> &gt; 1 it converges to <i>ζ</i>. For <i>σ</i> ≤ 1 it does not converge, but it still dips near the zeros.</figcaption>
+</figure>
+
+<p>A third view: plot the point <i>ζ</i>(<i>σ</i> + <i>it</i>) in the plane and let <i>t</i> increase. The point traces a path that loops around. A zero is a moment when the path passes exactly through the origin.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.3 <small>the path of ζ(σ + it) as t runs from 1 to T</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="s3" min="0.5" max="1.2" step="0.01" value="0.5"><output id="s3v"></output></label>
+    <label>Height T <input type="range" id="tt" min="5" max="60" step="0.25" value="35"><output id="ttv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>ζ(σ + it), 1 ≤ t ≤ T</span><span>● the origin</span><span>○ the point at t = T</span></div>
+  <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Path of zeta in the complex plane"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r3"></div>
+  <figcaption>Horizontal axis: real part of <i>ζ</i>. Vertical axis: imaginary part. At <i>σ</i> = ½ every loop passes through the origin. At <i>σ</i> = 0.51 every loop misses it.</figcaption>
+</figure>
+
+<h2>Where zeros can be</h2>
+<p>Three facts, all proved, limit where <i>ζ</i>(<i>s</i>) = 0 is possible.</p>
+<ul>
+  <li><b>None with <i>σ</i> &gt; 1.</b> There the product over primes converges, and none of its factors is 0 (chapter @@ch:complex-zeta@@).</li>
+  <li><b>The functional equation.</b> Riemann proved a formula connecting the values at <i>s</i> and at 1 − <i>s</i>:
+    <i>ζ</i>(<i>s</i>) = 2<sup><i>s</i></sup> π<sup><i>s</i> − 1</sup> sin(π<i>s</i>/2) Γ(1 − <i>s</i>) <i>ζ</i>(1 − <i>s</i>). Here Γ is the gamma function, which extends the factorial. The point <i>s</i> = <i>σ</i> + <i>it</i> and the point 1 − <i>s</i> are mirror images through the point ½, so the formula determines <i>ζ</i> to the left of the line <i>σ</i> = ½ from its values to the right.</li>
+  <li><b>The trivial zeros.</b> The factor sin(π<i>s</i>/2) is 0 at <i>s</i> = −2, −4, −6, …, and <i>ζ</i> is 0 there. These are called the trivial zeros. They are fully understood.</li>
+</ul>
+<p>Together: for <i>σ</i> &lt; 0 the functional equation expresses <i>ζ</i>(<i>s</i>) through <i>ζ</i>(1 − <i>s</i>), where 1 − <i>s</i> has real part greater than 1 and <i>ζ</i> is not 0. So the only zeros with <i>σ</i> &lt; 0 are the trivial ones. Every other zero lies in the band 0 ≤ <i>σ</i> ≤ 1, called the critical strip. The line <i>σ</i> = ½ down its middle is the critical line.</p>
+<p>Within the strip the zeros have two symmetries. If <i>ρ</i> is a zero, so is its complex conjugate (same real part, opposite height), because <i>ζ</i> takes real values on the real axis. And so is 1 − <i>ρ</i>, by the functional equation. So a zero at <i>β</i> + <i>iγ</i> that is not on the critical line comes with a partner at (1 − <i>β</i>) + <i>iγ</i> on the other side of it.</p>
+
+<h2>The Riemann Hypothesis</h2>
+<p class="note"><b>The Riemann Hypothesis:</b> every zero in the critical strip has real part exactly ½. Because zeros off the line come in mirror pairs, this is the same as saying that no zero has real part greater than ½.</p>
+<p>Riemann computed the first few zeros by hand, found them on the line, and wrote that it is "very likely" that all are. What is known today:</p>
+<ul>
+  <li>There are infinitely many zeros in the strip, and infinitely many of them are on the line (Hardy, 1914). More than 40% of all zeros are known to be on the line.</li>
+  <li>There are no zeros on the edge <i>σ</i> = 1 (Hadamard and de la Vallée Poussin, 1896). This fact is equivalent to the prime number theorem.</li>
+  <li>The first ten trillion zeros have been computed, and all are on the line.</li>
+  <li>No region of the form <i>σ</i> &gt; <i>c</i> with <i>c</i> &lt; 1 has been proved free of zeros.</li>
+</ul>
+
+<h2>How many zeros there are</h2>
+<p>The zeros become denser with height. Riemann stated, and von Mangoldt proved, a formula for the number N(<i>T</i>) of zeros in the strip with height between 0 and <i>T</i>:</p>
+<p class="note">N(<i>T</i>) ≈ (<i>T</i>/2π) · ln(<i>T</i>/2πe) + 7/8, with an error that grows only like ln <i>T</i>.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.4 <small>counting zeros up to height T</small></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>number of zeros with height at most T</span><span><i style="background:var(--s2)"></i>(T/2π) ln(T/2πe) + 7/8</span></div>
+  <div class="tw"><div class="plot" id="p4"><svg role="img" aria-label="Count of zeta zeros up to height T against the Riemann von Mangoldt formula"></svg><div class="tip" hidden></div></div></div>
+  <figcaption>The staircase steps up by one at the height of each of the first 30 zeros. The smooth curve is the formula. Compare Lab @@ch:primes@@.1, where a staircase of primes is set against a smooth estimate. Here the estimate is far more accurate.</figcaption>
+</figure>
+
+<h2>Why zeros matter for primes</h2>
+<p>Chapter @@ch:zeta@@ ended with −<i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) = Σ Λ(<i>n</i>)/<i>n<sup>s</sup></i>, the function that carries the prime weights. It has <i>ζ</i> in the denominator. Wherever <i>ζ</i>(<i>s</i>) = 0, this function is infinite. So the zeros of <i>ζ</i> are the singular points of the function that encodes the primes.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab @@n@@.1, centre the window on 21.02 and on 25.01. Then set <i>σ</i> = 0.6 and find how far apart the two crossings have moved.</li>
+    <li>In Lab @@n@@.2, set <i>σ</i> = ½ and P = 2, then 3, then 5. A few primes already place the first dip roughly.</li>
+    <li>In Lab @@n@@.3, set T just above 14.13, 21.02 and 25.01 and watch the path cross the origin each time. Then set <i>σ</i> = 0.6.</li>
+    <li>In Lab @@n@@.4, read off the formula at <i>T</i> = 50 and count the steps below 50.</li>
+  </ul>
+</div>
+
+<div class="box">
+  <h3>How the labs compute ζ</h3>
+  <p>The defining sum does not converge inside the critical strip, and the formula of chapter @@ch:continuation@@ converges slowly. The labs use a method due to Borwein, with 70 terms, which is a rapidly converging rearrangement of the sum. Checked against published values it is accurate to about six decimal places for heights up to 60, which is why the labs stop there.</p>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Suppose <i>ζ</i> had a zero at 0.3 + 14<i>i</i>. Which other zeros would it force?<details><summary>Solution</summary><p>The complex conjugate, 0.3 − 14<i>i</i>. The functional equation pairs <i>s</i> with 1 − <i>s</i>, giving 0.7 − 14<i>i</i>, and its conjugate 0.7 + 14<i>i</i>. So one zero off the line means four, two of them to the right of it.</p></details></li>
+    <li>Use the functional equation to explain why <i>ζ</i>(−2) = 0.<details><summary>Solution</summary><p>At <i>s</i> = −2 the factor sin(π<i>s</i>/2) = sin(−π) = 0. The other factors are finite: 2<sup>−2</sup>, π<sup>−3</sup>, Γ(3) = 2 and <i>ζ</i>(3) ≈ 1.202. So the product is 0.</p></details></li>
+    <li>Use the counting formula to estimate how many zeros have height between 0 and 1,000.<details><summary>Solution</summary><p>(1000/2π) · ln(1000/(2πe)) + 7/8 ≈ 159.15 · ln 58.55 + 0.875 ≈ 159.15 · 4.070 + 0.875 ≈ 648.6. The true count is 649.</p></details></li>
+  </ol>
+</div>
+
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-zeta-zeros">
+  <li data-a="2"><p>In Lab @@n@@.1 at <i>σ</i> = 0.6, the real part of <i>ζ</i> still crosses 0 many times. Why are those not zeros of <i>ζ</i>?</p>
+    <ul><li>Because 0.6 is not a whole number</li><li>A zero needs the real and the imaginary part to be 0 at the same point, and there the imaginary part is not 0</li><li>They are zeros</li></ul>
+    <p class="why">One real equation in one unknown usually has solutions. A zero of <i>ζ</i> is two equations at once. That they are satisfied together at all, and apparently only on one line, is what makes the zeros remarkable.</p></li>
+  <li data-a="3"><p>Why can there be no zeros with real part greater than 1, and none with real part less than 0 except the trivial ones?</p>
+    <ul><li>Nobody has found any</li><li>Because the sum diverges there</li><li>For <i>σ</i> &gt; 1 the product over primes has no zero factor; for <i>σ</i> &lt; 0 the functional equation reduces <i>ζ</i>(<i>s</i>) to <i>ζ</i>(1 − <i>s</i>), which is in the first region</li></ul>
+    <p class="why">Both are theorems. What remains is the strip 0 ≤ <i>σ</i> ≤ 1, where neither argument applies.</p></li>
+  <li data-a="1"><p>In Lab @@n@@.2 every dip lifts off the axis as <i>σ</i> moves from ½ to 0.6. If the Riemann Hypothesis were false, what would be seen somewhere far up the axis?</p>
+    <ul><li>A dip that touches zero at some <i>σ</i> &gt; ½, and not at ½</li><li>A dip that touches zero at every <i>σ</i></li><li>The curve becoming negative</li></ul>
+    <p class="why">A zero at <i>β</i> + <i>it</i> off the line means |<i>ζ</i>| = 0 on the vertical line <i>σ</i> = <i>β</i>, and by the mirror symmetry on <i>σ</i> = 1 − <i>β</i>, but not at ½. An absolute value is never negative.</p></li>
+</ol>
+
+<script>
+(function () {
+  var L = Lab, N = 600, T0 = 0.5, T1 = 60;
+  L.bind({ s1: function (v) { return v.toFixed(2); }, c1: function (v) { return 't = ' + v.toFixed(2); } }, function (v) {
+    var a = v.c1 - 4, b = v.c1 + 4, re = [], im = [], lo = Infinity, lot = 0, i, t, z, m = 0;
+    for (i = 0; i <= 400; i++) { t = a + (b - a) * i / 400; z = L.zeta(v.s1, t); re.push([t, z[0]]); im.push([t, z[1]]); m = Math.max(m, Math.abs(z[0]), Math.abs(z[1])); if (Math.hypot(z[0], z[1]) < lo) { lo = Math.hypot(z[0], z[1]); lot = t; } }
+    var R = Math.ceil(m + 0.2), yt = L.ticks(-R, R, 4);
+    L.plot('p1', { x: [a, b], y: [-R, R], xt: L.ticks(a, b, 8), yt: yt, xl: 'height t', xn: 't', dp: 3, xdp: 2, h: 280, refs: [{ y: 0, t: '' }],
+      series: [{ n: 'real part', c: 'var(--s1)', pts: re }, { n: 'imaginary part', c: 'var(--s2)', pts: im }],
+      marks: L.ZEROS.filter(function (g) { return g > a && g < b; }).map(function (g) { return { x: g, y: 0 }; }) });
+    document.getElementById('r1').innerHTML = '<span>smallest |ζ| in the window: <b>' + lo.toFixed(4) + '</b> at t ≈ ' + lot.toFixed(2) + '</span>';
+  });
+  L.bind({ sg: function (v) { return v.toFixed(2); }, pp: function (v) { return Math.round(Math.pow(10, v)); } }, function (v) {
+    var P = Math.round(Math.pow(10, v.pp)), ps = L.primes.filter(function (p) { return p <= P; }), sg = v.sg, lo = Infinity, lot = 0;
+    var z = L.sample(T0, T1, N, false, function (t) { var a = L.zetaAbs(sg, t); if (t > 5 && a < lo) { lo = a; lot = t; } return a; });
+    var e = L.sample(T0, T1, N, false, function (t) {
+      var m = 1, i, p, q;
+      for (i = 0; i < ps.length; i++) { p = ps[i]; q = Math.pow(p, -sg); m *= Math.sqrt(1 - 2 * q * Math.cos(t * Math.log(p)) + q * q); }
+      return 1 / m;
+    });
+    L.plot('p2', { x: [0, T1], y: [0, 4], xt: [0, 10, 20, 30, 40, 50, 60], yt: [0, 1, 2, 3, 4], xl: 'height t', xn: 't', dp: 3, h: 280,
+      series: [{ n: 'product', c: 'var(--s2)', pts: e }, { n: '|ζ|', c: 'var(--s1)', pts: z }],
+      marks: L.ZEROS.filter(function (g) { return g < T1; }).map(function (g) { return { x: g, y: 0 }; }) });
+    document.getElementById('r2').innerHTML = '<span>primes used: <b>' + ps.length + '</b></span><span>smallest |ζ| for 5 ≤ t ≤ 60: <b>' + lo.toFixed(4) + '</b> at t ≈ ' + lot.toFixed(1) + '</span>';
+  });
+  L.bind({ s3: function (v) { return v.toFixed(2); }, tt: function (v) { return v.toFixed(2); } }, function (v) {
+    var pts = [], n = Math.ceil((v.tt - 1) * 40), i, z, near = Infinity;
+    for (i = 0; i <= n; i++) { z = L.zeta(v.s3, 1 + (v.tt - 1) * i / n); pts.push(z); near = Math.min(near, Math.hypot(z[0], z[1])); }
+    L.plot('p3', { x: [-3, 5], y: [-2.6, 2.6], xt: [-2, 0, 2, 4], yt: [-2, -1, 0, 1, 2], xl: 'real part', h: 420, notip: true,
+      vlines: [{ x: 0 }], refs: [{ y: 0, t: '' }],
+      series: [{ n: 'ζ', c: 'var(--s1)', pts: pts }],
+      marks: [{ x: 0, y: 0 }, { x: z[0], y: z[1], c: 'var(--panel)' }] });
+    document.getElementById('r3').innerHTML = '<span>ζ at t = T: <b>' + z[0].toFixed(3) + (z[1] < 0 ? ' − ' : ' + ') + Math.abs(z[1]).toFixed(3) + 'i</b></span><span>closest approach to the origin so far: <b>' + near.toFixed(4) + '</b></span>';
+  });
+  var st = [[0, 0]], c = 0;
+  L.ZEROS.forEach(function (g) { if (g > 100) return; st.push([g, c]); c++; st.push([g, c]); });
+  st.push([100, c]);
+  L.plot('p4', { x: [0, 100], y: [0, 30], xt: [0, 20, 40, 60, 80, 100], yt: [0, 10, 20, 30], xl: 'height T', xn: 'T', dp: 2, h: 280,
+    series: [{ n: 'formula', c: 'var(--s2)', pts: L.sample(8, 100, 200, false, function (T) { return T / (2 * Math.PI) * Math.log(T / (2 * Math.PI * Math.E)) + 0.875; }) },
+      { n: 'zeros', c: 'var(--s1)', pts: st }] });
+})();
+</script>

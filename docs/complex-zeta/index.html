@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" data-up="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 Complex inputs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Part I · Fundamentals</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../complex-zeta/" aria-current="page"><span class="num">3</span>Complex inputs</a></li><li><a href="../continuation/"><span class="num">4</span>Analytic continuation</a></li><li><a href="../zeta-zeros/"><span class="num">5</span>The zeros and the Riemann Hypothesis</a></li><li><a href="../waves/"><span class="num">6</span>Zeros as waves</a></li><li><a href="../quiz-1/"><span class="num"></span>Quiz: Part I</a></li></ol></div><div><h2>Part II · Masullo</h2><ol><li><a href="../masullo/"><span class="num">7</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">8</span>A trace computed two ways</a></li><li><a href="../mellin/"><span class="num">9</span>The Mellin transform</a></li><li><a href="../circle-slots/"><span class="num">10</span>One slot per mode</a></li><li><a href="../theta-sums/"><span class="num">11</span>Summing over whole numbers</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">12</span>One slot per zero</a></li><li><a href="../thin-strip/"><span class="num">13</span>The thin strip</a></li><li><a href="../circle-per-prime/"><span class="num">14</span>One circle per prime</a></li><li><a href="../trace-formula/"><span class="num">15</span>The trace formula</a></li><li><a href="../reading-off-zeros/"><span class="num">16</span>Reading off the zeros</a></li><li><a href="../quiz-2/"><span class="num"></span>Quiz: Part II</a></li></ol></div><div><h2>Part III · Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">17</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">18</span>The smoothed error</a></li><li><span><span class="num">19</span>Why a one-sided bound is enough</span></li><li><span><span class="num">20</span>The chain of theta lifts</span></li><li><span><span class="num">21</span>The squeeze</span></li><li><a href="../quiz-3/"><span class="num"></span>Quiz: Part III</a></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a><a href="../symbols/">Greek letters and symbols</a></div></details></nav>
+<main>
+<div class="kicker">Part I · Chapter 3</div>
+<script src="../assets/lab.js"></script>
+<h1>Complex inputs</h1>
+<p class="lede"><button type="button" class="g" data-g="bernhard-riemann" aria-expanded="false">Riemann</button>'s step was to let <i>s</i> be a <button type="button" class="g" data-g="complex-number" aria-expanded="false">complex number</button>. This chapter says why he did it, what 1/<i>n<sup>s</sup></i> means when <i>s</i> is complex, and why the sum still converges when the <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> of <i>s</i> is greater than 1.</p>
+
+<h2>Why Riemann wanted complex <i>s</i></h2>
+<p>In 1859 Riemann wrote one short paper on number theory, "On the Number of Primes Less Than a Given Magnitude". <button type="button" class="g" data-g="carl-friedrich-gauss" aria-expanded="false">Gauss</button> had an approximation for the number of <button type="button" class="g" data-g="prime" aria-expanded="false">primes</button> up to <i>x</i> (chapter 1). Riemann wanted an exact formula.</p>
+<p>The link between <i>ζ</i> and the primes at the end of chapter 2 can be written as an <button type="button" class="g" data-g="integral" aria-expanded="false">integral</button>:</p>
+<p class="note">−<i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) = <i>s</i> · ∫<sub>1</sub><sup>∞</sup> <i>ψ</i>(<i>x</i>) <i>x</i><sup>−<i>s</i> − 1</sup> d<i>x</i>.</p>
+<p>This gives a function of <i>s</i> in terms of the prime-counting function <i>ψ</i>. Riemann wanted the reverse: <i>ψ</i> in terms of <i>ζ</i>. The integral is a transform of the same kind as the <button type="button" class="g" data-g="fourier-transform" aria-expanded="false">Fourier</button> and Laplace transforms, and the formula that inverts such a transform is an integral over <em>complex</em> values of <i>s</i>. So to solve for the primes, <i>ζ</i> has to be understood as a function of a complex variable. Riemann was the leading expert of his time on such functions, and he carried the inversion through.</p>
+
+<h2>Complex numbers in three facts</h2>
+<ul>
+  <li>A complex number <i>z</i> = <i>a</i> + <i>bi</i> is a point (<i>a</i>, <i>b</i>) <button type="button" class="g" data-g="complex-plane" aria-expanded="false">in the plane</button>, or the arrow from the origin to that point. <i>a</i> is its real part and <i>b</i> its imaginary part.</li>
+  <li>Its <button type="button" class="g" data-g="absolute-value" aria-expanded="false">absolute value</button> |<i>z</i>| = √(<i>a</i>² + <i>b</i>²) is the length of the arrow. <i>z</i> = 0 only when both parts are 0.</li>
+  <li><button type="button" class="g" data-g="leonhard-euler" aria-expanded="false">Euler</button>'s formula: e<sup><i>iθ</i></sup> = cos <i>θ</i> + <i>i</i> sin <i>θ</i>. This is the point on the unit circle at angle <i>θ</i>. Multiplying a number by e<sup><i>iθ</i></sup> rotates its arrow by the angle <i>θ</i> without changing its length.</li>
+</ul>
+
+<h2>What 1/<i>n<sup>s</sup></i> means</h2>
+<p>Write <i>s</i> = <i>σ</i> + <i>it</i>, with <i>σ</i> the real part and <i>t</i> the imaginary part. Since <i>n</i> = e<sup><button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>n</i></sup>,</p>
+<p class="note"><i>n</i><sup>−<i>s</i></sup> = e<sup>−<i>s</i> ln <i>n</i></sup> = <i>n</i><sup>−<i>σ</i></sup> · e<sup>−<i>it</i> ln <i>n</i></sup>: an arrow of length <i>n</i><sup>−<i>σ</i></sup>, at the angle −<i>t</i> ln <i>n</i>.</p>
+<p>The real part <i>σ</i> sets the length, exactly as for real <i>s</i>. The imaginary part <i>t</i> does not change the length at all. It only turns the arrow, and it turns the arrow for a large <i>n</i> further than the arrow for a small <i>n</i>.</p>
+
+<figure class="lab">
+  <div class="title">Lab 3.1 <small>one term, n<sup>−s</sup>, as an arrow</small></div>
+  <div class="ctl">
+    <label>n <input type="range" id="na" min="1" max="50" step="1" value="2"><output id="nav"></output></label>
+    <label>Real part σ <input type="range" id="sa" min="0" max="2" step="0.01" value="0.5"><output id="sav"></output></label>
+    <label>Imaginary part t <input type="range" id="ta" min="0" max="40" step="0.05" value="3"><output id="tav"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>the arrow n<sup>−s</sup></span><span><i style="background:var(--rule)"></i>the unit circle</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="The complex number n to the minus s drawn as an arrow in the plane"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Horizontal axis: real part. Vertical axis: imaginary part. Moving <i>σ</i> changes only the length. Moving <i>t</i> only rotates the arrow, clockwise, at a speed proportional to ln <i>n</i>. For <i>n</i> = 1 nothing moves: 1<sup>−<i>s</i></sup> = 1.</figcaption>
+</figure>
+
+<h2>Adding the arrows</h2>
+<p>For complex <i>s</i> the definition is the same sum, <i>ζ</i>(<i>s</i>) = <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button> <i>n</i><sup>−<i>s</i></sup>. Complex numbers are added by placing the arrows head to tail. The sum of the first <i>N</i> terms is where the chain of <i>N</i> arrows ends.</p>
+<p>The total length of the chain is Σ <i>n</i><sup>−<i>σ</i></sup>, which is the real sum of chapter 2 and is finite when <i>σ</i> &gt; 1. A chain of finite total length must close in on a single point. So:</p>
+<p class="note">For every complex <i>s</i> with real part <i>σ</i> &gt; 1, the sum converges, and its value <i>ζ</i>(<i>s</i>) is a complex number. Euler's product also holds there, so <i>ζ</i>(<i>s</i>) ≠ 0 for <i>σ</i> &gt; 1.</p>
+
+<figure class="lab">
+  <div class="title">Lab 3.2 <small>the first N arrows of ζ(s), placed head to tail</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="sb" min="1.05" max="2.5" step="0.01" value="1.3"><output id="sbv"></output></label>
+    <label>Imaginary part t <input type="range" id="tb" min="0" max="40" step="0.05" value="8"><output id="tbv"></output></label>
+    <label>Number of arrows N <input type="range" id="nb" min="1" max="300" step="1" value="40"><output id="nbv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of arrows</span><span>○ where the chain has got to</span><span>● ζ(s)</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the zeta series in the complex plane"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>The chain starts at the origin with the arrow for <i>n</i> = 1, which is always 1. Later arrows are shorter and turned further, so the chain spirals in toward the solid dot.</figcaption>
+</figure>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab 3.1, set <i>n</i> = 2 and raise <i>t</i> slowly from 0. The arrow completes one full turn when <i>t</i> ln 2 = 2π, at <i>t</i> ≈ 9.06.</li>
+    <li>Keep <i>t</i> fixed and step <i>n</i> through 2, 3, 4, 5. Each arrow is a little shorter and turned a little further.</li>
+    <li>In Lab 3.2, set <i>t</i> = 0. All the arrows point to the right and the chain is the real sum of chapter 2.</li>
+    <li>Lower <i>σ</i> toward 1.05 with <i>t</i> = 8. The spiral takes many more arrows to tighten, and the open circle stays visibly away from the dot.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Compute 2<sup>−<i>s</i></sup> for <i>s</i> = 1 + <i>i</i>π/ln 2.<details><summary>Solution</summary><p>The length is 2<sup>−1</sup> = ½ and the angle is −<i>t</i> ln 2 = −π, a half turn. So 2<sup>−<i>s</i></sup> = ½ · e<sup>−<i>i</i>π</sup> = −½.</p></details></li>
+    <li>Show that |<i>n</i><sup>−<i>s</i></sup>| = <i>n</i><sup>−<i>σ</i></sup>, whatever <i>t</i> is.<details><summary>Solution</summary><p><i>n</i><sup>−<i>s</i></sup> = <i>n</i><sup>−<i>σ</i></sup> · e<sup>−<i>it</i> ln <i>n</i></sup>, and |e<sup><i>iθ</i></sup>| = √(cos² <i>θ</i> + sin² <i>θ</i>) = 1 for every real <i>θ</i>.</p></details></li>
+    <li>The chain for <i>s</i> = 2 + 5<i>i</i> has what total length?<details><summary>Solution</summary><p>The lengths are <i>n</i><sup>−2</sup>, so the total is <i>ζ</i>(2) = π²/6 ≈ 1.645. The chain ends at <i>ζ</i>(2 + 5<i>i</i>), which is at most that far from the origin, since a chain cannot end further away than its own length.</p></details></li>
+  </ol>
+</div>
+
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-complex-zeta">
+  <li data-a="3"><p>In <i>s</i> = <i>σ</i> + <i>it</i>, what does changing <i>t</i> do to the term <i>n</i><sup>−<i>s</i></sup>?</p>
+    <ul><li>It changes the length of the arrow</li><li>Nothing</li><li>It rotates the arrow without changing its length, and rotates arrows with larger <i>n</i> faster</li></ul>
+    <p class="why">The angle is −<i>t</i> ln <i>n</i> and the length is <i>n</i><sup>−<i>σ</i></sup>. All the difference between real and complex <i>s</i> is in how the arrows are turned relative to each other.</p></li>
+  <li data-a="1"><p>Why does the sum converge for every <i>t</i> once <i>σ</i> &gt; 1?</p>
+    <ul><li>The chain of arrows has finite total length Σ <i>n</i><sup>−<i>σ</i></sup>, and turning the arrows cannot make it longer</li><li>Because the arrows cancel each other</li><li>Because <i>t</i> is small</li></ul>
+    <p class="why">Convergence here does not depend on cancellation. When <i>σ</i> ≤ 1 the total length is infinite, and whether the chain settles then depends entirely on the turning.</p></li>
+  <li data-a="2"><p>Why did Riemann need complex <i>s</i> at all, when the primes and the sum are real?</p>
+    <ul><li>Because primes are complex numbers</li><li>−<i>ζ</i>′/<i>ζ</i> is an integral transform of the prime-counting function, and the formula that inverts such a transform integrates over complex <i>s</i></li><li>To make the sum converge faster</li></ul>
+    <p class="why">The same happens with the Fourier transform: a real signal is recovered from its transform by integrating over frequencies with complex exponentials.</p></li>
+</ol>
+
+<script>
+(function () {
+  var L = Lab;
+  function frame(pts) {
+    var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    pts.forEach(function (p) { x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]); y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]); });
+    var R = Math.max((y1 - y0) / 2, (x1 - x0) / 3, 0.3) * 1.15, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    return { x: [cx - 1.5 * R, cx + 1.5 * R], y: [cy - R, cy + R] };
+  }
+  function cx(z) { return z[0].toFixed(3) + (z[1] < 0 ? ' − ' : ' + ') + Math.abs(z[1]).toFixed(3) + 'i'; }
+  var circle = []; for (var k = 0; k <= 120; k++) circle.push([Math.cos(k * Math.PI / 60), Math.sin(k * Math.PI / 60)]);
+  L.bind({ na: null, sa: function (v) { return v.toFixed(2); }, ta: function (v) { return v.toFixed(2); } }, function (v) {
+    var len = Math.pow(v.na, -v.sa), th = -v.ta * Math.log(v.na), z = [len * Math.cos(th), len * Math.sin(th)];
+    var turns = v.ta * Math.log(v.na) / (2 * Math.PI);
+    L.plot('p1', { x: [-1.8, 1.8], y: [-1.2, 1.2], xt: [-1, 0, 1], yt: [-1, 0, 1], xl: 'real part', h: 400, notip: true, vlines: [{ x: 0 }], refs: [{ y: 0, t: '' }],
+      series: [{ n: 'circle', c: 'var(--rule)', pts: circle }, { n: 'arrow', c: 'var(--s2)', pts: [[0, 0], z] }], marks: [{ x: z[0], y: z[1], c: 'var(--s2)' }] });
+    document.getElementById('r1').innerHTML = '<span>length n<sup>−σ</sup> = <b>' + len.toFixed(3) + '</b></span><span>turned clockwise by t · ln n = <b>' + (v.ta * Math.log(v.na)).toFixed(2) + '</b> radians (' + turns.toFixed(2) + ' turns)</span><span>n<sup>−s</sup> = <b>' + cx(z) + '</b></span>';
+  });
+  L.bind({ sb: function (v) { return v.toFixed(2); }, tb: function (v) { return v.toFixed(2); }, nb: null }, function (v) {
+    var re = 0, im = 0, pts = [[0, 0]], n, a, th, z = L.zeta(v.sb, v.tb);
+    for (n = 1; n <= v.nb; n++) { a = Math.pow(n, -v.sb); th = -v.tb * Math.log(n); re += a * Math.cos(th); im += a * Math.sin(th); pts.push([re, im]); }
+    var f = frame(pts.concat([z]));
+    L.plot('p2', { x: f.x, y: f.y, xt: L.ticks(f.x[0], f.x[1], 5), yt: L.ticks(f.y[0], f.y[1], 4), xl: 'real part', h: 400, notip: true,
+      series: [{ n: 'chain', c: 'var(--s1)', pts: pts }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--panel)' }] });
+    document.getElementById('r2').innerHTML = '<span>sum of ' + v.nb + ' arrows: <b>' + cx([re, im]) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span><span>distance still to go: <b>' + Math.hypot(re - z[0], im - z[1]).toFixed(4) + '</b></span>';
+  });
+})();
+</script>
+<nav class="pager" aria-label="Chapter"><a href="../zeta/">← 2 The zeta function</a><a href="../continuation/">4 Analytic continuation →</a></nav>
+</main>
+</div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
+</body>
+</html>

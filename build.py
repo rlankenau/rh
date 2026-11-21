@@ -21,6 +21,9 @@ PARTS = [
     ("Part I · Fundamentals", "What both proofs are about. Start here.", [
         ("primes", "Counting primes"),
         ("zeta", "The zeta function"),
+        ("complex-zeta", "Complex inputs"),
+        ("continuation", "Analytic continuation"),
+        ("zeta-zeros", "The zeros and the Riemann Hypothesis"),
         ("waves", "Zeros as waves"),
         ("quiz-1", "Quiz: Part I"),
     ]),

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-up="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4 Analytic continuation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Part I · Fundamentals</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../complex-zeta/"><span class="num">3</span>Complex inputs</a></li><li><a href="../continuation/" aria-current="page"><span class="num">4</span>Analytic continuation</a></li><li><a href="../zeta-zeros/"><span class="num">5</span>The zeros and the Riemann Hypothesis</a></li><li><a href="../waves/"><span class="num">6</span>Zeros as waves</a></li><li><a href="../quiz-1/"><span class="num"></span>Quiz: Part I</a></li></ol></div><div><h2>Part II · Masullo</h2><ol><li><a href="../masullo/"><span class="num">7</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">8</span>A trace computed two ways</a></li><li><a href="../mellin/"><span class="num">9</span>The Mellin transform</a></li><li><a href="../circle-slots/"><span class="num">10</span>One slot per mode</a></li><li><a href="../theta-sums/"><span class="num">11</span>Summing over whole numbers</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">12</span>One slot per zero</a></li><li><a href="../thin-strip/"><span class="num">13</span>The thin strip</a></li><li><a href="../circle-per-prime/"><span class="num">14</span>One circle per prime</a></li><li><a href="../trace-formula/"><span class="num">15</span>The trace formula</a></li><li><a href="../reading-off-zeros/"><span class="num">16</span>Reading off the zeros</a></li><li><a href="../quiz-2/"><span class="num"></span>Quiz: Part II</a></li></ol></div><div><h2>Part III · Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">17</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">18</span>The smoothed error</a></li><li><span><span class="num">19</span>Why a one-sided bound is enough</span></li><li><span><span class="num">20</span>The chain of theta lifts</span></li><li><span><span class="num">21</span>The squeeze</span></li><li><a href="../quiz-3/"><span class="num"></span>Quiz: Part III</a></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a><a href="../symbols/">Greek letters and symbols</a></div></details></nav>
+<main>
+<div class="kicker">Part I · Chapter 4</div>
+<script src="../assets/lab.js"></script>
+<h1>Analytic continuation</h1>
+<p class="lede">The sum for <i>ζ</i>(<i>s</i>) has a value only when the <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> of <i>s</i> is greater than 1. Analytic continuation is the fact that the function it defines there extends, in exactly one way, to the rest of the <button type="button" class="g" data-g="complex-plane" aria-expanded="false">complex plane</button>. This chapter explains what that means using a function from calculus, and then does it for <i>ζ</i>.</p>
+
+<h2>A function and a formula are different things</h2>
+<p>The geometric series 1 + <i>x</i> + <i>x</i>² + <i>x</i>³ + … converges for −1 &lt; <i>x</i> &lt; 1, and there its sum is 1/(1 − <i>x</i>). Outside that interval the series has no sum: at <i>x</i> = 2 its terms are 1, 2, 4, 8, …</p>
+<p>The expression 1/(1 − <i>x</i>) has no such restriction. It is defined for every <i>x</i> except 1: at <i>x</i> = 2 it is −1, at <i>x</i> = −3 it is ¼.</p>
+<p>So there is one function, 1/(1 − <i>x</i>), and the series is a way of computing it that works only on part of its domain. The series failing at <i>x</i> = 2 says something about the series, not about the function.</p>
+
+<figure class="lab">
+  <div class="title">Lab 4.1 <small>the geometric series and the function 1/(1 − x)</small></div>
+  <div class="ctl">
+    <label>Number of terms N <input type="range" id="n1" min="1" max="40" step="1" value="6"><output id="n1v"></output></label>
+    <label>Read values at x = <input type="range" id="x1" min="-3" max="2.5" step="0.01" value="0.5"><output id="x1v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>1/(1 − x)</span><span><i style="background:var(--s2)"></i>1 + x + … + x<sup>N − 1</sup></span><span>dashed lines: x = −1 and x = 1</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Partial sums of the geometric series against one over one minus x"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Between the dashed lines, adding terms brings the orange curve onto the blue one. Outside them, adding terms makes it worse. Each curve is drawn only where it fits in the frame.</figcaption>
+</figure>
+
+<h2>Why the extension is forced</h2>
+<p>Suppose all you knew was the series, valid on (−1, 1). Could some other function agree with it there and differ from 1/(1 − <i>x</i>) elsewhere? For arbitrary functions, yes: values on one interval say nothing about values on another. For the functions in this subject, no.</p>
+<p>A function is called analytic if near every point of its domain it equals its Taylor series there. Polynomials, e<sup><i>x</i></sup>, sin <i>x</i>, and 1/(1 − <i>x</i>) away from <i>x</i> = 1 are analytic. Analytic functions are rigid:</p>
+<p class="note">If two analytic functions agree on an interval, however short, they agree everywhere that both are defined (on a connected domain). So a function given on a small region has at most one analytic extension to a larger one.</p>
+<p>A familiar special case: a polynomial of degree 2 is determined everywhere by its values at 3 points. An analytic function behaves like a polynomial of infinite degree. All of its Taylor coefficients at one point can be read off from its values near that point, and the coefficients determine the function.</p>
+<p>That extension, when it exists, is the <button type="button" class="g" data-g="analytic-continuation" aria-expanded="false">analytic continuation</button>. It is not a convention or a choice of how to assign a value to a divergent sum. It is the same function, seen on more of its domain.</p>
+
+<h2>Extending step by step</h2>
+<p>The Taylor series of 1/(1 − <i>x</i>) about another centre <i>c</i> is</p>
+<p class="note">1/(1 − <i>x</i>) = <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>k</i> ≥ 0</sub> (<i>x</i> − <i>c</i>)<sup><i>k</i></sup> / (1 − <i>c</i>)<sup><i>k</i> + 1</sup>, valid when |<i>x</i> − <i>c</i>| &lt; |1 − <i>c</i>|.</p>
+<p>The series converges out to the distance from the centre to the bad point <i>x</i> = 1, and no further. Starting from the original series (centre 0, valid on (−1, 1)), compute the function and its derivatives at <i>c</i> = −0.9. The series about that centre is valid on (−2.8, 1), which reaches points the original did not. Repeating this extends the function as far to the left as desired.</p>
+<p>On the real line this process cannot get past <i>x</i> = 1. In the complex plane it can: a chain of overlapping discs can go around the bad point, and the function on the far side is still determined.</p>
+
+<figure class="lab">
+  <div class="title">Lab 4.2 <small>the Taylor series of 1/(1 − x) about a centre c</small></div>
+  <div class="ctl">
+    <label>Centre c <input type="range" id="c2" min="-3" max="0.8" step="0.01" value="0"><output id="c2v"></output></label>
+    <label>Number of terms N <input type="range" id="n2" min="1" max="40" step="1" value="12"><output id="n2v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>1/(1 − x)</span><span><i style="background:var(--s2)"></i>N terms of the series about c</span><span>dashed lines: the ends of the interval where the series converges</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Taylor polynomial of one over one minus x about a movable centre"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>The interval of convergence is centred on <i>c</i> and always ends at <i>x</i> = 1. Moving the centre to the left moves the other end twice as far.</figcaption>
+</figure>
+
+<h2>Continuing zeta</h2>
+<p>The same thing happens for <i>ζ</i>. Chapter 2 estimated what is left after <i>N</i> terms of the sum: about <i>N</i><sup>1 − <i>s</i></sup>/(<i>s</i> − 1). Turn that around. Take the first <i>N</i> terms and add the estimate of the rest:</p>
+<p class="note"><i>ζ</i>(<i>s</i>) = limit as <i>N</i> → ∞ of [ 1 + 1/2<sup><i>s</i></sup> + … + 1/<i>N<sup>s</sup></i> − <i>N</i><sup>1 − <i>s</i></sup>/(1 − <i>s</i>) ].</p>
+<p>For <i>σ</i> &gt; 1 the extra term tends to 0 and this is the original sum. But the limit exists for every <i>s</i> with <i>σ</i> &gt; 0 except <i>s</i> = 1, and it is analytic there. By the rigidity above it is <em>the</em> continuation of <i>ζ</i> to the half-plane <i>σ</i> &gt; 0.</p>
+<p>In the picture of chapter 3: for 0 &lt; <i>σ</i> &lt; 1 the chain of arrows does not settle. It circles in an ever wider spiral, and the term <i>N</i><sup>1 − <i>s</i></sup>/(1 − <i>s</i>) is exactly the arrow from the centre of that spiral to the chain's current end. Subtracting it leaves the centre, and the centre is <i>ζ</i>(<i>s</i>).</p>
+
+<figure class="lab">
+  <div class="title">Lab 4.3 <small>the chain of arrows for σ ≤ 1, and the centre of its spiral</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
+    <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
+    <label>Number of arrows N <input type="range" id="n3" min="2" max="300" step="1" value="120"><output id="n3v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of arrows</span><span><i style="background:var(--s2)"></i>the chain with the correction subtracted</span><span>● ζ(s), computed independently</span></div>
+  <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Partial sums of the zeta series spiralling outward, and the corrected sums converging to zeta of s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r3"></div>
+  <figcaption>The blue chain widens for ever when <i>σ</i> &lt; 1. The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last arrow, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter 5.</figcaption>
+</figure>
+
+<h2>The whole plane</h2>
+<p><button type="button" class="g" data-g="bernhard-riemann" aria-expanded="false">Riemann</button> gave two further formulas that extend <i>ζ</i> to every <button type="button" class="g" data-g="complex-number" aria-expanded="false">complex number</button> except <i>s</i> = 1. At <i>s</i> = 1 the function has <button type="button" class="g" data-g="pole" aria-expanded="false">a pole</button>: it behaves like 1/(<i>s</i> − 1), as in Lab 2.2. From here on, <i>ζ</i>(<i>s</i>) means this extended function.</p>
+<p class="note">The extended function takes the values <i>ζ</i>(0) = −½ and <i>ζ</i>(−1) = −1/12. The original sum at <i>s</i> = −1 would be 1 + 2 + 3 + 4 + …, which has no sum. The statement "1 + 2 + 3 + … = −1/12" is shorthand for <i>ζ</i>(−1) = −1/12, in the same way that "1 + 2 + 4 + 8 + … = −1" is shorthand for the value of 1/(1 − <i>x</i>) at <i>x</i> = 2.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab 4.1, read values at <i>x</i> = −1. The partial sums alternate between 1 and 0 as N changes, while the function is ½.</li>
+    <li>In Lab 4.2, slide the centre from 0 to −3. The series now reproduces the function at <i>x</i> = −5, far outside the original interval.</li>
+    <li>In Lab 4.3, set <i>σ</i> = 0.5 and <i>t</i> = 14.13. The centre of the spiral is at the origin: <i>ζ</i>(<i>s</i>) = 0 there.</li>
+    <li>Raise <i>σ</i> past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Derive the Taylor series of 1/(1 − <i>x</i>) about the centre <i>c</i>.<details><summary>Solution</summary><p>1 − <i>x</i> = (1 − <i>c</i>) − (<i>x</i> − <i>c</i>) = (1 − <i>c</i>)(1 − <i>u</i>) with <i>u</i> = (<i>x</i> − <i>c</i>)/(1 − <i>c</i>). So 1/(1 − <i>x</i>) = (1/(1 − <i>c</i>)) · (1 + <i>u</i> + <i>u</i>² + …), valid for |<i>u</i>| &lt; 1, that is, |<i>x</i> − <i>c</i>| &lt; |1 − <i>c</i>|.</p></details></li>
+    <li>Use the formula for <i>ζ</i> with <i>N</i> = 1, and half of the last term removed, to estimate <i>ζ</i>(½).<details><summary>Solution</summary><p>1 − ½ − 1<sup>½</sup>/(1 − ½) = 1 − ½ − 2 = −1.5. The true value is −1.4604. With <i>N</i> = 10 the same recipe gives −1.4617.</p></details></li>
+    <li>The function |<i>x</i>| agrees with the function <i>x</i> on the interval (0, 1) but not at <i>x</i> = −1. Why does this not contradict the rigidity of analytic functions?<details><summary>Solution</summary><p>|<i>x</i>| is not analytic at <i>x</i> = 0: it has a corner there and no Taylor series. Rigidity is a property of analytic functions only. On any domain where |<i>x</i>| is analytic, such as <i>x</i> &gt; 0, it does equal <i>x</i>.</p></details></li>
+  </ol>
+</div>
+
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-continuation">
+  <li data-a="2"><p>The geometric series diverges at <i>x</i> = 2, and 1/(1 − <i>x</i>) equals −1 there. Which statement is right?</p>
+    <ul><li>The series secretly adds up to −1</li><li>The function has the value −1; the series is a way of computing the function that works only for |<i>x</i>| &lt; 1</li><li>The function is undefined at 2</li></ul>
+    <p class="why">The sum 1 + 2 + 4 + … has no value. The function it came from does, and analytic continuation is about the function.</p></li>
+  <li data-a="1"><p>Why is there only one analytic continuation?</p>
+    <ul><li>Two analytic functions that agree on any interval agree wherever both are defined</li><li>Mathematicians agreed on a convention</li><li>Because the series converges everywhere</li></ul>
+    <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of <i>ζ</i>(<i>s</i>) where the sum diverges.</p></li>
+  <li data-a="3"><p>In Lab 4.3 with <i>σ</i> = 0.5 the chain of arrows never settles. What is <i>ζ</i>(<i>s</i>) in that picture?</p>
+    <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The centre that the chain spirals around</li></ul>
+    <p class="why">The chain's end is the centre plus the arrow <i>N</i><sup>1 − <i>s</i></sup>/(1 − <i>s</i>), whose length grows like <i>N</i><sup>1 − <i>σ</i></sup>. Removing that arrow leaves the centre, which is the continued function.</p></li>
+</ol>
+
+<script>
+(function () {
+  var L = Lab, LO = -2, HI = 5;
+  function clip(y) { return y > LO && y < HI ? y : NaN; }
+  function taylor(c, N, x) { var u = (x - c) / (1 - c), s = 0, p = 1, k; for (k = 0; k < N; k++) { s += p; p *= u; if (!isFinite(p)) break; } return s / (1 - c); }
+  function fcurve() { return L.sample(-5.5, 2.5, 800, false, function (x) { return clip(1 / (1 - x)); }); }
+  function draw(id, c, N, extra) {
+    L.plot(id, { x: [-5.5, 2.5], y: [LO, HI], xt: [-5, -4, -3, -2, -1, 0, 1, 2], yt: [-2, 0, 2, 4], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: [{ x: 2 * c - 1, t: (2 * c - 1).toFixed(1).replace('-', '−') }, { x: 1, t: '1' }].concat(extra || []),
+      series: [{ n: '1/(1 − x)', c: 'var(--s1)', pts: fcurve() }, { n: 'series', c: 'var(--s2)', pts: L.sample(-5.5, 2.5, 800, false, function (x) { return clip(taylor(c, N, x)); }) }] });
+  }
+  function big(v) { return Math.abs(v) >= 1e6 ? v.toExponential(1) : v.toFixed(4); }
+  L.bind({ n1: null, x1: function (v) { return v.toFixed(2); } }, function (v) {
+    draw('p1', 0, v.n1, [{ x: v.x1, t: 'x' }]);
+    var inside = Math.abs(v.x1) < 1;
+    document.getElementById('r1').innerHTML = '<span>sum of ' + v.n1 + ' terms at x: <b>' + big(taylor(0, v.n1, v.x1)) + '</b></span><span>1/(1 − x) = <b>' + (Math.abs(1 - v.x1) < 1e-9 ? 'undefined' : (1 / (1 - v.x1)).toFixed(4)) + '</b></span><span>' + (inside ? 'inside (−1, 1): <b>the series converges</b>' : 'outside (−1, 1): <b>the series diverges</b>') + '</span>';
+  });
+  L.bind({ c2: function (v) { return v.toFixed(2); }, n2: null }, function (v) {
+    draw('p2', v.c2, v.n2, [{ x: v.c2, t: 'c' }]);
+    document.getElementById('r2').innerHTML = '<span>distance from c to the bad point x = 1: <b>' + (1 - v.c2).toFixed(2) + '</b></span><span>the series converges for <b>' + (2 * v.c2 - 1).toFixed(2).replace('-', '−') + ' &lt; x &lt; 1</b></span>';
+  });
+  function frame(pts) {
+    var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    pts.forEach(function (p) { x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]); y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]); });
+    var R = Math.max((y1 - y0) / 2, (x1 - x0) / 3, 0.3) * 1.15, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    return { x: [cx - 1.5 * R, cx + 1.5 * R], y: [cy - R, cy + R] };
+  }
+  function cx(z) { return z[0].toFixed(3) + (z[1] < 0 ? ' − ' : ' + ') + Math.abs(z[1]).toFixed(3) + 'i'; }
+  L.bind({ s3: function (v) { return v.toFixed(2); }, t3: function (v) { return v.toFixed(2); }, n3: null }, function (v) {
+    var sg = v.s3, t = v.t3, re = 0, im = 0, raw = [[0, 0]], cor = [], n, a, th, tr, ti, m, cr, ci, dr = 1 - sg, di = -t, den = dr * dr + di * di, qr, qi, z = L.zeta(sg, t), rad = 0;
+    for (n = 1; n <= v.n3; n++) {
+      a = Math.pow(n, -sg); th = -t * Math.log(n); tr = a * Math.cos(th); ti = a * Math.sin(th); re += tr; im += ti; raw.push([re, im]);
+      m = Math.pow(n, 1 - sg); cr = m * Math.cos(th); ci = m * Math.sin(th); qr = (cr * dr + ci * di) / den; qi = (ci * dr - cr * di) / den; rad = Math.hypot(qr, qi);
+      cor.push([re - qr - tr / 2, im - qi - ti / 2]);
+    }
+    var f = frame(raw.concat(cor, [z])), e = cor[cor.length - 1];
+    L.plot('p3', { x: f.x, y: f.y, xt: L.ticks(f.x[0], f.x[1], 5), yt: L.ticks(f.y[0], f.y[1], 4), xl: 'real part', h: 420, notip: true,
+      series: [{ n: 'chain', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--panel)' }] });
+    document.getElementById('r3').innerHTML = '<span>end of the chain: <b>' + cx([re, im]) + '</b></span><span>length of the correction arrow: <b>' + rad.toFixed(3) + '</b></span><span>corrected value: <b>' + cx(e) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span>';
+  });
+})();
+</script>
+<nav class="pager" aria-label="Chapter"><a href="../complex-zeta/">← 3 Complex inputs</a><a href="../zeta-zeros/">5 The zeros and the Riemann Hypothesis →</a></nav>
+</main>
+</div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
+</body>
+</html>

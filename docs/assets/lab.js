@@ -118,8 +118,8 @@
       s += '<line class="rf" x1="' + l + '" x2="' + (W - r) + '" y1="' + sy(f.y) + '" y2="' + sy(f.y) + '"/><text class="tk" x="' + (l + 6) + '" y="' + (sy(f.y) + (f.dy || -5)) + '">' + f.t + '</text>';
     });
     o.series.forEach(function (se) {
-      var d = '';
-      se.pts.forEach(function (p, i) { d += (i ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + sy(p[1]).toFixed(1); });
+      var d = '', pen = false;  // a point whose value is not finite leaves a gap in the line
+      se.pts.forEach(function (p) { if (!isFinite(p[1])) { pen = false; return; } d += (pen ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + sy(p[1]).toFixed(1); pen = true; });
       s += '<path d="' + d + '" style="fill:none;stroke:' + se.c + ';stroke-width:2;stroke-linejoin:round' + (se.dash ? ';stroke-dasharray:6 4' : '') + '"/>';
     });
     (o.marks || []).forEach(function (m) {
@@ -140,7 +140,7 @@
         for (i = 0; i < se.pts.length && se.pts[i][0] <= x; i++) v = se.pts[i][1];
         // between two samples, read the value off the drawn line
         if (i > 0 && i < se.pts.length) { p = se.pts[i - 1]; q = se.pts[i]; if (q[0] > p[0]) v = p[1] + (q[1] - p[1]) * (x - p[0]) / (q[0] - p[0]); }
-        h += '<span><i style="background:' + se.c + '"></i>' + se.n + ': ' + fmt(v, o.dp) + '</span>';
+        h += '<span><i style="background:' + se.c + '"></i>' + se.n + ': ' + (isFinite(v) ? fmt(v, o.dp) : '—') + '</span>';
       });
       tip.innerHTML = h; tip.hidden = false;
       var bx = e.clientX - rc.left;
