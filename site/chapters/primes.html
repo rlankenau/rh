@@ -1,0 +1,75 @@
+<h1>Counting primes</h1>
+<p class="lede">The Riemann Hypothesis is a statement about how regular the primes are. Before any zeta function, it helps to see the thing being measured: a staircase, a smooth curve that follows it, and the gap between them.</p>
+
+<h2>The staircase and its smooth guess</h2>
+<p>Write <i>π</i>(<i>x</i>) for the number of primes up to <i>x</i>. It is a staircase: flat, then up by one at each prime. Gauss noticed that near a large number <i>x</i>, about one number in ln <i>x</i> is prime. Adding up that density gives a smooth guess, the logarithmic integral li(<i>x</i>) = ∫<sub>2</sub><sup><i>x</i></sup> d<i>t</i> / ln <i>t</i>. The cruder guess <i>x</i> / ln <i>x</i> has the right shape but runs low.</p>
+
+<figure class="lab">
+  <div class="title">Lab 1.1 <small>the prime staircase against its smooth guesses</small></div>
+  <div class="ctl"><label>Count primes up to <input type="range" id="x1" min="1.5" max="4.3" step="0.02" value="2"><output id="x1v"></output></label></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>π(x), the count</span><span><i style="background:var(--s2)"></i>li(x)</span><span><i style="background:var(--muted)"></i>x / ln x</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Staircase of the prime count with the logarithmic integral and x over log x"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>At small scale the staircase is visibly jagged. Slide right and it melts into li(<i>x</i>); the gap in the readout stays tiny next to the count itself.</figcaption>
+</figure>
+
+<h2>Weighing primes instead of counting them</h2>
+<p>Both proofs work with a weighted count that behaves better. Give every prime power <i>p<sup>k</sup></i> the weight ln <i>p</i>, and every other number weight zero. This weight is called Λ(<i>n</i>), the von Mangoldt function, and its running total is Chebyshev's function <i>ψ</i>(<i>x</i>) = Σ<sub><i>n</i> ≤ <i>x</i></sub> Λ(<i>n</i>).</p>
+<p>The weights are chosen so that the smooth guess becomes as simple as possible: <i>ψ</i>(<i>x</i>) should be close to <i>x</i> itself. The prime number theorem says exactly that the ratio tends to 1.</p>
+
+<figure class="lab">
+  <div class="title">Lab 1.2 <small>the weighted staircase ψ(x) against the line y = x</small></div>
+  <div class="ctl"><label>Up to <input type="range" id="x2" min="1.3" max="4.3" step="0.02" value="1.7"><output id="x2v"></output></label></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>ψ(x)</span><span><i style="background:var(--s2)"></i>x</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Chebyshev psi staircase against the diagonal"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>The risers are different heights now: ln 2 at 2, 4, 8, 16…, ln 3 at 3, 9, 27…, ln <i>p</i> at each prime <i>p</i>.</figcaption>
+</figure>
+
+<h2>The error is the whole question</h2>
+<p>How far does the staircase stray from the line? If primes were placed by fair coin flips with the right density, the error up to <i>x</i> would be about √<i>x</i> in size. The Riemann Hypothesis is equivalent to saying the primes do essentially that well:</p>
+<p class="note">RH holds exactly when |<i>ψ</i>(<i>x</i>) − <i>x</i>| ≤ <i>C</i> · √<i>x</i> · (ln <i>x</i>)² for some constant <i>C</i> and all large <i>x</i>. Without RH, the best proven bounds are far weaker than any power of <i>x</i> below 1.</p>
+
+<figure class="lab">
+  <div class="title">Lab 1.3 <small>the error, measured in units of √x</small></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>(ψ(x) − x) / √x</span></div>
+  <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Error of psi divided by square root of x, up to 20000"></svg><div class="tip" hidden></div></div></div>
+  <figcaption>From 10 up to 20,000 the scaled error stays inside ±1. It wobbles, and the wobble has structure: chapter 3 shows it is a sum of waves, one for each zero of the zeta function.</figcaption>
+</figure>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab 1.1, look for a place past the first few primes where π(<i>x</i>) is above li(<i>x</i>). You will not find one: a crossing is known to exist, but it lies beyond 10<sup>19</sup>.</li>
+    <li>In Lab 1.2, zoom to about 30 and find the risers at 25 and 27. Which is taller, and why?</li>
+    <li>In Lab 1.3, hover near 110 to 130. The long flat run of the staircase (no primes from 113 to 127) shows up as a steady slide downward.</li>
+  </ul>
+</div>
+
+<script>
+(function () {
+  var L = Lab, pow = function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); };
+  L.bind({ x1: pow }, function (v) {
+    var X = Math.round(Math.pow(10, v.x1)), yt = L.ticks(0, L.li(X), 5, true);
+    L.plot('p1', { x: [0, X], y: [0, yt[yt.length - 1]], xt: L.ticks(0, X, 5), yt: yt, dp: 1, xdp: 0, series: [
+      { n: 'x / ln x', c: 'var(--muted)', dash: 1, pts: L.sample(2, X, 200, false, function (x) { return x / Math.log(x); }) },
+      { n: 'li(x)', c: 'var(--s2)', pts: L.sample(2, X, 200, false, L.li) },
+      { n: 'π(x)', c: 'var(--s1)', pts: L.steps(2, X, L.primePi) }] });
+    document.getElementById('r1').innerHTML = '<span>π(' + X.toLocaleString() + ') = <b>' + L.primePi(X) + '</b></span><span>li = <b>' + L.li(X).toFixed(1) +
+      '</b></span><span>x / ln x = <b>' + (X / Math.log(X)).toFixed(1) + '</b></span><span>li − π = <b>' + (L.li(X) - L.primePi(X)).toFixed(1) + '</b></span>';
+  });
+  L.bind({ x2: pow }, function (v) {
+    var X = Math.round(Math.pow(10, v.x2)), yt = L.ticks(0, X, 5, true);
+    L.plot('p2', { x: [0, X], y: [0, yt[yt.length - 1]], xt: L.ticks(0, X, 5), yt: yt, dp: 2, xdp: 0, series: [
+      { n: 'x', c: 'var(--s2)', pts: [[0, 0], [X, X]] },
+      { n: 'ψ(x)', c: 'var(--s1)', pts: L.steps(1, X, L.psi) }] });
+    document.getElementById('r2').innerHTML = '<span>ψ(' + X.toLocaleString() + ') = <b>' + L.psi(X).toFixed(2) + '</b></span><span>ψ − x = <b>' + (L.psi(X) - X).toFixed(2) +
+      '</b></span><span>(ψ − x) / √x = <b>' + ((L.psi(X) - X) / Math.sqrt(X)).toFixed(3) + '</b></span>';
+  });
+  // Sample just before and at each integer so the jumps are drawn as risers.
+  var pts = [], n;
+  for (n = 2; n <= L.NMAX; n++) { pts.push([n, (L.psiP[n - 1] - n) / Math.sqrt(n)]); pts.push([n, (L.psiP[n] - n) / Math.sqrt(n)]); }
+  L.plot('p3', { x: [2, L.NMAX], y: [-1.5, 1.5], log: true, xt: [2, 10, 100, 1000, 10000], yt: [-1, 0, 1], xl: 'x (log scale)', dp: 3,
+    series: [{ n: '(ψ − x)/√x', c: 'var(--s1)', pts: pts }] });
+})();
+</script>

@@ -1,0 +1,89 @@
+<h1>A trace computed two ways</h1>
+<p class="lede">Masullo's proof is a trace formula: one number computed twice, once as a sum over zeros and once as a sum over primes. The introduction of the paper explains the mechanism on a toy example small enough to compute by hand. This chapter is that toy, with knobs.</p>
+<p class="note">Based on the toy example in the paper's introduction (pages 11–33), which I read in full. The lab computes both sides numerically; the Lean file <code>RH/Toy.lean</code> states the identity and proves one consequence from it.</p>
+
+<h2>A circle made by multiplying</h2>
+<p>Take the positive real numbers and pick a number <i>γ</i> &gt; 1. Declare <i>t</i> and <i>γt</i> to be the same point, so 1, <i>γ</i>, <i>γ</i>², … all coincide. On a logarithmic ruler this rolls the line up into a circle of circumference ln <i>γ</i>.</p>
+<p>Now pick a smooth bump <i>φ</i> on the positive reals and use it to smear functions on the circle: replace the value at each point by a <i>φ</i>-weighted average of nearby values. That smearing is a linear operator, and it has a trace: the sum of its eigenvalues. There are two ways to compute it.</p>
+<ul>
+  <li><b>By frequencies (the spectral side).</b> The pure tones on the circle are the waves that fit a whole number <i>m</i> of times around. Smearing multiplies tone <i>m</i> by a number, the Mellin transform of <i>φ</i> at 2π<i>im</i>/ln <i>γ</i>. The trace is the sum of those numbers over all <i>m</i>.</li>
+  <li><b>By wrapping (the geometric side).</b> The smear connects a point to itself once for every way of going around the circle <i>k</i> times, with strength <i>φ</i>(<i>γ<sup>k</sup></i>). The trace is the circumference times the sum of those strengths.</li>
+</ul>
+<p class="note">Σ<sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>). This is Poisson summation, written multiplicatively.</p>
+
+<figure class="lab">
+  <div class="title">Lab M1.1 <small>both sides of the toy trace formula</small></div>
+  <div class="ctl">
+    <label>Circle size γ <input type="range" id="gm" min="1.3" max="4" step="0.01" value="2"><output id="gmv"></output></label>
+    <label>Bump centre <input type="range" id="cc" min="-1.2" max="2" step="0.01" value="0.69"><output id="ccv"></output></label>
+    <label>Bump width <input type="range" id="ww" min="0.05" max="1.5" step="0.01" value="0.4"><output id="wwv"></output></label>
+    <label>Frequencies used, up to ±M <input type="range" id="mm" min="0" max="40" step="1" value="6"><output id="mmv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the bump φ(t)</span><span>dashed lines: the powers of γ</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Bump function on a logarithmic axis with the powers of gamma marked"></svg><div class="tip" hidden></div></div></div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>spectral side, summed over |m| ≤ M</span><span>dashed line: the geometric side</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the spectral side converging to the geometric side"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Top: the geometric side reads off <i>φ</i> only where a dashed line crosses the bump. Bottom: the spectral side, adding one pair of frequencies at a time, settles on the same number. A narrow bump needs many frequencies; a wide one needs few.</figcaption>
+</figure>
+
+<h2>The dictionary to the real thing</h2>
+<p>In the actual proof the circle is replaced by a much larger space built from all the completions of a number field at once, but the two sides keep their character:</p>
+<ul>
+  <li>the <b>frequencies</b> become the zeros of the L-function, one term for each;</li>
+  <li>the <b>wraps</b> become prime powers, each prime <i>p</i> contributing its own circle of circumference ln <i>p</i>, with terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>).</li>
+</ul>
+<p>Read that way, a trace formula is the explicit formula of chapter 3: a sum over zeros equal to a sum over primes, for any test bump <i>φ</i> you like.</p>
+
+<h2>Making a trace vanish</h2>
+<p>One feature of the toy carries a lot of weight in the paper. If the bump sits strictly between 1 and <i>γ</i>, no power of <i>γ</i> lands inside it. The geometric side is then zero, so the sum over frequencies must be zero too, although the individual terms are not. In the paper this is how all but finitely many primes are made to drop out: for a fixed bump, every prime larger than the bump's reach contributes nothing.</p>
+
+<div class="box">
+  <h3>In Lean</h3>
+  <p>The repository states the identity and proves the vanishing from it. The identity itself is still a <code>sorry</code>; Mathlib has Poisson summation, and deriving this form from it is the next Lean task.</p>
+<pre>theorem trace_identity {γ : ℝ} (hγ : 1 &lt; γ) {φ : ℝ → ℂ}
+    (hφ : ContDiff ℝ ∞ φ) (hc : HasCompactSupport φ) (h0 : tsupport φ ⊆ Ioi 0) :
+    ∑' m : ℤ, mellin φ (2 * π * Complex.I * m / Real.log γ)
+      = Real.log γ * ∑' k : ℤ, φ (γ ^ k) := by sorry
+
+theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
+    ∑' m : ℤ, mellin φ (2 * π * Complex.I * m / Real.log γ) = 0</pre>
+</div>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>Move the bump centre until the bump fits between the dashed lines at 1 and <i>γ</i>. Both sides drop to zero. Then lower M to 1 or 2: the partial sums are not zero, only the full sum is.</li>
+    <li>Make the bump wide enough to cover two powers of <i>γ</i>. The geometric side counts both.</li>
+    <li>Shrink <i>γ</i> toward 1.3. More powers crowd under the bump and the trace grows: a small circle is wrapped more often.</li>
+  </ul>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function bump(u) { return Math.abs(u) < 1 ? Math.exp(1 - 1 / (1 - u * u)) : 0; }
+  L.bind({ gm: function (v) { return v.toFixed(2); }, cc: function (v) { return 't = ' + Math.exp(v).toFixed(2); }, ww: function (v) { return v.toFixed(2); }, mm: null }, function (v) {
+    var lg = Math.log(v.gm), u0 = v.cc, w = v.ww, k, geo = 0, hits = 0, vl = [];
+    for (k = -40; k <= 40; k++) {
+      var b = bump((k * lg - u0) / w); geo += b; if (b > 0) hits++;
+      if (Math.abs(k * lg) < 3.1) vl.push({ x: Math.exp(k * lg), t: k === 0 ? '1' : k === 1 ? 'γ' : k === 2 ? 'γ²' : '' });
+    }
+    geo *= lg;
+    // Fourier coefficients of the bump on the circle, by the trapezoid rule on its support.
+    var n = 800, S = [], acc = 0, m, i, u, re;
+    for (m = 0; m <= 40; m++) {
+      re = 0;
+      for (i = 1; i < n; i++) { u = -1 + 2 * i / n; re += bump(u) * Math.cos(2 * Math.PI * m * (u0 + w * u) / lg); }
+      acc += (m ? 2 : 1) * re * w * 2 / n; S.push([m, acc]);
+    }
+    L.plot('p1', { x: [0.05, 20], y: [0, 1.1], log: true, xt: [0.1, 1, 10], yt: [0, 0.5, 1], xl: 't (log scale)', xn: 't', dp: 3, h: 200, vlines: vl,
+      series: [{ n: 'φ(t)', c: 'var(--s1)', pts: L.sample(0.05, 20, 900, true, function (t) { return bump((Math.log(t) - u0) / w); }) }] });
+    var lo = Math.min(0, geo), hi = Math.max(geo, 0.2), pad = (hi - lo) * 0.6 + 0.2, yt = L.ticks(lo - pad, hi + pad, 5);
+    L.plot('p2', { x: [0, 40], y: [yt[0], yt[yt.length - 1]], xt: [0, 10, 20, 30, 40], yt: yt, xl: 'M', xn: 'M', xdp: 0, dp: 4, h: 220,
+      refs: [{ y: geo, t: 'geometric side' }], series: [{ n: 'spectral, |m| ≤ M', c: 'var(--s2)', pts: S }], marks: [{ x: v.mm, y: S[v.mm][1], c: 'var(--s2)' }] });
+    document.getElementById('r1').innerHTML = '<span>powers of γ under the bump: <b>' + hits + '</b></span><span>geometric side: <b>' + geo.toFixed(5) + '</b></span><span>spectral side at M = ' + v.mm + ': <b>' +
+      S[v.mm][1].toFixed(5) + '</b></span><span>difference: <b>' + (S[v.mm][1] - geo).toExponential(1) + '</b></span>';
+  });
+})();
+</script>

@@ -34,3 +34,13 @@ The papers themselves are not stored here.
 python3 build.py && git add -A && git commit -m "..." && git push   # Pages serves docs/ on main
 cd lean && lake exe cache get && lake build                          # Lean
 ```
+
+## Companion site
+
+https://rlankenau.github.io/rh/ is laid out like a textbook companion: shared background chapters,
+then one chapter per step of each proof, each with interactive labs computed in the browser.
+
+- `site/chapters/<slug>.html` — chapter bodies; add a chapter by writing one and listing it in `BOOK` in `build.py`
+- `site/assets/lab.js` — shared numerics (primes, ψ, li, ζ, zeros) and the plot/slider helpers
+- `site/assets/site.css` — shared styles
+- `python3 build.py` writes everything to `docs/`, which GitHub Pages serves

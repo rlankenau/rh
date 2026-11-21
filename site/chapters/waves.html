@@ -1,0 +1,68 @@
+<h1>Zeros as waves</h1>
+<p class="lede">The prime staircase can be rebuilt from the zeros of zeta, one wave per zero. This is the picture behind the title of Masullo's paper, and it is the reason the position of the zeros decides the size of the error.</p>
+
+<h2>The explicit formula</h2>
+<p>Riemann's explicit formula, in the form von Mangoldt proved, is an exact identity between the weighted staircase and the zeros <i>ρ</i> of zeta in the critical strip:</p>
+<p class="note"><i>ψ</i>(<i>x</i>) = <i>x</i> − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i>/<i>ρ</i> − ln 2π − ½ ln(1 − <i>x</i><sup>−2</sup>)</p>
+<p>The first term is the smooth guess. The last two are tiny. Everything interesting is the sum over zeros. Write a zero as <i>ρ</i> = <i>β</i> + <i>iγ</i>. Together with its mirror image below the axis it contributes a real wave:</p>
+<ul>
+  <li>its <b>pitch</b> is <i>γ</i>: the wave is cos(<i>γ</i> ln <i>x</i>), so it oscillates evenly on a logarithmic scale;</li>
+  <li>its <b>loudness</b> grows like <i>x<sup>β</sup></i>, and is divided by roughly <i>γ</i>, so high zeros are quiet.</li>
+</ul>
+
+<figure class="lab">
+  <div class="title">Lab 3.1 <small>rebuilding the staircase from the first K pairs of zeros</small></div>
+  <div class="ctl">
+    <label>Zeros used K <input type="range" id="k1" min="0" max="30" step="1" value="5"><output id="k1v"></output></label>
+    <label>Window starts at <input type="range" id="w1" min="2" max="160" step="1" value="2"><output id="w1v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>ψ(x), the true staircase</span><span><i style="background:var(--s2)"></i>explicit formula with K pairs of zeros</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Chebyshev staircase and its reconstruction from zeta zeros"></svg><div class="tip" hidden></div></div></div>
+  <figcaption>With K = 0 the formula is just the straight line. Each added zero bends the curve toward the steps. The overshoot beside each riser never goes away: a sum of smooth waves cannot make a perfectly sharp corner, the same ringing as a square wave built from sines.</figcaption>
+</figure>
+
+<h2>What a zero off the line would do</h2>
+<p>If every zero has <i>β</i> = ½, every wave has loudness about √<i>x</i>, and the total error is about √<i>x</i>: the bound from chapter 1. A single zero with <i>β</i> &gt; ½ would contribute a wave of size <i>x<sup>β</sup></i>, which eventually drowns out all the others. That is the entire content of the equivalence between RH and the square-root error bound.</p>
+<p>The mirror symmetry matters here. A zero at <i>β</i> &lt; ½ forces a partner at 1 − <i>β</i> &gt; ½, so any zero off the line produces a too-loud wave.</p>
+
+<figure class="lab">
+  <div class="title">Lab 3.2 <small>one zero's wave, measured in units of √x, as its real part β moves off the line</small></div>
+  <div class="ctl">
+    <label>Real part β <input type="range" id="b2" min="0.5" max="0.75" step="0.005" value="0.5"><output id="b2v"></output></label>
+    <label>Which zero <input type="range" id="z2" min="1" max="30" step="1" value="1"><output id="z2v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>wave of the pair β ± iγ, divided by √x</span><span><i style="background:var(--s2)"></i>the same wave with β = ½</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Contribution of one zero pair, scaled by square root of x"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>On the line the scaled wave keeps a constant height forever. Off the line it grows without bound, however slightly <i>β</i> exceeds ½. The moved zero here is hypothetical; all known zeros sit at <i>β</i> = ½.</figcaption>
+</figure>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab 3.1, set K = 1. The single wave already has a bump near every prime power below 20.</li>
+    <li>Slide the window to around 113. The flat stretch with no primes takes many zeros to flatten.</li>
+    <li>In Lab 3.2, set <i>β</i> = 0.51. The growth is invisible at first and unmistakable by 10,000. This is why checking trillions of zeros by computer cannot settle the question.</li>
+  </ul>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  L.bind({ k1: null, w1: null }, function (v) {
+    var a = v.w1, b = a + 40, yt = L.ticks(Math.floor(L.psi(a) - 4), Math.ceil(L.psi(b) + 4), 5);
+    L.plot('p1', { x: [a, b], y: [yt[0], yt[yt.length - 1]], xt: L.ticks(a, b, 8), yt: yt, dp: 2, h: 300, series: [
+      { n: 'ψ(x)', c: 'var(--s1)', pts: L.steps(a, b, L.psi) },
+      { n: 'K = ' + v.k1, c: 'var(--s2)', pts: L.sample(Math.max(a, 1.5), b, 800, false, function (x) { return L.psiWaves(x, v.k1); }) }] });
+  });
+  function wave(x, be, g) { var lx = Math.log(x); return -2 * Math.pow(x, be - 0.5) * (be * Math.cos(g * lx) + g * Math.sin(g * lx)) / (be * be + g * g); }
+  L.bind({ b2: function (v) { return v.toFixed(3); }, z2: function (v) { return 'γ = ' + L.ZEROS[v - 1].toFixed(2); } }, function (v) {
+    var g = L.ZEROS[v.z2 - 1];
+    L.plot('p2', { x: [2, L.NMAX], y: [-2, 2], log: true, xt: [2, 10, 100, 1000, 10000], yt: [-2, -1, 0, 1, 2], xl: 'x (log scale)', dp: 3, series: [
+      { n: 'β = ½', c: 'var(--s2)', pts: L.sample(2, L.NMAX, 1500, true, function (x) { return wave(x, 0.5, g); }) },
+      { n: 'β = ' + v.b2.toFixed(3), c: 'var(--s1)', pts: L.sample(2, L.NMAX, 1500, true, function (x) { return wave(x, v.b2, g); }) }] });
+    document.getElementById('r2').innerHTML = '<span>height on the line: <b>' + (2 / Math.hypot(0.5, g)).toFixed(3) + '</b></span><span>height at x = 20,000 with this β: <b>' +
+      (2 * Math.pow(L.NMAX, v.b2 - 0.5) / Math.hypot(v.b2, g)).toFixed(3) + '</b></span>';
+  });
+})();
+</script>

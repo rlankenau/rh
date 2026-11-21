@@ -1,46 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two Riemann Proofs</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<style>
-:root{--bg:#f5f7fa;--panel:#fff;--fg:#17202e;--muted:#586579;--rule:#d5dce6;--accent:#1f4e8c;--warn:#8a5a00;--warn-soft:#fbefd2;--open:#8f2f3c;--open-soft:#f9e1e4}
-@media (prefers-color-scheme:dark){:root{--bg:#10151d;--panel:#18202b;--fg:#e4e9f1;--muted:#9aa7ba;--rule:#2c3747;--accent:#8db8f2;--warn:#e6b85a;--warn-soft:#3a2d10;--open:#f09aa5;--open-soft:#3d1c22;color-scheme:dark}}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.6}
-main{max-width:56rem;margin:0 auto;padding:3rem 16px 4rem;display:flex;flex-direction:column;gap:1.5rem}
-h1{font-family:"STIX Two Text","Times New Roman",serif;font-weight:600;font-size:2.2rem;line-height:1.15;margin:0;text-wrap:balance}
-p{margin:0;max-width:64ch}
-.lede{color:var(--muted);font-size:1.1rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
-a.card{display:flex;flex-direction:column;gap:.6rem;padding:1.2rem;background:var(--panel);border:1px solid var(--rule);border-radius:6px;color:inherit;text-decoration:none}
-a.card:hover,a.card:focus-visible{border-color:var(--accent);outline:none}
-.card h2{font-family:"STIX Two Text","Times New Roman",serif;font-size:1.4rem;margin:0;color:var(--accent)}
-.card span.d{color:var(--muted);font-size:.95rem}
-.chip{align-self:flex-start;font-size:.72rem;font-weight:600;padding:.1rem .5rem;border-radius:999px}
-.warn{background:var(--warn-soft);color:var(--warn)}.open{background:var(--open-soft);color:var(--open)}
-footer{color:var(--muted);font-size:.9rem}
-a{color:var(--accent)}
-</style>
-</head>
-<body>
-<main>
-  <h1>Two claimed proofs of the Riemann Hypothesis, one day</h1>
-  <p class="lede">On 20 November 2026 two unrelated proofs of the generalized Riemann Hypothesis were released. These are a reader's maps of each: how the argument is organized, what has been checked, and what is missing. Neither proof has been verified, and nothing here says either is correct.</p>
-  <div class="cards">
-    <a class="card" href="alpoge/">
-      <h2>Alpöge with Claude</h2>
-      <span class="d">A Lean 4 formalization of 175,187 files with no accompanying paper. RH and GRH for Dirichlet L-functions, by a chain of theta lifts and a one-sided bound on a prime sum.</span>
-      <span class="chip warn">kernel check in progress</span>
-    </a>
-    <a class="card" href="masullo/">
-      <h2>Masullo</h2>
-      <span class="d">“The Music of the Primes”, a 940-page paper. GRH for Hecke L-functions of every number field, by a trace formula on a space that only registers zeros near the critical line.</span>
-      <span class="chip open">incomplete manuscript</span>
-    </a>
-  </div>
-  <footer>Notes, the gap scan, and small Lean experiments are in the <a href="https://github.com/rlankenau/rh">repository</a>. Written with Claude.</footer>
-</main>
-</body>
-</html>
+<div class="kicker">Companion site</div>
+<h1>Two claimed proofs of the Riemann Hypothesis, one day</h1>
+<p class="lede">On 20 November 2026 two unrelated proofs of the generalized Riemann Hypothesis were released. This site works through both, one step at a time, with labs you can play with: every figure is computed in your browser from the definitions, and the sliders change the actual functions under discussion.</p>
+<p class="note warn">Neither proof has been verified, and nothing here says either is correct. These are a reader's notes: each chapter says what it is based on and how closely that source was read.</p>
+<div class="books">
+{books}
+</div>
+<h2>How to use it</h2>
+<ul>
+  <li>The three background chapters are shared by both proofs. Read them first, in order.</li>
+  <li>Each proof has a one-page map of the whole argument, then chapters that take one step each. Chapters marked planned are not written yet.</li>
+  <li>Each chapter ends with a few things to try in its lab.</li>
+</ul>
+<footer class="site">Notes, the gap scan of Masullo's manuscript, and small Lean experiments are in the <a href="https://github.com/rlankenau/rh">repository</a>. Written with Claude.</footer>
