@@ -415,9 +415,11 @@
   "wiki": "Bump_function"
  },
  {
-  "term": "convolution (smearing)",
+  "term": "convolution",
   "match": [
+   "convolution operator",
    "convolution",
+   "smearing operator",
    "smear"
   ],
   "def": "Blurring: replace each value of a function with a weighted average of nearby values, with the weights given by a bump.",
@@ -539,8 +541,7 @@
  {
   "term": "kernel check",
   "match": [
-   "kernel check",
-   "kernel"
+   "kernel check"
   ],
   "def": "Lean's final, independent verification of a finished proof by its small trusted core program. Until this passes, a Lean proof has not actually been verified."
  },
@@ -650,5 +651,32 @@
   ],
   "def": "German mathematician who, following Connes, studied the function spaces behind this approach in the 2000s.",
   "person": true
+ },
+ {
+  "term": "eigenfunction",
+  "match": [
+   "eigenfunction",
+   "eigenfunctions"
+  ],
+  "def": "A function that an operator sends to a constant multiple of itself. The constant is the eigenvalue.",
+  "wiki": "Eigenfunction"
+ },
+ {
+  "term": "integral kernel",
+  "match": [
+   "integral kernel",
+   "kernel"
+  ],
+  "def": "The function K(x, y) in an operator of the form f ↦ ∫ K(x, y) f(y) dy. It plays the role of the entries of a matrix, and the operator's trace is the integral of K(x, x).",
+  "wiki": "Integral_transform"
+ },
+ {
+  "term": "Fourier mode",
+  "match": [
+   "Fourier modes",
+   "Fourier mode"
+  ],
+  "def": "One of the pure oscillations that fit a whole number of times around a circle. Every reasonable function on the circle is a sum of them (its Fourier series).",
+  "wiki": "Fourier_series"
  }
 ]

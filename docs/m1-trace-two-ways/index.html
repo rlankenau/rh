@@ -14,17 +14,19 @@
 <div class="kicker">Masullo · Chapter M1</div>
 <script src="../assets/lab.js"></script>
 <h1>A trace computed two ways</h1>
-<p class="lede">Masullo's proof is a <button type="button" class="g" data-g="trace-formula" aria-expanded="false">trace formula</button>: one number computed twice, once as a sum over zeros and once as a sum over <button type="button" class="g" data-g="prime" aria-expanded="false">primes</button>. The introduction of the paper explains the mechanism on a toy example small enough to compute by hand. This chapter is that toy, with knobs.</p>
+<p class="lede">A <button type="button" class="g" data-g="trace-formula" aria-expanded="false">trace formula</button> computes the <button type="button" class="g" data-g="trace" aria-expanded="false">trace</button> of one <button type="button" class="g" data-g="linear-operator" aria-expanded="false">operator</button> in two ways and equates the results. In Masullo's proof one computation gives a sum over the zeros of an <button type="button" class="g" data-g="l-function" aria-expanded="false">L-function</button> and the other gives a sum over <button type="button" class="g" data-g="prime" aria-expanded="false">primes</button>. This chapter works the simplest example, from the paper's introduction, where both sides can be computed directly.</p>
 <p class="note">Based on the toy example in the paper's introduction (pages 11–33), which I read in full. The lab computes both sides numerically; the <button type="button" class="g" data-g="lean" aria-expanded="false">Lean</button> file <code>RH/Toy.lean</code> states the identity and proves one consequence from it.</p>
 
-<h2>A circle made by multiplying</h2>
-<p>Take the positive real numbers and pick a number <i>γ</i> &gt; 1. Declare <i>t</i> and <i>γt</i> to be the same point, so 1, <i>γ</i>, <i>γ</i>², … all coincide. On a <button type="button" class="g" data-g="logarithmic-scale" aria-expanded="false">logarithmic ruler</button> this rolls the line up into a circle of circumference <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>γ</i>.</p>
-<p>Now pick a <button type="button" class="g" data-g="test-function-bump" aria-expanded="false">smooth bump</button> <i>φ</i> on the positive reals and use it to <button type="button" class="g" data-g="convolution-smearing" aria-expanded="false">smear</button> functions on the circle: replace the value at each point by a <i>φ</i>-weighted average of nearby values. That smearing is a <button type="button" class="g" data-g="linear-operator" aria-expanded="false">linear operator</button>, and it has a <button type="button" class="g" data-g="trace" aria-expanded="false">trace</button>: the sum of its <button type="button" class="g" data-g="eigenvalue" aria-expanded="false">eigenvalues</button>. There are two ways to compute it.</p>
+<h2>The circle (0, ∞) modulo <i>γ</i></h2>
+<p>Fix <i>γ</i> &gt; 1 and identify <i>t</i> with <i>γt</i> for every <i>t</i> &gt; 0. In the coordinate <i>u</i> = <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>t</i> this is the real line <button type="button" class="g" data-g="quotient-space" aria-expanded="false">modulo</button> ln <i>γ</i>: a circle of circumference ln <i>γ</i>. Lengths on it are measured by d<i>t</i>/<i>t</i> = d<i>u</i>.</p>
+<p>Fix a smooth function <i>φ</i> on (0, ∞) that is zero outside a bounded interval away from 0 (a <button type="button" class="g" data-g="test-function-bump" aria-expanded="false">test function</button>). It defines a <button type="button" class="g" data-g="convolution" aria-expanded="false">convolution operator</button> on functions <i>f</i> on the circle:</p>
+<p class="note">(A(<i>φ</i>)<i>f</i>)(<i>x</i>) = <button type="button" class="g" data-g="integral" aria-expanded="false">∫</button><sub>0</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) <i>f</i>(<i>x</i>/<i>t</i>) d<i>t</i>/<i>t</i>. Each value of <i>f</i> is replaced by a <i>φ</i>-weighted average of its values at rescaled points.</p>
+<p>A(<i>φ</i>) is linear, and its trace is the sum of its <button type="button" class="g" data-g="eigenvalue" aria-expanded="false">eigenvalues</button>. The trace can be computed in two ways. Both use the <button type="button" class="g" data-g="mellin-transform" aria-expanded="false">Mellin transform</button>, M(<i>φ</i>)(<i>s</i>) = ∫<sub>0</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i>.</p>
 <ul>
-  <li><b>By frequencies (the <button type="button" class="g" data-g="spectral-side-and-geometric-side" aria-expanded="false">spectral side</button>).</b> The pure tones on the circle are the waves that fit a whole number <i>m</i> of times around. Smearing multiplies tone <i>m</i> by a number, the <button type="button" class="g" data-g="mellin-transform" aria-expanded="false">Mellin transform</button> of <i>φ</i> at 2π<i>im</i>/ln <i>γ</i>. The trace is the sum of those numbers over all <i>m</i>.</li>
-  <li><b>By wrapping (the geometric side).</b> The smear connects a point to itself once for every way of going around the circle <i>k</i> times, with strength <i>φ</i>(<i>γ<sup>k</sup></i>). The trace is the circumference times the sum of those strengths.</li>
+  <li><b>From the eigenvalues (the <button type="button" class="g" data-g="spectral-side-and-geometric-side" aria-expanded="false">spectral side</button>).</b> The function <i>x</i><sup>−<i>s</i></sup> is well defined on the circle exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> = 2π<i>im</i>/ln <i>γ</i> for an integer <i>m</i>. These are the <button type="button" class="g" data-g="fourier-mode" aria-expanded="false">Fourier modes</button> of the circle. Substituting into the definition gives A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>, so each mode is an <button type="button" class="g" data-g="eigenfunction" aria-expanded="false">eigenfunction</button> with eigenvalue M(<i>φ</i>)(2π<i>im</i>/ln <i>γ</i>). The trace is the sum of these over all <i>m</i>.</li>
+  <li><b>From the <button type="button" class="g" data-g="integral-kernel" aria-expanded="false">integral kernel</button> (the geometric side).</b> Written as an integral over one turn of the circle, (A(<i>φ</i>)<i>f</i>)(<i>x</i>) = ∫ K(<i>x</i>, <i>y</i>) <i>f</i>(<i>y</i>) d<i>y</i>/<i>y</i> with K(<i>x</i>, <i>y</i>) = <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup>x</i>/<i>y</i>), one term for each number of times around. The trace of an integral operator is the integral of its kernel along the diagonal <i>x</i> = <i>y</i>. There K(<i>x</i>, <i>x</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), a constant, and the circle has length ln <i>γ</i>.</li>
 </ul>
-<p class="note"><button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>). This is <button type="button" class="g" data-g="poisson-summation" aria-expanded="false">Poisson summation</button>, written multiplicatively.</p>
+<p class="note">Σ<sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), both sums over all integers. In the coordinate <i>u</i> = ln <i>t</i> this is the <button type="button" class="g" data-g="poisson-summation" aria-expanded="false">Poisson summation</button> formula.</p>
 
 <figure class="lab">
   <div class="title">Lab M1.1 <small>both sides of the toy trace formula</small></div>
@@ -39,23 +41,23 @@
   <div class="lg"><span><i style="background:var(--s2)"></i>spectral side, summed over |m| ≤ M</span><span>dashed line: the geometric side</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the spectral side converging to the geometric side"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Top: the geometric side reads off <i>φ</i> only where a dashed line crosses the bump. Bottom: the spectral side, adding one pair of frequencies at a time, settles on the same number. A narrow bump needs many frequencies; a wide one needs few.</figcaption>
+  <figcaption>Top: the geometric side uses the values of <i>φ</i> only at the powers of <i>γ</i> (dashed lines). Bottom: the partial sums of the spectral side over |<i>m</i>| ≤ M converge to the same number. The narrower <i>φ</i> is, the slower its transform decays and the more terms are needed.</figcaption>
 </figure>
 
-<h2>The dictionary to the real thing</h2>
-<p>In the actual proof the circle is replaced by a much larger space built from all the <button type="button" class="g" data-g="completions-of-a-number-field" aria-expanded="false">completions</button> of a <button type="button" class="g" data-g="number-field" aria-expanded="false">number field</button> at once, but the two sides keep their character:</p>
+<h2>How the example corresponds to the paper</h2>
+<p>In the paper the circle is replaced by a much larger group, built from all the <button type="button" class="g" data-g="completions-of-a-number-field" aria-expanded="false">completions</button> of a <button type="button" class="g" data-g="number-field" aria-expanded="false">number field</button>, and the operator is again convolution with a test function <i>φ</i>. The two sides of the trace become:</p>
 <ul>
-  <li>the <b>frequencies</b> become the zeros of the <button type="button" class="g" data-g="l-function" aria-expanded="false">L-function</button>, one term for each;</li>
-  <li>the <b>wraps</b> become <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime powers</button>, each prime <i>p</i> contributing its own circle of circumference ln <i>p</i>, with terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>).</li>
+  <li><b>spectral side:</b> one term M(<i>φ</i>)(<i>ρ</i> − ½) for each zero <i>ρ</i> of the L-function, in place of one term for each mode;</li>
+  <li><b>geometric side:</b> each prime <i>p</i> contributes like a circle of circumference ln <i>p</i>, giving terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>) at the <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime powers</button>.</li>
 </ul>
-<p>Read that way, a trace formula is the <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> of chapter 3: a sum over zeros equal to a sum over primes, for any test bump <i>φ</i> you like.</p>
+<p>The resulting identity, a sum over zeros equal to a sum over prime powers for every test function <i>φ</i>, is a form of the <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> of chapter 3.</p>
 
-<h2>Making a trace vanish</h2>
-<p>One feature of the toy carries a lot of weight in the paper. If the bump sits strictly between 1 and <i>γ</i>, no power of <i>γ</i> lands inside it. The geometric side is then zero, so the sum over frequencies must be zero too, although the individual terms are not. In the paper this is how all but finitely many primes are made to drop out: for a fixed bump, every prime larger than the bump's reach contributes nothing.</p>
+<h2>When the trace is zero</h2>
+<p>If <i>φ</i> is zero outside an interval strictly between 1 and <i>γ</i>, then <i>φ</i>(<i>γ<sup>k</sup></i>) = 0 for every integer <i>k</i>. The geometric side is 0, so the sum of the eigenvalues is 0, although the individual eigenvalues are not. The paper uses this to remove all but finitely many primes: for a fixed <i>φ</i>, every prime <i>p</i> larger than the right end of the interval where <i>φ</i> is nonzero contributes 0.</p>
 
 <div class="box">
   <h3>In Lean</h3>
-  <p>The repository states the identity and proves the vanishing from it. The identity itself is still a <code>sorry</code>; <button type="button" class="g" data-g="mathlib" aria-expanded="false">Mathlib</button> has <button type="button" class="g" data-g="sim-on-denis-poisson" aria-expanded="false">Poisson</button> summation, and deriving this form from it is the next Lean task.</p>
+  <p>The repository states the identity and proves from it that the trace is zero in the case above. The identity itself is still a <code>sorry</code>; <button type="button" class="g" data-g="mathlib" aria-expanded="false">Mathlib</button> has <button type="button" class="g" data-g="sim-on-denis-poisson" aria-expanded="false">Poisson</button> summation, and deriving this form from it is the next Lean task.</p>
 <pre>theorem trace_identity {γ : ℝ} (hγ : 1 &lt; γ) {φ : ℝ → ℂ}
     (hφ : ContDiff ℝ ∞ φ) (hc : HasCompactSupport φ) (h0 : tsupport φ ⊆ Ioi 0) :
     ∑' m : ℤ, mellin φ (2 * π * Complex.I * m / Real.log γ)
@@ -68,9 +70,9 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Move the bump centre until the bump fits between the dashed lines at 1 and <i>γ</i>. Both sides drop to zero. Then lower M to 1 or 2: the partial sums are not zero, only the full sum is.</li>
+    <li>Move the bump centre until the bump lies between the dashed lines at 1 and <i>γ</i>. Both sides become 0. Then lower M to 1 or 2: the partial sums are not 0, only the full sum is.</li>
     <li>Make the bump wide enough to cover two powers of <i>γ</i>. The geometric side counts both.</li>
-    <li>Shrink <i>γ</i> toward 1.3. More powers crowd under the bump and the trace grows: a small circle is wrapped more often.</li>
+    <li>Shrink <i>γ</i> toward 1.3. More powers of <i>γ</i> fall inside the bump and the trace grows.</li>
   </ul>
 </div>
 

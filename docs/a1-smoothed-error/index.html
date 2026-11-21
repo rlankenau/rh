@@ -14,31 +14,31 @@
 <div class="kicker">Alpöge with Claude · Chapter A1</div>
 <script src="../assets/lab.js"></script>
 <h1>The smoothed error</h1>
-<p class="lede">The Alpöge <button type="button" class="g" data-g="formalization" aria-expanded="false">formalization</button> never bounds the <button type="button" class="g" data-g="prime" aria-expanded="false">prime</button> staircase itself. It bounds a smoothed version of the error, called <code>Gz</code> in the <button type="button" class="g" data-g="lean" aria-expanded="false">Lean</button> source. This chapter shows what smoothing buys: the <button type="button" class="g" data-g="ringing" aria-expanded="false">ringing</button> from chapter 3 disappears, and the sum over zeros becomes tame enough to add up.</p>
-<p class="note">Based on the definitions of <code>Sz</code>, <code>Gz</code> and <code>ZetaLandau</code> in the Lean source, which I read as statements. The curves are computed here from those definitions and from the first 30 zeros; the match between the two is a check I ran, not part of the formalization.</p>
+<p class="lede">The Alpöge <button type="button" class="g" data-g="formalization" aria-expanded="false">formalization</button> does not bound <i>ψ</i>(<i>x</i>) − <i>x</i>. It bounds <code>Gz</code>(<i>x</i>), the error term of a weighted <button type="button" class="g" data-g="integral" aria-expanded="false">integral</button> of <i>ψ</i>. Integrating divides the term for each zero by one more factor of size |<i>ρ</i>|, and that makes the sum over zeros converge absolutely.</p>
+<p class="note">Based on the definitions of <code>Sz</code>, <code>Gz</code> and <code>ZetaLandau</code> in the <button type="button" class="g" data-g="lean" aria-expanded="false">Lean</button> source, which I read as statements. The curves are computed here from those definitions and from the first 30 zeros; the match between the two is a check I ran, not part of the formalization.</p>
 
 <h2>The definition</h2>
 <pre>def Sz (x : ℝ) : ℝ := ∑ n ∈ Finset.Icc 1 ⌊x⌋₊, Λ n * (x / n - 1)
 def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConstant) * x</pre>
-<p>In words: instead of adding the weight <button type="button" class="g" data-g="von-mangoldt-function-n" aria-expanded="false">Λ</button>(<i>n</i>) for each <i>n</i> ≤ <i>x</i>, add Λ(<i>n</i>)·(<i>x</i>/<i>n</i> − 1). A <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime power</button> contributes nothing at the moment <i>x</i> reaches it and then phases in gradually, so the sum has corners but no jumps. The other two terms subtract what the sum would be if primes were perfectly regular. <code>Gz</code> is what is left over.</p>
+<p><code>Sz</code> weights each <i>n</i> ≤ <i>x</i> by <button type="button" class="g" data-g="von-mangoldt-function-n" aria-expanded="false">Λ</button>(<i>n</i>)·(<i>x</i>/<i>n</i> − 1) instead of Λ(<i>n</i>). Equivalently, <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>. The weight is 0 at <i>n</i> = <i>x</i>, so <code>Sz</code> is continuous: it has corners at the <button type="button" class="g" data-g="prime-power" aria-expanded="false">prime powers</button> but no jumps. Its main term is <i>x</i> <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>x</i> − (1 + <i>γ</i><sub><button type="button" class="g" data-g="leonhard-euler" aria-expanded="false">Euler</button></sub>)<i>x</i>, and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
 
 <h2>What the zeros do to it</h2>
-<p>The <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> for the smoothed sum is the one from chapter 3 with each wave divided once more by the height of its zero:</p>
-<p class="note">Gz(<i>x</i>) = <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> 2π − <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If <button type="button" class="g" data-g="zero-of-a-function" aria-expanded="false">every zero</button> is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
-<p>The wave for the zero at height <i>γ</i> now has size about 2/<i>γ</i>² instead of 2/<i>γ</i>. Those sizes add up to a finite total, 2 + <i>γ</i><sub><button type="button" class="g" data-g="leonhard-euler" aria-expanded="false">Euler</button></sub> − ln 4π ≈ 0.0462. So on <button type="button" class="g" data-g="riemann-hypothesis-rh" aria-expanded="false">RH</button> the scaled error can never leave the band ±0.0462, and a few zeros already describe it almost perfectly.</p>
+<p>Apply the same integral to the <button type="button" class="g" data-g="explicit-formula" aria-expanded="false">explicit formula</button> of chapter 3, term by term. The term <i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)):</p>
+<p class="note">Gz(<i>x</i>) = ln 2π − <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i> / (<i>ρ</i>(<i>ρ</i> − 1)) − (tiny terms). If <button type="button" class="g" data-g="zero-of-a-function" aria-expanded="false">every zero</button> is on the line this is ln 2π + √<i>x</i> · Σ<sub><i>γ</i> &gt; 0</sub> 2 cos(<i>γ</i> ln <i>x</i>) / (¼ + <i>γ</i>²).</p>
+<p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter 3 it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the <button type="button" class="g" data-g="riemann-hypothesis-rh" aria-expanded="false">Riemann Hypothesis</button> holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
 
 <figure class="lab">
   <div class="title">Lab A1.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
   <div class="ctl"><label>Zeros used K <input type="range" id="k1" min="0" max="30" step="1" value="3"><output id="k1v"></output></label></div>
-  <div class="lg"><span><i style="background:var(--s1)"></i>(Gz(x) − ln 2π) / √x, from the primes</span><span><i style="background:var(--s2)"></i>sum of the first K waves, from the zeros</span></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>(Gz(x) − ln 2π) / √x, from the <button type="button" class="g" data-g="prime" aria-expanded="false">primes</button></span><span><i style="background:var(--s2)"></i>sum of the first K waves, from the zeros</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Smoothed prime error scaled by root x, with its reconstruction from zeta zeros"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>One curve is computed from primes up to 20,000, the other from zeros of zeta. With K = 1 they already agree in shape; by K = 10 they are hard to tell apart. Compare Lab 3.1, where 30 zeros still ring.</figcaption>
+  <figcaption>One curve is computed from primes up to 20,000, the other from zeros of zeta. With K = 1 they already agree in shape; by K = 10 they are hard to tell apart. In Lab 3.1 the sum of 30 terms still overshoots at every jump.</figcaption>
 </figure>
 
 <h2>Why one side is enough</h2>
-<p>The formalization's target is a ceiling on <code>Gz</code>, with no floor. A <button type="button" class="g" data-g="landau-s-theorem" aria-expanded="false">theorem of Landau</button> makes that sufficient, and the Lean statement <code>ZetaLandau</code> says it for either sign: if <i>s</i><sub>0</sub>·Gz(<i>x</i>) ≤ <i>C</i>·<i>x<sup>θ</sup></i> for all large <i>x</i>, with <i>s</i><sub>0</sub> = +1 or −1, then zeta has no zeros with <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> above <i>θ</i>.</p>
-<p>The reason is the picture from Lab 3.2. A zero with real part <i>β</i> &gt; <i>θ</i> contributes a wave of size <i>x<sup>β</sup></i> that swings both ways. A wave cannot stay under a ceiling of <i>x<sup>θ</sup></i> while swinging to height <i>x<sup>β</sup></i>, and <button type="button" class="g" data-g="edmund-landau" aria-expanded="false">Landau</button>'s theorem says the other waves cannot conspire to hide it.</p>
+<p>The formalization proves an upper bound on <code>Gz</code> and no lower bound. A <button type="button" class="g" data-g="landau-s-theorem" aria-expanded="false">theorem of Landau</button> makes that sufficient. The Lean statement <code>ZetaLandau</code> covers either sign: if <i>s</i><sub>0</sub>·Gz(<i>x</i>) ≤ <i>C</i>·<i>x<sup>θ</sup></i> for all large <i>x</i>, with <i>s</i><sub>0</sub> = +1 or −1, then <i>ζ</i> has no zeros with <button type="button" class="g" data-g="real-part-and-imaginary-part" aria-expanded="false">real part</button> greater than <i>θ</i>.</p>
+<p>A zero with real part <i>β</i> &gt; <i>θ</i> contributes an oscillating term of amplitude proportional to <i>x<sup>β</sup></i>, which takes both signs. On its own that term exceeds <i>C</i>·<i>x<sup>θ</sup></i> in both directions for large <i>x</i>. <button type="button" class="g" data-g="edmund-landau" aria-expanded="false">Landau</button>'s theorem shows that the terms from the other zeros cannot cancel it.</p>
 
 <figure class="lab">
   <div class="title">Lab A1.2 <small>add a hypothetical off-line zero and watch the ceiling break</small></div>
@@ -49,21 +49,21 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
   <div class="lg"><span><i style="background:var(--s1)"></i>true scaled error</span><span><i style="background:var(--s2)"></i>with zeros added at β ± iγ and (1 − β) ± iγ</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Smoothed error with a hypothetical zero off the critical line"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>The dashed lines are the band ±0.0462 that RH allows. The added zeros are invented for the experiment. With <i>β</i> = ½ they add one more bounded wave; with any <i>β</i> &gt; ½ the curve eventually breaks through the top <em>and</em> the bottom, so a ceiling alone rules them out.</figcaption>
+  <figcaption>The dashed lines are the band ±0.0462 that RH allows. The added zeros are invented for the experiment. With <i>β</i> = ½ they add one more bounded term. With any <i>β</i> &gt; ½ the curve eventually leaves the band through the top <em>and</em> the bottom, so an upper bound alone excludes them.</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab A1.1, set K = 0 and then 1. The first zero alone carries most of the signal: its wave has height 0.0100 out of a possible 0.0462.</li>
-    <li>In Lab A1.2, set <i>β</i> = 0.55. The curve stays inside the band all the way to 20,000: a zero only slightly off the line can hide for a long time. Then try 0.7.</li>
-    <li>Raise <i>γ</i> with <i>β</i> fixed. Higher zeros are quieter, so they take longer to show: an off-line zero very high up would be invisible in any range a computer can reach.</li>
+    <li>In Lab A1.1, set K = 0 and then 1. The first zero alone has amplitude 0.0100 out of the total 0.0462.</li>
+    <li>In Lab A1.2, set <i>β</i> = 0.55. The curve stays inside the band all the way to 20,000: the extra factor <i>x</i><sup>0.05</sup> is only 1.6 at <i>x</i> = 20,000. Then try 0.7.</li>
+    <li>Raise <i>γ</i> with <i>β</i> fixed. The amplitude falls like 1/<i>γ</i>², so the curve leaves the band later. An off-line zero at very large height would not be visible in any range of <i>x</i> a computer can reach.</li>
   </ul>
 </div>
 
 <div class="box">
   <h3>Where this sits in the proof</h3>
-  <p>The proof actually bounds a combined error <code>Gm</code>, which adds <button type="button" class="g" data-g="dirichlet-character" aria-expanded="false">character-twisted</button> versions of <code>Gz</code> so that all Dirichlet <button type="button" class="g" data-g="l-function" aria-expanded="false">L-functions</button> are handled together, and it only needs the bound on a sparse set of scales. The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
+  <p>The formalization bounds a combined error <code>Gm</code>: a sum of versions of <code>Gz</code> twisted by <button type="button" class="g" data-g="dirichlet-character" aria-expanded="false">Dirichlet characters</button>, so that all Dirichlet <button type="button" class="g" data-g="l-function" aria-expanded="false">L-functions</button> are covered at once. It needs the bound only on a sparse sequence of values of <i>x</i>. The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
 </div>
 
 <script>
