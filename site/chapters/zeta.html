@@ -1,14 +1,14 @@
 <h1>The zeta function</h1>
-<p class="lede">The zeta function is a rule that takes in a number and gives back a number. It is built so that every prime has a hand in the result. For certain special inputs the result is exactly zero, and the Riemann Hypothesis is a claim about where those special inputs lie. This chapter builds the function up in three steps and then lets you watch a zero happen.</p>
+<p class="lede">The zeta function is <i>ζ</i>(<i>s</i>) = Σ 1/<i>n<sup>s</sup></i>. This chapter covers its product formula over the primes, its extension to complex <i>s</i>, and its zeros. The Riemann Hypothesis is a statement about where those zeros are.</p>
 
 <h2>A sum that is also a product</h2>
-<p>Pick a number <i>s</i> bigger than 1. The zeta function is the endless sum <i>ζ</i>(<i>s</i>) = 1 + 1/2<sup><i>s</i></sup> + 1/3<sup><i>s</i></sup> + 1/4<sup><i>s</i></sup> + …, one term for every whole number. For example <i>ζ</i>(2) = 1 + 1/4 + 1/9 + 1/16 + … ≈ 1.645. Euler found that the same number is a product with one factor per prime:</p>
+<p>For real <i>s</i> &gt; 1, the zeta function is the convergent series <i>ζ</i>(<i>s</i>) = 1 + 1/2<sup><i>s</i></sup> + 1/3<sup><i>s</i></sup> + 1/4<sup><i>s</i></sup> + … For example <i>ζ</i>(2) = 1 + 1/4 + 1/9 + 1/16 + … ≈ 1.645. Euler found that the same number is a product with one factor per prime:</p>
 <p class="note"><i>ζ</i>(<i>s</i>) = Π<sub><i>p</i> prime</sub> 1 / (1 − <i>p</i><sup>−<i>s</i></sup>). Multiply the factors out and every whole number appears exactly once, because every whole number factors into primes in exactly one way.</p>
-<p>This identity is the bridge between two worlds. The sum knows only about whole numbers; the product knows only about primes. Because they are equal, anything learned about the smooth function <i>ζ</i> is a fact about primes. In particular, some algebra turns the product into a formula for the weighted prime count of chapter 1, and in that formula the inputs where <i>ζ</i> equals zero play the leading role.</p>
+<p>The series runs over all whole numbers; the product runs over primes only. Take the logarithm of the product and differentiate, and the weights of chapter 1 appear: −<i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) = Σ Λ(<i>n</i>)/<i>n<sup>s</sup></i>. The left side blows up wherever <i>ζ</i>(<i>s</i>) = 0. That is how the zeros of <i>ζ</i> enter the counting of primes.</p>
 
 <h2>Complex inputs and the critical strip</h2>
-<p>Riemann's step was to let the input <i>s</i> be a complex number: a point on a flat map instead of a point on a line. It is written <i>s</i> = <i>σ</i> + <i>it</i>, where <i>σ</i> says how far right the point is and <i>t</i> says how far up (its "height"). The output <i>ζ</i>(<i>s</i>) is then also a point on a map.</p>
-<p>The endless sum only settles on a value when <i>σ</i> is bigger than 1. But there is exactly one sensible way to extend the function to every other point, a process called analytic continuation, and it works everywhere except at <i>s</i> = 1, where the function has a pole. Three facts about the extended function organize the subject:</p>
+<p>Riemann's step was to let <i>s</i> be a complex number, <i>s</i> = <i>σ</i> + <i>it</i>. Here <i>σ</i> is the real part and <i>t</i> is the imaginary part, which this site calls the height. The value <i>ζ</i>(<i>s</i>) is then complex too.</p>
+<p>The series converges only for <i>σ</i> &gt; 1. The function it defines there has a unique analytic continuation to the rest of the complex plane, except for a pole at <i>s</i> = 1. Three facts about the extended function organize the subject:</p>
 <ul>
   <li><b>Right of 1 there are no zeros.</b> There the product over primes is valid, and a product of nonzero factors is not zero.</li>
   <li><b>A symmetry.</b> A formula called the functional equation ties the value at <i>s</i> to the value at 1 − <i>s</i>. Its effect is that zeros come in mirror pairs on either side of the vertical line <i>σ</i> = ½.</li>
@@ -29,7 +29,7 @@
 </figure>
 
 <h2>Watching a zero happen</h2>
-<p>The output of <i>ζ</i> is a point on a map, and it is zero only when that point sits exactly at the centre of the map (the origin). Follow the output <i>ζ</i>(<i>σ</i> + <i>it</i>) as the height <i>t</i> climbs: it loops around, and a zero is a loop that passes exactly through the origin.</p>
+<p>A complex value is zero only when its real and imaginary parts are both zero. Plot <i>ζ</i>(<i>σ</i> + <i>it</i>) in the complex plane as <i>t</i> increases: the point loops around, and a zero is a loop that passes exactly through the origin.</p>
 
 <figure class="lab">
   <div class="title">Lab 2.2 <small>the path of ζ(σ + it) as t runs from 1 to T</small></div>

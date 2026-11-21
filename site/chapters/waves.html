@@ -1,14 +1,14 @@
 <h1>Zeros as waves</h1>
-<p class="lede">The prime staircase can be rebuilt from the zeros of zeta, one wave per zero. That is why the position of the zeros decides how far the staircase strays from its smooth guess.</p>
+<p class="lede">The explicit formula writes <i>ψ</i>(<i>x</i>) as <i>x</i> minus one oscillating term for each zero of <i>ζ</i>. A zero with real part <i>β</i> contributes a term of size about <i>x<sup>β</sup></i>, so the real parts of the zeros determine the size of <i>ψ</i>(<i>x</i>) − <i>x</i>.</p>
 
 <h2>The explicit formula</h2>
 <p>Riemann wrote down, and von Mangoldt later proved, an exact equation between the weighted staircase <i>ψ</i>(<i>x</i>) of chapter 1 and the zeros of zeta in the critical strip. It is called the explicit formula. Each zero is a complex number, written <i>ρ</i>:</p>
 <p class="note"><i>ψ</i>(<i>x</i>) = <i>x</i> − Σ<sub><i>ρ</i></sub> <i>x<sup>ρ</sup></i>/<i>ρ</i> − ln 2π − ½ ln(1 − <i>x</i><sup>−2</sup>)</p>
 <p>Read it left to right. The first term, <i>x</i>, is the smooth guess. Then comes one term for every zero. The last two terms are tiny corrections. So everything interesting is in the terms for the zeros.</p>
-<p>Write a zero as <i>ρ</i> = <i>β</i> + <i>iγ</i>: it sits <i>β</i> across and <i>γ</i> up. Raising <i>x</i> to a complex power like this produces a wave, and each zero, taken together with its twin at the same distance below the horizontal axis, contributes one ordinary wave to the formula:</p>
+<p>Write a zero as <i>ρ</i> = <i>β</i> + <i>iγ</i>. Then <i>x<sup>ρ</sup></i> = <i>x<sup>β</sup></i> · e<sup><i>iγ</i> ln <i>x</i></sup>, and the zero together with its complex conjugate <i>β</i> − <i>iγ</i> contributes a real oscillation:</p>
 <ul>
-  <li>its <b>pitch</b> is set by the height <i>γ</i>: the wave is cos(<i>γ</i> ln <i>x</i>), which rises and falls evenly on a logarithmic scale, faster for higher zeros;</li>
-  <li>its <b>loudness</b> is set by the across-position <i>β</i>: the wave's size grows like <i>x<sup>β</sup></i>, divided by roughly <i>γ</i>, so high zeros are quiet.</li>
+  <li>its <b>frequency</b> is <i>γ</i>: the oscillation is cos(<i>γ</i> ln <i>x</i>), periodic on a logarithmic scale;</li>
+  <li>its <b>amplitude</b> is about 2<i>x<sup>β</sup></i>/<i>γ</i>, so it grows like <i>x<sup>β</sup></i> and higher zeros contribute less.</li>
 </ul>
 
 <figure class="lab">
@@ -23,8 +23,8 @@
 </figure>
 
 <h2>What a zero off the line would do</h2>
-<p>If every zero is on the critical line, <i>β</i> = ½, then every wave has loudness about <i>x</i><sup>½</sup> = √<i>x</i>, and the total gap is about √<i>x</i>: the bound from chapter 1. A single zero with <i>β</i> bigger than ½ would contribute a wave of size <i>x<sup>β</sup></i>, which eventually drowns out all the others. This is why the Riemann Hypothesis and the square-root bound on the gap are the same statement.</p>
-<p>The mirror symmetry of chapter 2 matters here. A zero to the left of the line has a partner the same distance to the right, so any zero off the line produces a too-loud wave.</p>
+<p>If every zero is on the critical line, <i>β</i> = ½, then every wave has amplitude about √<i>x</i>, and the total gap is about √<i>x</i>: the bound from chapter 1. A single zero with <i>β</i> bigger than ½ would contribute a wave of size <i>x<sup>β</sup></i>, which eventually drowns out all the others. This is why the Riemann Hypothesis and the square-root bound on the gap are the same statement.</p>
+<p>The mirror symmetry of chapter 2 matters here. A zero to the left of the line has a partner the same distance to the right, so any zero off the line produces a wave that grows faster than √<i>x</i>.</p>
 
 <figure class="lab">
   <div class="title">Lab 3.2 <small>one zero's wave, measured in units of √x, as its real part β moves off the line</small></div>
