@@ -8,7 +8,11 @@ Reader's notes on the two claimed proofs of the generalized Riemann Hypothesis r
 - **Masullo, "The Music of the Primes"**: a 940-page paper, announced on
   [Ravi Vakil's blog](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/).
 
-Site: https://rlankenau.github.io/rh/
+## Read them
+
+- Alpöge atlas: https://claude.ai/artifact/EXZ48NEk5WTGjSKZecH5kE
+- Masullo atlas: https://claude.ai/artifact/3pviwieZgDKQsfZ3gVGHxg
+- GitHub Pages build of both: https://rlankenau.github.io/rh/
 
 ## Layout
 
