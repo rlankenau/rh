@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-up="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 One circle per prime</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Contents"><a class="brand" href="../">Two Riemann Proofs</a><details open><summary>Contents</summary><div><h2>Part I · Fundamentals</h2><ol><li><a href="../primes/"><span class="num">1</span>Counting primes</a></li><li><a href="../zeta/"><span class="num">2</span>The zeta function</a></li><li><a href="../waves/"><span class="num">3</span>Zeros as waves</a></li><li><a href="../quiz-1/"><span class="num"></span>Quiz: Part I</a></li></ol></div><div><h2>Part II · Masullo</h2><ol><li><a href="../masullo/"><span class="num">4</span>Map of the whole proof</a></li><li><a href="../m1-trace-two-ways/"><span class="num">5</span>A trace computed two ways</a></li><li><a href="../mellin/"><span class="num">6</span>The Mellin transform</a></li><li><a href="../circle-slots/"><span class="num">7</span>One slot per mode</a></li><li><a href="../theta-sums/"><span class="num">8</span>Summing over whole numbers</a></li><li><a href="../m2-one-slot-per-zero/"><span class="num">9</span>One slot per zero</a></li><li><a href="../thin-strip/"><span class="num">10</span>The thin strip</a></li><li><a href="../circle-per-prime/" aria-current="page"><span class="num">11</span>One circle per prime</a></li><li><a href="../trace-formula/"><span class="num">12</span>The trace formula</a></li><li><a href="../reading-off-zeros/"><span class="num">13</span>Reading off the zeros</a></li><li><a href="../quiz-2/"><span class="num"></span>Quiz: Part II</a></li></ol></div><div><h2>Part III · Alpöge with Claude</h2><ol><li><a href="../alpoge/"><span class="num">14</span>Map of the whole proof</a></li><li><a href="../a1-smoothed-error/"><span class="num">15</span>The smoothed error</a></li><li><span><span class="num">16</span>Why a one-sided bound is enough</span></li><li><span><span class="num">17</span>The chain of theta lifts</span></li><li><span><span class="num">18</span>The squeeze</span></li><li><a href="../quiz-3/"><span class="num"></span>Quiz: Part III</a></li></ol></div><div class="extra"><a href="../glossary/">Glossary</a><a href="../symbols/">Greek letters and symbols</a></div></details></nav>
+<main>
+<div class="kicker">Part II · Chapter 11</div>
+<script src="../assets/lab.js"></script>
+<h1>One circle per prime</h1>
+<p class="lede">The factor of <i>ζ</i> belonging to a <button type="button" class="g" data-g="prime" aria-expanded="false">prime</button> <i>p</i> is 1/(1 − <i>p</i><sup>−<i>s</i></sup>), and 1 − <i>p</i><sup>−<i>s</i></sup> is the function whose zeros were the modes of the circle with <i>γ</i> = <i>p</i>. The paper uses this to split the <button type="button" class="g" data-g="spectral-side-and-geometric-side" aria-expanded="false">geometric side</button> of its <button type="button" class="g" data-g="trace" aria-expanded="false">trace</button> into one piece per prime, each computed as in chapter 5.</p>
+<p class="note">Based on §1.2.9 of the paper (pages 18–21), read in full, which summarizes the construction. The construction itself is in later chapters that I have not read.</p>
+
+<h2>Removing one Euler factor</h2>
+<p>Take the sum over whole numbers of chapter 8, F(<i>x</i>) = <button type="button" class="g" data-g="sum-sign" aria-expanded="false">Σ</button><sub><i>n</i> ≥ 1</sub> <i>f</i>(<i>nx</i>), and subtract its rescaling by <i>p</i>:</p>
+<p class="note">F(<i>x</i>) − F(<i>px</i>) = Σ <i>f</i>(<i>nx</i>) over the <i>n</i> that are <em>not</em> divisible by <i>p</i>.</p>
+<p>On <button type="button" class="g" data-g="hjalmar-mellin" aria-expanded="false">Mellin</button> transforms, rescaling by <i>p</i> is multiplication by <i>p</i><sup>−<i>s</i></sup> (chapter 6), so the operation F(<i>x</i>) ↦ F(<i>x</i>) − F(<i>px</i>) multiplies the transform by 1 − <i>p</i><sup>−<i>s</i></sup>. That turns <i>ζ</i>(<i>s</i>) · M(<i>f</i>)(<i>s</i>) into <i>ζ</i>(<i>s</i>)(1 − <i>p</i><sup>−<i>s</i></sup>) · M(<i>f</i>)(<i>s</i>): the <button type="button" class="g" data-g="euler-product" aria-expanded="false">Euler product</button> with the factor for <i>p</i> removed. The paper calls its version of this operation PV<sub><i>p</i></sub>.</p>
+
+<h2>The circle of a prime</h2>
+<p>The functions of the form <i>g</i>(<i>x</i>) − <i>g</i>(<i>px</i>) are exactly the ones that Φ<sub><i>p</i></sub> sends to 0 in chapter 7. Regarding them as zero leaves the functions on the circle (0, ∞) <button type="button" class="g" data-g="quotient-space" aria-expanded="false">modulo</button> <i>p</i>, with one slot at each zero of 1 − <i>p</i><sup>−<i>s</i></sup>. The trace of A(<i>φ</i>) on that circle was computed in chapter 5: <button type="button" class="g" data-g="natural-logarithm-ln" aria-expanded="false">ln</button> <i>p</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>p<sup>k</sup></i>). In the paper's normalization (the factor √<i>x</i> in a <button type="button" class="g" data-g="function-theta-function" aria-expanded="false">θ-function</button>) the term for <i>p<sup>k</sup></i> is divided by <i>p</i><sup><i>k</i>/2</sup>, and if <i>φ</i> is zero for <i>t</i> ≤ 1 only <i>k</i> ≥ 1 occurs:</p>
+<p class="note">contribution of the prime <i>p</i> = ln <i>p</i> · Σ<sub><i>k</i> ≥ 1</sub> <i>φ</i>(<i>p<sup>k</sup></i>) / <i>p</i><sup><i>k</i>/2</sup>.</p>
+<p>Added over all primes this is Σ<sub><i>n</i></sub> <button type="button" class="g" data-g="von-mangoldt-function-n" aria-expanded="false">Λ</button>(<i>n</i>) <i>φ</i>(<i>n</i>)/√<i>n</i>, with the weights Λ(<i>n</i>) of chapter 1. The paper relates this picture to a proposal of Deninger: a space on which each prime <i>p</i> appears as a closed orbit of length ln <i>p</i>.</p>
+
+<h2>Only finitely many primes contribute</h2>
+<p>If <i>φ</i> is zero outside [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 1, a prime <i>p</i> &gt; <i>B</i> has no power inside the interval, and its contribution is 0. So for a fixed <button type="button" class="g" data-g="test-function-bump" aria-expanded="false">test function</button>, all but finitely many primes drop out. This is the same observation as "the trace is zero when <i>φ</i> is supported in (1, <i>γ</i>)" in chapter 5.</p>
+
+<figure class="lab">
+  <div class="title">Lab 11.1 <small>the contribution of each prime for a test function φ</small></div>
+  <div class="ctl">
+    <label>Centre of φ <input type="range" id="cc" min="0.5" max="4" step="0.01" value="2"><output id="ccv"></output></label>
+    <label>Width of φ <input type="range" id="ww" min="0.2" max="1" step="0.01" value="0.6"><output id="wwv"></output></label>
+  </div>
+  <div class="lg"><span>● contribution of the prime p: ln p · Σ φ(p<sup>k</sup>) / p<sup>k/2</sup></span><span>dashed lines: the interval outside which φ is zero</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Contribution of each prime to the trace, with the support of the test function marked"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>One dot for each prime up to 200. Every prime to the right of the interval contributes exactly 0. A prime to the left of the interval contributes only if one of its powers lies inside.</figcaption>
+</figure>
+
+<h2>What the paper does with this</h2>
+<p>The paper works in the completed spaces of chapter 10. It splits the <button type="button" class="g" data-g="integral-kernel" aria-expanded="false">kernel</button> of the <button type="button" class="g" data-g="linear-operator" aria-expanded="false">operator</button> into one piece for each prime outside a finite set S, plus a remainder; S depends on the test function and on the character. For the pieces outside S it shows that the <button type="button" class="g" data-g="integral" aria-expanded="false">integral</button> along the diagonal is 0. The remainder involves only the finitely many primes in S and the real numbers, and is computed with a version of an existing result, the "S-local <button type="button" class="g" data-g="trace-formula" aria-expanded="false">trace formula</button>" of <button type="button" class="g" data-g="alain-connes" aria-expanded="false">Connes</button> and <button type="button" class="g" data-g="ralf-meyer" aria-expanded="false">Meyer</button>. The paper notes that the non-vanishing of the <button type="button" class="g" data-g="l-function" aria-expanded="false">L-function</button> on the line Re <i>s</i> = 1, a classical theorem, is used as an input.</p>
+<p class="note warn">The lab shows the arithmetic that the construction is designed to reproduce. It does not test the construction: the splitting of the kernel and the vanishing of the pieces are statements about operators on the completed spaces, and they are where the paper's new work lies.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>Narrow <i>φ</i> and slide its centre. Dots light up one at a time as primes pass through the interval.</li>
+    <li>Centre <i>φ</i> near <i>t</i> = 8 with a small width. The prime 2 contributes through its cube, and 7 directly.</li>
+    <li>Move <i>φ</i> far to the right. More primes contribute, but each term is divided by √<i>p</i>.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Prove that F(<i>x</i>) − F(<i>px</i>) is the sum of <i>f</i>(<i>nx</i>) over <i>n</i> not divisible by <i>p</i>.<details><summary>Solution</summary><p>F(<i>px</i>) = Σ<sub><i>n</i></sub> <i>f</i>(<i>npx</i>) = Σ <i>f</i>(<i>mx</i>) over the multiples <i>m</i> = <i>np</i> of <i>p</i>. Subtracting it from the sum over all <i>m</i> leaves the <i>m</i> that are not multiples of <i>p</i>.</p></details></li>
+    <li><i>φ</i> is zero outside [2, 30]. Which values of <i>φ</i> appear in the contribution of the prime 2, and of the prime 31?<details><summary>Solution</summary><p>For 2: the powers inside [2, 30] are 2, 4, 8, 16, so the contribution is ln 2 · (<i>φ</i>(2)/√2 + <i>φ</i>(4)/2 + <i>φ</i>(8)/√8 + <i>φ</i>(16)/4). For 31: no power is inside, so the contribution is 0.</p></details></li>
+    <li>Where are the zeros of 1 − 5<sup>−<i>s</i></sup>, and how far apart are they?<details><summary>Solution</summary><p>5<sup>−<i>s</i></sup> = 1 when <i>s</i> ln 5 = 2π<i>im</i>: at <i>s</i> = 2π<i>im</i>/ln 5, on the imaginary axis, spaced 2π/ln 5 ≈ 3.90 apart. Larger primes have more closely spaced zeros.</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function bump(u) { return Math.abs(u) < 1 ? Math.exp(1 - 1 / (1 - u * u)) : 0; }
+  L.bind({ cc: function (v) { return 't = ' + Math.exp(v).toFixed(2); }, ww: function (v) { return v.toFixed(2); } }, function (v) {
+    var c = v.cc, w = Math.min(v.ww, c - 0.02), A = Math.exp(c - w), B = Math.exp(c + w), marks = [], total = 0, count = 0, top = 0;
+    L.primes.forEach(function (p) {
+      if (p > 200) return;
+      var s = 0, q = p;
+      while (q <= B) { s += bump((Math.log(q) - c) / w) / Math.sqrt(q); q *= p; }
+      s *= Math.log(p); total += s; if (s > 1e-12) count++; top = Math.max(top, s);
+      marks.push({ x: p, y: s, c: s > 1e-12 ? 'var(--s2)' : 'var(--muted)' });
+    });
+    var yt = L.ticks(0, Math.max(top, 0.1), 4, true);
+    L.plot('p1', { x: [1.5, 200], y: [0, yt[yt.length - 1]], log: true, xt: [2, 5, 10, 20, 50, 100, 200], yt: yt, xl: 'prime p (log scale)', xn: 'p', dp: 4, h: 260, notip: true,
+      vlines: [{ x: Math.max(A, 1.5), t: A.toFixed(1) }, { x: B, t: B.toFixed(1) }], marks: marks,
+      series: [{ n: 'zero', c: 'var(--rule)', pts: [[1.5, 0], [200, 0]] }] });
+    document.getElementById('r1').innerHTML = '<span>φ is zero outside [<b>' + A.toFixed(2) + '</b>, <b>' + B.toFixed(2) + '</b>]</span><span>primes with a nonzero contribution: <b>' + count + '</b></span><span>total Σ Λ(n) φ(n) / √n = <b>' + total.toFixed(4) + '</b></span>';
+  });
+})();
+</script>
+<nav class="pager" aria-label="Chapter"><a href="../thin-strip/">← 10 The thin strip</a><a href="../trace-formula/">12 The trace formula →</a></nav>
+</main>
+</div>
+<script src="../assets/glossary.js"></script>
+<script src="../assets/gloss.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
+</body>
+</html>

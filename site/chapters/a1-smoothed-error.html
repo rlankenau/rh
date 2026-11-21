@@ -13,7 +13,7 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter 3 it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the Riemann Hypothesis holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
 
 <figure class="lab">
-  <div class="title">Lab A1.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
+  <div class="title">Lab @@n@@.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
   <div class="ctl"><label>Zeros used K <input type="range" id="k1" min="0" max="30" step="1" value="3"><output id="k1v"></output></label></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>(Gz(x) − ln 2π) / √x, from the primes</span><span><i style="background:var(--s2)"></i>sum of the first K waves, from the zeros</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Smoothed prime error scaled by root x, with its reconstruction from zeta zeros"></svg><div class="tip" hidden></div></div></div>
@@ -26,7 +26,7 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <p>A zero with real part <i>β</i> &gt; <i>θ</i> contributes an oscillating term of amplitude proportional to <i>x<sup>β</sup></i>, which takes both signs. On its own that term exceeds <i>C</i>·<i>x<sup>θ</sup></i> in both directions for large <i>x</i>. Landau's theorem shows that the terms from the other zeros cannot cancel it.</p>
 
 <figure class="lab">
-  <div class="title">Lab A1.2 <small>add a hypothetical off-line zero and watch the ceiling break</small></div>
+  <div class="title">Lab @@n@@.2 <small>add a hypothetical off-line zero and watch the ceiling break</small></div>
   <div class="ctl">
     <label>Real part β of the added zeros <input type="range" id="b2" min="0.5" max="0.8" step="0.005" value="0.7"><output id="b2v"></output></label>
     <label>Their height γ <input type="range" id="g2" min="5" max="40" step="0.5" value="14"><output id="g2v"></output></label>
@@ -40,8 +40,8 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab A1.1, set K = 0 and then 1. The first zero alone has amplitude 0.0100 out of the total 0.0462.</li>
-    <li>In Lab A1.2, set <i>β</i> = 0.55. The curve stays inside the band all the way to 20,000: the extra factor <i>x</i><sup>0.05</sup> is only 1.6 at <i>x</i> = 20,000. Then try 0.7.</li>
+    <li>In Lab @@n@@.1, set K = 0 and then 1. The first zero alone has amplitude 0.0100 out of the total 0.0462.</li>
+    <li>In Lab @@n@@.2, set <i>β</i> = 0.55. The curve stays inside the band all the way to 20,000: the extra factor <i>x</i><sup>0.05</sup> is only 1.6 at <i>x</i> = 20,000. Then try 0.7.</li>
     <li>Raise <i>γ</i> with <i>β</i> fixed. The amplitude falls like 1/<i>γ</i>², so the curve leaves the band later. An off-line zero at very large height would not be visible in any range of <i>x</i> a computer can reach.</li>
   </ul>
 </div>
@@ -49,6 +49,15 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 <div class="box">
   <h3>Where this sits in the proof</h3>
   <p>The formalization bounds a combined error <code>Gm</code>: a sum of versions of <code>Gz</code> twisted by Dirichlet characters, so that all Dirichlet L-functions are covered at once. It needs the bound only on a sparse sequence of values of <i>x</i>. The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Compute <code>Sz</code>(4).<details><summary>Solution</summary><p>The prime powers up to 4 are 2, 3, 4. Sz(4) = ln 2 · (4/2 − 1) + ln 3 · (4/3 − 1) + ln 2 · (4/4 − 1) = ln 2 + (ln 3)/3 + 0 ≈ 1.059. The prime power 4 itself contributes nothing yet.</p></details></li>
+    <li>Verify that <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>.<details><summary>Solution</summary><p><i>ψ</i>(<i>t</i>) is the sum of Λ(<i>n</i>) over <i>n</i> ≤ <i>t</i>, so each <i>n</i> ≤ <i>x</i> contributes Λ(<i>n</i>) · ∫<sub><i>n</i></sub><sup><i>x</i></sup> d<i>t</i>/<i>t</i>² = Λ(<i>n</i>) · (1/<i>n</i> − 1/<i>x</i>). Multiplying by <i>x</i> gives Λ(<i>n</i>) · (<i>x</i>/<i>n</i> − 1).</p></details></li>
+    <li>Apply the same integral to a single term <i>t<sup>ρ</sup></i>/<i>ρ</i> of the explicit formula.<details><summary>Solution</summary><p><i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>t</i><sup><i>ρ</i> − 2</sup>/<i>ρ</i> d<i>t</i> = <i>x</i> · (<i>x</i><sup><i>ρ</i> − 1</sup> − 1)/(<i>ρ</i>(<i>ρ</i> − 1)) = (<i>x<sup>ρ</sup></i> − <i>x</i>)/(<i>ρ</i>(<i>ρ</i> − 1)). The <i>x<sup>ρ</sup></i> part is the oscillating term; the parts proportional to <i>x</i> are absorbed into the main term.</p></details></li>
+  </ol>
 </div>
 
 <script>

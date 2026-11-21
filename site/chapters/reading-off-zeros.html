@@ -1,0 +1,104 @@
+<h1>Reading off the zeros</h1>
+<p class="lede">The last step puts one particular family of test functions into the trace formula. The prime side becomes the logarithmic derivative of <i>ζ</i>, each zero in the strip becomes a simple fraction, and the location of the poles on the two sides is compared.</p>
+<p class="note">Based on §1.4.2–1.4.5 of the paper (pages 28–30), read in full, specialized by me to <i>ζ</i>. Signs follow my own derivation from chapter @@ch:trace-formula@@.</p>
+
+<h2>The test functions</h2>
+<p>For a complex number <i>z</i>, let <i>φ<sub>z</sub></i>(<i>t</i>) = <i>t</i><sup>−<i>z</i></sup> for <i>t</i> &gt; 1 and 0 for <i>t</i> ≤ 1. Two computations:</p>
+<ul>
+  <li><b>Its transform.</b> M(<i>φ<sub>z</sub></i>)(<i>w</i>) = ∫<sub>1</sub><sup>∞</sup> <i>t</i><sup><i>w</i> − <i>z</i> − 1</sup> d<i>t</i> = 1/(<i>z</i> − <i>w</i>), valid when Re <i>z</i> &gt; Re <i>w</i>.</li>
+  <li><b>The prime sum.</b> Σ Λ(<i>n</i>) <i>φ<sub>z</sub></i>(<i>n</i>)/√<i>n</i> = Σ Λ(<i>n</i>)/<i>n</i><sup><i>z</i> + ½</sup> = −<i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½), by chapter 2.</li>
+</ul>
+<p><i>φ<sub>z</sub></i> is not smooth at <i>t</i> = 1 and is not zero for large <i>t</i>, so it is not itself an allowed test function. The paper approximates it by allowed ones and passes to the limit; that takes most of the three pages.</p>
+
+<h2>The formula for <i>φ<sub>z</sub></i></h2>
+<p>Insert <i>φ<sub>z</sub></i> into Masullo's formula of chapter @@ch:trace-formula@@ with strip half-width <i>a</i>:</p>
+<p class="note">−<i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½) + G(<i>z</i>) = 1/(<i>z</i> − ½) + 1/(<i>z</i> + ½) − Σ N(<i>ρ</i>) / (<i>z</i> − (<i>ρ</i> − ½)), summed over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i>.</p>
+<p>G(<i>z</i>) is the term from the real numbers. It is an explicit function with no poles in the half-plane Re <i>z</i> &gt; 0.</p>
+
+<h2>Where the poles are</h2>
+<p>Consider the half-plane Re <i>z</i> &gt; <i>a</i>, and ask where each term can have a pole.</p>
+<ul>
+  <li>Each fraction 1/(<i>z</i> − (<i>ρ</i> − ½)) has its pole at <i>z</i> = <i>ρ</i> − ½, whose real part is less than <i>a</i>. The paper shows that the whole sum is holomorphic for Re <i>z</i> &gt; <i>a</i>.</li>
+  <li>1/(<i>z</i> − ½) has a pole at <i>z</i> = ½, which corresponds to the pole of <i>ζ</i> at <i>s</i> = 1. The term 1/(<i>z</i> + ½) and G(<i>z</i>) have none there.</li>
+  <li>So <i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½) has no pole with Re <i>z</i> &gt; <i>a</i> other than <i>z</i> = ½.</li>
+</ul>
+<p>But <i>ζ</i>′/<i>ζ</i> has a pole at every zero of <i>ζ</i>. A zero <i>ρ</i> with Re <i>ρ</i> &gt; ½ + <i>a</i> would give a pole at <i>z</i> = <i>ρ</i> − ½ with Re <i>z</i> &gt; <i>a</i>. So there is no such zero. Since <i>a</i> &gt; 0 was arbitrary, there is no zero with Re <i>ρ</i> &gt; ½, and by the functional equation none with Re <i>ρ</i> &lt; ½. That is the Riemann Hypothesis. The paper remarks that this argument does not use Weil's positivity criterion, the route that earlier trace-formula approaches aimed for.</p>
+
+<figure>
+  <svg viewBox="0 0 560 250" role="img" aria-label="The z-plane: a strip of half-width a around the imaginary axis, and the half-plane to its right in which the formula shows there are no poles" style="max-width:100%;height:auto;color:var(--ink)">
+    <rect x="330" y="20" width="210" height="190" fill="var(--accent-soft)"/>
+    <line x1="20" y1="115" x2="540" y2="115" stroke="currentColor" stroke-width="1" opacity=".5"/>
+    <line x1="270" y1="20" x2="270" y2="210" stroke="currentColor" stroke-width="1"/>
+    <line x1="210" y1="20" x2="210" y2="210" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="330" y1="20" x2="330" y2="210" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+    <g fill="currentColor"><circle cx="270" cy="50" r="4"/><circle cx="270" cy="82" r="4"/><circle cx="270" cy="148" r="4"/><circle cx="270" cy="180" r="4"/></g>
+    <circle cx="420" cy="66" r="5" fill="none" stroke="var(--warn)" stroke-width="2"/>
+    <circle cx="480" cy="115" r="4" fill="var(--accent)"/>
+    <g font-size="12" fill="currentColor" text-anchor="middle">
+      <text x="210" y="228">Re z = −a</text><text x="270" y="228">0</text><text x="330" y="228">Re z = a</text><text x="480" y="134">z = ½</text>
+      <text x="435" y="200">no poles here except z = ½</text>
+      <text x="420" y="48">a zero off the line</text><text x="420" y="92">would be a pole here</text>
+      <text x="150" y="60" text-anchor="end">zeros on the line</text>
+    </g>
+    <line x1="155" y1="56" x2="262" y2="52" stroke="currentColor" stroke-width="1" opacity=".5"/>
+    <text x="270" y="244" font-size="12" fill="currentColor" text-anchor="middle">the z-plane, where z = s − ½</text>
+  </svg>
+  <figcaption>In the variable <i>z</i> = <i>s</i> − ½ the critical line is the imaginary axis. The formula shows that <i>ζ</i>′/<i>ζ</i> has no poles in the shaded half-plane except the one from the pole of <i>ζ</i>. A zero to the right of the strip (open circle) would be such a pole.</figcaption>
+</figure>
+
+<h2>What a pole looks like</h2>
+<p>Near a simple zero <i>ρ</i>, <i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) ≈ 1/(<i>s</i> − <i>ρ</i>). On a vertical line at distance <i>d</i> to the right of the zero, its absolute value peaks at about 1/<i>d</i>, at the height of the zero.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>|ζ′/ζ| on the vertical line Re z = d, that is, Re s = ½ + d</small></div>
+  <div class="ctl">
+    <label>Distance d from the critical line <input type="range" id="dd" min="0.05" max="1" step="0.01" value="0.2"><output id="ddv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>|ζ′(½ + d + iy) / ζ(½ + d + iy)|</span><span>● heights of the zeros</span><span>dashed line: 1/d</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Absolute value of the logarithmic derivative of zeta along a vertical line"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Each peak is the pole belonging to one zero on the critical line, seen from distance <i>d</i>. As <i>d</i> shrinks the peaks grow like 1/<i>d</i>. The derivative is computed by a finite difference, so values are accurate to about two decimal places.</figcaption>
+</figure>
+
+<h2>What would have to be checked</h2>
+<ul>
+  <li>The divisor exact sequence and its completion: that the completed quotient has exactly the slots of the zeros inside the strip (chapters @@ch:m2-one-slot-per-zero@@ and @@ch:thin-strip@@).</li>
+  <li>The computation of the geometric side in the completed spaces, without the classical explicit formula (chapter @@ch:circle-per-prime@@).</li>
+  <li>The limit from allowed test functions to <i>φ<sub>z</sub></i>, uniformly enough in <i>z</i> to conclude that the limit is holomorphic.</li>
+</ul>
+<p class="note warn">By chapter @@ch:trace-formula@@ the trace formula with the restricted sum is equivalent to the hypothesis, so this last step is not where an error would hide: given the formula, the conclusion follows by the short argument above. The first two items carry the proof. Neither has been verified by anyone as of this writing, and this site has not checked them.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>Set <i>d</i> = 0.1, then 0.05. The first peak, at height 14.13, doubles.</li>
+    <li>Set <i>d</i> = 1. The line is Re <i>s</i> = 1.5, where the Euler product converges; the peaks have merged into a gentle ripple.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Compute M(<i>φ<sub>z</sub></i>)(<i>w</i>) and say where the integral converges.<details><summary>Solution</summary><p>∫<sub>1</sub><sup>∞</sup> <i>t</i><sup>−<i>z</i></sup> <i>t<sup>w</sup></i> d<i>t</i>/<i>t</i> = [<i>t</i><sup><i>w</i> − <i>z</i></sup>/(<i>w</i> − <i>z</i>)]<sub>1</sub><sup>∞</sup> = 1/(<i>z</i> − <i>w</i>), provided <i>t</i><sup><i>w</i> − <i>z</i></sup> → 0 as <i>t</i> → ∞, that is, Re <i>z</i> &gt; Re <i>w</i>.</p></details></li>
+    <li>Show that if <i>f</i> has a zero of multiplicity <i>N</i> at <i>ρ</i>, then <i>f</i>′/<i>f</i> has a simple pole there with residue <i>N</i>.<details><summary>Solution</summary><p>Write <i>f</i>(<i>s</i>) = (<i>s</i> − <i>ρ</i>)<sup><i>N</i></sup> <i>g</i>(<i>s</i>) with <i>g</i>(<i>ρ</i>) ≠ 0. Then <i>f</i>′/<i>f</i> = <i>N</i>/(<i>s</i> − <i>ρ</i>) + <i>g</i>′/<i>g</i>, and <i>g</i>′/<i>g</i> is holomorphic near <i>ρ</i>. This is why the multiplicity N(<i>ρ</i>) appears as the coefficient in the formula.</p></details></li>
+    <li>Suppose the formula were known only for one value, <i>a</i> = 0.2. What would it prove?<details><summary>Solution</summary><p>That <i>ζ</i> has no zero with Re <i>ρ</i> &gt; 0.7, and by the functional equation none with Re <i>ρ</i> &lt; 0.3. Any such zero-free region would already be a major result; the hypothesis itself needs every <i>a</i> &gt; 0.</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab, H = 1e-3;
+  function ld(sg, y) {
+    var z = L.zeta(sg, y), p = L.zeta(sg + H, y), m = L.zeta(sg - H, y);
+    return Math.hypot(p[0] - m[0], p[1] - m[1]) / (2 * H * Math.hypot(z[0], z[1]));
+  }
+  L.bind({ dd: function (v) { return v.toFixed(2); } }, function (v) {
+    var d = v.dd, cap = 22;
+    var pts = L.sample(5, 60, 1100, false, function (y) { return Math.min(cap, ld(0.5 + d, y)); });
+    L.plot('p1', { x: [5, 60], y: [0, cap], xt: [10, 20, 30, 40, 50, 60], yt: [0, 5, 10, 15, 20], xl: 'height y', xn: 'y', dp: 3, h: 280,
+      refs: 1 / d <= cap ? [{ y: 1 / d, t: '1/d' }] : [], series: [{ n: '|ζ′/ζ|', c: 'var(--s1)', pts: pts }],
+      marks: L.ZEROS.filter(function (g) { return g < 60; }).map(function (g) { return { x: g, y: 0 }; }) });
+    document.getElementById('r1').innerHTML = '<span>1/d = <b>' + (1 / d).toFixed(2) + '</b></span><span>|ζ′/ζ| at the height of the first zero, y = 14.1347: <b>' + ld(0.5 + d, L.ZEROS[0]).toFixed(2) + '</b></span>';
+  });
+})();
+</script>

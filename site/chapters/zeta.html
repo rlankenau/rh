@@ -57,6 +57,15 @@
   <p>The defining sum does not settle on a value inside the critical strip, so the lab uses a method due to Borwein that does, with 70 terms. Checked against published values it is accurate to about six decimal places for heights up to 60, which is why the labs stop there.</p>
 </div>
 
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Multiply out the Euler product for <i>s</i> = 2 using only the primes 2 and 3, and compare with <i>ζ</i>(2) ≈ 1.645.<details><summary>Solution</summary><p>1/(1 − ¼) · 1/(1 − 1/9) = (4/3)(9/8) = 1.5. Multiplied out, this is the sum of 1/<i>n</i>² over the numbers <i>n</i> whose only prime factors are 2 and 3. The missing 0.145 comes from every <i>n</i> divisible by a larger prime.</p></details></li>
+    <li>Derive −<i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) = Σ Λ(<i>n</i>)/<i>n<sup>s</sup></i> from the Euler product.<details><summary>Solution</summary><p>ln <i>ζ</i>(<i>s</i>) = −Σ<sub><i>p</i></sub> ln(1 − <i>p</i><sup>−<i>s</i></sup>). Differentiating, <i>ζ</i>′/<i>ζ</i> = −Σ<sub><i>p</i></sub> ln <i>p</i> · <i>p</i><sup>−<i>s</i></sup>/(1 − <i>p</i><sup>−<i>s</i></sup>) = −Σ<sub><i>p</i></sub> ln <i>p</i> · (<i>p</i><sup>−<i>s</i></sup> + <i>p</i><sup>−2<i>s</i></sup> + …), by the geometric series. The term <i>p</i><sup>−<i>ks</i></sup> is 1/<i>n<sup>s</sup></i> for <i>n</i> = <i>p<sup>k</sup></i>, with coefficient ln <i>p</i> = Λ(<i>n</i>).</p></details></li>
+    <li>Suppose <i>ζ</i> had a zero at 0.3 + 14<i>i</i>. Which other zeros would it force?<details><summary>Solution</summary><p>Zeros come in complex-conjugate pairs, giving 0.3 − 14<i>i</i>. The functional equation pairs <i>s</i> with 1 − <i>s</i>, giving 0.7 − 14<i>i</i>, and its conjugate 0.7 + 14<i>i</i>. So one zero off the line means four, two of them to the right of it.</p></details></li>
+  </ol>
+</div>
+
 <script>
 (function () {
   var L = Lab, N = 600, T0 = 0.5, T1 = 60;

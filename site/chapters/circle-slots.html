@@ -1,0 +1,77 @@
+<h1>One slot per mode</h1>
+<p class="lede">A function on the circle of chapter @@ch:m1-trace-two-ways@@ is the same thing as a Mellin transform taken modulo multiples of 1 − <i>γ</i><sup>−<i>s</i></sup>. Such a class is determined by one number for each Fourier mode. This chapter proves the easy half of that statement and checks it numerically.</p>
+<p class="note">Based on §1.2.8 of the paper (pages 16–17), read in full. The Lean file <code>RH/Slots.lean</code> proves the statement tested in the lab.</p>
+
+<h2>From the half-line to the circle</h2>
+<p>On the circle of chapter @@ch:m1-trace-two-ways@@, <i>t</i> and <i>γt</i> are the same point. A function <i>ϕ</i> on (0, ∞) gives a function on the circle by summing over all the points that are identified: Φ<sub><i>γ</i></sub>(<i>ϕ</i>)(<i>t</i>) = Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ<sup>k</sup>t</i>), over all integers <i>k</i>.</p>
+<p>Φ<sub><i>γ</i></sub> sends some nonzero functions to 0. The simplest is a difference <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>): the sum over <i>k</i> telescopes. By the rescaling property its Mellin transform is (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>)(<i>s</i>), and the factor 1 − <i>γ</i><sup>−<i>s</i></sup> is zero exactly at <i>s</i> = 2π<i>im</i>/ln <i>γ</i>, the Fourier modes of the circle. The paper states that every function sent to 0 is of this kind:</p>
+<p class="note">Φ<sub><i>γ</i></sub>(<i>ϕ</i>) = 0 exactly when M(<i>ϕ</i>)(<i>s</i>) is 1 − <i>γ</i><sup>−<i>s</i></sup> times an entire function. So a function on the circle corresponds to a transform <em>modulo</em> multiples of 1 − <i>γ</i><sup>−<i>s</i></sup>. Two transforms agree modulo those multiples exactly when they have the same values at the zeros of 1 − <i>γ</i><sup>−<i>s</i></sup>. A function on the circle is therefore determined by one number for each mode <i>m</i>: one slot per zero of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the transform of ϕ(t) − ϕ(γt) is zero at every s = 2πim / ln γ</small></div>
+  <div class="ctl">
+    <label>Circle size γ <input type="range" id="gm" min="1.3" max="4" step="0.01" value="2"><output id="gmv"></output></label>
+    <label>Bump width <input type="range" id="ww" min="0.1" max="1" step="0.01" value="0.35"><output id="wwv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>|M(ϕ)(iy)|, a single bump</span><span><i style="background:var(--s2)"></i>|M(ϕ(t) − ϕ(γt))(iy)|</span><span>● the frequencies 2πm / ln γ</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Mellin transforms of a bump and of its difference with a scaled copy"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Both transforms are computed by numerical integration, without using the formula (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>). The transform of the difference is zero at every dot, for every <i>γ</i>; the transform of the bump alone is not.</figcaption>
+</figure>
+
+<div class="box">
+  <h3>In Lean</h3>
+  <p>The statement of Lab @@n@@.1 is proved in full (no <code>sorry</code>) against Mathlib:</p>
+<pre>theorem mellin_sub_scaled_eq_zero {γ : ℝ} (hγ : 1 &lt; γ) {φ : ℝ → ℂ} (m : ℤ)
+    (hφ : MellinConvergent φ (2 * π * Complex.I * m / Real.log γ)) :
+    mellin (fun t =&gt; φ t - φ (γ * t)) (2 * π * Complex.I * m / Real.log γ) = 0</pre>
+</div>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab @@n@@.1, sweep <i>γ</i>. The dots move and the zeros of the orange curve move with them: they come from the factor 1 − <i>γ</i><sup>−<i>s</i></sup>, not from the bump.</li>
+    <li>Narrow the bump. Its transform (blue) spreads out to larger heights, and the orange curve spreads with it, but its zeros stay on the dots.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Show that Φ<sub><i>γ</i></sub> sends <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>) to 0.<details><summary>Solution</summary><p>Φ<sub><i>γ</i></sub> of the difference is Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ<sup>k</sup>t</i>) − Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ</i><sup><i>k</i>+1</sup><i>t</i>). The second sum is the first with <i>k</i> shifted by one, and both run over all integers, so they are equal.</p></details></li>
+    <li>For <i>γ</i> = 2, how far apart are the slots on the imaginary axis?<details><summary>Solution</summary><p>They are at <i>s</i> = 2π<i>im</i>/ln 2, so the spacing is 2π/ln 2 ≈ 9.06. That is the default setting of the lab.</p></details></li>
+    <li>A function <i>ϕ</i> has M(<i>ϕ</i>)(0) = 3. Can Φ<sub><i>γ</i></sub>(<i>ϕ</i>) be 0?<details><summary>Solution</summary><p>No. <i>s</i> = 0 is the slot for <i>m</i> = 0, and a function sent to 0 has a transform that vanishes at every slot. Directly: M(<i>ϕ</i>)(0) = ∫ <i>ϕ</i> d<i>t</i>/<i>t</i>, which equals the integral of Φ<sub><i>γ</i></sub>(<i>ϕ</i>) once around the circle.</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function bump(u) { return Math.abs(u) < 1 ? Math.exp(1 - 1 / (1 - u * u)) : 0; }
+  // |integral of g(u) e^{iyu} du| over [a, b] by the trapezoid rule, for each y in ys.
+  function transform(g, a, b, n, ys) {
+    var h = (b - a) / n, v = new Float64Array(n + 1), i;
+    for (i = 0; i <= n; i++) v[i] = g(a + i * h) * (i === 0 || i === n ? 0.5 : 1);
+    return ys.map(function (y) {
+      var re = 0, im = 0, u;
+      for (i = 0; i <= n; i++) { u = a + i * h; re += v[i] * Math.cos(y * u); im += v[i] * Math.sin(y * u); }
+      return [y, Math.hypot(re, im) * h];
+    });
+  }
+  function grid(a, b, n) { var o = [], i; for (i = 0; i <= n; i++) o.push(a + (b - a) * i / n); return o; }
+
+  L.bind({ gm: function (v) { return v.toFixed(2); }, ww: function (v) { return v.toFixed(2); } }, function (v) {
+    var lg = Math.log(v.gm), w = v.ww, ys = grid(0, 40, 500), worst = 0, marks = [], m;
+    function phi(u) { return bump(u / w); }
+    var a = transform(phi, -w, w, 400, ys);
+    var d = transform(function (u) { return phi(u) - phi(u + lg); }, -w - lg, w, 900, ys);
+    for (m = 0; 2 * Math.PI * m / lg <= 40; m++) marks.push({ x: 2 * Math.PI * m / lg, y: 0 });
+    transform(function (u) { return phi(u) - phi(u + lg); }, -w - lg, w, 900, marks.map(function (k) { return k.x; })).forEach(function (p) { worst = Math.max(worst, p[1]); });
+    var top = Math.max(0.2, 2.1 * a[0][1]), yt = L.ticks(0, top, 4, true);
+    L.plot('p1', { x: [0, 40], y: [0, yt[yt.length - 1]], xt: [0, 10, 20, 30, 40], yt: yt, xl: 'height y', xn: 'y', dp: 4, h: 240, marks: marks,
+      series: [{ n: 'bump', c: 'var(--s1)', pts: a }, { n: 'difference', c: 'var(--s2)', pts: d }] });
+    document.getElementById('r1').innerHTML = '<span>slot spacing 2π / ln γ = <b>' + (2 * Math.PI / lg).toFixed(2) + '</b></span><span>largest value of the orange curve at a dot: <b>' + worst.toExponential(1) + '</b></span>';
+  });
+
+})();
+</script>

@@ -1,0 +1,69 @@
+<h1>The thin strip</h1>
+<p class="lede">Masullo completes the spaces of chapter @@ch:m2-one-slot-per-zero@@ in a norm that depends on a number <i>a</i> &gt; 0. In the completed space only the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> keep their slots. The paper presents this step as new.</p>
+<p class="note">Based on §1.1.3 and §1.2.1 of the paper (pages 11–14), read in full. The paper states the norm and which zeros contribute. The explanation below of <em>why</em> those are the zeros that remain is my own reading; the paper's argument is in chapters I have not read.</p>
+
+<h2>The norm</h2>
+<p>Fix <i>a</i> &gt; 0. For a function <i>ϕ</i> on (0, ∞), set</p>
+<p class="note">‖<i>ϕ</i>‖<sub><i>a</i></sub>² = ∫<sub>0</sub><sup>∞</sup> |<i>ϕ</i>(<i>t</i>)|² · max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) d<i>t</i>/<i>t</i>.</p>
+<p>In the coordinate <i>u</i> = ln <i>t</i> the weight is e<sup>2<i>a</i>|<i>u</i>|</sup>: a function has finite norm when it decays faster than e<sup>−<i>a</i>|<i>u</i>|</sup> in both directions. This is the paper's Hardy–Sobolev norm with base interval [−<i>a</i>, <i>a</i>] and smoothness index 0, written here for (0, ∞) in place of the paper's group. Completing a space in this norm means adding the limits of all sequences that converge in it. The result is a Hilbert space. The paper says these spaces "were never considered in the literature".</p>
+<p>The paper also gives the norm on the transform side: it is equivalent to the size of M(<i>ϕ</i>) along the two vertical lines Re <i>s</i> = <i>a</i> and Re <i>s</i> = −<i>a</i>, the edges of a strip of width 2<i>a</i>.</p>
+
+<h2>Which slots remain</h2>
+<p>The slot at a point <i>z</i> is the number M(<i>ϕ</i>)(<i>z</i>). It remains meaningful on the completed space only if it is controlled by the norm, so that it passes to limits. Let <i>x</i> = Re <i>z</i>.</p>
+<ul>
+  <li><b>Inside the strip, |<i>x</i>| &lt; <i>a</i>.</b> By the Cauchy–Schwarz inequality, |M(<i>ϕ</i>)(<i>z</i>)| ≤ ‖<i>ϕ</i>‖<sub><i>a</i></sub> · √(<i>a</i>/(<i>a</i>² − <i>x</i>²)). The slot is controlled.</li>
+  <li><b>On the edge or outside, |<i>x</i>| ≥ <i>a</i>.</b> There are functions <i>ϕ<sub>T</sub></i> with M(<i>ϕ<sub>T</sub></i>)(<i>x</i>)/‖<i>ϕ<sub>T</sub></i>‖<sub><i>a</i></sub> → ∞ as <i>T</i> → ∞. No bound exists, and the slot is lost.</li>
+</ul>
+<p>The lab uses <i>ϕ<sub>T</sub></i>(<i>t</i>) = <i>t<sup>x</sup></i> / max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) for 1/<i>T</i> ≤ <i>t</i> ≤ <i>T</i> and 0 elsewhere, which is the function that makes the Cauchy–Schwarz inequality an equality.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>is the slot at Re z = x controlled by the norm?</small></div>
+  <div class="ctl">
+    <label>Half-width a of the strip <input type="range" id="aa" min="0.05" max="1" step="0.01" value="0.3"><output id="aav"></output></label>
+    <label>Real part x of the slot <input type="range" id="xx" min="0" max="1" step="0.01" value="0.2"><output id="xxv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>M(ϕ<sub>T</sub>)(x) / ‖ϕ<sub>T</sub>‖<sub>a</sub></span><span>dashed line: the bound √(a / (a² − x²)), when x &lt; a</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Ratio of a slot value to the norm as the test family is extended"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>For <i>x</i> &lt; <i>a</i> the ratio rises to the bound and stops. For <i>x</i> ≥ <i>a</i> it keeps growing as <i>T</i> increases: slowly at <i>x</i> = <i>a</i> (like √(ln <i>T</i>)), as a power of <i>T</i> beyond it. The curve is a closed formula, given in exercise 1.</figcaption>
+</figure>
+
+<h2>The spectral side in the completed space</h2>
+<p>Complete the three spaces of the divisor exact sequence in this norm. The paper's claim is that the sequence stays exact, that A(<i>φ</i>) acts on the completed quotient as a trace-class operator, and that its trace is</p>
+<p class="note">Σ N(<i>ρ</i>) · M(<i>φ</i>)(<i>ρ</i> − ½), summed over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i> only.</p>
+<p>So a zero at distance <i>a</i> or more from the critical line contributes nothing to this trace. The half-width <i>a</i> can be chosen as small as desired. The paper places this between two earlier approaches: in Meyer's work every zero contributes, wherever it is, and Connes's "spectral interpretation" is described as the limiting case in which the strip is the critical line alone.</p>
+<p class="note warn">Removing terms from one side of an identity is only useful if the other side can still be computed. The classical explicit formula (chapter @@ch:trace-formula@@) is a theorem, and it contains every zero. The proof therefore depends on computing the other side of the trace <em>inside the completed space</em>, without using the classical formula. Chapters @@ch:circle-per-prime@@ and @@ch:trace-formula@@ describe how the paper does that.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>Set <i>a</i> = 0.3 and move <i>x</i> from 0.2 up through 0.3. The bound rises without limit as <i>x</i> approaches <i>a</i>, and at <i>x</i> = <i>a</i> the curve no longer levels off.</li>
+    <li>Set <i>x</i> = 0.1, the position of a hypothetical zero at <i>β</i> = 0.6. Find the values of <i>a</i> for which its slot is lost.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>For the lab's <i>ϕ<sub>T</sub></i>, show that M(<i>ϕ<sub>T</sub></i>)(<i>x</i>) = ‖<i>ϕ<sub>T</sub></i>‖<sub><i>a</i></sub>² and compute it for |<i>x</i>| &lt; <i>a</i>.<details><summary>Solution</summary><p>Write <i>w</i>(<i>t</i>) for the weight. Both quantities equal I<sub><i>T</i></sub> = ∫ <i>t</i><sup>2<i>x</i></sup>/<i>w</i>(<i>t</i>) d<i>t</i>/<i>t</i> over [1/<i>T</i>, <i>T</i>]. On [1, <i>T</i>] the integrand is <i>t</i><sup>2<i>x</i> − 2<i>a</i></sup>, giving (1 − <i>T</i><sup>−2(<i>a</i> − <i>x</i>)</sup>)/(2(<i>a</i> − <i>x</i>)). On [1/<i>T</i>, 1] it is <i>t</i><sup>2<i>x</i> + 2<i>a</i></sup>, giving (1 − <i>T</i><sup>−2(<i>a</i> + <i>x</i>)</sup>)/(2(<i>a</i> + <i>x</i>)). The ratio in the lab is √I<sub><i>T</i></sub>. As <i>T</i> → ∞, I<sub><i>T</i></sub> → 1/(2(<i>a</i> − <i>x</i>)) + 1/(2(<i>a</i> + <i>x</i>)) = <i>a</i>/(<i>a</i>² − <i>x</i>²).</p></details></li>
+    <li>With <i>a</i> = 0.1, which of these hypothetical zeros would keep a slot: <i>β</i> = 0.55, <i>β</i> = 0.6, <i>β</i> = 0.7?<details><summary>Solution</summary><p>The slot is at real part <i>β</i> − ½: 0.05, 0.1 and 0.2. Only the first is strictly inside the strip. The zero at <i>β</i> = 0.6 is exactly on the edge and is lost, as is the one at 0.7.</p></details></li>
+    <li>Show that max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) = e<sup>2<i>a</i>|<i>u</i>|</sup> for <i>u</i> = ln <i>t</i>.<details><summary>Solution</summary><p><i>t</i><sup>±2<i>a</i></sup> = e<sup>±2<i>au</i></sup>. The larger of e<sup>2<i>au</i></sup> and e<sup>−2<i>au</i></sup> is the one with the positive exponent, e<sup>2<i>a</i>|<i>u</i>|</sup>.</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function g(d, T) { return Math.abs(d) < 1e-9 ? Math.log(T) : (1 - Math.pow(T, -2 * d)) / (2 * d); }
+  L.bind({ aa: function (v) { return v.toFixed(2); }, xx: function (v) { return v.toFixed(2); } }, function (v) {
+    var a = v.aa, x = v.xx, inside = x < a - 1e-9, bound = inside ? Math.sqrt(a / (a * a - x * x)) : null;
+    var top = inside ? Math.max(2, 1.25 * bound) : 8, yt = L.ticks(0, top, 4, true), cap = yt[yt.length - 1];
+    var pts = L.sample(1, 1e6, 300, true, function (T) { return Math.min(cap, Math.sqrt(g(a - x, T) + g(a + x, T))); });
+    L.plot('p1', { x: [1, 1e6], y: [0, cap], log: true, xt: [1, 10, 100, 1000, 1e4, 1e5], yt: yt, xl: 'T (log scale)', xn: 'T', dp: 3, h: 260,
+      refs: inside ? [{ y: bound, t: 'bound' }] : [], series: [{ n: 'ratio', c: 'var(--s2)', pts: pts }] });
+    document.getElementById('r1').innerHTML = inside
+      ? '<span>x &lt; a: <b>inside the strip</b></span><span>bound √(a / (a² − x²)) = <b>' + bound.toFixed(3) + '</b></span><span>ratio at T = 10⁶: <b>' + Math.sqrt(g(a - x, 1e6) + g(a + x, 1e6)).toFixed(3) + '</b></span>'
+      : '<span>x ≥ a: <b>' + (Math.abs(x - a) < 1e-9 ? 'on the edge' : 'outside the strip') + '</b>, no bound</span><span>ratio at T = 10⁶: <b>' + Math.sqrt(g(a - x, 1e6) + g(a + x, 1e6)).toFixed(1) + '</b> and growing</span>';
+  });
+})();
+</script>

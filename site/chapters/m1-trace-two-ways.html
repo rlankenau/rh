@@ -14,7 +14,7 @@
 <p class="note">Σ<sub><i>m</i></sub> M(<i>φ</i>)(2π<i>im</i> / ln <i>γ</i>) = ln <i>γ</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), both sums over all integers. In the coordinate <i>u</i> = ln <i>t</i> this is the Poisson summation formula.</p>
 
 <figure class="lab">
-  <div class="title">Lab M1.1 <small>both sides of the toy trace formula</small></div>
+  <div class="title">Lab @@n@@.1 <small>both sides of the toy trace formula</small></div>
   <div class="ctl">
     <label>Circle size γ <input type="range" id="gm" min="1.3" max="4" step="0.01" value="2"><output id="gmv"></output></label>
     <label>Bump centre <input type="range" id="cc" min="-1.2" max="2" step="0.01" value="0.69"><output id="ccv"></output></label>
@@ -59,6 +59,15 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
     <li>Make the bump wide enough to cover two powers of <i>γ</i>. The geometric side counts both.</li>
     <li>Shrink <i>γ</i> toward 1.3. More powers of <i>γ</i> fall inside the bump and the trace grows.</li>
   </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Check that A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>.<details><summary>Solution</summary><p>(A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup>)(<i>x</i>) = ∫ <i>φ</i>(<i>t</i>) (<i>x</i>/<i>t</i>)<sup>−<i>s</i></sup> d<i>t</i>/<i>t</i> = <i>x</i><sup>−<i>s</i></sup> ∫ <i>φ</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i> = <i>x</i><sup>−<i>s</i></sup> · M(<i>φ</i>)(<i>s</i>).</p></details></li>
+    <li>Why is <i>x</i><sup>−<i>s</i></sup> a function on the circle only when <i>γ<sup>s</sup></i> = 1?<details><summary>Solution</summary><p>On the circle <i>x</i> and <i>γx</i> are the same point, so a function must take the same value at both. (<i>γx</i>)<sup>−<i>s</i></sup> = <i>γ</i><sup>−<i>s</i></sup> · <i>x</i><sup>−<i>s</i></sup>, which equals <i>x</i><sup>−<i>s</i></sup> exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> ln <i>γ</i> = 2π<i>im</i>.</p></details></li>
+    <li>Take <i>γ</i> = 3 and a test function <i>φ</i> that is zero outside the interval [2, 10]. Write down the geometric side.<details><summary>Solution</summary><p>The powers of 3 inside [2, 10] are 3 and 9. The trace is ln 3 · (<i>φ</i>(3) + <i>φ</i>(9)).</p></details></li>
+  </ol>
 </div>
 
 <script>

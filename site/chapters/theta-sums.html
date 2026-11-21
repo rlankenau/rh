@@ -1,0 +1,91 @@
+<h1>Summing over whole numbers</h1>
+<p class="lede">Chapter @@ch:circle-slots@@ summed a function over the powers of <i>γ</i>, and the factor 1 − <i>γ</i><sup>−<i>s</i></sup> appeared in front of its Mellin transform. Summing over the whole numbers instead puts <i>ζ</i>(<i>s</i>) in front. The resulting functions are the θ-functions of the paper.</p>
+<p class="note">Based on §1.1.4 of the paper (page 12), read in full. The lab works over the ordinary integers with the trivial character, which is the Riemann zeta case; the paper works over any number field.</p>
+
+<h2>θ-functions</h2>
+<p>The paper uses the construction of chapter @@ch:circle-slots@@ with a different sum, the one at the centre of Tate's thesis. Take a function <i>f</i> on (0, ∞) and sum its values at all whole-number multiples of <i>x</i>:</p>
+<p class="note">Θ<sub><i>f</i></sub>(<i>x</i>) = √<i>x</i> · Σ<sub><i>n</i> ≥ 1</sub> <i>f</i>(<i>nx</i>). The paper calls functions of this form θ-functions. The Mellin transform is M(Θ<sub><i>f</i></sub>)(<i>s</i>) = <i>ζ</i>(<i>s</i> + ½) · M(<i>f</i>)(<i>s</i> + ½).</p>
+<p>Proof: by the rescaling property the transform of <i>f</i>(<i>nx</i>) is <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>), and Σ <i>n</i><sup>−<i>s</i></sup> = <i>ζ</i>(<i>s</i>). Multiplying by √<i>x</i> replaces <i>s</i> by <i>s</i> + ½. (The sum converges for Re <i>s</i> &gt; ½; the identity extends to all <i>s</i> by analytic continuation when Θ<sub><i>f</i></sub> decays at both ends.) The factor <i>ζ</i> here plays the role that 1 − <i>γ</i><sup>−<i>s</i></sup> played on the circle.</p>
+<p><b>So the transform of every θ-function is zero at the zeros of <i>ζ</i>, whatever <i>f</i> is.</b> Because of the shift by ½, a zero <i>ρ</i> of <i>ζ</i> appears at <i>s</i> = <i>ρ</i> − ½. If the Riemann Hypothesis holds these points are all on the imaginary axis, at <i>s</i> = ±14.13<i>i</i>, ±21.02<i>i</i>, ±25.01<i>i</i>, …</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the transform of Θ is zero at the zeros of ζ, for any f</small></div>
+  <div class="ctl">
+    <label>Where f sits <input type="range" id="c2" min="-0.6" max="0.8" step="0.01" value="0"><output id="c2v"></output></label>
+    <label>How wide f is <input type="range" id="w2" min="0.12" max="0.45" step="0.01" value="0.25"><output id="w2v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>f(x), the test function</span><span><i style="background:var(--s2)"></i>Θ(x) = √x · Σ f(nx)</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="A test function and its theta function on a logarithmic axis"></svg><div class="tip" hidden></div></div></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>|M(f)(½ + iy)|</span><span><i style="background:var(--s2)"></i>|M(Θ)(iy)|</span><span>● zeros of zeta</span></div>
+  <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Mellin transforms of the test function and of its theta function"></svg><div class="tip" hidden></div></div></div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>the ratio |M(Θ)(iy)| / |M(f)(½ + iy)|</span><span><i style="background:var(--s1)"></i>|ζ(½ + iy)|, computed independently</span></div>
+  <div class="tw"><div class="plot" id="p4"><svg role="img" aria-label="Ratio of the two transforms compared with zeta on the critical line"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r2"></div>
+  <figcaption>Top: <i>f</i> is a bump minus a smaller bump, scaled so that ∫ <i>f</i> d<i>x</i> = 0 (the paper's condition for Θ to decay at both ends). Middle: the transform of Θ, computed by integrating the orange curve above, is zero at every dot for every <i>f</i>. Bottom: the ratio of the two transforms equals |<i>ζ</i>(½ + <i>iy</i>)|. The two curves are computed independently and coincide.</figcaption>
+</figure>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab @@n@@.1, move <i>f</i> around and change its width. The blue transform changes shape completely; the orange one keeps its zeros at the same heights.</li>
+    <li>Look for a setting where the blue curve itself dips close to zero between two dots. The orange curve dips there as well, but the ratio in the bottom panel does not: it depends only on <i>ζ</i>. (Very close to such a dip the ratio is a quotient of two tiny numbers and gets noisy.)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Show that the Mellin transform of <i>f</i>(<i>nx</i>) is <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>Substitute <i>u</i> = <i>nx</i>: ∫ <i>f</i>(<i>nx</i>) <i>x<sup>s</sup></i> d<i>x</i>/<i>x</i> = ∫ <i>f</i>(<i>u</i>) (<i>u</i>/<i>n</i>)<sup><i>s</i></sup> d<i>u</i>/<i>u</i> = <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>). The measure d<i>x</i>/<i>x</i> is unchanged by rescaling.</p></details></li>
+    <li>The first zero of <i>ζ</i> is <i>ρ</i> ≈ ½ + 14.13<i>i</i>. Where is the transform of Θ<sub><i>f</i></sub> zero because of it?<details><summary>Solution</summary><p>At <i>s</i> = <i>ρ</i> − ½ ≈ 14.13<i>i</i>, since M(Θ<sub><i>f</i></sub>)(<i>s</i>) contains the factor <i>ζ</i>(<i>s</i> + ½). That is the first dot in the lab.</p></details></li>
+    <li>Why does Θ<sub><i>f</i></sub>(<i>x</i>) blow up as <i>x</i> → 0 unless ∫ <i>f</i> d<i>x</i> = 0?<details><summary>Solution</summary><p>For small <i>x</i> the points <i>nx</i> are closely spaced, and <i>x</i> · Σ <i>f</i>(<i>nx</i>) is a Riemann sum for ∫ <i>f</i>. So Σ <i>f</i>(<i>nx</i>) ≈ (1/<i>x</i>) ∫ <i>f</i>, and Θ<sub><i>f</i></sub>(<i>x</i>) ≈ <i>x</i><sup>−½</sup> ∫ <i>f</i>, which is unbounded unless the integral is 0.</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function bump(u) { return Math.abs(u) < 1 ? Math.exp(1 - 1 / (1 - u * u)) : 0; }
+  // |integral of g(u) e^{iyu} du| over [a, b] by the trapezoid rule, for each y in ys.
+  function transform(g, a, b, n, ys) {
+    var h = (b - a) / n, v = new Float64Array(n + 1), i;
+    for (i = 0; i <= n; i++) v[i] = g(a + i * h) * (i === 0 || i === n ? 0.5 : 1);
+    return ys.map(function (y) {
+      var re = 0, im = 0, u;
+      for (i = 0; i <= n; i++) { u = a + i * h; re += v[i] * Math.cos(y * u); im += v[i] * Math.sin(y * u); }
+      return [y, Math.hypot(re, im) * h];
+    });
+  }
+  function grid(a, b, n) { var o = [], i; for (i = 0; i <= n; i++) o.push(a + (b - a) * i / n); return o; }
+
+  var YS = grid(1, 60, 480), ZETA = YS.map(function (y) { return [y, L.zetaAbs(0.5, y)]; }),
+    ZM = L.ZEROS.filter(function (g) { return g < 60; }).map(function (g) { return { x: g, y: 0 }; });
+  L.bind({ c2: function (v) { return 'x ≈ ' + Math.exp(v).toFixed(2); }, w2: function (v) { return v.toFixed(2); } }, function (v) {
+    var c = v.c2, w = v.w2, k = Math.exp(-2 * w);
+    function fu(u) { return bump((u - c) / w) - k * bump((u - c - 2 * w) / w); }   // f(e^u); total area zero
+    var lo = Math.exp(c - w), hi = Math.exp(c + 3 * w), U0 = -5.5, U1 = c + 3 * w, n = 2000, h = (U1 - U0) / n, th = new Float64Array(n + 1), i, j, x, s;
+    for (i = 0; i <= n; i++) {
+      x = Math.exp(U0 + i * h); s = 0;
+      for (j = Math.max(1, Math.floor(lo / x)); j * x <= hi; j++) s += fu(Math.log(j * x));
+      th[i] = Math.sqrt(x) * s;
+    }
+    function theta(u) { var q = (u - U0) / h, a = Math.floor(q); return a < 0 || a >= n ? 0 : th[a] + (th[a + 1] - th[a]) * (q - a); }
+    var mf = transform(function (u) { return fu(u) * Math.exp(u / 2); }, c - w, c + 3 * w, 600, YS);
+    var mt = transform(theta, U0, U1, n, YS), worst = 0;
+    var ratio = mt.map(function (p, a) { var r = p[1] / mf[a][1]; if (mf[a][1] > 1e-3) worst = Math.max(worst, Math.abs(r - ZETA[a][1])); return [p[0], r]; });
+    var f = L.sample(Math.exp(-3), Math.exp(2), 700, true, function (t) { return fu(Math.log(t)); });
+    var tp = L.sample(Math.exp(-3), Math.exp(2), 700, true, function (t) { return theta(Math.log(t)); });
+    var m1 = 0; tp.forEach(function (p) { m1 = Math.max(m1, Math.abs(p[1])); });
+    var r1 = L.ticks(-Math.max(1, m1), Math.max(1, m1), 4);
+    L.plot('p2', { x: [Math.exp(-3), Math.exp(2)], y: [r1[0], r1[r1.length - 1]], log: true, xt: [0.1, 1, 5], yt: r1, xl: 'x (log scale)', dp: 3, h: 220,
+      series: [{ n: 'f', c: 'var(--s1)', pts: f }, { n: 'Θ', c: 'var(--s2)', pts: tp }] });
+    var m2 = 0; mf.concat(mt).forEach(function (p) { m2 = Math.max(m2, p[1]); });
+    var r2 = L.ticks(0, m2, 4, true);
+    L.plot('p3', { x: [0, 60], y: [0, r2[r2.length - 1]], xt: [0, 10, 20, 30, 40, 50, 60], yt: r2, xl: 'height y', xn: 'y', dp: 4, h: 240, marks: ZM,
+      series: [{ n: 'M(f)', c: 'var(--s1)', pts: mf }, { n: 'M(Θ)', c: 'var(--s2)', pts: mt }] });
+    L.plot('p4', { x: [0, 60], y: [0, 4], xt: [0, 10, 20, 30, 40, 50, 60], yt: [0, 1, 2, 3, 4], xl: 'height y', xn: 'y', dp: 4, h: 240, marks: ZM,
+      series: [{ n: '|ζ|', c: 'var(--s1)', pts: ZETA }, { n: 'ratio', c: 'var(--s2)', dash: 1, pts: ratio }] });
+    document.getElementById('r2').innerHTML = '<span>largest gap between the ratio and |ζ| (where M(f) is not tiny): <b>' + worst.toExponential(1) + '</b></span>';
+  });
+})();
+</script>
+

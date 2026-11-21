@@ -47,6 +47,15 @@
   </ul>
 </div>
 
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Compute <i>ψ</i>(10) by hand.<details><summary>Solution</summary><p>The prime powers up to 10 are 2, 3, 4, 5, 7, 8, 9. The weights are ln 2 three times (for 2, 4, 8), ln 3 twice (for 3, 9), ln 5 and ln 7. The total is ln(2³ · 3² · 5 · 7) = ln 2520 ≈ 7.83.</p></details></li>
+    <li>Show that <i>ψ</i>(<i>x</i>) is the logarithm of the least common multiple of 1, 2, …, ⌊<i>x</i>⌋.<details><summary>Solution</summary><p>The least common multiple contains each prime <i>p</i> to the highest power <i>p<sup>k</sup></i> ≤ <i>x</i>. Its logarithm is therefore <i>k</i> · ln <i>p</i> summed over primes, and <i>ψ</i> adds ln <i>p</i> once for each of <i>p</i>, <i>p</i>², …, <i>p<sup>k</sup></i>, which is the same total. Exercise 1 is the case lcm(1, …, 10) = 2520.</p></details></li>
+    <li>Use Gauss's density 1 / ln <i>x</i> to estimate how many primes lie between 1,000,000 and 1,001,000.<details><summary>Solution</summary><p>ln 1,000,000 ≈ 13.8, so about one number in 13.8 is prime there: roughly 1000 / 13.8 ≈ 72 primes.</p></details></li>
+  </ol>
+</div>
+
 <script>
 (function () {
   var L = Lab, pow = function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); };

@@ -1,0 +1,80 @@
+<h1>The Mellin transform</h1>
+<p class="lede">The Mellin transform is the Fourier transform for functions on (0, ∞), with rescaling <i>t</i> ↦ <i>γt</i> in the role of translation. This chapter states the definition and the two properties that the rest of Part II uses.</p>
+<p class="note">Standard material. The paper uses the Mellin transform throughout and defines it on page 17.</p>
+
+<h2>Definition</h2>
+<p>For a function <i>f</i> on (0, ∞) and a complex number <i>s</i>,</p>
+<p class="note">M(<i>f</i>)(<i>s</i>) = ∫<sub>0</sub><sup>∞</sup> <i>f</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i>.</p>
+<p>The substitution <i>t</i> = e<sup><i>u</i></sup> turns this into ∫ <i>f</i>(e<sup><i>u</i></sup>) e<sup><i>su</i></sup> d<i>u</i> over the whole real line. For <i>s</i> = <i>iy</i> that is the Fourier transform of <i>f</i> in the variable <i>u</i> = ln <i>t</i>. If <i>f</i> is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0, the integral converges for every complex <i>s</i>, and M(<i>f</i>) is an entire function.</p>
+
+<h2>Property 1: rescaling becomes multiplication</h2>
+<p class="note">The transform of <i>f</i>(<i>γt</i>) is <i>γ</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>).</p>
+<p>Proof: substitute <i>u</i> = <i>γt</i>. The measure d<i>t</i>/<i>t</i> does not change, and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Consequently convolution on (0, ∞), which is a weighted sum of rescalings, becomes multiplication of transforms: M(A(<i>φ</i>)<i>f</i>)(<i>s</i>) = M(<i>φ</i>)(<i>s</i>) · M(<i>f</i>)(<i>s</i>) for the operator A(<i>φ</i>) of chapter @@ch:m1-trace-two-ways@@.</p>
+
+<h2>Property 2: the real part of <i>s</i> weighs large <i>t</i> against small <i>t</i></h2>
+<p>Write <i>s</i> = <i>σ</i> + <i>iy</i>. Then |<i>t<sup>s</sup></i>| = <i>t<sup>σ</sup></i>. For <i>σ</i> &gt; 0 this factor is large where <i>t</i> &gt; 1 and small where <i>t</i> &lt; 1. So if <i>f</i> ≥ 0 is zero outside [<i>A</i>, <i>B</i>],</p>
+<p class="note"><i>A<sup>σ</sup></i> · M(<i>f</i>)(0) ≤ M(<i>f</i>)(<i>σ</i>) ≤ <i>B<sup>σ</sup></i> · M(<i>f</i>)(0) for <i>σ</i> ≥ 0.</p>
+<p>A function concentrated at <i>t</i> &gt; 1 has a transform that grows as <i>σ</i> increases, and one concentrated at <i>t</i> &lt; 1 has a transform that shrinks.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the transform of a bump along the vertical line Re s = σ</small></div>
+  <div class="ctl">
+    <label>Bump centre <input type="range" id="cc" min="-1.5" max="1.5" step="0.01" value="0.7"><output id="ccv"></output></label>
+    <label>Bump width <input type="range" id="ww" min="0.1" max="1" step="0.01" value="0.4"><output id="wwv"></output></label>
+    <label>Real part σ <input type="range" id="sg" min="-1" max="1" step="0.01" value="0.5"><output id="sgv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the bump f(t)</span><span>dashed line: t = 1</span></div>
+  <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="A bump function on a logarithmic axis"></svg><div class="tip" hidden></div></div></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>|M(f)(iy)|</span><span><i style="background:var(--s2)"></i>|M(f)(σ + iy)|</span></div>
+  <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Absolute value of the Mellin transform on two vertical lines"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r1"></div>
+  <figcaption>Both curves are computed by numerical integration. Moving the bump to the right of <i>t</i> = 1 makes the orange curve larger than the blue one for <i>σ</i> &gt; 0 and smaller for <i>σ</i> &lt; 0; moving it to the left of 1 reverses this.</figcaption>
+</figure>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>Centre the bump at <i>t</i> = 1. The two curves nearly coincide for every <i>σ</i>: the factor <i>t<sup>σ</sup></i> is close to 1 across the bump.</li>
+    <li>Narrow the bump. Both curves spread out to larger <i>y</i>: a narrow function has a wide transform.</li>
+    <li>Put the bump at <i>t</i> ≈ 3 and compare the readout with 3<sup><i>σ</i></sup>.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Let <i>f</i>(<i>t</i>) = 1 for 1 ≤ <i>t</i> ≤ <i>T</i> and 0 otherwise. Compute M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>∫<sub>1</sub><sup><i>T</i></sup> <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = (<i>T<sup>s</sup></i> − 1)/<i>s</i> for <i>s</i> ≠ 0, and ln <i>T</i> for <i>s</i> = 0.</p></details></li>
+    <li>For which <i>s</i> does rescaling by <i>γ</i> = 2 leave the transform unchanged?<details><summary>Solution</summary><p>The factor is 2<sup>−<i>s</i></sup>, which equals 1 when <i>s</i> ln 2 = 2π<i>im</i>, that is, <i>s</i> = 2π<i>im</i>/ln 2 for an integer <i>m</i>. These are the Fourier modes of the circle in chapter @@ch:m1-trace-two-ways@@.</p></details></li>
+    <li>Show that the transform of <i>t</i> · <i>f</i>′(<i>t</i>) is −<i>s</i> · M(<i>f</i>)(<i>s</i>), for smooth <i>f</i> that is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0.<details><summary>Solution</summary><p>∫ <i>t f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i> = ∫ <i>f</i>′(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>. Integrate by parts; the boundary terms vanish, leaving −<i>s</i> ∫ <i>f</i>(<i>t</i>) <i>t</i><sup><i>s</i> − 1</sup> d<i>t</i> = −<i>s</i> · M(<i>f</i>)(<i>s</i>).</p></details></li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  var L = Lab;
+  function bump(u) { return Math.abs(u) < 1 ? Math.exp(1 - 1 / (1 - u * u)) : 0; }
+  // |integral of g(u) e^{iyu} du| over [a, b] by the trapezoid rule, for each y in ys.
+  function transform(g, a, b, n, ys) {
+    var h = (b - a) / n, v = new Float64Array(n + 1), i;
+    for (i = 0; i <= n; i++) v[i] = g(a + i * h) * (i === 0 || i === n ? 0.5 : 1);
+    return ys.map(function (y) {
+      var re = 0, im = 0, u;
+      for (i = 0; i <= n; i++) { u = a + i * h; re += v[i] * Math.cos(y * u); im += v[i] * Math.sin(y * u); }
+      return [y, Math.hypot(re, im) * h];
+    });
+  }
+  var YS = []; for (var k = 0; k <= 400; k++) YS.push(40 * k / 400);
+  L.bind({ cc: function (v) { return 't = ' + Math.exp(v).toFixed(2); }, ww: function (v) { return v.toFixed(2); }, sg: function (v) { return v.toFixed(2); } }, function (v) {
+    var c = v.cc, w = v.ww, sg = v.sg;
+    var a0 = transform(function (u) { return bump((u - c) / w); }, c - w, c + w, 400, YS);
+    var a1 = transform(function (u) { return bump((u - c) / w) * Math.exp(sg * u); }, c - w, c + w, 400, YS);
+    L.plot('p1', { x: [0.1, 10], y: [0, 1.1], log: true, xt: [0.1, 1, 10], yt: [0, 0.5, 1], xl: 't (log scale)', xn: 't', dp: 3, h: 180, vlines: [{ x: 1, t: '1' }],
+      series: [{ n: 'f(t)', c: 'var(--s1)', pts: L.sample(0.1, 10, 700, true, function (t) { return bump((Math.log(t) - c) / w); }) }] });
+    var yt = L.ticks(0, Math.max(a0[0][1], a1[0][1]), 4, true);
+    L.plot('p2', { x: [0, 40], y: [0, yt[yt.length - 1]], xt: [0, 10, 20, 30, 40], yt: yt, xl: 'y', xn: 'y', dp: 4, h: 240,
+      series: [{ n: 'σ = 0', c: 'var(--s1)', pts: a0 }, { n: 'σ = ' + sg.toFixed(2), c: 'var(--s2)', pts: a1 }] });
+    document.getElementById('r1').innerHTML = '<span>M(f)(σ) / M(f)(0) = <b>' + (a1[0][1] / a0[0][1]).toFixed(3) + '</b></span><span>(bump centre)<sup>σ</sup> = <b>' +
+      Math.exp(sg * c).toFixed(3) + '</b></span>';
+  });
+})();
+</script>

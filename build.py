@@ -14,28 +14,62 @@ FONTS = ("https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600"
          "&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap")
 
 # (part title, blurb, [(number, slug or None if not written yet, title)])
-BOOK = [
-    ("Background", "What both proofs are about. Start here.", [
-        ("1", "primes", "Counting primes"),
-        ("2", "zeta", "The zeta function"),
-        ("3", "waves", "Zeros as waves"),
+# Parts in reading order. A chapter is (slug, title); slug None means planned, and a slug
+# starting with "quiz" is the part's quiz. Chapter numbers run through the whole book and are
+# assigned here, so chapter files refer to each other as @@ch:slug@@ and to themselves as @@n@@.
+PARTS = [
+    ("Part I · Fundamentals", "What both proofs are about. Start here.", [
+        ("primes", "Counting primes"),
+        ("zeta", "The zeta function"),
+        ("waves", "Zeros as waves"),
+        ("quiz-1", "Quiz: Part I"),
     ]),
-    ("Masullo", "A 940-page paper: a trace formula that only hears zeros near the line.", [
-        ("M", "masullo", "Map of the whole proof"),
-        ("M1", "m1-trace-two-ways", "A trace computed two ways"),
-        ("M2", "m2-one-slot-per-zero", "One slot per zero"),
-        ("M3", None, "The thin strip"),
-        ("M4", None, "One circle per prime"),
-        ("M5", None, "Reading off the zeros"),
+    ("Part II · Masullo", "A 940-page paper: a trace formula in which only the zeros near the critical line appear.", [
+        ("masullo", "Map of the whole proof"),
+        ("m1-trace-two-ways", "A trace computed two ways"),
+        ("mellin", "The Mellin transform"),
+        ("circle-slots", "One slot per mode"),
+        ("theta-sums", "Summing over whole numbers"),
+        ("m2-one-slot-per-zero", "One slot per zero"),
+        ("thin-strip", "The thin strip"),
+        ("circle-per-prime", "One circle per prime"),
+        ("trace-formula", "The trace formula"),
+        ("reading-off-zeros", "Reading off the zeros"),
+        ("quiz-2", "Quiz: Part II"),
     ]),
-    ("Alpöge with Claude", "A Lean 4 formalization: a one-sided bound on a smoothed prime sum.", [
-        ("A", "alpoge", "Map of the whole proof"),
-        ("A1", "a1-smoothed-error", "The smoothed error"),
-        ("A2", None, "Why a one-sided bound is enough"),
-        ("A3", None, "The chain of theta lifts"),
-        ("A4", None, "The squeeze"),
+    ("Part III · Alpöge with Claude", "A Lean 4 formalization: a one-sided bound on a smoothed prime sum.", [
+        ("alpoge", "Map of the whole proof"),
+        ("a1-smoothed-error", "The smoothed error"),
+        (None, "Why a one-sided bound is enough"),
+        (None, "The chain of theta lifts"),
+        (None, "The squeeze"),
+        ("quiz-3", "Quiz: Part III"),
     ]),
 ]
+
+
+def _number(parts):
+    book, n = [], 0
+    for label, blurb, chapters in parts:
+        rows = []
+        for slug, name in chapters:
+            if slug and slug.startswith("quiz"):
+                rows.append(("", slug, name))
+            else:
+                n += 1
+                rows.append((str(n), slug, name))
+        book.append((label, blurb, rows))
+    return book
+
+
+BOOK = _number(PARTS)
+NUM = {s: n for _, _, ch in BOOK for n, s, _ in ch if s}
+
+
+def tokens(text, num=""):
+    """Fill in @@n@@ (this chapter's number) and @@ch:slug@@ (another chapter's number)."""
+    text = text.replace("@@n@@", num)
+    return re.sub(r"@@ch:([a-z0-9-]+)@@", lambda m: NUM[m.group(1)], text)
 ATLASES = ("alpoge", "masullo")
 
 HEAD = """<!doctype html>
@@ -56,6 +90,7 @@ TAIL = """</main>
 </div>
 <script src="{up}assets/glossary.js"></script>
 <script src="{up}assets/gloss.js"></script>
+<script src="{up}assets/quiz.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>
@@ -105,7 +140,7 @@ def load_glossary():
 
 
 # Text inside these elements is never turned into a glossary link.
-SKIP = {"script", "pre", "code", "a", "h1", "h2", "h3", "button", "svg", "label", "output", "select", "small"}
+SKIP = {"script", "pre", "code", "a", "h1", "h2", "h3", "button", "svg", "label", "output", "select", "small", "summary"}
 VOID = {"input", "br", "img", "hr", "meta", "link"}
 
 
@@ -170,8 +205,8 @@ def glossary_page(glossary):
 def pager(slug):
     flat = [(n, s, t) for _, _, ch in BOOK for n, s, t in ch if s]
     i = [s for _, s, _ in flat].index(slug)
-    prev = f'<a href="../{flat[i-1][1]}/">← {flat[i-1][0]} {html.escape(flat[i-1][2])}</a>' if i else "<span></span>"
-    nxt = (f'<a href="../{flat[i+1][1]}/">{flat[i+1][0]} {html.escape(flat[i+1][2])} →</a>'
+    prev = f'<a href="../{flat[i-1][1]}/">← {(flat[i-1][0] + " " + html.escape(flat[i-1][2])).strip()}</a>' if i else "<span></span>"
+    nxt = (f'<a href="../{flat[i+1][1]}/">{(flat[i+1][0] + " " + html.escape(flat[i+1][2])).strip()} →</a>'
            if i + 1 < len(flat) else '<a href="../">Contents →</a>')
     return f'<nav class="pager" aria-label="Chapter">{prev}{nxt}</nav>\n'
 
@@ -209,9 +244,11 @@ def main():
         for num, slug, name in chapters:
             if slug is None or slug in ATLASES:
                 continue
-            body = link_terms((ROOT / "site" / "chapters" / f"{slug}.html").read_text(), glossary)
-            page = (HEAD.format(title=f"{num} {name}", fonts=FONTS, up="../", toc=toc("../", slug))
-                    + f'<div class="kicker">{html.escape(part)} · Chapter {num}</div>\n'
+            quiz = slug.startswith("quiz")  # no glossary buttons inside the answer buttons
+            body = tokens((ROOT / "site" / "chapters" / f"{slug}.html").read_text(), num)
+            body = body if quiz else link_terms(body, glossary)
+            page = (HEAD.format(title=name if quiz else f"{num} {name}", fonts=FONTS, up="../", toc=toc("../", slug))
+                    + f'<div class="kicker">{html.escape(part.split(" · ")[0])} · {"Quiz" if quiz else "Chapter " + num}</div>\n'
                     + '<script src="../assets/lab.js"></script>\n' + body + pager(slug) + TAIL.format(up="../"))
             (docs / slug).mkdir(parents=True, exist_ok=True)
             (docs / slug / "index.html").write_text(page)
@@ -223,7 +260,7 @@ def main():
     (docs / "symbols").mkdir(exist_ok=True)
     (docs / "symbols" / "index.html").write_text(
         HEAD.format(title="Greek letters and symbols", fonts=FONTS, up="../", toc=toc("../", "symbols"))
-        + (ROOT / "site" / "symbols.html").read_text() + TAIL.format(up="../"))
+        + tokens((ROOT / "site" / "symbols.html").read_text()) + TAIL.format(up="../"))
     (docs / "index.html").write_text(landing(glossary))
     (docs / ".nojekyll").touch()
 
