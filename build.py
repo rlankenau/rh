@@ -168,7 +168,7 @@ def glossary_page(glossary):
 
 
 def pager(slug):
-    flat = [(n, s, t) for _, _, ch in BOOK for n, s, t in ch if s and s not in ATLASES]
+    flat = [(n, s, t) for _, _, ch in BOOK for n, s, t in ch if s]
     i = [s for _, s, _ in flat].index(slug)
     prev = f'<a href="../{flat[i-1][1]}/">← {flat[i-1][0]} {html.escape(flat[i-1][2])}</a>' if i else "<span></span>"
     nxt = (f'<a href="../{flat[i+1][1]}/">{flat[i+1][0]} {html.escape(flat[i+1][2])} →</a>'
@@ -198,6 +198,12 @@ def main():
     for name in ATLASES:
         (docs / name).mkdir(parents=True, exist_ok=True)
         fragment = (ROOT / "atlas" / f"{name}.html").read_text()
+        # The atlases carry their own styles, so the chapter pager goes in with inline ones.
+        # (A div, not a nav: the atlas styles every "nav a" as a sidebar entry.)
+        nav = pager(name).replace("</nav>", "</div>").replace('<nav class="pager"', '<div role="navigation" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;'
+                                  'margin-top:2rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem"')
+        assert fragment.count("</main>") == 1, name
+        fragment = fragment.replace("</main>", nav + "</main>")
         (docs / name / "index.html").write_text(ATLAS_WRAP.format(fragment=fragment))
     for part, _, chapters in BOOK:
         for num, slug, name in chapters:
