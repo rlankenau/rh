@@ -1,16 +1,16 @@
 <h1>The zeta function</h1>
-<p class="lede">The zeta function is the sum <i>ζ</i>(<i>s</i>) = 1 + 1/2<sup><i>s</i></sup> + 1/3<sup><i>s</i></sup> + 1/4<sup><i>s</i></sup> + … This chapter treats it for real numbers <i>s</i> only: when the sum has a value, and why it equals a product over the primes.</p>
+<p class="lede">The zeta function is the sum \(\zeta(s) = 1 + 1/2^{s} + 1/3^{s} + 1/4^{s} + \cdots\) This chapter treats it for real numbers \(s\) only: when the sum has a value, and why it equals a product over the primes.</p>
 
 <h2>The sum</h2>
-<p>Fix a real number <i>s</i> and add up 1/<i>n<sup>s</sup></i> over the whole numbers <i>n</i> = 1, 2, 3, … For <i>s</i> = 2 the terms are 1, 1/4, 1/9, 1/16, …, and the sum is 1.6449… (Euler showed it is exactly π²/6). The larger <i>s</i> is, the faster the terms shrink.</p>
-<p>For <i>s</i> = 1 the terms are 1, 1/2, 1/3, 1/4, … They shrink, but too slowly: the sum of the first <i>N</i> terms is about ln <i>N</i> + 0.577, which grows without bound. This is the harmonic series, and it has no finite sum.</p>
-<p>The dividing line is <i>s</i> = 1. To see why, compare each term with an area. The term 1/<i>n<sup>s</sup></i> is the area of a rectangle of width 1 and height 1/<i>n<sup>s</sup></i>. Place that rectangle on the interval from <i>n</i> − 1 to <i>n</i>. The curve <i>y</i> = 1/<i>x<sup>s</sup></i> is decreasing, so on that interval it lies above the rectangle, and the area under the curve is larger:</p>
+<p>Fix a real number \(s\) and add up \(1/n^{s}\) over the whole numbers \(n = 1, 2, 3, \dots\) For \(s = 2\) the terms are \(1, 1/4, 1/9, 1/16, \dots\), and the sum is 1.6449… (Euler showed it is exactly \(\pi^{2}/6\)). The larger \(s\) is, the faster the terms shrink.</p>
+<p>For \(s = 1\) the terms are \(1, 1/2, 1/3, 1/4, \dots\) They shrink, but too slowly: the sum of the first \(N\) terms is about \(\ln N + 0.577\), which grows without bound. This is the harmonic series, and it has no finite sum.</p>
+<p>The dividing line is \(s = 1\). To see why, compare each term with an area. The term \(1/n^{s}\) is the area of a rectangle of width 1 and height \(1/n^{s}\). Place that rectangle on the interval from \(n - 1\) to \(n\). The curve \(y = 1/x^{s}\) is decreasing, so on that interval it lies above the rectangle, and the area under the curve is larger:</p>
 <p class="note">$$\frac{1}{n^{s}} \;\le\; \int_{n-1}^{n} \frac{dx}{x^{s}}$$</p>
-<p>Add this up over <i>n</i> = <i>N</i> + 1, <i>N</i> + 2, … The intervals join up into everything to the right of <i>N</i>:</p>
+<p>Add this up over \(n = N + 1, N + 2, \dots\) The intervals join up into everything to the right of \(N\):</p>
 <p class="note">$$\sum_{n>N} \frac{1}{n^{s}} \;\le\; \int_{N}^{\infty} \frac{dx}{x^{s}} \;=\; \frac{N^{1-s}}{s-1} \qquad \text{when } s>1$$</p>
-<p>So for <i>s</i> &gt; 1 the terms after the <i>N</i>-th add up to at most <i>N</i><sup>1 − <i>s</i></sup>/(<i>s</i> − 1), which shrinks to 0 as <i>N</i> grows. The sum converges.</p>
-<p>Placing each rectangle one step to the right, on the interval from <i>n</i> to <i>n</i> + 1, puts it above the curve and gives the opposite inequality: the terms from the <i>N</i>-th on add up to <em>at least</em> the same integral. For <i>s</i> ≤ 1 that integral is infinite, so the sum is too. The two bounds differ by less than a single term, so the integral is also a good estimate of what the remaining terms add up to.</p>
-<p>So <i>ζ</i>(<i>s</i>) is defined, for now, only for <i>s</i> &gt; 1.</p>
+<p>So for \(s \gt 1\) the terms after the \(N\)-th add up to at most \(N^{1 - s}/(s - 1)\), which shrinks to 0 as \(N\) grows. The sum converges.</p>
+<p>Placing each rectangle one step to the right, on the interval from \(n\) to \(n + 1\), puts it above the curve and gives the opposite inequality: the terms from the \(N\)-th on add up to <em>at least</em> the same integral. For \(s \le 1\) that integral is infinite, so the sum is too. The two bounds differ by less than a single term, so the integral is also a good estimate of what the remaining terms add up to.</p>
+<p>So \(\zeta(s)\) is defined, for now, only for \(s \gt 1\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>adding up the first N terms of 1/n<sup>s</sup></small></div>
@@ -23,25 +23,25 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>sum of the first n terms</span><span>dashed line: ζ(s), when s &gt; 1</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Partial sums of the zeta series against the number of terms"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Top: the next ten terms after the <i>N</i>-th, each drawn as a rectangle of width 1. They fit under the curve, so their total area is less than the area under the curve. Bottom: the running total. Its horizontal axis is the number of terms, on a logarithmic scale. For <i>s</i> &gt; 1 the curve levels off at <i>ζ</i>(<i>s</i>). For <i>s</i> ≤ 1 it keeps climbing: at <i>s</i> = 1 it is a straight line on this scale, because the sum grows like ln <i>n</i>.</figcaption>
+  <figcaption>Top: the next ten terms after the \(N\)-th, each drawn as a rectangle of width 1. They fit under the curve, so their total area is less than the area under the curve. Bottom: the running total. Its horizontal axis is the number of terms, on a logarithmic scale. For \(s \gt 1\) the curve levels off at \(\zeta(s)\). For \(s \le 1\) it keeps climbing: at \(s = 1\) it is a straight line on this scale, because the sum grows like \(\ln n\).</figcaption>
 </figure>
 
-<h2>Near <i>s</i> = 1</h2>
-<p>As <i>s</i> decreases toward 1 the sum grows without bound. The integral above with <i>N</i> = 1 says how: <i>ζ</i>(<i>s</i>) is close to 1/(<i>s</i> − 1). More precisely, <i>ζ</i>(<i>s</i>) − 1/(<i>s</i> − 1) tends to 0.5772…, a number called Euler's constant.</p>
+<h2>Near \(s = 1\)</h2>
+<p>As \(s\) decreases toward 1 the sum grows without bound. The integral above with \(N = 1\) says how: \(\zeta(s)\) is close to \(1/(s - 1)\). More precisely, \(\zeta(s) - 1/(s - 1)\) tends to 0.5772…, a number called Euler's constant.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.2 <small>ζ(s) for real s &gt; 1</small></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>ζ(s)</span><span><i style="background:var(--s2)"></i>1/(s − 1) + 0.5772</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Zeta of s for real s greater than one, with its approximation near one"></svg><div class="tip" hidden></div></div></div>
-  <figcaption>Hover to read values. Near <i>s</i> = 1 the two curves coincide. For large <i>s</i> the sum is barely more than its first term, so <i>ζ</i>(<i>s</i>) approaches 1.</figcaption>
+  <figcaption>Hover to read values. Near \(s = 1\) the two curves coincide. For large \(s\) the sum is barely more than its first term, so \(\zeta(s)\) approaches 1.</figcaption>
 </figure>
 
 <h2>The product over primes</h2>
-<p>Recall the geometric series: for |<i>x</i>| &lt; 1, 1 + <i>x</i> + <i>x</i>² + <i>x</i>³ + … = 1/(1 − <i>x</i>). Put <i>x</i> = 1/2<sup><i>s</i></sup>:</p>
+<p>Recall the geometric series: for \(|x| \lt 1\), \(1 + x + x^{2} + x^{3} + \cdots = 1/(1 - x)\). Put \(x = 1/2^{s}\):</p>
 <p class="note">$$\frac{1}{1-2^{-s}} \;=\; 1+\frac{1}{2^{s}}+\frac{1}{4^{s}}+\frac{1}{8^{s}}+\cdots$$ This is the part of the zeta sum that runs over the powers of 2.</p>
 <p>Do the same for 3 and multiply the two series together:</p>
 <p class="note">$$\frac{1}{1-2^{-s}}\cdot\frac{1}{1-3^{-s}} \;=\; \left(1+\frac{1}{2^{s}}+\frac{1}{4^{s}}+\cdots\right)\left(1+\frac{1}{3^{s}}+\frac{1}{9^{s}}+\cdots\right)$$ $$=\; 1+\frac{1}{2^{s}}+\frac{1}{3^{s}}+\frac{1}{4^{s}}+\frac{1}{6^{s}}+\frac{1}{8^{s}}+\frac{1}{9^{s}}+\frac{1}{12^{s}}+\cdots$$</p>
-<p>Each product of a term from the first bracket and a term from the second is 1/<i>n<sup>s</sup></i> for <i>n</i> = 2<sup><i>a</i></sup>3<sup><i>b</i></sup>, and each such <i>n</i> occurs once. The numbers 5, 7, 10, 11, … are missing because they have a prime factor other than 2 and 3. Include a factor for every prime, and every whole number appears exactly once, because every whole number is a product of primes in exactly one way. This is Euler's product formula:</p>
+<p>Each product of a term from the first bracket and a term from the second is \(1/n^{s}\) for \(n = 2^{a}3^{b}\), and each such \(n\) occurs once. The numbers 5, 7, 10, 11, … are missing because they have a prime factor other than 2 and 3. Include a factor for every prime, and every whole number appears exactly once, because every whole number is a product of primes in exactly one way. This is Euler's product formula:</p>
 <p class="note">$$\zeta(s) \;=\; \prod_{p\ \text{prime}} \frac{1}{1-p^{-s}} \qquad \text{for } s>1$$</p>
 
 <figure class="lab">
@@ -53,48 +53,48 @@
   <div class="lg"><span><i style="background:var(--s2)"></i>product over the primes up to x</span><span>dashed line: ζ(s)</span></div>
   <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Truncated Euler product approaching zeta of s as more primes are included"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r3"></div>
-  <figcaption>Each prime multiplies the product by a factor slightly larger than 1, and the steps rise toward <i>ζ</i>(<i>s</i>). The last readout counts the numbers from 1 to 100 whose prime factors are all at most P: those are the terms of the sum that the truncated product already contains.</figcaption>
+  <figcaption>Each prime multiplies the product by a factor slightly larger than 1, and the steps rise toward \(\zeta(s)\). The last readout counts the numbers from 1 to 100 whose prime factors are all at most P: those are the terms of the sum that the truncated product already contains.</figcaption>
 </figure>
 
 <h2>Three consequences</h2>
 <ul>
-  <li><b><i>ζ</i>(<i>s</i>) is never 0 for <i>s</i> &gt; 1.</b> Every factor of the product is greater than 1.</li>
-  <li><b>There are infinitely many primes.</b> If there were finitely many, the product would have a finite value at <i>s</i> = 1. But as <i>s</i> decreases to 1 the sum grows without bound.</li>
+  <li><b>\(\zeta(s)\) is never 0 for \(s \gt 1\).</b> Every factor of the product is greater than 1.</li>
+  <li><b>There are infinitely many primes.</b> If there were finitely many, the product would have a finite value at \(s = 1\). But as \(s\) decreases to 1 the sum grows without bound.</li>
   <li><b>The weights of chapter @@ch:primes@@ appear.</b> Take the logarithm of the product, \(\displaystyle \ln\zeta(s) = -\sum_{p}\ln\!\left(1-p^{-s}\right)\), and differentiate:</li>
 </ul>
-<p class="note">$$-\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; \sum_{n} \frac{\Lambda(n)}{n^{s}}$$ Here Λ(<i>n</i>) = ln <i>p</i> if <i>n</i> is a power of the prime <i>p</i>, and 0 otherwise.</p>
-<p>The left side is built from <i>ζ</i> alone. The right side is a sum over prime powers with the same weights that define <i>ψ</i>(<i>x</i>). Exercise 2 derives it.</p>
+<p class="note">$$-\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; \sum_{n} \frac{\Lambda(n)}{n^{s}}$$ Here \(\Lambda(n) = \ln p\) if \(n\) is a power of the prime \(p\), and 0 otherwise.</p>
+<p>The left side is built from \(\zeta\) alone. The right side is a sum over prime powers with the same weights that define \(\psi(x)\). Exercise 2 derives it.</p>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, set <i>s</i> = 1 and raise N. Each factor of 10 in N adds the same amount, about 2.3 = ln 10.</li>
-    <li>Set <i>s</i> = 1.1. The sum converges, to about 10.58, but after 10,000 terms it has not reached 7. Compare the "still missing" readout with the bound next to it.</li>
-    <li>In Lab @@n@@.3, set <i>s</i> = 2 and P = 2, 3, 5. The product is 4/3, then 3/2, then 25/16. Watch how many of the numbers up to 100 are covered.</li>
-    <li>Lower <i>s</i> toward 1.1. Many more primes are needed for the product to come close.</li>
+    <li>In Lab @@n@@.1, set \(s = 1\) and raise N. Each factor of 10 in N adds the same amount, about \(2.3 = \ln 10\).</li>
+    <li>Set \(s = 1.1\). The sum converges, to about 10.58, but after 10,000 terms it has not reached 7. Compare the "still missing" readout with the bound next to it.</li>
+    <li>In Lab @@n@@.3, set \(s = 2\) and P = 2, 3, 5. The product is 4/3, then 3/2, then 25/16. Watch how many of the numbers up to 100 are covered.</li>
+    <li>Lower \(s\) toward 1.1. Many more primes are needed for the product to come close.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Multiply out the Euler product for <i>s</i> = 2 using only the primes 2 and 3, and compare with <i>ζ</i>(2) ≈ 1.645.<details><summary>Solution</summary><p>1/(1 − ¼) · 1/(1 − 1/9) = (4/3)(9/8) = 1.5. Multiplied out, this is the sum of 1/<i>n</i>² over the numbers <i>n</i> whose only prime factors are 2 and 3. The missing 0.145 comes from every <i>n</i> divisible by a larger prime.</p></details></li>
-    <li>Derive \(\displaystyle -\frac{\zeta^{\prime}(s)}{\zeta(s)} = \sum_{n}\frac{\Lambda(n)}{n^{s}}\) from the Euler product.<details><summary>Solution</summary><p>Start from \(\displaystyle \ln\zeta(s) = -\sum_{p}\ln\!\left(1-p^{-s}\right)\) and differentiate: $$\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; -\sum_{p} \ln p\cdot\frac{p^{-s}}{1-p^{-s}} \;=\; -\sum_{p} \ln p\cdot\left(p^{-s}+p^{-2s}+p^{-3s}+\cdots\right)$$ The second step is the geometric series. The term <i>p</i><sup>−<i>ks</i></sup> is 1/<i>n<sup>s</sup></i> for <i>n</i> = <i>p<sup>k</sup></i>, with coefficient ln <i>p</i> = Λ(<i>n</i>).</p></details></li>
-    <li>Use the integral estimate to say how many terms are needed to get <i>ζ</i>(2) to within 0.001, and <i>ζ</i>(1.1) to within 0.001.<details><summary>Solution</summary><p>The missing tail is about <i>N</i><sup>1 − <i>s</i></sup>/(<i>s</i> − 1). For <i>s</i> = 2 that is 1/<i>N</i>, so <i>N</i> ≈ 1,000. For <i>s</i> = 1.1 it is 10 · <i>N</i><sup>−0.1</sup>, which is below 0.001 only when <i>N</i> &gt; 10<sup>40</sup>. Close to <i>s</i> = 1 the sum converges, but far too slowly to compute by adding terms.</p></details></li>
+    <li>Multiply out the Euler product for \(s = 2\) using only the primes 2 and 3, and compare with \(\zeta(2) \approx 1.645\).<details><summary>Solution</summary><p>\(\dfrac{1}{1 - \tfrac14} \cdot \dfrac{1}{1 - 1/9} = (4/3)(9/8) = 1.5\). Multiplied out, this is the sum of \(1/n^{2}\) over the numbers \(n\) whose only prime factors are 2 and 3. The missing 0.145 comes from every \(n\) divisible by a larger prime.</p></details></li>
+    <li>Derive \(\displaystyle -\frac{\zeta^{\prime}(s)}{\zeta(s)} = \sum_{n}\frac{\Lambda(n)}{n^{s}}\) from the Euler product.<details><summary>Solution</summary><p>Start from \(\displaystyle \ln\zeta(s) = -\sum_{p}\ln\!\left(1-p^{-s}\right)\) and differentiate: $$\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; -\sum_{p} \ln p\cdot\frac{p^{-s}}{1-p^{-s}} \;=\; -\sum_{p} \ln p\cdot\left(p^{-s}+p^{-2s}+p^{-3s}+\cdots\right)$$ The second step is the geometric series. The term \(p^{-ks}\) is \(1/n^{s}\) for \(n = p^{k}\), with coefficient \(\ln p = \Lambda(n)\).</p></details></li>
+    <li>Use the integral estimate to say how many terms are needed to get \(\zeta(2)\) to within 0.001, and \(\zeta(1.1)\) to within 0.001.<details><summary>Solution</summary><p>The missing tail is about \(N^{1 - s}/(s - 1)\). For \(s = 2\) that is \(1/N\), so \(N \approx 1{,}000\). For \(s = 1.1\) it is \(10 \cdot N^{-0.1}\), which is below 0.001 only when \(N \gt 10^{40}\). Close to \(s = 1\) the sum converges, but far too slowly to compute by adding terms.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-zeta">
-  <li data-a="2"><p>The terms 1/<i>n</i> shrink to 0, yet the harmonic series has no finite sum. What decides whether Σ 1/<i>n<sup>s</sup></i> converges?</p>
-    <ul><li>Whether the terms tend to 0</li><li>How fast they shrink: the tail behaves like ∫ d<i>x</i>/<i>x<sup>s</sup></i>, which is finite only for <i>s</i> &gt; 1</li><li>Whether <i>s</i> is a whole number</li></ul>
-    <p class="why">Terms tending to 0 is necessary but not enough. At <i>s</i> = 1 the first <i>N</i> terms add up to about ln <i>N</i>, which is unbounded.</p></li>
-  <li data-a="3"><p>The product using only the primes 2 and 3 is, multiplied out, a sum of 1/<i>n<sup>s</sup></i> over which <i>n</i>?</p>
-    <ul><li>All <i>n</i> up to 3</li><li>The multiples of 2 or 3</li><li>The <i>n</i> with no prime factor other than 2 and 3: 1, 2, 3, 4, 6, 8, 9, 12, …</li></ul>
-    <p class="why">Each term of the expanded product is 1/(2<sup><i>a</i></sup>3<sup><i>b</i></sup>)<sup><i>s</i></sup>. 10 is a multiple of 2 but is missing, because it also needs the prime 5.</p></li>
+  <li data-a="2"><p>The terms \(1/n\) shrink to 0, yet the harmonic series has no finite sum. What decides whether \(\sum 1/n^{s}\) converges?</p>
+    <ul><li>Whether the terms tend to 0</li><li>How fast they shrink: the tail behaves like \(\int dx/x^{s}\), which is finite only for \(s \gt 1\)</li><li>Whether \(s\) is a whole number</li></ul>
+    <p class="why">Terms tending to 0 is necessary but not enough. At \(s = 1\) the first \(N\) terms add up to about \(\ln N\), which is unbounded.</p></li>
+  <li data-a="3"><p>The product using only the primes 2 and 3 is, multiplied out, a sum of \(1/n^{s}\) over which \(n\)?</p>
+    <ul><li>All \(n\) up to 3</li><li>The multiples of 2 or 3</li><li>The \(n\) with no prime factor other than 2 and 3: 1, 2, 3, 4, 6, 8, 9, 12, …</li></ul>
+    <p class="why">Each term of the expanded product is \(1/(2^{a}3^{b})^{s}\). 10 is a multiple of 2 but is missing, because it also needs the prime 5.</p></li>
   <li data-a="1"><p>How does the product formula show there are infinitely many primes?</p>
-    <ul><li>With finitely many primes the product would stay finite as <i>s</i> → 1, but the sum grows without bound there</li><li>The product has infinitely many factors by definition</li><li>It does not; that needs a separate argument</li></ul>
-    <p class="why">Sum and product are equal for every <i>s</i> &gt; 1. A finite product of the factors 1/(1 − <i>p</i><sup>−<i>s</i></sup>) tends to a finite number as <i>s</i> → 1, while the sum behaves like 1/(<i>s</i> − 1). This was Euler's proof.</p></li>
+    <ul><li>With finitely many primes the product would stay finite as \(s \to 1\), but the sum grows without bound there</li><li>The product has infinitely many factors by definition</li><li>It does not; that needs a separate argument</li></ul>
+    <p class="why">Sum and product are equal for every \(s \gt 1\). A finite product of the factors \(1/(1 - p^{-s})\) tends to a finite number as \(s \to 1\), while the sum behaves like \(1/(s - 1)\). This was Euler's proof.</p></li>
 </ol>
 
 <script>

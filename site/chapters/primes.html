@@ -1,9 +1,9 @@
 <h1>Counting primes</h1>
-<p class="lede">The Riemann Hypothesis is equivalent to a bound on the error in the standard estimate for the number of primes up to <i>x</i>. This chapter defines the count, the estimate, and the error.</p>
+<p class="lede">The Riemann Hypothesis is equivalent to a bound on the error in the standard estimate for the number of primes up to \(x\). This chapter defines the count, the estimate, and the error.</p>
 
 <h2>The staircase and its smooth guess</h2>
-<p>Write <i>π</i>(<i>x</i>) for the number of primes up to <i>x</i>. It is a staircase: flat, then up by one at each prime. Primes thin out as numbers get bigger, and Gauss noticed the rule: near a large number <i>x</i>, about one number in every ln <i>x</i> is prime. Around a thousand that is one in 7; around a million, one in 14.</p>
-<p>If the chance of being prime near <i>t</i> is 1 / ln <i>t</i>, then adding up those chances for every <i>t</i> from 2 to <i>x</i> should estimate how many primes there are up to <i>x</i>. That running total is called the logarithmic integral, written li(<i>x</i>) = ∫<sub>2</sub><sup><i>x</i></sup> d<i>t</i> / ln <i>t</i>. A cruder estimate, <i>x</i> / ln <i>x</i>, has the right shape but runs low.</p>
+<p>Write \(\pi(x)\) for the number of primes up to \(x\). It is a staircase: flat, then up by one at each prime. Primes thin out as numbers get bigger, and Gauss noticed the rule: near a large number \(x\), about one number in every \(\ln x\) is prime. Around a thousand that is one in 7; around a million, one in 14.</p>
+<p>If the chance of being prime near \(t\) is \(1/\ln t\), then adding up those chances for every \(t\) from 2 to \(x\) should estimate how many primes there are up to \(x\). That running total is called the logarithmic integral, written \(\operatorname{li}(x) = \int_{2}^{x} \frac{dt}{\ln t}\). A cruder estimate, \(x/\ln x\), has the right shape but runs low.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the prime staircase against its smooth guesses</small></div>
@@ -11,12 +11,12 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>π(x), the count</span><span><i style="background:var(--s2)"></i>li(x)</span><span><i style="background:var(--muted)"></i>x / ln x</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Staircase of the prime count with the logarithmic integral and x over log x"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>At small scale the staircase is visibly jagged. Slide right and it melts into li(<i>x</i>); the gap in the readout stays tiny next to the count itself.</figcaption>
+  <figcaption>At small scale the staircase is visibly jagged. Slide right and it melts into \(\operatorname{li}(x)\); the gap in the readout stays tiny next to the count itself.</figcaption>
 </figure>
 
 <h2>Weighing primes instead of counting them</h2>
-<p>Counting each prime as 1 turns out to give awkward formulas. Number theorists get cleaner ones from a weighted count. Give every prime power <i>p<sup>k</sup></i> the weight ln <i>p</i>, and every other number weight zero. This weight is called Λ(<i>n</i>), the von Mangoldt function, and its running total is Chebyshev's function, written <i>ψ</i>(<i>x</i>) = Σ<sub><i>n</i> ≤ <i>x</i></sub> Λ(<i>n</i>): add up the weights of all whole numbers up to <i>x</i>.</p>
-<p>The weights exactly cancel the thinning-out. Primes near <i>x</i> are rarer by a factor of ln <i>x</i>, but each one counts for ln <i>x</i>, so the weighted total should grow like <i>x</i> itself. The prime number theorem says that it does: <i>ψ</i>(<i>x</i>) divided by <i>x</i> gets closer and closer to 1.</p>
+<p>Counting each prime as 1 turns out to give awkward formulas. Number theorists get cleaner ones from a weighted count. Give every prime power \(p^{k}\) the weight \(\ln p\), and every other number weight zero. This weight is called \(\Lambda(n)\), the von Mangoldt function, and its running total is Chebyshev's function, written \(\psi(x) = \sum_{n \le x} \Lambda(n)\): add up the weights of all whole numbers up to \(x\).</p>
+<p>The weights exactly cancel the thinning-out. Primes near \(x\) are rarer by a factor of \(\ln x\), but each one counts for \(\ln x\), so the weighted total should grow like \(x\) itself. The prime number theorem says that it does: \(\psi(x)\) divided by \(x\) gets closer and closer to 1.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.2 <small>the weighted staircase ψ(x) against the line y = x</small></div>
@@ -24,25 +24,25 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>ψ(x)</span><span><i style="background:var(--s2)"></i>x</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Chebyshev psi staircase against the diagonal"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>The staircase jumps at every prime power, and the jumps have different heights: ln 2 at 2, 4, 8, 16…, ln 3 at 3, 9, 27…, and in general ln <i>p</i> at each power of the prime <i>p</i>. Hover to read <i>ψ</i>(<i>x</i>) on either side of a jump.</figcaption>
+  <figcaption>The staircase jumps at every prime power, and the jumps have different heights: \(\ln 2\) at 2, 4, 8, 16…, \(\ln 3\) at 3, 9, 27…, and in general \(\ln p\) at each power of the prime \(p\). Hover to read \(\psi(x)\) on either side of a jump.</figcaption>
 </figure>
 
 <h2>The error is the whole question</h2>
-<p>How far does the staircase stray from the line? If primes were placed by fair coin flips with the right density, the error up to <i>x</i> would be about √<i>x</i> in size. The Riemann Hypothesis is equivalent to saying the primes do essentially that well:</p>
-<p class="note">The Riemann Hypothesis is true exactly when the gap between <i>ψ</i>(<i>x</i>) and <i>x</i> is never more than about √<i>x</i>. Precisely: the gap is at most <i>C</i> · √<i>x</i> · (ln <i>x</i>)² for some fixed number <i>C</i>. What has actually been proved so far is much weaker: the gap is known to be smaller than <i>x</i>, but not smaller than any fixed root of <i>x</i>.</p>
+<p>How far does the staircase stray from the line? If primes were placed by fair coin flips with the right density, the error up to \(x\) would be about \(\sqrt{x}\) in size. The Riemann Hypothesis is equivalent to saying the primes do essentially that well:</p>
+<p class="note">The Riemann Hypothesis is true exactly when the gap between \(\psi(x)\) and \(x\) is never more than about \(\sqrt{x}\). Precisely: the gap is at most \(C \cdot \sqrt{x} \cdot (\ln x)^{2}\) for some fixed number \(C\). What has actually been proved so far is much weaker: the gap is known to be smaller than \(x\), but not smaller than any fixed root of \(x\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.3 <small>the error, measured in units of √x</small></div>
   <div class="lg"><span><i style="background:var(--s1)"></i>(ψ(x) − x) / √x</span></div>
   <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Error of psi divided by square root of x, up to 20000"></svg><div class="tip" hidden></div></div></div>
-  <figcaption>The gap divided by √<i>x</i>. If the Riemann Hypothesis is true this stays in a narrow band forever (apart from the slowly growing (ln <i>x</i>)² allowance). From 10 up to 20,000 it stays inside ±1.</figcaption>
+  <figcaption>The gap divided by \(\sqrt{x}\). If the Riemann Hypothesis is true this stays in a narrow band forever (apart from the slowly growing \((\ln x)^{2}\) allowance). From 10 up to 20,000 it stays inside \(\pm 1\).</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, look for a place past the first few primes where π(<i>x</i>) is above li(<i>x</i>). You will not find one: a crossing is known to exist, but it lies beyond 10<sup>19</sup>.</li>
-    <li>In Lab @@n@@.2, set the slider to about 30 and compare the jump at 25 with the jump at 27. The jump at 25 is ln 5 ≈ 1.61, because 25 = 5². The jump at 27 is ln 3 ≈ 1.10, because 27 = 3³. The height depends on which prime the number is a power of, not on how large the number is. At 26, which is not a prime power, there is no jump.</li>
+    <li>In Lab @@n@@.1, look for a place past the first few primes where \(\pi(x)\) is above \(\operatorname{li}(x)\). You will not find one: a crossing is known to exist, but it lies beyond \(10^{19}\).</li>
+    <li>In Lab @@n@@.2, set the slider to about 30 and compare the jump at 25 with the jump at 27. The jump at 25 is \(\ln 5 \approx 1.61\), because \(25 = 5^{2}\). The jump at 27 is \(\ln 3 \approx 1.10\), because \(27 = 3^{3}\). The height depends on which prime the number is a power of, not on how large the number is. At 26, which is not a prime power, there is no jump.</li>
     <li>In Lab @@n@@.3, hover near 110 to 130. The long flat run of the staircase (no primes from 113 to 127) shows up as a steady slide downward.</li>
   </ul>
 </div>
@@ -50,22 +50,22 @@
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Compute <i>ψ</i>(10) by hand.<details><summary>Solution</summary><p>The prime powers up to 10 are 2, 3, 4, 5, 7, 8, 9. The weights are ln 2 three times (for 2, 4, 8), ln 3 twice (for 3, 9), ln 5 and ln 7. The total is ln(2³ · 3² · 5 · 7) = ln 2520 ≈ 7.83.</p></details></li>
-    <li>Show that <i>ψ</i>(<i>x</i>) is the logarithm of the least common multiple of 1, 2, …, ⌊<i>x</i>⌋.<details><summary>Solution</summary><p>The least common multiple contains each prime <i>p</i> to the highest power <i>p<sup>k</sup></i> ≤ <i>x</i>. Its logarithm is therefore <i>k</i> · ln <i>p</i> summed over primes, and <i>ψ</i> adds ln <i>p</i> once for each of <i>p</i>, <i>p</i>², …, <i>p<sup>k</sup></i>, which is the same total. Exercise 1 is the case lcm(1, …, 10) = 2520.</p></details></li>
-    <li>Use Gauss's density 1 / ln <i>x</i> to estimate how many primes lie between 1,000,000 and 1,001,000.<details><summary>Solution</summary><p>ln 1,000,000 ≈ 13.8, so about one number in 13.8 is prime there: roughly 1000 / 13.8 ≈ 72 primes.</p></details></li>
+    <li>Compute \(\psi(10)\) by hand.<details><summary>Solution</summary><p>The prime powers up to 10 are 2, 3, 4, 5, 7, 8, 9. The weights are \(\ln 2\) three times (for 2, 4, 8), \(\ln 3\) twice (for 3, 9), \(\ln 5\) and \(\ln 7\). The total is \(\ln(2^{3} \cdot 3^{2} \cdot 5 \cdot 7) = \ln 2520 \approx 7.83\).</p></details></li>
+    <li>Show that \(\psi(x)\) is the logarithm of the least common multiple of \(1, 2, \dots, \lfloor x\rfloor\).<details><summary>Solution</summary><p>The least common multiple contains each prime \(p\) to the highest power \(p^{k} \le x\). Its logarithm is therefore \(k \cdot \ln p\) summed over primes, and \(\psi\) adds \(\ln p\) once for each of \(p, p^{2}, \dots, p^{k}\), which is the same total. Exercise 1 is the case \(\operatorname{lcm}(1, \dots, 10) = 2520\).</p></details></li>
+    <li>Use Gauss's density \(1/\ln x\) to estimate how many primes lie between 1,000,000 and 1,001,000.<details><summary>Solution</summary><p>\(\ln 1{,}000{,}000 \approx 13.8\), so about one number in 13.8 is prime there: roughly \(1000/13.8 \approx 72\) primes.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-primes">
-  <li data-a="2"><p>Why does <i>ψ</i> give a prime <i>p</i> the weight ln <i>p</i> instead of counting it as 1?</p>
-    <ul><li>So that the sum is always a whole number</li><li>Near <i>x</i> about one number in ln <i>x</i> is prime, so weights of ln <i>p</i> make the total grow like <i>x</i> itself</li><li>Because large primes matter less than small ones</li><li>So that the sum converges</li></ul>
-    <p class="why">The weight cancels the thinning-out of the primes. The comparison function for <i>ψ</i> is then simply <i>x</i>, where for <i>π</i> it is the integral li(<i>x</i>). Note the weight makes large primes count <em>more</em>.</p></li>
-  <li data-a="3"><p>The prime number theorem says <i>ψ</i>(<i>x</i>) is "close to" <i>x</i>. Which reading is correct?</p>
-    <ul><li><i>ψ</i>(<i>x</i>) − <i>x</i> stays below some fixed number</li><li><i>ψ</i>(<i>x</i>) − <i>x</i> eventually becomes 0</li><li>The ratio <i>ψ</i>(<i>x</i>)/<i>x</i> tends to 1, while the difference can still grow</li></ul>
-    <p class="why">The theorem controls the error only relative to <i>x</i>. The difference <i>ψ</i>(<i>x</i>) − <i>x</i> is unbounded; how fast it can grow is exactly what the Riemann Hypothesis is about.</p></li>
+  <li data-a="2"><p>Why does \(\psi\) give a prime \(p\) the weight \(\ln p\) instead of counting it as 1?</p>
+    <ul><li>So that the sum is always a whole number</li><li>Near \(x\) about one number in \(\ln x\) is prime, so weights of \(\ln p\) make the total grow like \(x\) itself</li><li>Because large primes matter less than small ones</li><li>So that the sum converges</li></ul>
+    <p class="why">The weight cancels the thinning-out of the primes. The comparison function for \(\psi\) is then simply \(x\), where for \(\pi\) it is the integral \(\operatorname{li}(x)\). Note the weight makes large primes count <em>more</em>.</p></li>
+  <li data-a="3"><p>The prime number theorem says \(\psi(x)\) is "close to" \(x\). Which reading is correct?</p>
+    <ul><li>\(\psi(x) - x\) stays below some fixed number</li><li>\(\psi(x) - x\) eventually becomes 0</li><li>The ratio \(\psi(x)/x\) tends to 1, while the difference can still grow</li></ul>
+    <p class="why">The theorem controls the error only relative to \(x\). The difference \(\psi(x) - x\) is unbounded; how fast it can grow is exactly what the Riemann Hypothesis is about.</p></li>
   <li data-a="1"><p>There are 78,498 primes below one million. Without computing, how many would you expect between one million and two million?</p>
-    <ul><li>Somewhat fewer, because the density 1/ln <i>x</i> keeps falling slowly</li><li>The same number, because the stretch has the same length</li><li>About half as many</li><li>More, because the numbers are larger</li></ul>
+    <ul><li>Somewhat fewer, because the density \(1/\ln x\) keeps falling slowly</li><li>The same number, because the stretch has the same length</li><li>About half as many</li><li>More, because the numbers are larger</li></ul>
     <p class="why">The density falls from about 1/13.8 at one million to 1/14.5 at two million. The true count is 70,435, about 10% fewer.</p></li>
 </ol>
 

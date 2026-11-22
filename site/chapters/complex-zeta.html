@@ -1,23 +1,23 @@
 <h1>Complex inputs</h1>
-<p class="lede">Riemann's step was to let <i>s</i> be a complex number. This chapter says why he did it, what 1/<i>n<sup>s</sup></i> means when <i>s</i> is complex, and why the sum still converges when the real part of <i>s</i> is greater than 1.</p>
+<p class="lede">Riemann's step was to let \(s\) be a complex number. This chapter says why he did it, what \(1/n^{s}\) means when \(s\) is complex, and why the sum still converges when the real part of \(s\) is greater than 1.</p>
 
-<h2>Why Riemann wanted complex <i>s</i></h2>
-<p>In 1859 Riemann wrote one short paper on number theory, "On the Number of Primes Less Than a Given Magnitude". Gauss had an approximation for the number of primes up to <i>x</i> (chapter @@ch:primes@@). Riemann wanted an exact formula.</p>
-<p>The link between <i>ζ</i> and the primes at the end of chapter @@ch:zeta@@ can be written as an integral:</p>
+<h2>Why Riemann wanted complex \(s\)</h2>
+<p>In 1859 Riemann wrote one short paper on number theory, "On the Number of Primes Less Than a Given Magnitude". Gauss had an approximation for the number of primes up to \(x\) (chapter @@ch:primes@@). Riemann wanted an exact formula.</p>
+<p>The link between \(\zeta\) and the primes at the end of chapter @@ch:zeta@@ can be written as an integral:</p>
 <p class="note">$$-\frac{\zeta^{\prime}(s)}{\zeta(s)} \;=\; s\int_{1}^{\infty} \psi(x)\, x^{-s-1}\, dx$$</p>
-<p>This gives a function of <i>s</i> in terms of the prime-counting function <i>ψ</i>. Riemann wanted the reverse: <i>ψ</i> in terms of <i>ζ</i>. The integral is a transform of the same kind as the Fourier and Laplace transforms, and the formula that inverts such a transform is an integral over <em>complex</em> values of <i>s</i>. So to solve for the primes, <i>ζ</i> has to be understood as a function of a complex variable. Riemann was the leading expert of his time on such functions, and he carried the inversion through.</p>
+<p>This gives a function of \(s\) in terms of the prime-counting function \(\psi\). Riemann wanted the reverse: \(\psi\) in terms of \(\zeta\). The integral is a transform of the same kind as the Fourier and Laplace transforms, and the formula that inverts such a transform is an integral over <em>complex</em> values of \(s\). So to solve for the primes, \(\zeta\) has to be understood as a function of a complex variable. Riemann was the leading expert of his time on such functions, and he carried the inversion through.</p>
 
 <h2>Complex numbers in three facts</h2>
 <ul>
-  <li>A complex number <i>z</i> = <i>a</i> + <i>bi</i> is a point (<i>a</i>, <i>b</i>) in the plane, or the arrow from the origin to that point. <i>a</i> is its real part and <i>b</i> its imaginary part.</li>
-  <li>Its absolute value |<i>z</i>| = √(<i>a</i>² + <i>b</i>²) is the length of the arrow. <i>z</i> = 0 only when both parts are 0.</li>
-  <li>Euler's formula: e<sup><i>iθ</i></sup> = cos <i>θ</i> + <i>i</i> sin <i>θ</i>. This is the point on the unit circle at angle <i>θ</i>. Multiplying a number by e<sup><i>iθ</i></sup> rotates its arrow by the angle <i>θ</i> without changing its length.</li>
+  <li>A complex number \(z = a + bi\) is a point \((a, b)\) in the plane, or the arrow from the origin to that point. \(a\) is its real part and \(b\) its imaginary part.</li>
+  <li>Its absolute value \(|z| = \sqrt{a^{2} + b^{2}}\) is the length of the arrow. \(z = 0\) only when both parts are 0.</li>
+  <li>Euler's formula: \(e^{i\theta} = \cos \theta + i \sin \theta\). This is the point on the unit circle at angle \(\theta\). Multiplying a number by \(e^{i\theta}\) rotates its arrow by the angle \(\theta\) without changing its length.</li>
 </ul>
 
-<h2>What 1/<i>n<sup>s</sup></i> means</h2>
-<p>Write <i>s</i> = <i>σ</i> + <i>it</i>, with <i>σ</i> the real part and <i>t</i> the imaginary part. Since <i>n</i> = e<sup>ln <i>n</i></sup>,</p>
-<p class="note">$$n^{-s} \;=\; e^{-s\ln n} \;=\; n^{-\sigma}\cdot e^{-it\ln n}$$ This is an arrow of length <i>n</i><sup>−<i>σ</i></sup>, at the angle −<i>t</i> ln <i>n</i>.</p>
-<p>The real part <i>σ</i> sets the length, exactly as for real <i>s</i>. The imaginary part <i>t</i> does not change the length at all. It only turns the arrow, and it turns the arrow for a large <i>n</i> further than the arrow for a small <i>n</i>.</p>
+<h2>What \(1/n^{s}\) means</h2>
+<p>Write \(s = \sigma + it\), with \(\sigma\) the real part and \(t\) the imaginary part. Since \(n = e^{\ln n}\),</p>
+<p class="note">$$n^{-s} \;=\; e^{-s\ln n} \;=\; n^{-\sigma}\cdot e^{-it\ln n}$$ This is an arrow of length \(n^{-\sigma}\), at the angle \(-t \ln n\).</p>
+<p>The real part \(\sigma\) sets the length, exactly as for real \(s\). The imaginary part \(t\) does not change the length at all. It only turns the arrow, and it turns the arrow for a large \(n\) further than the arrow for a small \(n\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>one term, n<sup>−s</sup>, as an arrow</small></div>
@@ -29,13 +29,13 @@
   <div class="lg"><span><i style="background:var(--s2)"></i>the arrow n<sup>−s</sup></span><span><i style="background:var(--rule)"></i>the unit circle</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="The complex number n to the minus s drawn as an arrow in the plane"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Horizontal axis: real part. Vertical axis: imaginary part. Moving <i>σ</i> changes only the length. Moving <i>t</i> only rotates the arrow, clockwise, at a speed proportional to ln <i>n</i>. For <i>n</i> = 1 nothing moves: 1<sup>−<i>s</i></sup> = 1.</figcaption>
+  <figcaption>Horizontal axis: real part. Vertical axis: imaginary part. Moving \(\sigma\) changes only the length. Moving \(t\) only rotates the arrow, clockwise, at a speed proportional to \(\ln n\). For \(n = 1\) nothing moves: \(1^{-s} = 1\).</figcaption>
 </figure>
 
 <h2>Adding the arrows</h2>
-<p>For complex <i>s</i> the definition is the same sum, <i>ζ</i>(<i>s</i>) = Σ <i>n</i><sup>−<i>s</i></sup>. Complex numbers are added by placing the arrows head to tail. The sum of the first <i>N</i> terms is where the chain of <i>N</i> arrows ends.</p>
-<p>The total length of the chain is Σ <i>n</i><sup>−<i>σ</i></sup>, which is the real sum of chapter @@ch:zeta@@ and is finite when <i>σ</i> &gt; 1. A chain of finite total length must close in on a single point. So:</p>
-<p class="note">For every complex <i>s</i> with real part <i>σ</i> &gt; 1, the sum converges, and its value <i>ζ</i>(<i>s</i>) is a complex number. Euler's product also holds there, so <i>ζ</i>(<i>s</i>) ≠ 0 for <i>σ</i> &gt; 1.</p>
+<p>For complex \(s\) the definition is the same sum, \(\zeta(s) = \sum n^{-s}\). Complex numbers are added by placing the arrows head to tail. The sum of the first \(N\) terms is where the chain of \(N\) arrows ends.</p>
+<p>The total length of the chain is \(\sum n^{-\sigma}\), which is the real sum of chapter @@ch:zeta@@ and is finite when \(\sigma \gt 1\). A chain of finite total length must close in on a single point. So:</p>
+<p class="note">For every complex \(s\) with real part \(\sigma \gt 1\), the sum converges, and its value \(\zeta(s)\) is a complex number. Euler's product also holds there, so \(\zeta(s) \ne 0\) for \(\sigma \gt 1\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.2 <small>the first N arrows of ζ(s), placed head to tail</small></div>
@@ -47,38 +47,38 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>the chain of arrows</span><span>○ where the chain has got to</span><span>● ζ(s)</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the zeta series in the complex plane"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>The chain starts at the origin with the arrow for <i>n</i> = 1, which is always 1. Later arrows are shorter and turned further, so the chain spirals in toward the solid dot.</figcaption>
+  <figcaption>The chain starts at the origin with the arrow for \(n = 1\), which is always 1. Later arrows are shorter and turned further, so the chain spirals in toward the solid dot.</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, set <i>n</i> = 2 and raise <i>t</i> slowly from 0. The arrow completes one full turn when <i>t</i> ln 2 = 2π, at <i>t</i> ≈ 9.06.</li>
-    <li>Keep <i>t</i> fixed and step <i>n</i> through 2, 3, 4, 5. Each arrow is a little shorter and turned a little further.</li>
-    <li>In Lab @@n@@.2, set <i>t</i> = 0. All the arrows point to the right and the chain is the real sum of chapter @@ch:zeta@@.</li>
-    <li>Lower <i>σ</i> toward 1.05 with <i>t</i> = 8. The spiral takes many more arrows to tighten, and the open circle stays visibly away from the dot.</li>
+    <li>In Lab @@n@@.1, set \(n = 2\) and raise \(t\) slowly from 0. The arrow completes one full turn when \(t \ln 2 = 2\pi\), at \(t \approx 9.06\).</li>
+    <li>Keep \(t\) fixed and step \(n\) through 2, 3, 4, 5. Each arrow is a little shorter and turned a little further.</li>
+    <li>In Lab @@n@@.2, set \(t = 0\). All the arrows point to the right and the chain is the real sum of chapter @@ch:zeta@@.</li>
+    <li>Lower \(\sigma\) toward 1.05 with \(t = 8\). The spiral takes many more arrows to tighten, and the open circle stays visibly away from the dot.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Compute 2<sup>−<i>s</i></sup> for <i>s</i> = 1 + <i>i</i>π/ln 2.<details><summary>Solution</summary><p>The length is 2<sup>−1</sup> = ½ and the angle is −<i>t</i> ln 2 = −π, a half turn. So 2<sup>−<i>s</i></sup> = ½ · e<sup>−<i>i</i>π</sup> = −½.</p></details></li>
-    <li>Show that |<i>n</i><sup>−<i>s</i></sup>| = <i>n</i><sup>−<i>σ</i></sup>, whatever <i>t</i> is.<details><summary>Solution</summary><p><i>n</i><sup>−<i>s</i></sup> = <i>n</i><sup>−<i>σ</i></sup> · e<sup>−<i>it</i> ln <i>n</i></sup>, and |e<sup><i>iθ</i></sup>| = √(cos² <i>θ</i> + sin² <i>θ</i>) = 1 for every real <i>θ</i>.</p></details></li>
-    <li>The chain for <i>s</i> = 2 + 5<i>i</i> has what total length?<details><summary>Solution</summary><p>The lengths are <i>n</i><sup>−2</sup>, so the total is <i>ζ</i>(2) = π²/6 ≈ 1.645. The chain ends at <i>ζ</i>(2 + 5<i>i</i>), which is at most that far from the origin, since a chain cannot end further away than its own length.</p></details></li>
+    <li>Compute \(2^{-s}\) for \(s = 1 + i\pi/\ln 2\).<details><summary>Solution</summary><p>The length is \(2^{-1} = \tfrac12\) and the angle is \(-t \ln 2 = -\pi\), a half turn. So \(2^{-s} = \tfrac12 \cdot e^{-i\pi} = -\tfrac12\).</p></details></li>
+    <li>Show that \(|n^{-s}| = n^{-\sigma}\), whatever \(t\) is.<details><summary>Solution</summary><p>\(n^{-s} = n^{-\sigma} \cdot e^{-it \ln n}\), and \(|e^{i\theta}| = \sqrt{\cos^{2} \theta + \sin^{2} \theta} = 1\) for every real \(\theta\).</p></details></li>
+    <li>The chain for \(s = 2 + 5i\) has what total length?<details><summary>Solution</summary><p>The lengths are \(n^{-2}\), so the total is \(\zeta(2) = \pi^{2}/6 \approx 1.645\). The chain ends at \(\zeta(2 + 5i)\), which is at most that far from the origin, since a chain cannot end further away than its own length.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-complex-zeta">
-  <li data-a="3"><p>In <i>s</i> = <i>σ</i> + <i>it</i>, what does changing <i>t</i> do to the term <i>n</i><sup>−<i>s</i></sup>?</p>
-    <ul><li>It changes the length of the arrow</li><li>Nothing</li><li>It rotates the arrow without changing its length, and rotates arrows with larger <i>n</i> faster</li></ul>
-    <p class="why">The angle is −<i>t</i> ln <i>n</i> and the length is <i>n</i><sup>−<i>σ</i></sup>. All the difference between real and complex <i>s</i> is in how the arrows are turned relative to each other.</p></li>
-  <li data-a="1"><p>Why does the sum converge for every <i>t</i> once <i>σ</i> &gt; 1?</p>
-    <ul><li>The chain of arrows has finite total length Σ <i>n</i><sup>−<i>σ</i></sup>, and turning the arrows cannot make it longer</li><li>Because the arrows cancel each other</li><li>Because <i>t</i> is small</li></ul>
-    <p class="why">Convergence here does not depend on cancellation. When <i>σ</i> ≤ 1 the total length is infinite, and whether the chain settles then depends entirely on the turning.</p></li>
-  <li data-a="2"><p>Why did Riemann need complex <i>s</i> at all, when the primes and the sum are real?</p>
-    <ul><li>Because primes are complex numbers</li><li>−<i>ζ</i>′/<i>ζ</i> is an integral transform of the prime-counting function, and the formula that inverts such a transform integrates over complex <i>s</i></li><li>To make the sum converge faster</li></ul>
+  <li data-a="3"><p>In \(s = \sigma + it\), what does changing \(t\) do to the term \(n^{-s}\)?</p>
+    <ul><li>It changes the length of the arrow</li><li>Nothing</li><li>It rotates the arrow without changing its length, and rotates arrows with larger \(n\) faster</li></ul>
+    <p class="why">The angle is \(-t \ln n\) and the length is \(n^{-\sigma}\). All the difference between real and complex \(s\) is in how the arrows are turned relative to each other.</p></li>
+  <li data-a="1"><p>Why does the sum converge for every \(t\) once \(\sigma \gt 1\)?</p>
+    <ul><li>The chain of arrows has finite total length \(\sum n^{-\sigma}\), and turning the arrows cannot make it longer</li><li>Because the arrows cancel each other</li><li>Because \(t\) is small</li></ul>
+    <p class="why">Convergence here does not depend on cancellation. When \(\sigma \le 1\) the total length is infinite, and whether the chain settles then depends entirely on the turning.</p></li>
+  <li data-a="2"><p>Why did Riemann need complex \(s\) at all, when the primes and the sum are real?</p>
+    <ul><li>Because primes are complex numbers</li><li>\(-\zeta'/\zeta\) is an integral transform of the prime-counting function, and the formula that inverts such a transform integrates over complex \(s\)</li><li>To make the sum converge faster</li></ul>
     <p class="why">The same happens with the Fourier transform: a real signal is recovered from its transform by integrating over frequencies with complex exponentials.</p></li>
 </ol>
 
