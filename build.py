@@ -22,6 +22,8 @@ PARTS = [
         ("primes", "Counting primes"),
         ("zeta", "The zeta function"),
         ("complex-zeta", "Complex inputs"),
+        ("taylor", "Taylor series"),
+        ("analytic", "Analytic functions"),
         ("continuation", "Analytic continuation"),
         ("zeta-zeros", "The zeros and the Riemann Hypothesis"),
         ("waves", "Zeros as waves"),

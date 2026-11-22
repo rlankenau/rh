@@ -1,0 +1,129 @@
+<h1>Taylor series</h1>
+<p class="lede">A Taylor series rebuilds a function from its derivatives at a single point. This chapter recalls how the polynomials are formed, what each term contributes, and what it means for the series to converge.</p>
+
+<h2>Approximating a function by polynomials</h2>
+<p>Near a point \(c\), called the center, a function that has derivatives of every order can be approximated by polynomials built from its derivatives at \(c\):</p>
+<p class="note">$$T_N(x) \;=\; f(c) \;+\; f'(c)\,(x-c) \;+\; \frac{f''(c)}{2!}\,(x-c)^{2} \;+\; \cdots \;+\; \frac{f^{(N)}(c)}{N!}\,(x-c)^{N}$$</p>
+<p>Each term fixes one more thing about the graph at the point \(c\):</p>
+<ul>
+  <li>\(T_0(x) = f(c)\) is a horizontal line. It has the right <b>value</b> at \(c\) and nothing else.</li>
+  <li>\(T_1(x) = f(c) + f'(c)\,(x-c)\) is the tangent line. It has the right value and the right <b>slope</b>.</li>
+  <li>\(T_2\) adds the term \(\dfrac{f''(c)}{2}(x-c)^{2}\) and becomes a parabola. It has the right value, slope and <b>bending</b> (second derivative).</li>
+  <li>\(T_3\) adds a cubic term that makes the third derivative right as well, and so on.</li>
+</ul>
+<p>Adding a term never spoils what the earlier terms achieved, because \((x-c)^{k}\) and its first \(k-1\) derivatives are all 0 at \(c\). The factor \(1/k!\) is there because the \(k\)-th derivative of \((x-c)^{k}\) is \(k!\). So \(T_N\) is the one polynomial of degree \(N\) whose value and first \(N\) derivatives at \(c\) agree with those of \(f\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the Taylor polynomials of sin x about a center c</small></div>
+  <div class="ctl">
+    <label>Center c <input type="range" id="cP" min="-3" max="3" step="0.01" value="1"><output id="cPv"></output></label>
+    <label>Degree N <input type="range" id="nP" min="0" max="9" step="1" value="1"><output id="nPv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sin x</span><span><i style="background:var(--s2)"></i>the Taylor polynomial of degree N</span><span><b style="color:var(--ok)">●</b> the point (c, sin c)</span></div>
+  <div class="tw"><div class="plot" id="pP"><svg role="img" aria-label="The sine curve and its Taylor polynomial about a movable center"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rP"></div>
+  <figcaption>Degree 0 is a horizontal line through the green point. Degree 1 is the tangent line there. Degree 2 bends the same way as the curve. Each further degree hugs the curve over a wider range around \(c\). The readout shows the polynomial with its coefficients worked out.</figcaption>
+</figure>
+
+<p>The Taylor series of \(f\) about \(c\) is what you get by never stopping:</p>
+<p class="note">$$\sum_{k\ge 0} \frac{f^{(k)}(c)}{k!}\,(x-c)^{k}$$</p>
+<h2>Three series to know</h2>
+<p>All three are about the center \(c = 0\):</p>
+<ul>
+  <li>\(e^{x} = 1 + x + \dfrac{x^{2}}{2!} + \dfrac{x^{3}}{3!} + \cdots\). Every derivative of \(e^{x}\) is \(e^{x}\), which is 1 at 0. The series converges to \(e^{x}\) for every \(x\).</li>
+  <li>\(\sin x = x - \dfrac{x^{3}}{3!} + \dfrac{x^{5}}{5!} - \cdots\). The derivatives at 0 cycle through 0, 1, 0, −1. The series converges to \(\sin x\) for every \(x\).</li>
+  <li>\(\dfrac{1}{1-x} = 1 + x + x^{2} + x^{3} + \cdots\). The \(k\)-th derivative at 0 is \(k!\), so every coefficient is 1. The geometric series <em>is</em> the Taylor series of \(1/(1-x)\), and it converges only for \(|x| \lt 1\).</li>
+</ul>
+<p>A Taylor series always converges on an interval that is symmetric about the center, \(|x - c| \lt R\), and diverges for \(|x - c| \gt R\). The number \(R\) is the radius of convergence. It can be infinite, as for \(e^{x}\), or finite, as for \(1/(1-x)\), where \(R = 1\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>a function and its Taylor polynomials about the center 0</small></div>
+  <div class="ctl">
+    <label>Function <select id="fT">
+      <option value="0">e^x</option><option value="1">sin x</option><option value="2">1/(1 − x)</option><option value="3">ln(1 + x)</option><option value="4" selected>1/(1 + x²)</option><option value="5">0 for x ≤ 0, e^(−1/x) for x &gt; 0</option>
+    </select></label>
+    <label>Degree N <input type="range" id="nT" min="0" max="30" step="1" value="8"><output id="nTv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the function</span><span><i style="background:var(--s2)"></i>its Taylor polynomial of degree N</span><span>dashed lines: the ends of the interval of convergence, when it is finite</span></div>
+  <div class="tw"><div class="plot" id="pT"><svg role="img" aria-label="A function and its Taylor polynomial about zero"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rT"></div>
+  <figcaption>For \(e^{x}\) and \(\sin x\), raising the degree makes the polynomial match the function on a wider and wider range. For the next three it matches only between the dashed lines, however high the degree. For the last function the polynomial is 0 at every degree.</figcaption>
+</figure>
+
+<h2>Three things a Taylor series can do</h2>
+<ul>
+  <li><b>Converge to the function everywhere.</b> \(e^{x}\) and \(\sin x\).</li>
+  <li><b>Converge to the function on an interval and diverge outside it.</b> \(1/(1-x)\), \(\ln(1+x)\) and \(1/(1+x^{2})\), each with \(R = 1\) about the center 0.</li>
+  <li><b>Converge, but to the wrong function.</b> Let \(g(x) = 0\) for \(x \le 0\) and \(g(x) = e^{-1/x}\) for \(x \gt 0\). Every derivative of \(g\) at 0 equals 0, so its Taylor series about 0 is \(0 + 0\cdot x + 0\cdot x^{2} + \cdots\). That series converges for every \(x\), to 0, which is not \(g(x)\) when \(x \gt 0\). It is the last function in Lab @@n@@.2.</li>
+</ul>
+<p>So "has a Taylor series" and "equals its Taylor series" are different properties. Chapter @@ch:analytic@@ is about the functions that have the second one.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab @@n@@.1, step the degree through 0, 1, 2, 3 and watch what each new term fixes. Then slide the center: the polynomial follows the green point along the curve.</li>
+    <li>In Lab @@n@@.2, choose \(1/(1+x^{2})\) and raise the degree. Between −1 and 1 the fit improves; outside it gets worse, although the function itself is perfectly smooth there.</li>
+    <li>Choose the last function. No Taylor polynomial about 0 ever leaves the axis, while the function rises for \(x \gt 0\).</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Compute the Taylor polynomial \(T_3\) of \(\ln(1+x)\) about 0 and use it to estimate \(\ln 1.1\).<details><summary>Solution</summary><p>The derivatives of \(\ln(1+x)\) at 0 are 1, −1, 2, so $$T_3(x) \;=\; x - \frac{x^{2}}{2} + \frac{x^{3}}{3}$$ At \(x = 0.1\) this is \(0.1 - 0.005 + 0.000333 = 0.095333\). The true value is \(\ln 1.1 = 0.095310\).</p></details></li>
+    <li>Find the Taylor polynomial \(T_2\) of \(\sqrt{x}\) about \(c = 4\) and use it to estimate \(\sqrt{4.1}\).<details><summary>Solution</summary><p>\(f(4) = 2\). \(f^{\prime}(x) = \dfrac{1}{2\sqrt{x}}\) gives \(f^{\prime}(4) = \tfrac14\), and \(f^{\prime\prime}(x) = -\dfrac{1}{4x^{3/2}}\) gives \(f^{\prime\prime}(4) = -\tfrac{1}{32}\). So $$T_2(x) \;=\; 2 + \frac{x-4}{4} - \frac{(x-4)^{2}}{64}$$ At \(x = 4.1\) this is \(2 + 0.025 - 0.000156 = 2.024844\). The true value is \(2.024846\).</p></details></li>
+    <li>Why is the coefficient of \(x^{3}\) in the series for \(\sin x\) equal to \(-\tfrac16\)?<details><summary>Solution</summary><p>The third derivative of \(\sin x\) is \(-\cos x\), which is \(-1\) at 0. The coefficient is \(\dfrac{f^{\prime\prime\prime}(0)}{3!} = \dfrac{-1}{6}\).</p></details></li>
+  </ol>
+</div>
+
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-taylor">
+  <li data-a="2"><p>\(T_1\) is the tangent line at \(c\). What does \(T_2\) add to it?</p>
+    <ul><li>A better value at \(c\)</li><li>A term that makes the second derivative at \(c\) right, so the polynomial bends the way the graph does</li><li>A correction far from \(c\) only</li></ul>
+    <p class="why">The term \(\tfrac{f^{\prime\prime}(c)}{2}(x-c)^{2}\) is 0 at \(c\) and has slope 0 there, so it leaves the value and the slope alone and fixes only the bending.</p></li>
+  <li data-a="3"><p>In Lab @@n@@.2 the polynomial of degree 8 for \(1/(1+x^{2})\) fits well between −1 and 1 and badly outside. Will a higher degree fix the fit at \(x = 2\)?</p>
+    <ul><li>Yes, eventually</li><li>Yes, but only for even degrees</li><li>No. \(x = 2\) is outside the radius of convergence, where adding terms makes the polynomial worse</li></ul>
+    <p class="why">Inside \(|x| \lt R\) the polynomials converge to the function. Outside, the terms grow, and no degree helps.</p></li>
+  <li data-a="1"><p>Every derivative of \(g\) at 0 is 0. What is its Taylor series about 0, and does it equal \(g\)?</p>
+    <ul><li>The zero series. It converges everywhere but equals \(g\) only for \(x \le 0\)</li><li>It has no Taylor series</li><li>The zero series, and so \(g\) is 0 everywhere</li></ul>
+    <p class="why">A Taylor series is built only from the derivatives at the center. It cannot know what the function does away from that point unless the function is analytic.</p></li>
+</ol>
+
+<script>
+(function () {
+  var L = Lab, LO = -2, HI = 5;
+  function clip(y) { return y > LO && y < HI ? y : NaN; }
+  var FACT = [1]; for (var q = 1; q <= 30; q++) FACT.push(FACT[q - 1] * q);
+  var FN = [
+    { f: Math.exp, a: function (k) { return 1 / FACT[k]; }, R: Infinity, ok: 'for every x' },
+    { f: Math.sin, a: function (k) { return k % 2 ? (k % 4 === 1 ? 1 : -1) / FACT[k] : 0; }, R: Infinity, ok: 'for every x' },
+    { f: function (x) { return 1 / (1 - x); }, a: function () { return 1; }, R: 1, ok: 'for −1 &lt; x &lt; 1' },
+    { f: function (x) { return x > -1 ? Math.log(1 + x) : NaN; }, a: function (k) { return k ? (k % 2 ? 1 : -1) / k : 0; }, R: 1, ok: 'for −1 &lt; x ≤ 1' },
+    { f: function (x) { return 1 / (1 + x * x); }, a: function (k) { return k % 2 ? 0 : (k % 4 ? -1 : 1); }, R: 1, ok: 'for −1 &lt; x &lt; 1' },
+    { f: function (x) { return x > 0 ? Math.exp(-1 / x) : 0; }, a: function () { return 0; }, R: Infinity, ok: 'only for x ≤ 0: the series converges everywhere, to 0, which is not the function for x &gt; 0' }
+  ];
+  L.bind({ cP: function (v) { return v.toFixed(2); }, nP: null }, function (v) {
+    var c = v.cP, N = v.nP, d = [Math.sin(c), Math.cos(c), -Math.sin(c), -Math.cos(c)], k;
+    function T(x) { var s = 0; for (k = N; k >= 0; k--) s = s * (x - c) + d[k % 4] / FACT[k]; return s; }
+    L.plot('pP', { x: [-6, 6], y: [-2.5, 2.5], xt: [-6, -4, -2, 0, 2, 4, 6], yt: [-2, -1, 0, 1, 2], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: [{ x: c, t: 'c' }], marks: [{ x: c, y: Math.sin(c), c: 'var(--ok)' }],
+      series: [{ n: 'sin x', c: 'var(--s1)', pts: L.sample(-6, 6, 400, false, Math.sin) },
+        { n: 'T', c: 'var(--s2)', pts: L.sample(-6, 6, 600, false, function (x) { var y = T(x); return y > -2.5 && y < 2.5 ? y : NaN; }) }] });
+    var txt = '', shown = Math.min(N, 3), cs = Math.abs(c).toFixed(2), xc = Math.abs(c) < 0.005 ? 'x' : '(x ' + (c < 0 ? '+ ' : '− ') + cs + ')';
+    for (k = 0; k <= shown; k++) {
+      var a = d[k % 4] / FACT[k];
+      txt += (k ? (a < 0 ? ' − ' : ' + ') : (a < 0 ? '−' : '')) + Math.abs(a).toFixed(3) + (k ? ' ' + xc + (k > 1 ? '<sup>' + k + '</sup>' : '') : '');
+    }
+    document.getElementById('rP').innerHTML = '<span>T<sub>' + N + '</sub>(x) = <b>' + txt + (N > shown ? ' + …' : '') + '</b></span><span>value at c: <b>' + d[0].toFixed(3) + '</b>, slope at c: <b>' + d[1].toFixed(3) + '</b></span>';
+  });
+  L.bind({ fT: null, nT: null }, function (v) {
+    var F = FN[v.fT], N = v.nT;
+    function poly(x) { var s = 0, k; for (k = N; k >= 0; k--) s = s * x + F.a(k); return s; }
+    L.plot('pT', { x: [-4, 4], y: [LO, HI], xt: [-4, -3, -2, -1, 0, 1, 2, 3, 4], yt: [-2, 0, 2, 4], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: isFinite(F.R) ? [{ x: -F.R, t: '−1' }, { x: F.R, t: '1' }] : [],
+      series: [{ n: 'function', c: 'var(--s1)', pts: L.sample(-4, 4, 800, false, function (x) { return clip(F.f(x)); }) },
+        { n: 'Taylor polynomial', c: 'var(--s2)', pts: L.sample(-4, 4, 800, false, function (x) { return clip(poly(x)); }) }] });
+    document.getElementById('rT').innerHTML = '<span>radius of convergence: <b>' + (isFinite(F.R) ? F.R : 'infinite') + '</b></span><span>the series equals the function <b>' + F.ok + '</b></span>';
+  });
+})();
+</script>
