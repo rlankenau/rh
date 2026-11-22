@@ -1,16 +1,16 @@
 <h1>The smoothed error</h1>
-<p class="lede">The Alpöge formalization does not bound <i>ψ</i>(<i>x</i>) − <i>x</i>. It bounds <code>Gz</code>(<i>x</i>), the error term of a weighted integral of <i>ψ</i>. Integrating divides the term for each zero by one more factor of size |<i>ρ</i>|, and that makes the sum over zeros converge absolutely.</p>
+<p class="lede">The Alpöge formalization does not bound \(\psi(x) - x\). It bounds <code>Gz</code>\((x)\), the error term of a weighted integral of \(\psi\). Integrating divides the term for each zero by one more factor of size \(|\rho|\), and that makes the sum over zeros converge absolutely.</p>
 <p class="note">Based on the definitions of <code>Sz</code>, <code>Gz</code> and <code>ZetaLandau</code> in the Lean source, which I read as statements. The curves are computed here from those definitions and from the first 30 zeros; the match between the two is a check I ran, not part of the formalization.</p>
 
 <h2>The definition</h2>
 <pre>def Sz (x : ℝ) : ℝ := ∑ n ∈ Finset.Icc 1 ⌊x⌋₊, Λ n * (x / n - 1)
 def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConstant) * x</pre>
-<p><code>Sz</code> weights each <i>n</i> ≤ <i>x</i> by Λ(<i>n</i>)·(<i>x</i>/<i>n</i> − 1) instead of Λ(<i>n</i>). Equivalently, <code>Sz</code>(<i>x</i>) = <i>x</i> · ∫<sub>1</sub><sup><i>x</i></sup> <i>ψ</i>(<i>t</i>)/<i>t</i>² d<i>t</i>. The weight is 0 at <i>n</i> = <i>x</i>, so <code>Sz</code> is continuous: it has corners at the prime powers but no jumps. Its main term is <i>x</i> ln <i>x</i> − (1 + <i>γ</i><sub>Euler</sub>)<i>x</i>, and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
+<p><code>Sz</code> weights each \(n \le x\) by \(\Lambda(n)\cdot(x/n - 1)\) instead of \(\Lambda(n)\). Equivalently, <code>Sz</code>\(\displaystyle (x) = x \cdot \int_{1}^{x} \frac{\psi(t)}{t^{2}}\,dt\). The weight is 0 at \(n = x\), so <code>Sz</code> is continuous: it has corners at the prime powers but no jumps. Its main term is \(x \ln x - (1 + \gamma_{\text{Euler}})x\), and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
 
 <h2>What the zeros do to it</h2>
-<p>Apply the same integral to the explicit formula of chapter @@ch:waves@@, term by term. The term <i>x<sup>ρ</sup></i>/<i>ρ</i> becomes <i>x<sup>ρ</sup></i>/(<i>ρ</i>(<i>ρ</i> − 1)):</p>
+<p>Apply the same integral to the explicit formula of chapter @@ch:waves@@, term by term. The term \(x^{\rho}/\rho\) becomes \(\dfrac{x^{\rho}}{\rho(\rho-1)}\):</p>
 <p class="note">$$\mathrm{Gz}(x) \;=\; \ln 2\pi \;-\; \sum_{\rho} \frac{x^{\rho}}{\rho\,(\rho-1)} \;-\; (\text{tiny terms})$$ If every zero is on the line this is $$\ln 2\pi \;+\; \sqrt{x}\,\sum_{\gamma>0} \frac{2\cos(\gamma \ln x)}{\tfrac14+\gamma^{2}}$$</p>
-<p>The term for the zero at height <i>γ</i> now has amplitude about 2/<i>γ</i>² in units of √<i>x</i>, where in chapter @@ch:waves@@ it was 2/<i>γ</i>. The sum of 2/(¼ + <i>γ</i>²) over all zeros converges, to 2 + <i>γ</i><sub>Euler</sub> − ln 4π ≈ 0.0462. So if the Riemann Hypothesis holds, |Gz(<i>x</i>) − ln 2π| ≤ 0.0462 · √<i>x</i> up to the tiny terms, and the first few zeros account for most of the sum.</p>
+<p>The term for the zero at height \(\gamma\) now has amplitude about \(2/\gamma^{2}\) in units of \(\sqrt{x}\), where in chapter @@ch:waves@@ it was \(2/\gamma\). The sum of \(2/(\tfrac14 + \gamma^{2})\) over all zeros converges, to \(2 + \gamma_{\text{Euler}} - \ln 4\pi \approx 0.0462\). So if the Riemann Hypothesis holds, \(\lvert \mathrm{Gz}(x) - \ln 2\pi \rvert \le 0.0462 \cdot \sqrt{x}\) up to the tiny terms, and the first few zeros account for most of the sum.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the smoothed error in units of √x, and its reconstruction from zeros</small></div>
@@ -22,8 +22,8 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
 </figure>
 
 <h2>Why one side is enough</h2>
-<p>The formalization proves an upper bound on <code>Gz</code> and no lower bound. A theorem of Landau makes that sufficient. The Lean statement <code>ZetaLandau</code> covers either sign: if <i>s</i><sub>0</sub>·Gz(<i>x</i>) ≤ <i>C</i>·<i>x<sup>θ</sup></i> for all large <i>x</i>, with <i>s</i><sub>0</sub> = +1 or −1, then <i>ζ</i> has no zeros with real part greater than <i>θ</i>.</p>
-<p>A zero with real part <i>β</i> &gt; <i>θ</i> contributes an oscillating term of amplitude proportional to <i>x<sup>β</sup></i>, which takes both signs. On its own that term exceeds <i>C</i>·<i>x<sup>θ</sup></i> in both directions for large <i>x</i>. Landau's theorem shows that the terms from the other zeros cannot cancel it.</p>
+<p>The formalization proves an upper bound on <code>Gz</code> and no lower bound. A theorem of Landau makes that sufficient. The Lean statement <code>ZetaLandau</code> covers either sign: if \(s_{0}\cdot \mathrm{Gz}(x) \le C\cdot x^{\theta}\) for all large \(x\), with \(s_{0} = +1\) or \(-1\), then \(\zeta\) has no zeros with real part greater than \(\theta\).</p>
+<p>A zero with real part \(\beta \gt \theta\) contributes an oscillating term of amplitude proportional to \(x^{\beta}\), which takes both signs. On its own that term exceeds \(C\cdot x^{\theta}\) in both directions for large \(x\). Landau's theorem shows that the terms from the other zeros cannot cancel it.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.2 <small>add a hypothetical off-line zero and watch the ceiling break</small></div>
@@ -34,43 +34,43 @@ def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConst
   <div class="lg"><span><i style="background:var(--s1)"></i>true scaled error</span><span><i style="background:var(--s2)"></i>with zeros added at β ± iγ and (1 − β) ± iγ</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Smoothed error with a hypothetical zero off the critical line"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>The dashed lines are the band ±0.0462 that RH allows. The added zeros are invented for the experiment. With <i>β</i> = ½ they add one more bounded term. With any <i>β</i> &gt; ½ the curve eventually leaves the band through the top <em>and</em> the bottom, so an upper bound alone excludes them.</figcaption>
+  <figcaption>The dashed lines are the band \(\pm 0.0462\) that RH allows. The added zeros are invented for the experiment. With \(\beta = \tfrac12\) they add one more bounded term. With any \(\beta \gt \tfrac12\) the curve eventually leaves the band through the top <em>and</em> the bottom, so an upper bound alone excludes them.</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
     <li>In Lab @@n@@.1, set K = 0 and then 1. The first zero alone has amplitude 0.0100 out of the total 0.0462.</li>
-    <li>In Lab @@n@@.2, set <i>β</i> = 0.55. The curve stays inside the band all the way to 20,000: the extra factor <i>x</i><sup>0.05</sup> is only 1.6 at <i>x</i> = 20,000. Then try 0.7.</li>
-    <li>Raise <i>γ</i> with <i>β</i> fixed. The amplitude falls like 1/<i>γ</i>², so the curve leaves the band later. An off-line zero at very large height would not be visible in any range of <i>x</i> a computer can reach.</li>
+    <li>In Lab @@n@@.2, set \(\beta = 0.55\). The curve stays inside the band all the way to 20,000: the extra factor \(x^{0.05}\) is only 1.6 at \(x = 20{,}000\). Then try 0.7.</li>
+    <li>Raise \(\gamma\) with \(\beta\) fixed. The amplitude falls like \(1/\gamma^{2}\), so the curve leaves the band later. An off-line zero at very large height would not be visible in any range of \(x\) a computer can reach.</li>
   </ul>
 </div>
 
 <div class="box">
   <h3>Where this sits in the proof</h3>
-  <p>The formalization bounds a combined error <code>Gm</code>: a sum of versions of <code>Gz</code> twisted by Dirichlet characters, so that all Dirichlet L-functions are covered at once. It needs the bound only on a sparse sequence of values of <i>x</i>. The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
+  <p>The formalization bounds a combined error <code>Gm</code>: a sum of versions of <code>Gz</code> twisted by Dirichlet characters, so that all Dirichlet L-functions are covered at once. It needs the bound only on a sparse sequence of values of \(x\). The <a href="../alpoge/">map of the whole proof</a> has the statements.</p>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Compute <code>Sz</code>(4).<details><summary>Solution</summary><p>The prime powers up to 4 are 2, 3, 4. Sz(4) = ln 2 · (4/2 − 1) + ln 3 · (4/3 − 1) + ln 2 · (4/4 − 1) = ln 2 + (ln 3)/3 + 0 ≈ 1.059. The prime power 4 itself contributes nothing yet.</p></details></li>
-    <li>Verify that \(\displaystyle \mathrm{Sz}(x) = x\int_{1}^{x}\frac{\psi(t)}{t^{2}}\,dt\).<details><summary>Solution</summary><p><i>ψ</i>(<i>t</i>) is the sum of Λ(<i>n</i>) over <i>n</i> ≤ <i>t</i>, so each <i>n</i> ≤ <i>x</i> contributes $$\Lambda(n)\int_{n}^{x}\frac{dt}{t^{2}} \;=\; \Lambda(n)\left(\frac{1}{n}-\frac{1}{x}\right)$$ Multiplying by <i>x</i> gives Λ(<i>n</i>) · (<i>x</i>/<i>n</i> − 1).</p></details></li>
-    <li>Apply the same integral to a single term <i>t<sup>ρ</sup></i>/<i>ρ</i> of the explicit formula.<details><summary>Solution</summary><p>$$x\int_{1}^{x}\frac{t^{\,\rho-2}}{\rho}\,dt \;=\; x\cdot\frac{x^{\,\rho-1}-1}{\rho\,(\rho-1)} \;=\; \frac{x^{\rho}-x}{\rho\,(\rho-1)}$$ The <i>x<sup>ρ</sup></i> part is the oscillating term; the parts proportional to <i>x</i> are absorbed into the main term.</p></details></li>
+    <li>Compute <code>Sz</code>(4).<details><summary>Solution</summary><p>The prime powers up to 4 are 2, 3, 4. $$\mathrm{Sz}(4) \;=\; \ln 2\cdot\left(\frac{4}{2}-1\right) + \ln 3\cdot\left(\frac{4}{3}-1\right) + \ln 2\cdot\left(\frac{4}{4}-1\right) \;=\; \ln 2 + \frac{\ln 3}{3} + 0 \;\approx\; 1.059$$ The prime power 4 itself contributes nothing yet.</p></details></li>
+    <li>Verify that \(\displaystyle \mathrm{Sz}(x) = x\int_{1}^{x}\frac{\psi(t)}{t^{2}}\,dt\).<details><summary>Solution</summary><p>\(\psi(t)\) is the sum of \(\Lambda(n)\) over \(n \le t\), so each \(n \le x\) contributes $$\Lambda(n)\int_{n}^{x}\frac{dt}{t^{2}} \;=\; \Lambda(n)\left(\frac{1}{n}-\frac{1}{x}\right)$$ Multiplying by \(x\) gives \(\Lambda(n)\cdot(x/n - 1)\).</p></details></li>
+    <li>Apply the same integral to a single term \(t^{\rho}/\rho\) of the explicit formula.<details><summary>Solution</summary><p>$$x\int_{1}^{x}\frac{t^{\,\rho-2}}{\rho}\,dt \;=\; x\cdot\frac{x^{\,\rho-1}-1}{\rho\,(\rho-1)} \;=\; \frac{x^{\rho}-x}{\rho\,(\rho-1)}$$ The \(x^{\rho}\) part is the oscillating term; the parts proportional to \(x\) are absorbed into the main term.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-a1-smoothed-error">
-  <li data-a="2"><p>What is gained by bounding the smoothed error Gz and not <i>ψ</i>(<i>x</i>) − <i>x</i> directly?</p>
-    <ul><li>Gz has no contribution from zeros</li><li>The amplitudes become about 2/<i>γ</i>², whose sum over all zeros is finite, so the sum over zeros converges absolutely</li><li>Gz is easier to compute by hand</li></ul>
-    <p class="why">For <i>ψ</i> the amplitudes are about 2/<i>γ</i>, and their sum diverges; the explicit formula then converges only through cancellation. The smoothed version can be bounded term by term.</p></li>
-  <li data-a="1"><p>Why is <code>Sz</code> continuous although <i>ψ</i> jumps at every prime power?</p>
-    <ul><li>Because the weight <i>x</i>/<i>n</i> − 1 is 0 at the moment <i>n</i> enters the sum</li><li>Because primes are ignored</li><li>Because it is rounded</li></ul>
-    <p class="why">A new term appears at <i>x</i> = <i>n</i> with weight 0 and then grows linearly. That gives a corner, not a jump. Integrating a function with jumps always does this.</p></li>
-  <li data-a="3"><p>In Lab @@n@@.2 a hypothetical zero with <i>β</i> = 0.55 stays inside the band up to 20,000. What does that say about testing the hypothesis by computing with primes?</p>
-    <ul><li>It confirms the hypothesis</li><li>That such a zero is impossible</li><li>A zero close to the line would be invisible in any range of <i>x</i> one can compute, so such tests cannot settle it</li></ul>
-    <p class="why">The excess factor is <i>x</i><sup>0.05</sup>, only 1.6 at 20,000, and a zero at great height has a tiny amplitude as well. Evidence from primes in a finite range is not a proof.</p></li>
+  <li data-a="2"><p>What is gained by bounding the smoothed error Gz and not \(\psi(x) - x\) directly?</p>
+    <ul><li>Gz has no contribution from zeros</li><li>The amplitudes become about \(2/\gamma^{2}\), whose sum over all zeros is finite, so the sum over zeros converges absolutely</li><li>Gz is easier to compute by hand</li></ul>
+    <p class="why">For \(\psi\) the amplitudes are about \(2/\gamma\), and their sum diverges; the explicit formula then converges only through cancellation. The smoothed version can be bounded term by term.</p></li>
+  <li data-a="1"><p>Why is <code>Sz</code> continuous although \(\psi\) jumps at every prime power?</p>
+    <ul><li>Because the weight \(x/n - 1\) is 0 at the moment \(n\) enters the sum</li><li>Because primes are ignored</li><li>Because it is rounded</li></ul>
+    <p class="why">A new term appears at \(x = n\) with weight 0 and then grows linearly. That gives a corner, not a jump. Integrating a function with jumps always does this.</p></li>
+  <li data-a="3"><p>In Lab @@n@@.2 a hypothetical zero with \(\beta = 0.55\) stays inside the band up to 20,000. What does that say about testing the hypothesis by computing with primes?</p>
+    <ul><li>It confirms the hypothesis</li><li>That such a zero is impossible</li><li>A zero close to the line would be invisible in any range of \(x\) one can compute, so such tests cannot settle it</li></ul>
+    <p class="why">The excess factor is \(x^{0.05}\), only 1.6 at 20,000, and a zero at great height has a tiny amplitude as well. Evidence from primes in a finite range is not a proof.</p></li>
 </ol>
 
 <script>

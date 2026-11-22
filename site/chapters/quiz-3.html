@@ -4,14 +4,14 @@
 
 <ol class="quiz" data-quiz="part-3">
   <li data-a="2"><p>Why does the formalization work with a smoothed prime sum?</p>
-    <ul><li>Smoothing removes the zeros</li><li>After smoothing the amplitudes are about 2/<i>γ</i>², so the sum over all zeros converges absolutely and can be bounded</li><li>Lean cannot handle step functions</li></ul>
-    <p class="why">The total of all amplitudes is about 0.0462 in units of √<i>x</i>. Without smoothing the corresponding sum diverges.</p></li>
-  <li data-a="3"><p>Under the hypothesis the scaled error stays within ±0.0462. What is that number?</p>
+    <ul><li>Smoothing removes the zeros</li><li>After smoothing the amplitudes are about \(2/\gamma^{2}\), so the sum over all zeros converges absolutely and can be bounded</li><li>Lean cannot handle step functions</li></ul>
+    <p class="why">The total of all amplitudes is about 0.0462 in units of \(\sqrt{x}\). Without smoothing the corresponding sum diverges.</p></li>
+  <li data-a="3"><p>Under the hypothesis the scaled error stays within \(\pm 0.0462\). What is that number?</p>
     <ul><li>A measured maximum from the lab</li><li>The first zero's amplitude</li><li>The sum of the amplitudes of all the waves: the worst case, in which every wave peaks at once</li></ul>
-    <p class="why">It is Σ 2/(¼ + <i>γ</i>²) over all zeros, equal to 2 + <i>γ</i><sub>Euler</sub> − ln 4π. The first zero alone contributes 0.0100.</p></li>
+    <p class="why">It is \(\sum 2/(\tfrac14 + \gamma^{2})\) over all zeros, equal to \(2 + \gamma_{\text{Euler}} - \ln 4\pi\). The first zero alone contributes 0.0100.</p></li>
   <li data-a="1"><p>The formalization proves only an upper bound. Why does that exclude zeros off the line?</p>
-    <ul><li>An off-line zero adds an oscillation of size <i>x<sup>β</sup></i> that takes both signs, and by Landau's theorem the other terms cannot cancel it, so it would break an upper bound too</li><li>Because the error is always negative</li><li>It does not; a lower bound is still needed</li></ul>
-    <p class="why">Lab @@ch:a1-smoothed-error@@.2 shows it: with <i>β</i> &gt; ½ the curve leaves the band through the top and the bottom.</p></li>
+    <ul><li>An off-line zero adds an oscillation of size \(x^{\beta}\) that takes both signs, and by Landau's theorem the other terms cannot cancel it, so it would break an upper bound too</li><li>Because the error is always negative</li><li>It does not; a lower bound is still needed</li></ul>
+    <p class="why">Lab @@ch:a1-smoothed-error@@.2 shows it: with \(\beta \gt \tfrac12\) the curve leaves the band through the top and the bottom.</p></li>
   <li data-a="2"><p>A Lean development compiles, but one lemma that the main theorem uses is closed with <code>sorry</code>. What has been proved?</p>
     <ul><li>The main theorem</li><li>The main theorem on the assumption that the lemma is true</li><li>Nothing at all</li></ul>
     <p class="why">Lean accepts <code>sorry</code> in place of any proof and records the dependency. Everything else is checked; the result is conditional until the gap is filled. This is the situation of <code>trace_identity</code> in this site's own Lean experiments.</p></li>

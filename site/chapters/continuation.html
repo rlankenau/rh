@@ -1,10 +1,10 @@
 <h1>Analytic continuation</h1>
-<p class="lede">The sum for <i>ζ</i>(<i>s</i>) has a value only when the real part of <i>s</i> is greater than 1. Analytic continuation is the fact that the function it defines there extends, in exactly one way, to the rest of the complex plane. This chapter explains what that means using a function from calculus, and then does it for <i>ζ</i>.</p>
+<p class="lede">The sum for \(\zeta(s)\) has a value only when the real part of \(s\) is greater than 1. Analytic continuation is the fact that the function it defines there extends, in exactly one way, to the rest of the complex plane. This chapter explains what that means using a function from calculus, and then does it for \(\zeta\).</p>
 
 <h2>A function and a formula are different things</h2>
-<p>The geometric series 1 + <i>x</i> + <i>x</i>² + <i>x</i>³ + … converges for −1 &lt; <i>x</i> &lt; 1, and there its sum is 1/(1 − <i>x</i>). Outside that interval the series has no sum: at <i>x</i> = 2 its terms are 1, 2, 4, 8, …</p>
-<p>The expression 1/(1 − <i>x</i>) has no such restriction. It is defined for every <i>x</i> except 1: at <i>x</i> = 2 it is −1, at <i>x</i> = −3 it is ¼.</p>
-<p>So there is one function, 1/(1 − <i>x</i>), and the series is a way of computing it that works only on part of its domain. The series failing at <i>x</i> = 2 says something about the series, not about the function.</p>
+<p>The geometric series \(1 + x + x^{2} + x^{3} + \cdots\) converges for \(-1 \lt x \lt 1\), and there its sum is \(1/(1-x)\). Outside that interval the series has no sum: at \(x = 2\) its terms are 1, 2, 4, 8, …</p>
+<p>The expression \(1/(1-x)\) has no such restriction. It is defined for every \(x\) except 1: at \(x = 2\) it is −1, at \(x = -3\) it is \(\tfrac14\).</p>
+<p>So there is one function, \(1/(1-x)\), and the series is a way of computing it that works only on part of its domain. The series failing at \(x = 2\) says something about the series, not about the function.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the geometric series and the function 1/(1 − x)</small></div>
@@ -19,7 +19,7 @@
 </figure>
 
 <h2>Taylor series: a refresher</h2>
-<p>Near a point <i>c</i>, called the center, a function that has derivatives of every order can be approximated by polynomials built from its derivatives at <i>c</i>:</p>
+<p>Near a point \(c\), called the center, a function that has derivatives of every order can be approximated by polynomials built from its derivatives at \(c\):</p>
 <p class="note">$$T_N(x) \;=\; f(c) \;+\; f'(c)\,(x-c) \;+\; \frac{f''(c)}{2!}\,(x-c)^{2} \;+\; \cdots \;+\; \frac{f^{(N)}(c)}{N!}\,(x-c)^{N}$$</p>
 <p>\(T_N\) is the one polynomial of degree \(N\) that has the same value and the same first \(N\) derivatives as \(f\) at \(c\). \(T_1\) is the tangent line. The Taylor series of \(f\) about \(c\) is what you get by never stopping:</p>
 <p class="note">$$\sum_{k\ge 0} \frac{f^{(k)}(c)}{k!}\,(x-c)^{k}$$</p>
@@ -71,10 +71,10 @@
 <p>That extension, when it exists, is the analytic continuation. It is not a convention or a choice of how to assign a value to a divergent sum. It is the same function, seen on more of its domain.</p>
 
 <h2>Extending step by step</h2>
-<p>The Taylor series of 1/(1 − <i>x</i>) about another center <i>c</i> is</p>
-<p class="note">$$\frac{1}{1-x} \;=\; \sum_{k\ge 0} \frac{(x-c)^{k}}{(1-c)^{k+1}}$$ This is valid when |<i>x</i> − <i>c</i>| &lt; |1 − <i>c</i>|.</p>
-<p>The series converges out to the distance from the center to the bad point <i>x</i> = 1, and no further. Starting from the original series (center 0, valid on (−1, 1)), compute the function and its derivatives at <i>c</i> = −0.9. The series about that center is valid on (−2.8, 1), which reaches points the original did not. Repeating this extends the function as far to the left as desired.</p>
-<p>On the real line this process cannot get past <i>x</i> = 1. In the complex plane it can: a chain of overlapping discs can go around the bad point, and the function on the far side is still determined.</p>
+<p>The Taylor series of \(1/(1-x)\) about another center \(c\) is</p>
+<p class="note">$$\frac{1}{1-x} \;=\; \sum_{k\ge 0} \frac{(x-c)^{k}}{(1-c)^{k+1}}$$ This is valid when \(|x - c| \lt |1 - c|\).</p>
+<p>The series converges out to the distance from the center to the bad point \(x = 1\), and no further. Starting from the original series (center 0, valid on \((-1, 1)\)), compute the function and its derivatives at \(c = -0.9\). The series about that center is valid on \((-2.8, 1)\), which reaches points the original did not. Repeating this extends the function as far to the left as desired.</p>
+<p>On the real line this process cannot get past \(x = 1\). In the complex plane it can: a chain of overlapping discs can go around the bad point, and the function on the far side is still determined.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.3 <small>the Taylor series of 1/(1 − x) about a center c</small></div>
@@ -85,14 +85,14 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>1/(1 − x)</span><span><i style="background:var(--s2)"></i>N terms of the series about c</span><span>dashed lines: the ends of the interval where the series converges</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Taylor polynomial of one over one minus x about a movable center"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>The interval of convergence is centered on <i>c</i> and always ends at <i>x</i> = 1. Moving the center to the left moves the other end twice as far.</figcaption>
+  <figcaption>The interval of convergence is centered on \(c\) and always ends at \(x = 1\). Moving the center to the left moves the other end twice as far.</figcaption>
 </figure>
 
 <h2>Continuing zeta</h2>
-<p>The same thing happens for <i>ζ</i>. Chapter @@ch:zeta@@ estimated what is left after <i>N</i> terms of the sum: about <i>N</i><sup>1 − <i>s</i></sup>/(<i>s</i> − 1). Turn that around. Take the first <i>N</i> terms and add the estimate of the rest:</p>
+<p>The same thing happens for \(\zeta\). Chapter @@ch:zeta@@ estimated what is left after \(N\) terms of the sum: about \(N^{1-s}/(s-1)\). Turn that around. Take the first \(N\) terms and add the estimate of the rest:</p>
 <p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;1+\frac{1}{2^{s}}+\dots+\frac{1}{N^{s}} \;-\; \frac{N^{1-s}}{1-s}\;\right]$$</p>
-<p>For <i>σ</i> &gt; 1 the extra term tends to 0 and this is the original sum. But the limit exists for every <i>s</i> with <i>σ</i> &gt; 0 except <i>s</i> = 1, and it is analytic there. By the rigidity above it is <em>the</em> continuation of <i>ζ</i> to the half-plane <i>σ</i> &gt; 0.</p>
-<p>In the picture of chapter @@ch:complex-zeta@@: for 0 &lt; <i>σ</i> &lt; 1 the chain of arrows does not settle. It circles in an ever wider spiral, and the term <i>N</i><sup>1 − <i>s</i></sup>/(1 − <i>s</i>) is exactly the arrow from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is <i>ζ</i>(<i>s</i>).</p>
+<p>For \(\sigma \gt 1\) the extra term tends to 0 and this is the original sum. But the limit exists for every \(s\) with \(\sigma \gt 0\) except \(s = 1\), and it is analytic there. By the rigidity above it is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
+<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of arrows does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the arrow from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.4 <small>the chain of arrows for σ ≤ 1, and the center of its spiral</small></div>
@@ -104,31 +104,31 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>the chain of arrows</span><span><i style="background:var(--s2)"></i>the chain with the correction subtracted</span><span>● ζ(s), computed independently</span></div>
   <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Partial sums of the zeta series spiralling outward, and the corrected sums converging to zeta of s"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r3"></div>
-  <figcaption>The blue chain widens forever when <i>σ</i> &lt; 1. The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last arrow, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
+  <figcaption>The blue chain widens forever when \(\sigma \lt 1\). The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last arrow, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
 </figure>
 
 <h2>The whole plane</h2>
-<p>Riemann gave two further formulas that extend <i>ζ</i> to every complex number except <i>s</i> = 1. At <i>s</i> = 1 the function has a pole: it behaves like 1/(<i>s</i> − 1), as in Lab @@ch:zeta@@.2. From here on, <i>ζ</i>(<i>s</i>) means this extended function.</p>
-<p class="note">The extended function takes the values <i>ζ</i>(0) = −½ and <i>ζ</i>(−1) = −1/12. The original sum at <i>s</i> = −1 would be 1 + 2 + 3 + 4 + …, which has no sum. The statement "1 + 2 + 3 + … = −1/12" is shorthand for <i>ζ</i>(−1) = −1/12, in the same way that "1 + 2 + 4 + 8 + … = −1" is shorthand for the value of 1/(1 − <i>x</i>) at <i>x</i> = 2.</p>
+<p>Riemann gave two further formulas that extend \(\zeta\) to every complex number except \(s = 1\). At \(s = 1\) the function has a pole: it behaves like \(1/(s-1)\), as in Lab @@ch:zeta@@.2. From here on, \(\zeta(s)\) means this extended function.</p>
+<p class="note">The extended function takes the values \(\zeta(0) = -\tfrac12\) and \(\zeta(-1) = -1/12\). The original sum at \(s = -1\) would be \(1 + 2 + 3 + 4 + \cdots\), which has no sum. The statement "\(1 + 2 + 3 + \cdots = -1/12\)" is shorthand for \(\zeta(-1) = -1/12\), in the same way that "\(1 + 2 + 4 + 8 + \cdots = -1\)" is shorthand for the value of \(1/(1-x)\) at \(x = 2\).</p>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, read values at <i>x</i> = −1. The partial sums alternate between 1 and 0 as N changes, while the function is ½.</li>
-    <li>In Lab @@n@@.2, choose 1/(1 + x²) and raise the degree. Between −1 and 1 the fit improves; outside it gets worse, although the function itself is perfectly smooth there.</li>
-    <li>Choose the last function. No Taylor polynomial about 0 ever leaves the axis, while the function rises for <i>x</i> &gt; 0.</li>
-    <li>In Lab @@n@@.3, slide the center from 0 to −3. The series now reproduces the function at <i>x</i> = −5, far outside the original interval.</li>
-    <li>In Lab @@n@@.4, set <i>σ</i> = 0.5 and <i>t</i> = 14.13. The center of the spiral is at the origin: <i>ζ</i>(<i>s</i>) = 0 there.</li>
-    <li>Raise <i>σ</i> past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
+    <li>In Lab @@n@@.1, read values at \(x = -1\). The partial sums alternate between 1 and 0 as N changes, while the function is \(\tfrac12\).</li>
+    <li>In Lab @@n@@.2, choose \(1/(1+x^{2})\) and raise the degree. Between −1 and 1 the fit improves; outside it gets worse, although the function itself is perfectly smooth there.</li>
+    <li>Choose the last function. No Taylor polynomial about 0 ever leaves the axis, while the function rises for \(x \gt 0\).</li>
+    <li>In Lab @@n@@.3, slide the center from 0 to −3. The series now reproduces the function at \(x = -5\), far outside the original interval.</li>
+    <li>In Lab @@n@@.4, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
+    <li>Raise \(\sigma\) past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Derive the Taylor series of 1/(1 − <i>x</i>) about the center <i>c</i>.<details><summary>Solution</summary><p>Write 1 − <i>x</i> = (1 − <i>c</i>) − (<i>x</i> − <i>c</i>) = (1 − <i>c</i>)(1 − <i>u</i>) with \(u = \dfrac{x-c}{1-c}\). Then $$\frac{1}{1-x} \;=\; \frac{1}{1-c}\left(1+u+u^{2}+\cdots\right)$$ valid for |<i>u</i>| &lt; 1, that is, |<i>x</i> − <i>c</i>| &lt; |1 − <i>c</i>|.</p></details></li>
-    <li>Use the formula for <i>ζ</i> with <i>N</i> = 1, and half of the last term removed, to estimate <i>ζ</i>(½).<details><summary>Solution</summary><p>1 − ½ − 1<sup>½</sup>/(1 − ½) = 1 − ½ − 2 = −1.5. The true value is −1.4604. With <i>N</i> = 10 the same recipe gives −1.4617.</p></details></li>
-    <li>The function |<i>x</i>| agrees with the function <i>x</i> on the interval (0, 1) but not at <i>x</i> = −1. Why does this not contradict the rigidity of analytic functions?<details><summary>Solution</summary><p>|<i>x</i>| is not analytic at <i>x</i> = 0: it has a corner there and no Taylor series. Rigidity is a property of analytic functions only. On any domain where |<i>x</i>| is analytic, such as <i>x</i> &gt; 0, it does equal <i>x</i>.</p></details></li>
+    <li>Derive the Taylor series of \(1/(1-x)\) about the center \(c\).<details><summary>Solution</summary><p>Write \(1 - x = (1-c) - (x-c) = (1-c)(1-u)\) with \(u = \dfrac{x-c}{1-c}\). Then $$\frac{1}{1-x} \;=\; \frac{1}{1-c}\left(1+u+u^{2}+\cdots\right)$$ valid for \(|u| \lt 1\), that is, \(|x - c| \lt |1 - c|\).</p></details></li>
+    <li>Use the formula for \(\zeta\) with \(N = 1\), and half of the last term removed, to estimate \(\zeta(\tfrac12)\).<details><summary>Solution</summary><p>\(1 - \tfrac12 - \dfrac{1^{1/2}}{1 - \tfrac12} = 1 - \tfrac12 - 2 = -1.5\). The true value is −1.4604. With \(N = 10\) the same recipe gives −1.4617.</p></details></li>
+    <li>The function \(|x|\) agrees with the function \(x\) on the interval \((0, 1)\) but not at \(x = -1\). Why does this not contradict the rigidity of analytic functions?<details><summary>Solution</summary><p>\(|x|\) is not analytic at \(x = 0\): it has a corner there and no Taylor series. Rigidity is a property of analytic functions only. On any domain where \(|x|\) is analytic, such as \(x \gt 0\), it does equal \(x\).</p></details></li>
     <li>Find the Taylor series of \(1/(1+x^{2})\) about 0 and its radius of convergence.<details><summary>Solution</summary><p>Put \(-x^{2}\) in place of \(x\) in the geometric series: $$\frac{1}{1+x^{2}} \;=\; 1 - x^{2} + x^{4} - x^{6} + \cdots$$ valid when \(|x^{2}| \lt 1\), that is, \(|x| \lt 1\). So \(R = 1\), the distance from 0 to the points \(\pm i\) where the denominator vanishes.</p></details></li>
     <li>Compute the Taylor polynomial \(T_3\) of \(\ln(1+x)\) about 0 and use it to estimate \(\ln 1.1\).<details><summary>Solution</summary><p>The derivatives of \(\ln(1+x)\) at 0 are 1, −1, 2, so $$T_3(x) \;=\; x - \frac{x^{2}}{2} + \frac{x^{3}}{3}$$ At \(x = 0.1\) this is \(0.1 - 0.005 + 0.000333 = 0.095333\). The true value is \(\ln 1.1 = 0.095310\).</p></details></li>
   </ol>
@@ -136,15 +136,15 @@
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-continuation">
-  <li data-a="2"><p>The geometric series diverges at <i>x</i> = 2, and 1/(1 − <i>x</i>) equals −1 there. Which statement is right?</p>
-    <ul><li>The series secretly adds up to −1</li><li>The function has the value −1; the series is a way of computing the function that works only for |<i>x</i>| &lt; 1</li><li>The function is undefined at 2</li></ul>
-    <p class="why">The sum 1 + 2 + 4 + … has no value. The function it came from does, and analytic continuation is about the function.</p></li>
+  <li data-a="2"><p>The geometric series diverges at \(x = 2\), and \(1/(1-x)\) equals −1 there. Which statement is right?</p>
+    <ul><li>The series secretly adds up to −1</li><li>The function has the value −1; the series is a way of computing the function that works only for \(|x| \lt 1\)</li><li>The function is undefined at 2</li></ul>
+    <p class="why">The sum \(1 + 2 + 4 + \cdots\) has no value. The function it came from does, and analytic continuation is about the function.</p></li>
   <li data-a="1"><p>Why is there only one analytic continuation?</p>
     <ul><li>Two analytic functions that agree on any interval agree wherever both are defined</li><li>Mathematicians agreed on a convention</li><li>Because the series converges everywhere</li></ul>
-    <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of <i>ζ</i>(<i>s</i>) where the sum diverges.</p></li>
-  <li data-a="3"><p>In Lab @@n@@.4 with <i>σ</i> = 0.5 the chain of arrows never settles. What is <i>ζ</i>(<i>s</i>) in that picture?</p>
+    <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of \(\zeta(s)\) where the sum diverges.</p></li>
+  <li data-a="3"><p>In Lab @@n@@.4 with \(\sigma = 0.5\) the chain of arrows never settles. What is \(\zeta(s)\) in that picture?</p>
     <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
-    <p class="why">The chain's end is the center plus the arrow <i>N</i><sup>1 − <i>s</i></sup>/(1 − <i>s</i>), whose length grows like <i>N</i><sup>1 − <i>σ</i></sup>. Removing that arrow leaves the center, which is the continued function.</p></li>
+    <p class="why">The chain's end is the center plus the arrow \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that arrow leaves the center, which is the continued function.</p></li>
   <li data-a="2"><p>The function \(1/(1+x^{2})\) is smooth at every real \(x\). Why does its Taylor series about 0 stop converging at \(x = \pm 1\)?</p>
     <ul><li>Because the function is not analytic at \(x = 1\)</li><li>The denominator is 0 at \(x = \pm i\), and a Taylor series converges only out to the nearest bad point in the complex plane</li><li>Because the series was computed incorrectly</li></ul>
     <p class="why">The function is analytic at every real point, including \(\pm 1\). The obstruction is invisible on the real line. This is the main reason the natural setting for analytic functions is the complex plane.</p></li>
