@@ -1,28 +1,28 @@
 <h1>Reading off the zeros</h1>
-<p class="lede">The last step puts one particular family of test functions into the trace formula. The prime side becomes the logarithmic derivative of <i>ζ</i>, each zero in the strip becomes a simple fraction, and the location of the poles on the two sides is compared.</p>
-<p class="note">Based on §1.4.2–1.4.5 of the paper (pages 28–30), read in full, specialized by me to <i>ζ</i>. Signs follow my own derivation from chapter @@ch:trace-formula@@.</p>
+<p class="lede">The last step puts one particular family of test functions into the trace formula. The prime side becomes the logarithmic derivative of \(\zeta\), each zero in the strip becomes a simple fraction, and the location of the poles on the two sides is compared.</p>
+<p class="note">Based on §1.4.2–1.4.5 of the paper (pages 28–30), read in full, specialized by me to \(\zeta\). Signs follow my own derivation from chapter @@ch:trace-formula@@.</p>
 
 <h2>The test functions</h2>
-<p>For a complex number <i>z</i>, let <i>φ<sub>z</sub></i>(<i>t</i>) = <i>t</i><sup>−<i>z</i></sup> for <i>t</i> &gt; 1 and 0 for <i>t</i> ≤ 1. Two computations:</p>
+<p>For a complex number \(z\), let \(\varphi_z(t) = t^{-z}\) for \(t \gt 1\) and 0 for \(t \le 1\). Two computations:</p>
 <ul>
-  <li><b>Its transform.</b> \(\displaystyle M(\varphi_z)(w) = \int_{1}^{\infty} t^{\,w-z-1}\,dt = \frac{1}{z-w}\), valid when Re <i>z</i> &gt; Re <i>w</i>.</li>
+  <li><b>Its transform.</b> \(\displaystyle M(\varphi_z)(w) = \int_{1}^{\infty} t^{\,w-z-1}\,dt = \frac{1}{z-w}\), valid when \(\operatorname{Re} z \gt \operatorname{Re} w\).</li>
   <li><b>The prime sum.</b> \(\displaystyle \sum_{n} \frac{\Lambda(n)\,\varphi_z(n)}{\sqrt{n}} = \sum_{n} \frac{\Lambda(n)}{n^{\,z+1/2}} = -\frac{\zeta^{\prime}(z+\tfrac12)}{\zeta(z+\tfrac12)}\), by chapter @@ch:zeta@@.</li>
 </ul>
-<p><i>φ<sub>z</sub></i> is not smooth at <i>t</i> = 1 and is not zero for large <i>t</i>, so it is not itself an allowed test function. The paper approximates it by allowed ones and passes to the limit; that takes most of the three pages.</p>
+<p>\(\varphi_z\) is not smooth at \(t = 1\) and is not zero for large \(t\), so it is not itself an allowed test function. The paper approximates it by allowed ones and passes to the limit; that takes most of the three pages.</p>
 
-<h2>The formula for <i>φ<sub>z</sub></i></h2>
-<p>Insert <i>φ<sub>z</sub></i> into Masullo's formula of chapter @@ch:trace-formula@@ with strip half-width <i>a</i>:</p>
-<p class="note">$$-\frac{\zeta^{\prime}(z+\tfrac12)}{\zeta(z+\tfrac12)} \;+\; G(z) \;=\; \frac{1}{z-\tfrac12} \;+\; \frac{1}{z+\tfrac12} \;-\; \sum_{\rho} \frac{N(\rho)}{z-(\rho-\tfrac12)}$$ The sum is over the zeros with |Re <i>ρ</i> − ½| &lt; <i>a</i>.</p>
-<p>G(<i>z</i>) is the term from the real numbers. It is an explicit function with no poles in the half-plane Re <i>z</i> &gt; 0.</p>
+<h2>The formula for \(\varphi_z\)</h2>
+<p>Insert \(\varphi_z\) into Masullo's formula of chapter @@ch:trace-formula@@ with strip half-width \(a\):</p>
+<p class="note">$$-\frac{\zeta^{\prime}(z+\tfrac12)}{\zeta(z+\tfrac12)} \;+\; G(z) \;=\; \frac{1}{z-\tfrac12} \;+\; \frac{1}{z+\tfrac12} \;-\; \sum_{\rho} \frac{N(\rho)}{z-(\rho-\tfrac12)}$$ The sum is over the zeros with \(\lvert\operatorname{Re}\rho - \tfrac12\rvert \lt a\).</p>
+<p>\(G(z)\) is the term from the real numbers. It is an explicit function with no poles in the half-plane \(\operatorname{Re} z \gt 0\).</p>
 
 <h2>Where the poles are</h2>
-<p>Consider the half-plane Re <i>z</i> &gt; <i>a</i>, and ask where each term can have a pole.</p>
+<p>Consider the half-plane \(\operatorname{Re} z \gt a\), and ask where each term can have a pole.</p>
 <ul>
-  <li>Each fraction 1/(<i>z</i> − (<i>ρ</i> − ½)) has its pole at <i>z</i> = <i>ρ</i> − ½, whose real part is less than <i>a</i>. The paper shows that the whole sum is holomorphic for Re <i>z</i> &gt; <i>a</i>.</li>
-  <li>1/(<i>z</i> − ½) has a pole at <i>z</i> = ½, which corresponds to the pole of <i>ζ</i> at <i>s</i> = 1. The term 1/(<i>z</i> + ½) and G(<i>z</i>) have none there.</li>
-  <li>So <i>ζ</i>′(<i>z</i> + ½)/<i>ζ</i>(<i>z</i> + ½) has no pole with Re <i>z</i> &gt; <i>a</i> other than <i>z</i> = ½.</li>
+  <li>Each fraction \(\dfrac{1}{z - (\rho - \tfrac12)}\) has its pole at \(z = \rho - \tfrac12\), whose real part is less than \(a\). The paper shows that the whole sum is holomorphic for \(\operatorname{Re} z \gt a\).</li>
+  <li>\(\dfrac{1}{z - \tfrac12}\) has a pole at \(z = \tfrac12\), which corresponds to the pole of \(\zeta\) at \(s = 1\). The term \(\dfrac{1}{z + \tfrac12}\) and \(G(z)\) have none there.</li>
+  <li>So \(\dfrac{\zeta'(z + \tfrac12)}{\zeta(z + \tfrac12)}\) has no pole with \(\operatorname{Re} z \gt a\) other than \(z = \tfrac12\).</li>
 </ul>
-<p>But <i>ζ</i>′/<i>ζ</i> has a pole at every zero of <i>ζ</i>. A zero <i>ρ</i> with Re <i>ρ</i> &gt; ½ + <i>a</i> would give a pole at <i>z</i> = <i>ρ</i> − ½ with Re <i>z</i> &gt; <i>a</i>. So there is no such zero. Since <i>a</i> &gt; 0 was arbitrary, there is no zero with Re <i>ρ</i> &gt; ½, and by the functional equation none with Re <i>ρ</i> &lt; ½. That is the Riemann Hypothesis. The paper remarks that this argument does not use Weil's positivity criterion, the route that earlier trace-formula approaches aimed for.</p>
+<p>But \(\zeta'/\zeta\) has a pole at every zero of \(\zeta\). A zero \(\rho\) with \(\operatorname{Re}\rho \gt \tfrac12 + a\) would give a pole at \(z = \rho - \tfrac12\) with \(\operatorname{Re} z \gt a\). So there is no such zero. Since \(a \gt 0\) was arbitrary, there is no zero with \(\operatorname{Re}\rho \gt \tfrac12\), and by the functional equation none with \(\operatorname{Re}\rho \lt \tfrac12\). That is the Riemann Hypothesis. The paper remarks that this argument does not use Weil's positivity criterion, the route that earlier trace-formula approaches aimed for.</p>
 
 <figure>
   <svg viewBox="0 0 560 250" role="img" aria-label="The z-plane: a strip of half-width a around the imaginary axis, and the half-plane to its right in which the formula shows there are no poles" style="max-width:100%;height:auto;color:var(--ink)">
@@ -43,11 +43,11 @@
     <line x1="155" y1="56" x2="262" y2="52" stroke="currentColor" stroke-width="1" opacity=".5"/>
     <text x="270" y="244" font-size="12" fill="currentColor" text-anchor="middle">the z-plane, where z = s − ½</text>
   </svg>
-  <figcaption>In the variable <i>z</i> = <i>s</i> − ½ the critical line is the imaginary axis. The formula shows that <i>ζ</i>′/<i>ζ</i> has no poles in the shaded half-plane except the one from the pole of <i>ζ</i>. A zero to the right of the strip (open circle) would be such a pole.</figcaption>
+  <figcaption>In the variable \(z = s - \tfrac12\) the critical line is the imaginary axis. The formula shows that \(\zeta'/\zeta\) has no poles in the shaded half-plane except the one from the pole of \(\zeta\). A zero to the right of the strip (open circle) would be such a pole.</figcaption>
 </figure>
 
 <h2>What a pole looks like</h2>
-<p>Near a simple zero <i>ρ</i>, <i>ζ</i>′(<i>s</i>)/<i>ζ</i>(<i>s</i>) ≈ 1/(<i>s</i> − <i>ρ</i>). On a vertical line at distance <i>d</i> to the right of the zero, its absolute value peaks at about 1/<i>d</i>, at the height of the zero.</p>
+<p>Near a simple zero \(\rho\), \(\zeta'(s)/\zeta(s) \approx 1/(s - \rho)\). On a vertical line at distance \(d\) to the right of the zero, its absolute value peaks at about \(1/d\), at the height of the zero.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>|ζ′/ζ| on the vertical line Re z = d, that is, Re s = ½ + d</small></div>
@@ -57,45 +57,45 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>|ζ′(½ + d + iy) / ζ(½ + d + iy)|</span><span>● heights of the zeros</span><span>dashed line: 1/d</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Absolute value of the logarithmic derivative of zeta along a vertical line"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Each peak is the pole belonging to one zero on the critical line, seen from distance <i>d</i>. As <i>d</i> shrinks the peaks grow like 1/<i>d</i>. The derivative is computed by a finite difference, so values are accurate to about two decimal places.</figcaption>
+  <figcaption>Each peak is the pole belonging to one zero on the critical line, seen from distance \(d\). As \(d\) shrinks the peaks grow like \(1/d\). The derivative is computed by a finite difference, so values are accurate to about two decimal places.</figcaption>
 </figure>
 
 <h2>What would have to be checked</h2>
 <ul>
   <li>The divisor exact sequence and its completion: that the completed quotient has exactly the slots of the zeros inside the strip (chapters @@ch:m2-one-slot-per-zero@@ and @@ch:thin-strip@@).</li>
   <li>The computation of the geometric side in the completed spaces, without the classical explicit formula (chapter @@ch:circle-per-prime@@).</li>
-  <li>The limit from allowed test functions to <i>φ<sub>z</sub></i>, uniformly enough in <i>z</i> to conclude that the limit is holomorphic.</li>
+  <li>The limit from allowed test functions to \(\varphi_z\), uniformly enough in \(z\) to conclude that the limit is holomorphic.</li>
 </ul>
 <p class="note warn">By chapter @@ch:trace-formula@@ the trace formula with the restricted sum is equivalent to the hypothesis, so this last step is not where an error would hide: given the formula, the conclusion follows by the short argument above. The first two items carry the proof. Neither has been verified by anyone as of this writing, and this site has not checked them.</p>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Set <i>d</i> = 0.1, then 0.05. The first peak, at height 14.13, doubles.</li>
-    <li>Set <i>d</i> = 1. The line is Re <i>s</i> = 1.5, where the Euler product converges; the peaks have merged into a gentle ripple.</li>
+    <li>Set \(d = 0.1\), then 0.05. The first peak, at height 14.13, doubles.</li>
+    <li>Set \(d = 1\). The line is \(\operatorname{Re} s = 1.5\), where the Euler product converges; the peaks have merged into a gentle ripple.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Compute M(<i>φ<sub>z</sub></i>)(<i>w</i>) and say where the integral converges.<details><summary>Solution</summary><p>$$\int_{1}^{\infty} t^{-z}\,t^{w}\,\frac{dt}{t} \;=\; \left[\frac{t^{\,w-z}}{w-z}\right]_{1}^{\infty} \;=\; \frac{1}{z-w}$$ provided <i>t</i><sup><i>w</i> − <i>z</i></sup> → 0 as <i>t</i> → ∞, that is, Re <i>z</i> &gt; Re <i>w</i>.</p></details></li>
-    <li>Show that if <i>f</i> has a zero of multiplicity <i>N</i> at <i>ρ</i>, then <i>f</i>′/<i>f</i> has a simple pole there with residue <i>N</i>.<details><summary>Solution</summary><p>Write <i>f</i>(<i>s</i>) = (<i>s</i> − <i>ρ</i>)<sup><i>N</i></sup> <i>g</i>(<i>s</i>) with <i>g</i>(<i>ρ</i>) ≠ 0. Then <i>f</i>′/<i>f</i> = <i>N</i>/(<i>s</i> − <i>ρ</i>) + <i>g</i>′/<i>g</i>, and <i>g</i>′/<i>g</i> is holomorphic near <i>ρ</i>. This is why the multiplicity N(<i>ρ</i>) appears as the coefficient in the formula.</p></details></li>
-    <li>Suppose the formula were known only for one value, <i>a</i> = 0.2. What would it prove?<details><summary>Solution</summary><p>That <i>ζ</i> has no zero with Re <i>ρ</i> &gt; 0.7, and by the functional equation none with Re <i>ρ</i> &lt; 0.3. Any such zero-free region would already be a major result; the hypothesis itself needs every <i>a</i> &gt; 0.</p></details></li>
+    <li>Compute \(M(\varphi_z)(w)\) and say where the integral converges.<details><summary>Solution</summary><p>$$\int_{1}^{\infty} t^{-z}\,t^{w}\,\frac{dt}{t} \;=\; \left[\frac{t^{\,w-z}}{w-z}\right]_{1}^{\infty} \;=\; \frac{1}{z-w}$$ provided \(t^{w - z} \to 0\) as \(t \to \infty\), that is, \(\operatorname{Re} z \gt \operatorname{Re} w\).</p></details></li>
+    <li>Show that if \(f\) has a zero of multiplicity \(N\) at \(\rho\), then \(f'/f\) has a simple pole there with residue \(N\).<details><summary>Solution</summary><p>Write \(f(s) = (s - \rho)^{N} g(s)\) with \(g(\rho) \ne 0\). Then \(\dfrac{f'}{f} = \dfrac{N}{s - \rho} + \dfrac{g'}{g}\), and \(g'/g\) is holomorphic near \(\rho\). This is why the multiplicity \(N(\rho)\) appears as the coefficient in the formula.</p></details></li>
+    <li>Suppose the formula were known only for one value, \(a = 0.2\). What would it prove?<details><summary>Solution</summary><p>That \(\zeta\) has no zero with \(\operatorname{Re}\rho \gt 0.7\), and by the functional equation none with \(\operatorname{Re}\rho \lt 0.3\). Any such zero-free region would already be a major result; the hypothesis itself needs every \(a \gt 0\).</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-reading-off-zeros">
-  <li data-a="2"><p>Why choose the test functions <i>φ<sub>z</sub></i>(<i>t</i>) = <i>t</i><sup>−<i>z</i></sup>?</p>
-    <ul><li>They are the smoothest possible</li><li>They turn the prime sum into <i>ζ</i>′/<i>ζ</i> and each zero's term into a fraction 1/(<i>z</i> − (<i>ρ</i> − ½)), so the formula becomes a statement about poles</li><li>They vanish at the zeros</li></ul>
-    <p class="why">With them, both sides are explicit functions of <i>z</i>, and one can compare where each side is allowed to be infinite.</p></li>
-  <li data-a="1"><p>A zero on the critical line also gives a pole of <i>ζ</i>′/<i>ζ</i>. Why does it not contradict the conclusion?</p>
-    <ul><li>Its pole is at Re <i>z</i> = 0, outside the half-plane Re <i>z</i> &gt; <i>a</i> the argument is about</li><li>Zeros on the line give no poles</li><li>Its pole is canceled by G(<i>z</i>)</li></ul>
-    <p class="why">The argument says: no poles with Re <i>z</i> &gt; <i>a</i> except <i>z</i> = ½. On-line zeros sit on the imaginary axis of the <i>z</i>-plane, to the left of that region, and they do appear in the sum on the right.</p></li>
-  <li data-a="3"><p>Why must the formula hold for arbitrarily small <i>a</i>, not just for one value?</p>
-    <ul><li>For a smaller <i>a</i> the formula is easier to prove</li><li>It need not</li><li>Each <i>a</i> only excludes zeros with Re <i>ρ</i> &gt; ½ + <i>a</i>; zeros closer to the line are excluded only by letting <i>a</i> → 0</li></ul>
-    <p class="why">One fixed <i>a</i> gives a zero-free region, not the hypothesis. The claim that the construction works for every <i>a</i> &gt; 0 is essential.</p></li>
+  <li data-a="2"><p>Why choose the test functions \(\varphi_z(t) = t^{-z}\)?</p>
+    <ul><li>They are the smoothest possible</li><li>They turn the prime sum into \(\zeta'/\zeta\) and each zero's term into a fraction \(\dfrac{1}{z - (\rho - \tfrac12)}\), so the formula becomes a statement about poles</li><li>They vanish at the zeros</li></ul>
+    <p class="why">With them, both sides are explicit functions of \(z\), and one can compare where each side is allowed to be infinite.</p></li>
+  <li data-a="1"><p>A zero on the critical line also gives a pole of \(\zeta'/\zeta\). Why does it not contradict the conclusion?</p>
+    <ul><li>Its pole is at \(\operatorname{Re} z = 0\), outside the half-plane \(\operatorname{Re} z \gt a\) the argument is about</li><li>Zeros on the line give no poles</li><li>Its pole is canceled by \(G(z)\)</li></ul>
+    <p class="why">The argument says: no poles with \(\operatorname{Re} z \gt a\) except \(z = \tfrac12\). On-line zeros sit on the imaginary axis of the \(z\)-plane, to the left of that region, and they do appear in the sum on the right.</p></li>
+  <li data-a="3"><p>Why must the formula hold for arbitrarily small \(a\), not just for one value?</p>
+    <ul><li>For a smaller \(a\) the formula is easier to prove</li><li>It need not</li><li>Each \(a\) only excludes zeros with \(\operatorname{Re}\rho \gt \tfrac12 + a\); zeros closer to the line are excluded only by letting \(a \to 0\)</li></ul>
+    <p class="why">One fixed \(a\) gives a zero-free region, not the hypothesis. The claim that the construction works for every \(a \gt 0\) is essential.</p></li>
 </ol>
 
 <script>

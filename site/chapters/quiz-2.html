@@ -3,34 +3,34 @@
 <p class="note">These questions ask you to combine ideas from several chapters. Choose an answer to see whether it is right and why. Your best score is kept in this browser only.</p>
 
 <ol class="quiz" data-quiz="part-2">
-  <li data-a="2"><p>The circle example and the real case have the same structure. What plays the role of the circle's factor 1 − <i>γ</i><sup>−<i>s</i></sup>?</p>
-    <ul><li>The test function <i>φ</i></li><li>The L-function (for the lab, <i>ζ</i>(<i>s</i> + ½)): its zeros are the slots</li><li>The Mellin transform</li></ul>
-    <p class="why">On the circle one divides out multiples of 1 − <i>γ</i><sup>−<i>s</i></sup> and gets one slot per mode. In the paper one divides out θ-functions, whose transforms are multiples of the L-function, and gets one slot per zero.</p></li>
-  <li data-a="3"><p>For the circle with <i>γ</i> = 3 and a test function that is zero outside [1.2, 2.5], the trace of A(<i>φ</i>) is:</p>
-    <ul><li>ln 3 · <i>φ</i>(3)</li><li>It depends on the shape of <i>φ</i></li><li>0</li></ul>
-    <p class="why">No power of 3 lies in [1.2, 2.5], so the geometric side is 0. The eigenvalues are not individually zero; they cancel. The same mechanism later removes all but finitely many primes.</p></li>
+  <li data-a="2"><p>The circle example and the real case have the same structure. What plays the role of the circle's factor \(1 - \gamma^{-s}\)?</p>
+    <ul><li>The test function \(\varphi\)</li><li>The L-function (for the lab, \(\zeta(s + \tfrac12)\)): its zeros are the slots</li><li>The Mellin transform</li></ul>
+    <p class="why">On the circle one divides out multiples of \(1 - \gamma^{-s}\) and gets one slot per mode. In the paper one divides out \(\theta\)-functions, whose transforms are multiples of the L-function, and gets one slot per zero.</p></li>
+  <li data-a="3"><p>For the circle with \(\gamma = 3\) and a test function that is zero outside \([1.2, 2.5]\), the trace of \(A(\varphi)\) is:</p>
+    <ul><li>\(\ln 3 \cdot \varphi(3)\)</li><li>It depends on the shape of \(\varphi\)</li><li>0</li></ul>
+    <p class="why">No power of 3 lies in \([1.2, 2.5]\), so the geometric side is 0. The eigenvalues are not individually zero; they cancel. The same mechanism later removes all but finitely many primes.</p></li>
   <li data-a="1"><p>Why is the thin strip introduced <em>before</em> the trace is computed?</p>
-    <ul><li>Without it, the eigenvalues of off-line zeros are amplified for test functions supported at <i>t</i> &gt; 1, and nothing shows the sum over all zeros is the trace of an operator on a Hilbert space</li><li>To make the labs faster</li><li>Because the zeros are only defined inside a strip</li></ul>
-    <p class="why">The completion in the norm with weight max(<i>t</i><sup>2<i>a</i></sup>, <i>t</i><sup>−2<i>a</i></sup>) gives a Hilbert space on which the operator is trace class, at the price of keeping only the slots inside the strip.</p></li>
-  <li data-a="1"><p>With strip half-width <i>a</i> = 0.1, which hypothetical zero would still contribute to the spectral side?</p>
-    <ul><li>Re <i>ρ</i> = 0.55</li><li>Re <i>ρ</i> = 0.6</li><li>Re <i>ρ</i> = 0.75</li></ul>
-    <p class="why">Only |Re <i>ρ</i> − ½| &lt; <i>a</i> keeps a slot. 0.6 is exactly on the edge, where the bound of chapter @@ch:thin-strip@@ no longer exists.</p></li>
-  <li data-a="2"><p>A test function is zero outside [2, 20]. Which describes the geometric side?</p>
-    <ul><li>Every prime contributes a little</li><li>Only primes with a power inside [2, 20] contribute; 23 and all larger primes contribute 0</li><li>Only the prime 2 contributes</li></ul>
-    <p class="why">Each prime is a circle of length ln <i>p</i>, contributing ln <i>p</i> · Σ <i>φ</i>(<i>p<sup>k</sup></i>)/<i>p</i><sup><i>k</i>/2</sup>. This is the circle example's "trace is zero when <i>φ</i> is supported in (1, <i>γ</i>)" applied prime by prime.</p></li>
+    <ul><li>Without it, the eigenvalues of off-line zeros are amplified for test functions supported at \(t \gt 1\), and nothing shows the sum over all zeros is the trace of an operator on a Hilbert space</li><li>To make the labs faster</li><li>Because the zeros are only defined inside a strip</li></ul>
+    <p class="why">The completion in the norm with weight \(\max(t^{2a}, t^{-2a})\) gives a Hilbert space on which the operator is trace class, at the price of keeping only the slots inside the strip.</p></li>
+  <li data-a="1"><p>With strip half-width \(a = 0.1\), which hypothetical zero would still contribute to the spectral side?</p>
+    <ul><li>\(\operatorname{Re}\rho = 0.55\)</li><li>\(\operatorname{Re}\rho = 0.6\)</li><li>\(\operatorname{Re}\rho = 0.75\)</li></ul>
+    <p class="why">Only \(\lvert\operatorname{Re}\rho - \tfrac12\rvert \lt a\) keeps a slot. 0.6 is exactly on the edge, where the bound of chapter @@ch:thin-strip@@ no longer exists.</p></li>
+  <li data-a="2"><p>A test function is zero outside \([2, 20]\). Which describes the geometric side?</p>
+    <ul><li>Every prime contributes a little</li><li>Only primes with a power inside \([2, 20]\) contribute; 23 and all larger primes contribute 0</li><li>Only the prime 2 contributes</li></ul>
+    <p class="why">Each prime is a circle of length \(\ln p\), contributing \(\ln p \cdot \sum \varphi(p^{k})/p^{k/2}\). This is the circle example's "trace is zero when \(\varphi\) is supported in \((1, \gamma)\)" applied prime by prime.</p></li>
   <li data-a="3"><p>Masullo's formula and the classical explicit formula have the same prime side. What does that imply?</p>
     <ul><li>That the paper is correct</li><li>Nothing</li><li>That the zeros outside the strip must contribute 0 for every test function, which is possible only if there are none</li></ul>
-    <p class="why">Subtracting the two leaves only the far zeros. So the restricted formula, for every <i>a</i>, is equivalent to the hypothesis. This comparison is this site's reading, not the paper's.</p></li>
+    <p class="why">Subtracting the two leaves only the far zeros. So the restricted formula, for every \(a\), is equivalent to the hypothesis. This comparison is this site's reading, not the paper's.</p></li>
   <li data-a="2"><p>Suppose the Riemann Hypothesis were false. Which part of the argument would have to be wrong?</p>
-    <ul><li>The classical explicit formula</li><li>A claim about the completed spaces: the exact sequence after completion, or the independent computation of the geometric side</li><li>The step with the test functions <i>φ<sub>z</sub></i></li></ul>
+    <ul><li>The classical explicit formula</li><li>A claim about the completed spaces: the exact sequence after completion, or the independent computation of the geometric side</li><li>The step with the test functions \(\varphi_z\)</li></ul>
     <p class="why">The classical formula is a theorem, and the last step is a short deduction from the trace formula. The weight of the proof is on the two completed-space claims, neither of which this site has checked.</p></li>
-  <li data-a="1"><p>In the last step, why does a zero with Re <i>ρ</i> &gt; ½ + <i>a</i> lead to a contradiction?</p>
-    <ul><li>It would be a pole of <i>ζ</i>′/<i>ζ</i> in a half-plane where every other term of the formula is holomorphic</li><li>It would make the prime sum negative</li><li>The functional equation forbids it</li></ul>
+  <li data-a="1"><p>In the last step, why does a zero with \(\operatorname{Re}\rho \gt \tfrac12 + a\) lead to a contradiction?</p>
+    <ul><li>It would be a pole of \(\zeta'/\zeta\) in a half-plane where every other term of the formula is holomorphic</li><li>It would make the prime sum negative</li><li>The functional equation forbids it</li></ul>
     <p class="why">An identity cannot have a pole on one side only. The functional equation merely mirrors zeros; it forbids nothing.</p></li>
   <li data-a="3"><p>What do the labs in Part II establish?</p>
     <ul><li>That the proof is correct</li><li>That the proof is wrong</li><li>That the classical identities the construction is built to reproduce hold numerically; they do not test the new steps</li></ul>
-    <p class="why">Poisson summation on the circle, the factor <i>ζ</i> in front of a θ-function's transform, and the explicit formula are all established mathematics. The labs make them visible.</p></li>
-  <li data-a="2"><p>Where does the paper say the ½ of the hypothesis comes from?</p>
-    <ul><li>From the first zero</li><li>From converting between the multiplicative measure d<i>t</i>/<i>t</i> of the norm and the additive measure d<i>x</i> of the Fourier transform, which needs the weight <i>t</i><sup>2<i>a</i></sup> with <i>a</i> = ½</li><li>From the factor ½ in ln 2</li></ul>
-    <p class="why">In the paper's words, this "forces the 1/2 in the very statement of GRH". On this site the same ½ shows up as the √<i>x</i> in a θ-function.</p></li>
+    <p class="why">Poisson summation on the circle, the factor \(\zeta\) in front of a \(\theta\)-function's transform, and the explicit formula are all established mathematics. The labs make them visible.</p></li>
+  <li data-a="2"><p>Where does the paper say the \(\tfrac12\) of the hypothesis comes from?</p>
+    <ul><li>From the first zero</li><li>From converting between the multiplicative measure \(dt/t\) of the norm and the additive measure \(dx\) of the Fourier transform, which needs the weight \(t^{2a}\) with \(a = \tfrac12\)</li><li>From the factor \(\tfrac12\) in \(\ln 2\)</li></ul>
+    <p class="why">In the paper's words, this "forces the 1/2 in the very statement of GRH". On this site the same \(\tfrac12\) shows up as the \(\sqrt{x}\) in a \(\theta\)-function.</p></li>
 </ol>

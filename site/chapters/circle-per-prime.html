@@ -1,19 +1,19 @@
 <h1>One circle per prime</h1>
-<p class="lede">The factor of <i>ζ</i> belonging to a prime <i>p</i> is 1/(1 − <i>p</i><sup>−<i>s</i></sup>), and 1 − <i>p</i><sup>−<i>s</i></sup> is the function whose zeros were the modes of the circle with <i>γ</i> = <i>p</i>. The paper uses this to split the geometric side of its trace into one piece per prime, each computed as in chapter @@ch:m1-trace-two-ways@@.</p>
+<p class="lede">The factor of \(\zeta\) belonging to a prime \(p\) is \(1/(1 - p^{-s})\), and \(1 - p^{-s}\) is the function whose zeros were the modes of the circle with \(\gamma = p\). The paper uses this to split the geometric side of its trace into one piece per prime, each computed as in chapter @@ch:m1-trace-two-ways@@.</p>
 <p class="note">Based on §1.2.9 of the paper (pages 18–21), read in full, which summarizes the construction. The construction itself is in later chapters that I have not read.</p>
 
 <h2>Removing one Euler factor</h2>
-<p>Take the sum over whole numbers of chapter @@ch:theta-sums@@, F(<i>x</i>) = Σ<sub><i>n</i> ≥ 1</sub> <i>f</i>(<i>nx</i>), and subtract its rescaling by <i>p</i>:</p>
-<p class="note">$$F(x) - F(px) \;=\; \sum_{p\,\nmid\,n} f(nx)$$ The sum on the right runs over the <i>n</i> that are <em>not</em> divisible by <i>p</i>.</p>
-<p>On Mellin transforms, rescaling by <i>p</i> is multiplication by <i>p</i><sup>−<i>s</i></sup> (chapter @@ch:mellin@@), so the operation F(<i>x</i>) ↦ F(<i>x</i>) − F(<i>px</i>) multiplies the transform by 1 − <i>p</i><sup>−<i>s</i></sup>. That turns <i>ζ</i>(<i>s</i>) · M(<i>f</i>)(<i>s</i>) into <i>ζ</i>(<i>s</i>)(1 − <i>p</i><sup>−<i>s</i></sup>) · M(<i>f</i>)(<i>s</i>): the Euler product with the factor for <i>p</i> removed. The paper calls its version of this operation PV<sub><i>p</i></sub>.</p>
+<p>Take the sum over whole numbers of chapter @@ch:theta-sums@@, \(F(x) = \sum_{n \ge 1} f(nx)\), and subtract its rescaling by \(p\):</p>
+<p class="note">$$F(x) - F(px) \;=\; \sum_{p\,\nmid\,n} f(nx)$$ The sum on the right runs over the \(n\) that are <em>not</em> divisible by \(p\).</p>
+<p>On Mellin transforms, rescaling by \(p\) is multiplication by \(p^{-s}\) (chapter @@ch:mellin@@), so the operation \(F(x) \mapsto F(x) - F(px)\) multiplies the transform by \(1 - p^{-s}\). That turns \(\zeta(s) \cdot M(f)(s)\) into \(\zeta(s)(1 - p^{-s}) \cdot M(f)(s)\): the Euler product with the factor for \(p\) removed. The paper calls its version of this operation \(\mathrm{PV}_p\).</p>
 
 <h2>The circle of a prime</h2>
-<p>The functions of the form <i>g</i>(<i>x</i>) − <i>g</i>(<i>px</i>) are exactly the ones that Φ<sub><i>p</i></sub> sends to 0 in chapter @@ch:circle-slots@@. Regarding them as zero leaves the functions on the circle (0, ∞) modulo <i>p</i>, with one slot at each zero of 1 − <i>p</i><sup>−<i>s</i></sup>. The trace of A(<i>φ</i>) on that circle was computed in chapter @@ch:m1-trace-two-ways@@: ln <i>p</i> · Σ<sub><i>k</i></sub> <i>φ</i>(<i>p<sup>k</sup></i>). In the paper's normalization (the factor √<i>x</i> in a θ-function) the term for <i>p<sup>k</sup></i> is divided by <i>p</i><sup><i>k</i>/2</sup>, and if <i>φ</i> is zero for <i>t</i> ≤ 1 only <i>k</i> ≥ 1 occurs:</p>
+<p>The functions of the form \(g(x) - g(px)\) are exactly the ones that \(\Phi_p\) sends to 0 in chapter @@ch:circle-slots@@. Regarding them as zero leaves the functions on the circle \((0, \infty)\) modulo \(p\), with one slot at each zero of \(1 - p^{-s}\). The trace of \(A(\varphi)\) on that circle was computed in chapter @@ch:m1-trace-two-ways@@: \(\ln p \cdot \sum_{k} \varphi(p^{k})\). In the paper's normalization (the factor \(\sqrt{x}\) in a \(\theta\)-function) the term for \(p^{k}\) is divided by \(p^{k/2}\), and if \(\varphi\) is zero for \(t \le 1\) only \(k \ge 1\) occurs:</p>
 <p class="note">$$\text{contribution of the prime } p \;=\; \ln p \cdot \sum_{k\ge 1} \frac{\varphi(p^{k})}{p^{k/2}}$$</p>
-<p>Added over all primes this is Σ<sub><i>n</i></sub> Λ(<i>n</i>) <i>φ</i>(<i>n</i>)/√<i>n</i>, with the weights Λ(<i>n</i>) of chapter @@ch:primes@@. The paper relates this picture to a proposal of Deninger: a space on which each prime <i>p</i> appears as a closed orbit of length ln <i>p</i>.</p>
+<p>Added over all primes this is \(\sum_{n} \Lambda(n)\,\varphi(n)/\sqrt{n}\), with the weights \(\Lambda(n)\) of chapter @@ch:primes@@. The paper relates this picture to a proposal of Deninger: a space on which each prime \(p\) appears as a closed orbit of length \(\ln p\).</p>
 
 <h2>Only finitely many primes contribute</h2>
-<p>If <i>φ</i> is zero outside [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 1, a prime <i>p</i> &gt; <i>B</i> has no power inside the interval, and its contribution is 0. So for a fixed test function, all but finitely many primes drop out. This is the same observation as "the trace is zero when <i>φ</i> is supported in (1, <i>γ</i>)" in chapter @@ch:m1-trace-two-ways@@.</p>
+<p>If \(\varphi\) is zero outside \([A, B]\) with \(A \gt 1\), a prime \(p \gt B\) has no power inside the interval, and its contribution is 0. So for a fixed test function, all but finitely many primes drop out. This is the same observation as "the trace is zero when \(\varphi\) is supported in \((1, \gamma)\)" in chapter @@ch:m1-trace-two-ways@@.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the contribution of each prime for a test function φ</small></div>
@@ -28,38 +28,38 @@
 </figure>
 
 <h2>What the paper does with this</h2>
-<p>The paper works in the completed spaces of chapter @@ch:thin-strip@@. It splits the kernel of the operator into one piece for each prime outside a finite set S, plus a remainder; S depends on the test function and on the character. For the pieces outside S it shows that the integral along the diagonal is 0. The remainder involves only the finitely many primes in S and the real numbers, and is computed with a version of an existing result, the "S-local trace formula" of Connes and Meyer. The paper notes that the non-vanishing of the L-function on the line Re <i>s</i> = 1, a classical theorem, is used as an input.</p>
+<p>The paper works in the completed spaces of chapter @@ch:thin-strip@@. It splits the kernel of the operator into one piece for each prime outside a finite set \(S\), plus a remainder; \(S\) depends on the test function and on the character. For the pieces outside \(S\) it shows that the integral along the diagonal is 0. The remainder involves only the finitely many primes in \(S\) and the real numbers, and is computed with a version of an existing result, the "S-local trace formula" of Connes and Meyer. The paper notes that the non-vanishing of the L-function on the line \(\operatorname{Re} s = 1\), a classical theorem, is used as an input.</p>
 <p class="note warn">The lab shows the arithmetic that the construction is designed to reproduce. It does not test the construction: the splitting of the kernel and the vanishing of the pieces are statements about operators on the completed spaces, and they are where the paper's new work lies.</p>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Narrow <i>φ</i> and slide its center. Dots light up one at a time as primes pass through the interval.</li>
-    <li>Center <i>φ</i> near <i>t</i> = 8 with a small width. The prime 2 contributes through its cube, and 7 directly.</li>
-    <li>Move <i>φ</i> far to the right. More primes contribute, but each term is divided by √<i>p</i>.</li>
+    <li>Narrow \(\varphi\) and slide its center. Dots light up one at a time as primes pass through the interval.</li>
+    <li>Center \(\varphi\) near \(t = 8\) with a small width. The prime 2 contributes through its cube, and 7 directly.</li>
+    <li>Move \(\varphi\) far to the right. More primes contribute, but each term is divided by \(\sqrt{p}\).</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Prove that F(<i>x</i>) − F(<i>px</i>) is the sum of <i>f</i>(<i>nx</i>) over <i>n</i> not divisible by <i>p</i>.<details><summary>Solution</summary><p>F(<i>px</i>) = Σ<sub><i>n</i></sub> <i>f</i>(<i>npx</i>) = Σ <i>f</i>(<i>mx</i>) over the multiples <i>m</i> = <i>np</i> of <i>p</i>. Subtracting it from the sum over all <i>m</i> leaves the <i>m</i> that are not multiples of <i>p</i>.</p></details></li>
-    <li><i>φ</i> is zero outside [2, 30]. Which values of <i>φ</i> appear in the contribution of the prime 2, and of the prime 31?<details><summary>Solution</summary><p>For 2: the powers inside [2, 30] are 2, 4, 8, 16, so the contribution is ln 2 · (<i>φ</i>(2)/√2 + <i>φ</i>(4)/2 + <i>φ</i>(8)/√8 + <i>φ</i>(16)/4). For 31: no power is inside, so the contribution is 0.</p></details></li>
-    <li>Where are the zeros of 1 − 5<sup>−<i>s</i></sup>, and how far apart are they?<details><summary>Solution</summary><p>5<sup>−<i>s</i></sup> = 1 when <i>s</i> ln 5 = 2π<i>im</i>: at <i>s</i> = 2π<i>im</i>/ln 5, on the imaginary axis, spaced 2π/ln 5 ≈ 3.90 apart. Larger primes have more closely spaced zeros.</p></details></li>
+    <li>Prove that \(F(x) - F(px)\) is the sum of \(f(nx)\) over \(n\) not divisible by \(p\).<details><summary>Solution</summary><p>\(F(px) = \sum_{n} f(npx) = \sum f(mx)\) over the multiples \(m = np\) of \(p\). Subtracting it from the sum over all \(m\) leaves the \(m\) that are not multiples of \(p\).</p></details></li>
+    <li>\(\varphi\) is zero outside \([2, 30]\). Which values of \(\varphi\) appear in the contribution of the prime 2, and of the prime 31?<details><summary>Solution</summary><p>For 2: the powers inside \([2, 30]\) are 2, 4, 8, 16, so the contribution is \(\ln 2 \cdot \left(\dfrac{\varphi(2)}{\sqrt{2}} + \dfrac{\varphi(4)}{2} + \dfrac{\varphi(8)}{\sqrt{8}} + \dfrac{\varphi(16)}{4}\right)\). For 31: no power is inside, so the contribution is 0.</p></details></li>
+    <li>Where are the zeros of \(1 - 5^{-s}\), and how far apart are they?<details><summary>Solution</summary><p>\(5^{-s} = 1\) when \(s \ln 5 = 2\pi i m\): at \(s = \dfrac{2\pi i m}{\ln 5}\), on the imaginary axis, spaced \(\dfrac{2\pi}{\ln 5} \approx 3.90\) apart. Larger primes have more closely spaced zeros.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-circle-per-prime">
-  <li data-a="2"><p>Why does the argument need the test function to be zero near <i>t</i> = 1?</p>
-    <ul><li>To make <i>φ</i> smooth</li><li>Every prime has the power <i>p</i><sup>0</sup> = 1, so if <i>φ</i>(1) ≠ 0 every prime would contribute and the reduction to finitely many primes would fail</li><li>Because 1 is not prime</li></ul>
-    <p class="why">With support in [<i>A</i>, <i>B</i>] and <i>A</i> &gt; 1, only the powers <i>p<sup>k</sup></i> with <i>k</i> ≥ 1 inside the interval count, and primes beyond <i>B</i> have none.</p></li>
-  <li data-a="1"><p>What plays the role of the circle's <i>γ</i> for the prime 7, and what is the "length" of its circle?</p>
-    <ul><li><i>γ</i> = 7, length ln 7</li><li><i>γ</i> = ln 7, length 7</li><li><i>γ</i> = √7, length ½</li></ul>
-    <p class="why">The factor 1 − 7<sup>−<i>s</i></sup> is the circle factor with <i>γ</i> = 7. In the coordinate ln <i>t</i> the circle has circumference ln 7, which is the weight in front of its contribution.</p></li>
-  <li data-a="3"><p>The lab adds up ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>)/<i>p</i><sup><i>k</i>/2</sup>. What does that establish about the paper?</p>
+  <li data-a="2"><p>Why does the argument need the test function to be zero near \(t = 1\)?</p>
+    <ul><li>To make \(\varphi\) smooth</li><li>Every prime has the power \(p^{0} = 1\), so if \(\varphi(1) \ne 0\) every prime would contribute and the reduction to finitely many primes would fail</li><li>Because 1 is not prime</li></ul>
+    <p class="why">With support in \([A, B]\) and \(A \gt 1\), only the powers \(p^{k}\) with \(k \ge 1\) inside the interval count, and primes beyond \(B\) have none.</p></li>
+  <li data-a="1"><p>What plays the role of the circle's \(\gamma\) for the prime 7, and what is the "length" of its circle?</p>
+    <ul><li>\(\gamma = 7\), length \(\ln 7\)</li><li>\(\gamma = \ln 7\), length 7</li><li>\(\gamma = \sqrt{7}\), length \(\tfrac12\)</li></ul>
+    <p class="why">The factor \(1 - 7^{-s}\) is the circle factor with \(\gamma = 7\). In the coordinate \(\ln t\) the circle has circumference \(\ln 7\), which is the weight in front of its contribution.</p></li>
+  <li data-a="3"><p>The lab adds up \(\ln p \cdot \varphi(p^{k})/p^{k/2}\). What does that establish about the paper?</p>
     <ul><li>That the paper's splitting of the kernel is correct</li><li>That only finitely many primes exist</li><li>Only what the construction is meant to reproduce; the splitting itself is a claim about operators on the completed spaces that the lab does not touch</li></ul>
-    <p class="why">The arithmetic is classical. The new and unverified part is that the operator's kernel really decomposes this way after completion, and that the pieces outside the finite set S integrate to 0.</p></li>
+    <p class="why">The arithmetic is classical. The new and unverified part is that the operator's kernel really decomposes this way after completion, and that the pieces outside the finite set \(S\) integrate to 0.</p></li>
 </ol>
 
 <script>
