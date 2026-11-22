@@ -125,7 +125,7 @@ svg.dg{color:var(--fg)}
 
 <section data-view="overview">
   <h1>How the claimed proof of the Riemann Hypothesis is put together</h1>
-  <p class="lede">On 20 November 2026 Levent Alpöge announced that he and Claude had proved the Riemann Hypothesis, and the generalized version for Dirichlet L-functions, and published only a Lean formalization: 175,187 files and about 1 GB of source with no comments. These pages follow the argument from the final theorem downward.</p>
+  <p class="lede">On November 20, 2026 Levent Alpöge announced that he and Claude had proved the Riemann Hypothesis, and the generalized version for Dirichlet L-functions, and published only a Lean formalization: 175,187 files and about 1 GB of source with no comments. These pages follow the argument from the final theorem downward.</p>
   <div class="note warn"><b>Nothing here says the proof is correct.</b> No independent kernel check had finished when this was written. These pages describe what the source says and how its parts connect.</div>
 
   <h2>The argument in six levels</h2>
@@ -170,7 +170,7 @@ svg.dg{color:var(--fg)}
   <p>This matters because one-sided inequalities are the kind of thing arithmetic can produce. A nonzero whole number is at least 1 in size. A lattice cannot be more divisible than its volume allows. Facts like these give a bound in one direction and say nothing about the other.</p>
 
   <h2>The model: Stepanov's argument</h2>
-  <p>Over finite fields the analogue of the Riemann Hypothesis is a theorem. One elementary proof, due to Stepanov, builds an auxiliary polynomial that vanishes to high order at every point being counted. A polynomial cannot have more zeros, counted with multiplicity, than its degree, so there cannot be too many points. That is a one-sided bound.</p>
+  <p>Over finite fields the analog of the Riemann Hypothesis is a theorem. One elementary proof, due to Stepanov, builds an auxiliary polynomial that vanishes to high order at every point being counted. A polynomial cannot have more zeros, counted with multiplicity, than its degree, so there cannot be too many points. That is a one-sided bound.</p>
   <p>The obstacle to copying this for ordinary primes is “vanishing to high order”. That needs a derivative, and whole numbers have no derivative. The announcement says this is the gap the new argument fills.</p>
 
   <h2>The claimed new step</h2>
@@ -409,7 +409,7 @@ theorem UpperTheory.FinalTheorems.everyCharacter : UpperTheory.EveryCharacter :=
     <dt>VWin</dt><dd>For each character and each scale, the fields in the tower have small enough Galois cohomology groups (<code>shaLen</code>), summed over primes with log weights.<span class="path">Development/AutomorphicArithmetic/CharacterBoxes/ExistsPageN.lean</span></dd>
     <dt>WinPair</dt><dd>The two auxiliary primes at a scale: q ≡ 3 mod 8 and d ≡ 7 mod 16, with q dividing d + 1 and prescribed sizes.<span class="path">same file</span></dd>
     <dt>Green</dt><dd>Green's classification of cuspidal characters of GL<sub>d</sub> over a finite field.<span class="path">Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/LabelDatum.lean</span></dd>
-    <dt>Row0b</dt><dd>For a CM field and a suitable automorphic form on GL<sub>a</sub>, a Galois representation exists with the expected local behaviour and weights.<span class="path">Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TypeConditions/WeightsConjBis.lean</span></dd>
+    <dt>Row0b</dt><dd>For a CM field and a suitable automorphic form on GL<sub>a</sub>, a Galois representation exists with the expected local behavior and weights.<span class="path">Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TypeConditions/WeightsConjBis.lean</span></dd>
     <dt>OpenLiteratureStatements</dt><dd>A three-field hypothesis the literature results are stated against. The final theorem fills it from in-tree proofs.<span class="path">…/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean</span></dd>
   </dl>
 </section>

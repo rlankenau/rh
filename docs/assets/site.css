@@ -154,3 +154,18 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
 .katex-display>.katex{text-align:left}
 .note .katex-display:first-child{margin-top:.1em}
 .note .katex-display:last-child{margin-bottom:.1em}
+
+/* review flags */
+.rv{display:inline-block;margin-left:.5rem;padding:0 .4rem;border:1px solid var(--warn);border-radius:999px;color:var(--warn);font-size:.68rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;vertical-align:middle}
+.rvdot{display:inline-block;width:.45rem;height:.45rem;margin-left:.4rem;border-radius:50%;border:1.5px solid var(--warn);vertical-align:middle}
+.toc .rvkey{margin:.6rem 0 0;font-size:.75rem;color:var(--muted)}
+.toc .rvkey .rvdot{margin:0 .3rem 0 .6rem}
+
+/* comments (GitHub issues) */
+.cbtn{position:absolute;z-index:20;font:inherit;font-size:.85rem;color:var(--bg);background:var(--accent);border:0;border-radius:6px;padding:.3rem .65rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.comments{max-width:68ch;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem}
+.comments h2{font-size:1.05rem;margin:0 0 .4rem}
+.comments p{margin:0 0 .5rem}
+.comments p span{color:var(--muted);font-size:.85rem;margin-left:.4rem}
+.comments ul{margin:0;padding-left:1.2rem}
+.comments li span{color:var(--muted);font-size:.85rem}

@@ -3,7 +3,7 @@
 <p class="note">Based on §1.1.4 of the paper (page 12), read in full. The lab works over the ordinary integers with the trivial character, which is the Riemann zeta case; the paper works over any number field.</p>
 
 <h2>θ-functions</h2>
-<p>The paper uses the construction of chapter @@ch:circle-slots@@ with a different sum, the one at the centre of Tate's thesis. Take a function <i>f</i> on (0, ∞) and sum its values at all whole-number multiples of <i>x</i>:</p>
+<p>The paper uses the construction of chapter @@ch:circle-slots@@ with a different sum, the one at the center of Tate's thesis. Take a function <i>f</i> on (0, ∞) and sum its values at all whole-number multiples of <i>x</i>:</p>
 <p class="note">$$\Theta_f(x) \;=\; \sqrt{x}\,\sum_{n\ge 1} f(nx)$$ The paper calls functions of this form θ-functions. The Mellin transform is $$M(\Theta_f)(s) \;=\; \zeta\!\left(s+\tfrac12\right)\cdot M(f)\!\left(s+\tfrac12\right)$$</p>
 <p>Proof: by the rescaling property the transform of <i>f</i>(<i>nx</i>) is <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>), and Σ <i>n</i><sup>−<i>s</i></sup> = <i>ζ</i>(<i>s</i>). Multiplying by √<i>x</i> replaces <i>s</i> by <i>s</i> + ½. (The sum converges for Re <i>s</i> &gt; ½; the identity extends to all <i>s</i> by analytic continuation when Θ<sub><i>f</i></sub> decays at both ends.) The factor <i>ζ</i> here plays the role that 1 − <i>γ</i><sup>−<i>s</i></sup> played on the circle.</p>
 <p><b>So the transform of every θ-function is zero at the zeros of <i>ζ</i>, whatever <i>f</i> is.</b> Because of the shift by ½, a zero <i>ρ</i> of <i>ζ</i> appears at <i>s</i> = <i>ρ</i> − ½. If the Riemann Hypothesis holds these points are all on the imaginary axis, at <i>s</i> = ±14.13<i>i</i>, ±21.02<i>i</i>, ±25.01<i>i</i>, …</p>

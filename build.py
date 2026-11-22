@@ -66,6 +66,12 @@ def _number(parts):
 
 
 BOOK = _number(PARTS)
+
+# Pages whose content Alice has reviewed. Every other page carries a "needs review" flag in the contents,
+# on the landing page and at its own top. Add a slug here once she has signed the page off.
+REVIEWED = set()
+FLAG = '<span class="rv" title="Needs review: not yet checked by the site\'s owner">needs review</span>'
+
 NUM = {s: n for _, _, ch in BOOK for n, s, _ in ch if s}
 
 
@@ -120,6 +126,7 @@ TAIL = """</main>
 <script src="{up}assets/glossary.js"></script>
 <script src="{up}assets/gloss.js"></script>
 <script src="{up}assets/quiz.js"></script>
+<script src="{up}assets/comments.js"></script>
 <script>if (matchMedia('(max-width: 860px)').matches) document.querySelector('.toc details').open = false;</script>
 </body>
 </html>
@@ -147,12 +154,14 @@ def toc(up, current):
                 items.append(f"<li><span>{label}</span></li>")
             else:
                 cur = ' aria-current="page"' if slug == current else ""
-                items.append(f'<li><a href="{up}{slug}/"{cur}>{label}</a></li>')
+                flag = "" if slug in REVIEWED else '<span class="rvdot" title="Needs review"></span>'
+                items.append(f'<li><a href="{up}{slug}/"{cur}>{label}{flag}</a></li>')
         parts.append(f"<div><h2>{html.escape(title)}</h2><ol>{''.join(items)}</ol></div>")
     cur_g = ' aria-current="page"' if current == "glossary" else ""
     cur_s = ' aria-current="page"' if current == "symbols" else ""
     return (f'<nav class="toc" aria-label="Contents"><a class="brand" href="{up or "./"}">Two Riemann Proofs</a>'
             f'<details open><summary>Contents</summary>{"".join(parts)}'
+            f'<p class="rvkey"><span class="rvdot"></span> needs review</p>'
             f'<div class="extra"><a href="{up}glossary/"{cur_g}>Glossary</a>'
             f'<a href="{up}symbols/"{cur_s}>Greek letters and symbols</a></div></details></nav>')
 
@@ -248,10 +257,10 @@ def landing(glossary):
             if slug is None:
                 rows.append(f'<li class="planned"><span class="num">{num}</span>{html.escape(name)} (planned)</li>')
             else:
-                rows.append(f'<li><span class="num">{num}</span><a href="{slug}/">{html.escape(name)}</a></li>')
+                rows.append(f'<li><span class="num">{num}</span><a href="{slug}/">{html.escape(name)}</a>{"" if slug in REVIEWED else FLAG}</li>')
         books.append(f'<section class="book"><h2>{html.escape(title)}</h2><p>{html.escape(blurb)}</p>'
                      f'<ol>{"".join(rows)}</ol></section>')
-    body = link_terms((ROOT / "site" / "index.html").read_text(), glossary).replace("{books}", "\n".join(books))
+    body = link_terms(hold_math((ROOT / "site" / "index.html").read_text()), glossary).replace("{books}", "\n".join(books))
     return HEAD.format(title="Two Riemann Proofs", fonts=FONTS, up="", toc=toc("", None)) + body + TAIL.format(up="")
 
 
@@ -286,22 +295,22 @@ def main():
             body = re.sub(r'<ol class="quiz".*?</ol>', lambda m: held.append(m.group(0)) or f"@@QUIZ{len(held) - 1}@@", body, flags=re.S)
             body = re.sub(r"@@QUIZ(\d+)@@", lambda m: held[int(m.group(1))], link_terms(body, glossary))
             page = (HEAD.format(title=name if quiz else f"{num} {name}", fonts=FONTS, up="../", toc=toc("../", slug))
-                    + f'<div class="kicker">{html.escape(part.split(" · ")[0])} · {"Quiz" if quiz else "Chapter " + num}</div>\n'
+                    + f'<div class="kicker">{html.escape(part.split(" · ")[0])} · {"Quiz" if quiz else "Chapter " + num}{"" if slug in REVIEWED else " " + FLAG}</div>\n'
                     + '<script src="../assets/lab.js"></script>\n' + body + pager(slug) + TAIL.format(up="../"))
             (docs / slug).mkdir(parents=True, exist_ok=True)
             pages[docs / slug / "index.html"] = page
-    for path, page in render_math(pages).items():
-        path.write_text(page)
     table = {e["key"]: {k: e[k] for k in ("term", "def", "wiki") if k in e} for e in glossary}
     (docs / "assets" / "glossary.js").write_text("window.GLOSSARY = " + json.dumps(table, ensure_ascii=False) + ";\n")
     (docs / "glossary").mkdir(exist_ok=True)
     (docs / "glossary" / "index.html").write_text(
         HEAD.format(title="Glossary", fonts=FONTS, up="../", toc=toc("../", "glossary")) + glossary_page(glossary) + TAIL.format(up="../"))
     (docs / "symbols").mkdir(exist_ok=True)
-    (docs / "symbols" / "index.html").write_text(
+    pages[docs / "symbols" / "index.html"] = (
         HEAD.format(title="Greek letters and symbols", fonts=FONTS, up="../", toc=toc("../", "symbols"))
-        + tokens((ROOT / "site" / "symbols.html").read_text()) + TAIL.format(up="../"))
-    (docs / "index.html").write_text(landing(glossary))
+        + hold_math(tokens((ROOT / "site" / "symbols.html").read_text())) + TAIL.format(up="../"))
+    pages[docs / "index.html"] = landing(glossary)
+    for path, page in render_math(pages).items():
+        path.write_text(page)
     (docs / ".nojekyll").touch()
 
 
