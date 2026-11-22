@@ -44,7 +44,7 @@
     <label>Imaginary part t <input type="range" id="tb" min="0" max="40" step="0.05" value="8"><output id="tbv"></output></label>
     <label>Number of vectors N <input type="range" id="nb" min="1" max="300" step="1" value="40"><output id="nbv"></output></label>
   </div>
-  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of vectors</span><span>○ where the chain has got to</span><span>● ζ(s)</span></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of vectors</span><span><b style="color:var(--ok)">●</b> the end of the chain</span><span>● ζ(s)</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the zeta series in the complex plane"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
   <figcaption>The chain starts at the origin with the vector for \(n = 1\), which is always 1. Later vectors are shorter and turned further, so the chain spirals in toward the solid dot.</figcaption>
@@ -56,7 +56,7 @@
     <li>In Lab @@n@@.1, set \(n = 2\) and raise \(t\) slowly from 0. The vector completes one full turn when \(t \ln 2 = 2\pi\), at \(t \approx 9.06\).</li>
     <li>Keep \(t\) fixed and step \(n\) through 2, 3, 4, 5. Each vector is a little shorter and turned a little further.</li>
     <li>In Lab @@n@@.2, set \(t = 0\). All the vectors point to the right and the chain is the real sum of chapter @@ch:zeta@@.</li>
-    <li>Lower \(\sigma\) toward 1.05 with \(t = 8\). The spiral takes many more vectors to tighten, and the open circle stays visibly away from the dot.</li>
+    <li>Lower \(\sigma\) toward 1.05 with \(t = 8\). The spiral takes many more vectors to tighten, and the end of the chain stays visibly away from the white dot.</li>
   </ul>
 </div>
 
@@ -105,8 +105,8 @@
     for (n = 1; n <= v.nb; n++) { a = Math.pow(n, -v.sb); th = -v.tb * Math.log(n); re += a * Math.cos(th); im += a * Math.sin(th); pts.push([re, im]); }
     var f = frame(pts.concat([z]));
     L.plot('p2', { x: f.x, y: f.y, xt: L.ticks(f.x[0], f.x[1], 5), yt: L.ticks(f.y[0], f.y[1], 4), xl: 'real part', h: 400, notip: true,
-      series: [{ n: 'chain', c: 'var(--s1)', pts: pts }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--panel)' }] });
-    document.getElementById('r2').innerHTML = '<span>sum of ' + v.nb + ' vectors: <b>' + cx([re, im]) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span><span>distance still to go: <b>' + Math.hypot(re - z[0], im - z[1]).toFixed(4) + '</b></span>';
+      series: [{ n: 'chain', c: 'var(--s1)', pts: pts }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--ok)' }] });
+    document.getElementById('r2').innerHTML = '<span>end of the chain (sum of ' + v.nb + ' vectors): <b>' + cx([re, im]) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span><span>distance still to go: <b>' + Math.hypot(re - z[0], im - z[1]).toFixed(4) + '</b></span>';
   });
 })();
 </script>
