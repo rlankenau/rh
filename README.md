@@ -45,5 +45,5 @@ then one chapter per step of each proof, each with interactive labs computed in 
 - `site/assets/site.css` — shared styles
 - `python3 build.py` writes everything to `docs/`, which GitHub Pages serves
 - Formulas: write `$$…$$` (display) or `\(…\)` (inline) LaTeX in a chapter; `build.py` renders them to static HTML with KaTeX at build time (run `npm install` once; no JavaScript is shipped for math). Short inline symbols stay as plain HTML italics
-- Review mode: `python3 tools/review-server.py` serves the site at http://127.0.0.1:8770/. There, a comment typed on a page is filed straight to GitHub with `gh` (label `site-comment`, title `[slug] …`), and each page has a "Mark as reviewed" button that edits `site/reviewed.json` and rebuilds (commit and push afterwards). On the public site the same comment box opens GitHub's new-issue page instead
+- Comments: `site/assets/comments.js` turns a text selection (or the button at the foot of a page) into a prefilled GitHub issue titled `[slug] …`, and lists each page's open issues. Pages show "needs review" until their slug is in `site/reviewed.json`
 - `site/glossary.json` — plain-language glossary (terms and people, with Wikipedia links); `build.py` links the first use of each term per chapter as a pop-up and writes the Glossary page

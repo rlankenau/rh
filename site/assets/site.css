@@ -173,7 +173,6 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
 .cbox button.send{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
 .cbox button:disabled{opacity:.6;cursor:default}
 .cbox .note{color:var(--muted);font-size:.8rem}
-.cbox .note.bad{color:var(--warn)}
 .comments{max-width:68ch;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem}
 .comments h2{font-size:1.05rem;margin:0 0 .4rem}
 .comments p{margin:0 0 .5rem}
@@ -181,4 +180,3 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
 .comments p span{color:var(--muted);font-size:.85rem;margin-left:.6rem}
 .comments ul{margin:0;padding-left:1.2rem}
 .comments li span{color:var(--muted);font-size:.85rem}
-.rvbtn{margin-left:.6rem;font:inherit;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid var(--accent);border-radius:999px;padding:0 .5rem;cursor:pointer}

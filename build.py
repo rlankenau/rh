@@ -68,7 +68,7 @@ def _number(parts):
 BOOK = _number(PARTS)
 
 # Pages whose content Alice has reviewed. Every other page carries a "needs review" flag in the contents,
-# on the landing page and at its own top. The list is site/reviewed.json; tools/review-server.py edits it.
+# on the landing page and at its own top. The list is site/reviewed.json.
 REVIEWED = set(json.loads((ROOT / "site" / "reviewed.json").read_text()))
 FLAG = '<span class="rv" title="Needs review: not yet checked by the site\'s owner">needs review</span>'
 

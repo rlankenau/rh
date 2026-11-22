@@ -1,14 +1,12 @@
 // Comments are GitHub issues. Select text and choose "Comment", or use the button at the foot of the page;
-// either opens a small box to type in. On the public site, sending opens GitHub's new-issue page with
-// everything filled in. Under tools/review-server.py (local review mode) the issue is filed directly, and
-// pages can be marked reviewed.
+// either opens a small box to type in, and sending opens GitHub's new-issue page with everything filled in.
 (function () {
   'use strict';
   var REPO = 'rlankenau/rh', main = document.querySelector('main'), up = document.documentElement.getAttribute('data-up') || '';
   if (!main) return;
   var parts = location.pathname.replace(/\/index\.html$/, '').split('/').filter(Boolean);
   var slug = up ? parts[parts.length - 1] : 'home', tag = '[' + slug + ']';
-  var pageUrl = 'https://rlankenau.github.io/rh/' + (slug === 'home' ? '' : slug + '/'), local = false;
+  var pageUrl = 'https://rlankenau.github.io/rh/' + (slug === 'home' ? '' : slug + '/');
 
   // text of a node with each formula replaced by its LaTeX source
   function plain(el) {
@@ -24,11 +22,6 @@
     return found;
   }
   function el(name, cls, text) { var e = document.createElement(name); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
-  function post(path, data) {
-    return fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Review': '1' }, body: JSON.stringify(data) })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || 'failed'); return j; }); });
-  }
-
   // ---- the comment box
   var box = el('div', 'cbox'); box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Comment');
   var quoteEl = el('blockquote'), area = el('textarea'), row = el('div', 'row'), send = el('button', 'send', 'Send'), cancel = el('button', '', 'Cancel'), note = el('span', 'note');
@@ -39,7 +32,7 @@
   function open(quote, node, top) {
     cur = { quote: quote, section: section(node) };
     quoteEl.textContent = quote.length > 220 ? quote.slice(0, 220) + '…' : quote; quoteEl.hidden = !quote;
-    note.textContent = local ? 'Filed as a GitHub issue.' : 'Opens GitHub to post it.'; note.className = 'note';
+    note.textContent = 'Opens GitHub to post it.';
     area.value = ''; send.disabled = false; box.hidden = false;
     var w = Math.min(420, document.documentElement.clientWidth - 16);
     box.style.width = w + 'px'; box.style.top = top + 'px';
@@ -52,13 +45,6 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
   send.addEventListener('click', function () {
     var text = area.value.trim(); if (!text || !cur) { area.focus(); return; }
-    if (local) {
-      send.disabled = true; note.textContent = 'Filing…';
-      post('/__review/comment', { slug: slug, section: cur.section, quote: cur.quote, comment: text }).then(function (j) {
-        add({ html_url: j.url, number: j.number, title: tag + ' ' + (cur.quote || text).slice(0, 70), comments: 0 }, true); close();
-      }).catch(function (e) { send.disabled = false; note.textContent = 'Could not file it: ' + e.message; note.className = 'note bad'; });
-      return;
-    }
     var head = cur.quote || text, title = tag + ' ' + head.slice(0, 60) + (head.length > 60 ? '…' : ''),
       body = '**Page:** ' + pageUrl + '\n' + (cur.section ? '**Section:** ' + cur.section + '\n' : '') +
         (cur.quote ? '\n> ' + cur.quote.slice(0, 700) + (cur.quote.length > 700 ? '…' : '') + '\n' : '') + '\n' + text + '\n';
@@ -98,24 +84,8 @@
     a.href = it.html_url; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); li.appendChild(s);
     if (first) list.insertBefore(li, list.firstChild); else list.appendChild(li);
   }
-  if (!window.fetch) return;
-  fetch('https://api.github.com/repos/' + REPO + '/issues?state=open&per_page=100').then(function (r) { return r.ok ? r.json() : []; }).then(function (all) {
+  if (window.fetch) fetch('https://api.github.com/repos/' + REPO + '/issues?state=open&per_page=100').then(function (r) { return r.ok ? r.json() : []; }).then(function (all) {
     all.filter(function (it) { return !it.pull_request && it.title.indexOf(tag) === 0; }).forEach(function (it) { add(it); });
   }).catch(function () {});
 
-  // ---- local review mode
-  if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
-  fetch('/__review/ping').then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-    if (!j || !j.ok) return;
-    local = true;
-    var kicker = main.querySelector('.kicker'); if (!kicker || slug === 'home') return;
-    var done = j.reviewed.indexOf(slug) >= 0, mark = el('button', 'rvbtn');
-    function label() { mark.textContent = done ? 'Mark as needs review' : 'Mark as reviewed'; }
-    label(); mark.type = 'button'; kicker.appendChild(mark);
-    mark.addEventListener('click', function () {
-      mark.disabled = true; mark.textContent = 'Saving…';
-      post('/__review/reviewed', { slug: slug, reviewed: !done }).then(function () { location.reload(); })
-        .catch(function (e) { mark.disabled = false; mark.textContent = 'Failed: ' + e.message; });
-    });
-  }).catch(function () {});
 })();
