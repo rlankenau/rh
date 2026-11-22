@@ -1,11 +1,11 @@
 <h1>The smoothed error</h1>
-<p class="lede">The Alpöge formalization does not bound \(\psi(x) - x\). It bounds <code>Gz</code>\((x)\), the error term of a weighted integral of \(\psi\). Integrating divides the term for each zero by one more factor of size \(|\rho|\), and that makes the sum over zeros converge absolutely.</p>
+<p class="lede">The Alpöge formalization does not bound \(\psi(x) - x\). It bounds \(\mathrm{Gz}(x)\), the error term of a weighted integral of \(\psi\). Integrating divides the term for each zero by one more factor of size \(|\rho|\), and that makes the sum over zeros converge absolutely.</p>
 <p class="note">Based on the definitions of <code>Sz</code>, <code>Gz</code> and <code>ZetaLandau</code> in the Lean source, which I read as statements. The curves are computed here from those definitions and from the first 30 zeros; the match between the two is a check I ran, not part of the formalization.</p>
 
 <h2>The definition</h2>
 <pre>def Sz (x : ℝ) : ℝ := ∑ n ∈ Finset.Icc 1 ⌊x⌋₊, Λ n * (x / n - 1)
 def Gz (x : ℝ) : ℝ := Sz x - x * Real.log x + (1 + Real.eulerMascheroniConstant) * x</pre>
-<p><code>Sz</code> weights each \(n \le x\) by \(\Lambda(n)\cdot(x/n - 1)\) instead of \(\Lambda(n)\). Equivalently, <code>Sz</code>\(\displaystyle (x) = x \cdot \int_{1}^{x} \frac{\psi(t)}{t^{2}}\,dt\). The weight is 0 at \(n = x\), so <code>Sz</code> is continuous: it has corners at the prime powers but no jumps. Its main term is \(x \ln x - (1 + \gamma_{\text{Euler}})x\), and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
+<p><code>Sz</code> weights each \(n \le x\) by \(\Lambda(n)\cdot(x/n - 1)\) instead of \(\Lambda(n)\). Equivalently, \(\displaystyle \mathrm{Sz}(x) = x \cdot \int_{1}^{x} \frac{\psi(t)}{t^{2}}\,dt\). The weight is 0 at \(n = x\), so <code>Sz</code> is continuous: it has corners at the prime powers but no jumps. Its main term is \(x \ln x - (1 + \gamma_{\text{Euler}})x\), and <code>Gz</code> is <code>Sz</code> minus that main term.</p>
 
 <h2>What the zeros do to it</h2>
 <p>Apply the same integral to the explicit formula of chapter @@ch:waves@@, term by term. The term \(x^{\rho}/\rho\) becomes \(\dfrac{x^{\rho}}{\rho(\rho-1)}\):</p>

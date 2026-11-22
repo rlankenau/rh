@@ -92,19 +92,19 @@
 <p>The same thing happens for \(\zeta\). Chapter @@ch:zeta@@ estimated what is left after \(N\) terms of the sum: about \(N^{1-s}/(s-1)\). Turn that around. Take the first \(N\) terms and add the estimate of the rest:</p>
 <p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;1+\frac{1}{2^{s}}+\dots+\frac{1}{N^{s}} \;-\; \frac{N^{1-s}}{1-s}\;\right]$$</p>
 <p>For \(\sigma \gt 1\) the extra term tends to 0 and this is the original sum. But the limit exists for every \(s\) with \(\sigma \gt 0\) except \(s = 1\), and it is analytic there. By the rigidity above it is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
-<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of arrows does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the arrow from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
+<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.4 <small>the chain of arrows for σ ≤ 1, and the center of its spiral</small></div>
+  <div class="title">Lab @@n@@.4 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
   <div class="ctl">
     <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
     <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
-    <label>Number of arrows N <input type="range" id="n3" min="2" max="300" step="1" value="120"><output id="n3v"></output></label>
+    <label>Number of vectors N <input type="range" id="n3" min="2" max="300" step="1" value="120"><output id="n3v"></output></label>
   </div>
-  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of arrows</span><span><i style="background:var(--s2)"></i>the chain with the correction subtracted</span><span>● ζ(s), computed independently</span></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of vectors</span><span><i style="background:var(--s2)"></i>the chain with the correction subtracted</span><span>● ζ(s), computed independently</span></div>
   <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Partial sums of the zeta series spiralling outward, and the corrected sums converging to zeta of s"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r3"></div>
-  <figcaption>The blue chain widens forever when \(\sigma \lt 1\). The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last arrow, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
+  <figcaption>The blue chain widens forever when \(\sigma \lt 1\). The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last vector, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
 </figure>
 
 <h2>The whole plane</h2>
@@ -142,9 +142,9 @@
   <li data-a="1"><p>Why is there only one analytic continuation?</p>
     <ul><li>Two analytic functions that agree on any interval agree wherever both are defined</li><li>Mathematicians agreed on a convention</li><li>Because the series converges everywhere</li></ul>
     <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of \(\zeta(s)\) where the sum diverges.</p></li>
-  <li data-a="3"><p>In Lab @@n@@.4 with \(\sigma = 0.5\) the chain of arrows never settles. What is \(\zeta(s)\) in that picture?</p>
+  <li data-a="3"><p>In Lab @@n@@.4 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
     <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
-    <p class="why">The chain's end is the center plus the arrow \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that arrow leaves the center, which is the continued function.</p></li>
+    <p class="why">The chain's end is the center plus the vector \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that vector leaves the center, which is the continued function.</p></li>
   <li data-a="2"><p>The function \(1/(1+x^{2})\) is smooth at every real \(x\). Why does its Taylor series about 0 stop converging at \(x = \pm 1\)?</p>
     <ul><li>Because the function is not analytic at \(x = 1\)</li><li>The denominator is 0 at \(x = \pm i\), and a Taylor series converges only out to the nearest bad point in the complex plane</li><li>Because the series was computed incorrectly</li></ul>
     <p class="why">The function is analytic at every real point, including \(\pm 1\). The obstruction is invisible on the real line. This is the main reason the natural setting for analytic functions is the complex plane.</p></li>
@@ -209,7 +209,7 @@
     var f = frame(raw.concat(cor, [z])), e = cor[cor.length - 1];
     L.plot('p3', { x: f.x, y: f.y, xt: L.ticks(f.x[0], f.x[1], 5), yt: L.ticks(f.y[0], f.y[1], 4), xl: 'real part', h: 420, notip: true,
       series: [{ n: 'chain', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--panel)' }] });
-    document.getElementById('r3').innerHTML = '<span>end of the chain: <b>' + cx([re, im]) + '</b></span><span>length of the correction arrow: <b>' + rad.toFixed(3) + '</b></span><span>corrected value: <b>' + cx(e) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span>';
+    document.getElementById('r3').innerHTML = '<span>end of the chain: <b>' + cx([re, im]) + '</b></span><span>length of the correction vector: <b>' + rad.toFixed(3) + '</b></span><span>corrected value: <b>' + cx(e) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span>';
   });
 })();
 </script>

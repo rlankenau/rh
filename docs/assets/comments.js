@@ -6,9 +6,17 @@
   if (!main) return;
   var parts = location.pathname.replace(/\/index\.html$/, '').split('/').filter(Boolean);
   var slug = up ? parts[parts.length - 1] : 'home', tag = '[' + slug + ']';
+  // text of a node with each formula replaced by its LaTeX source
+  function plain(el) {
+    Array.prototype.forEach.call(el.querySelectorAll('.katex'), function (k) {
+      var src = k.querySelector('annotation');
+      k.parentNode.replaceChild(document.createTextNode(src ? ' $' + src.textContent + '$ ' : k.textContent), k);
+    });
+    return el.textContent.replace(/\s+/g, ' ').trim();
+  }
   function section(node) {
     var hs = main.querySelectorAll('h2'), found = '', i;
-    for (i = 0; i < hs.length; i++) if (node && (hs[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)) found = hs[i].textContent.trim();
+    for (i = 0; i < hs.length; i++) if (node && (hs[i].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)) found = plain(hs[i].cloneNode(true));
     return found;
   }
   function issueUrl(quote, node) {
@@ -27,13 +35,8 @@
     var sel = window.getSelection(), text = sel && !sel.isCollapsed ? String(sel) : '';
     if (!text.trim() || !main.contains(sel.anchorNode) || !main.contains(sel.focusNode)) { btn.hidden = true; held = null; return; }
     var r = sel.getRangeAt(0).getBoundingClientRect();
-    // quote formulas as their LaTeX source, not as the pieces KaTeX draws them from
-    var frag = sel.getRangeAt(0).cloneContents();
-    Array.prototype.forEach.call(frag.querySelectorAll('.katex'), function (k) {
-      var src = k.querySelector('annotation');
-      k.parentNode.replaceChild(document.createTextNode(src ? ' $' + src.textContent + '$ ' : k.textContent), k);
-    });
-    held = { text: frag.textContent, node: sel.anchorNode };
+    var holder = document.createElement('div'); holder.appendChild(sel.getRangeAt(0).cloneContents());
+    held = { text: plain(holder), node: sel.anchorNode };
     btn.hidden = false;
     btn.style.top = (window.scrollY + r.bottom + 8) + 'px';
     btn.style.left = Math.max(8, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - btn.offsetWidth - 8)) + 'px';
