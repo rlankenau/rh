@@ -1,20 +1,20 @@
 <h1>The Mellin transform</h1>
-<p class="lede">The Mellin transform is the Fourier transform for functions on (0, ∞), with rescaling <i>t</i> ↦ <i>γt</i> in the role of translation. This chapter states the definition and the two properties that the rest of Part II uses.</p>
+<p class="lede">The Mellin transform is the Fourier transform for functions on \((0, \infty)\), with rescaling \(t \mapsto \gamma t\) in the role of translation. This chapter states the definition and the two properties that the rest of Part II uses.</p>
 <p class="note">Standard material. The paper uses the Mellin transform throughout and defines it on page 17.</p>
 
 <h2>Definition</h2>
-<p>For a function <i>f</i> on (0, ∞) and a complex number <i>s</i>,</p>
+<p>For a function \(f\) on \((0, \infty)\) and a complex number \(s\),</p>
 <p class="note">$$M(f)(s) \;=\; \int_{0}^{\infty} f(t)\, t^{s}\, \frac{dt}{t}$$</p>
-<p>The substitution <i>t</i> = e<sup><i>u</i></sup> turns this into ∫ <i>f</i>(e<sup><i>u</i></sup>) e<sup><i>su</i></sup> d<i>u</i> over the whole real line. For <i>s</i> = <i>iy</i> that is the Fourier transform of <i>f</i> in the variable <i>u</i> = ln <i>t</i>. If <i>f</i> is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0, the integral converges for every complex <i>s</i>, and M(<i>f</i>) is an entire function.</p>
+<p>The substitution \(t = e^{u}\) turns this into \(\int f(e^{u})\, e^{su}\, du\) over the whole real line. For \(s = iy\) that is the Fourier transform of \(f\) in the variable \(u = \ln t\). If \(f\) is zero outside a bounded interval \([A, B]\) with \(A \gt 0\), the integral converges for every complex \(s\), and \(M(f)\) is an entire function.</p>
 
 <h2>Property 1: rescaling becomes multiplication</h2>
-<p class="note">The transform of <i>f</i>(<i>γt</i>) is $$\gamma^{-s}\cdot M(f)(s)$$</p>
-<p>Proof: substitute <i>u</i> = <i>γt</i>. The measure d<i>t</i>/<i>t</i> does not change, and <i>t<sup>s</sup></i> = <i>γ</i><sup>−<i>s</i></sup><i>u<sup>s</sup></i>. Consequently convolution on (0, ∞), which is a weighted sum of rescalings, becomes multiplication of transforms: M(A(<i>φ</i>)<i>f</i>)(<i>s</i>) = M(<i>φ</i>)(<i>s</i>) · M(<i>f</i>)(<i>s</i>) for the operator A(<i>φ</i>) of chapter @@ch:m1-trace-two-ways@@.</p>
+<p class="note">The transform of \(f(\gamma t)\) is $$\gamma^{-s}\cdot M(f)(s)$$</p>
+<p>Proof: substitute \(u = \gamma t\). The measure \(dt/t\) does not change, and \(t^{s} = \gamma^{-s}u^{s}\). Consequently convolution on \((0, \infty)\), which is a weighted sum of rescalings, becomes multiplication of transforms: \(M(A(\varphi)f)(s) = M(\varphi)(s) \cdot M(f)(s)\) for the operator \(A(\varphi)\) of chapter @@ch:m1-trace-two-ways@@.</p>
 
-<h2>Property 2: the real part of <i>s</i> weighs large <i>t</i> against small <i>t</i></h2>
-<p>Write <i>s</i> = <i>σ</i> + <i>iy</i>. Then |<i>t<sup>s</sup></i>| = <i>t<sup>σ</sup></i>. For <i>σ</i> &gt; 0 this factor is large where <i>t</i> &gt; 1 and small where <i>t</i> &lt; 1. So if <i>f</i> ≥ 0 is zero outside [<i>A</i>, <i>B</i>],</p>
+<h2>Property 2: the real part of \(s\) weighs large \(t\) against small \(t\)</h2>
+<p>Write \(s = \sigma + iy\). Then \(|t^{s}| = t^{\sigma}\). For \(\sigma \gt 0\) this factor is large where \(t \gt 1\) and small where \(t \lt 1\). So if \(f \ge 0\) is zero outside \([A, B]\),</p>
 <p class="note">$$A^{\sigma}\cdot M(f)(0) \;\le\; M(f)(\sigma) \;\le\; B^{\sigma}\cdot M(f)(0) \qquad \text{for } \sigma\ge 0$$</p>
-<p>A function concentrated at <i>t</i> &gt; 1 has a transform that grows as <i>σ</i> increases, and one concentrated at <i>t</i> &lt; 1 has a transform that shrinks.</p>
+<p>A function concentrated at \(t \gt 1\) has a transform that grows as \(\sigma\) increases, and one concentrated at \(t \lt 1\) has a transform that shrinks.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the transform of a bump along the vertical line Re s = σ</small></div>
@@ -28,38 +28,38 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>|M(f)(iy)|</span><span><i style="background:var(--s2)"></i>|M(f)(σ + iy)|</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Absolute value of the Mellin transform on two vertical lines"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Both curves are computed by numerical integration. Moving the bump to the right of <i>t</i> = 1 makes the orange curve larger than the blue one for <i>σ</i> &gt; 0 and smaller for <i>σ</i> &lt; 0; moving it to the left of 1 reverses this.</figcaption>
+  <figcaption>Both curves are computed by numerical integration. Moving the bump to the right of \(t = 1\) makes the orange curve larger than the blue one for \(\sigma \gt 0\) and smaller for \(\sigma \lt 0\); moving it to the left of 1 reverses this.</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Center the bump at <i>t</i> = 1. The two curves nearly coincide for every <i>σ</i>: the factor <i>t<sup>σ</sup></i> is close to 1 across the bump.</li>
-    <li>Narrow the bump. Both curves spread out to larger <i>y</i>: a narrow function has a wide transform.</li>
-    <li>Put the bump at <i>t</i> ≈ 3 and compare the readout with 3<sup><i>σ</i></sup>.</li>
+    <li>Center the bump at \(t = 1\). The two curves nearly coincide for every \(\sigma\): the factor \(t^{\sigma}\) is close to 1 across the bump.</li>
+    <li>Narrow the bump. Both curves spread out to larger \(y\): a narrow function has a wide transform.</li>
+    <li>Put the bump at \(t \approx 3\) and compare the readout with \(3^{\sigma}\).</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Let <i>f</i>(<i>t</i>) = 1 for 1 ≤ <i>t</i> ≤ <i>T</i> and 0 otherwise. Compute M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>$$\int_{1}^{T} t^{\,s-1}\,dt \;=\; \frac{T^{s}-1}{s} \quad (s\ne 0), \qquad \ln T \quad (s=0)$$</p></details></li>
-    <li>For which <i>s</i> does rescaling by <i>γ</i> = 2 leave the transform unchanged?<details><summary>Solution</summary><p>The factor is 2<sup>−<i>s</i></sup>, which equals 1 when <i>s</i> ln 2 = 2π<i>im</i>, that is, <i>s</i> = 2π<i>im</i>/ln 2 for an integer <i>m</i>. These are the Fourier modes of the circle in chapter @@ch:m1-trace-two-ways@@.</p></details></li>
-    <li>Show that the transform of <i>t</i> · <i>f</i>′(<i>t</i>) is −<i>s</i> · M(<i>f</i>)(<i>s</i>), for smooth <i>f</i> that is zero outside a bounded interval [<i>A</i>, <i>B</i>] with <i>A</i> &gt; 0.<details><summary>Solution</summary><p>$$\int_{0}^{\infty} t\,f^{\prime}(t)\,t^{s}\,\frac{dt}{t} \;=\; \int_{0}^{\infty} f^{\prime}(t)\,t^{s}\,dt \;=\; -s\int_{0}^{\infty} f(t)\,t^{\,s-1}\,dt \;=\; -s\cdot M(f)(s)$$ The middle step is integration by parts; the boundary terms vanish because <i>f</i> is zero outside [<i>A</i>, <i>B</i>].</p></details></li>
+    <li>Let \(f(t) = 1\) for \(1 \le t \le T\) and 0 otherwise. Compute \(M(f)(s)\).<details><summary>Solution</summary><p>$$\int_{1}^{T} t^{\,s-1}\,dt \;=\; \frac{T^{s}-1}{s} \quad (s\ne 0), \qquad \ln T \quad (s=0)$$</p></details></li>
+    <li>For which \(s\) does rescaling by \(\gamma = 2\) leave the transform unchanged?<details><summary>Solution</summary><p>The factor is \(2^{-s}\), which equals 1 when \(s \ln 2 = 2\pi i m\), that is, \(s = \dfrac{2\pi i m}{\ln 2}\) for an integer \(m\). These are the Fourier modes of the circle in chapter @@ch:m1-trace-two-ways@@.</p></details></li>
+    <li>Show that the transform of \(t \cdot f'(t)\) is \(-s \cdot M(f)(s)\), for smooth \(f\) that is zero outside a bounded interval \([A, B]\) with \(A \gt 0\).<details><summary>Solution</summary><p>$$\int_{0}^{\infty} t\,f^{\prime}(t)\,t^{s}\,\frac{dt}{t} \;=\; \int_{0}^{\infty} f^{\prime}(t)\,t^{s}\,dt \;=\; -s\int_{0}^{\infty} f(t)\,t^{\,s-1}\,dt \;=\; -s\cdot M(f)(s)$$ The middle step is integration by parts; the boundary terms vanish because \(f\) is zero outside \([A, B]\).</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-mellin">
-  <li data-a="2"><p>Why is the measure d<i>t</i>/<i>t</i> used in place of d<i>t</i>?</p>
-    <ul><li>It makes every integral converge</li><li>It is unchanged by rescaling <i>t</i> ↦ <i>γt</i>, which is what makes rescaling turn into multiplication by <i>γ</i><sup>−<i>s</i></sup></li><li>It is just a convention with no consequences</li></ul>
-    <p class="why">With <i>u</i> = <i>γt</i>, d<i>u</i>/<i>u</i> = d<i>t</i>/<i>t</i>. With plain d<i>t</i> an extra factor <i>γ</i> would appear. In the coordinate ln <i>t</i> it is ordinary length, and rescaling is translation.</p></li>
-  <li data-a="1"><p>A function <i>f</i> ≥ 0 is zero outside [0.1, 0.5]. As <i>σ</i> increases from 0, M(<i>f</i>)(<i>σ</i>):</p>
-    <ul><li>shrinks, because <i>t<sup>σ</sup></i> &lt; 1 where <i>f</i> lives</li><li>grows</li><li>stays the same</li></ul>
-    <p class="why">By property 2 the value lies between 0.1<sup><i>σ</i></sup> and 0.5<sup><i>σ</i></sup> times M(<i>f</i>)(0). Functions living at <i>t</i> &gt; 1 behave the opposite way, which matters later because the proof uses test functions supported at <i>t</i> &gt; 1.</p></li>
+  <li data-a="2"><p>Why is the measure \(dt/t\) used in place of \(dt\)?</p>
+    <ul><li>It makes every integral converge</li><li>It is unchanged by rescaling \(t \mapsto \gamma t\), which is what makes rescaling turn into multiplication by \(\gamma^{-s}\)</li><li>It is just a convention with no consequences</li></ul>
+    <p class="why">With \(u = \gamma t\), \(du/u = dt/t\). With plain \(dt\) an extra factor \(\gamma\) would appear. In the coordinate \(\ln t\) it is ordinary length, and rescaling is translation.</p></li>
+  <li data-a="1"><p>A function \(f \ge 0\) is zero outside \([0.1, 0.5]\). As \(\sigma\) increases from 0, \(M(f)(\sigma)\):</p>
+    <ul><li>shrinks, because \(t^{\sigma} \lt 1\) where \(f\) lives</li><li>grows</li><li>stays the same</li></ul>
+    <p class="why">By property 2 the value lies between \(0.1^{\sigma}\) and \(0.5^{\sigma}\) times \(M(f)(0)\). Functions living at \(t \gt 1\) behave the opposite way, which matters later because the proof uses test functions supported at \(t \gt 1\).</p></li>
   <li data-a="3"><p>You make the bump narrower. Its transform along a vertical line:</p>
-    <ul><li>becomes narrower too</li><li>is unchanged</li><li>spreads out to larger heights <i>y</i></li></ul>
-    <p class="why">A function concentrated in a short range of ln <i>t</i> needs high frequencies to describe it. Later this means a narrow test function "sees" zeros at greater heights.</p></li>
+    <ul><li>becomes narrower too</li><li>is unchanged</li><li>spreads out to larger heights \(y\)</li></ul>
+    <p class="why">A function concentrated in a short range of \(\ln t\) needs high frequencies to describe it. Later this means a narrow test function "sees" zeros at greater heights.</p></li>
 </ol>
 
 <script>

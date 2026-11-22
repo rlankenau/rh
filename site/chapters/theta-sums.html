@@ -1,12 +1,12 @@
 <h1>Summing over whole numbers</h1>
-<p class="lede">Chapter @@ch:circle-slots@@ summed a function over the powers of <i>γ</i>, and the factor 1 − <i>γ</i><sup>−<i>s</i></sup> appeared in front of its Mellin transform. Summing over the whole numbers instead puts <i>ζ</i>(<i>s</i>) in front. The resulting functions are the θ-functions of the paper.</p>
+<p class="lede">Chapter @@ch:circle-slots@@ summed a function over the powers of \(\gamma\), and the factor \(1 - \gamma^{-s}\) appeared in front of its Mellin transform. Summing over the whole numbers instead puts \(\zeta(s)\) in front. The resulting functions are the θ-functions of the paper.</p>
 <p class="note">Based on §1.1.4 of the paper (page 12), read in full. The lab works over the ordinary integers with the trivial character, which is the Riemann zeta case; the paper works over any number field.</p>
 
 <h2>θ-functions</h2>
-<p>The paper uses the construction of chapter @@ch:circle-slots@@ with a different sum, the one at the center of Tate's thesis. Take a function <i>f</i> on (0, ∞) and sum its values at all whole-number multiples of <i>x</i>:</p>
+<p>The paper uses the construction of chapter @@ch:circle-slots@@ with a different sum, the one at the center of Tate's thesis. Take a function \(f\) on \((0, \infty)\) and sum its values at all whole-number multiples of \(x\):</p>
 <p class="note">$$\Theta_f(x) \;=\; \sqrt{x}\,\sum_{n\ge 1} f(nx)$$ The paper calls functions of this form θ-functions. The Mellin transform is $$M(\Theta_f)(s) \;=\; \zeta\!\left(s+\tfrac12\right)\cdot M(f)\!\left(s+\tfrac12\right)$$</p>
-<p>Proof: by the rescaling property the transform of <i>f</i>(<i>nx</i>) is <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>), and Σ <i>n</i><sup>−<i>s</i></sup> = <i>ζ</i>(<i>s</i>). Multiplying by √<i>x</i> replaces <i>s</i> by <i>s</i> + ½. (The sum converges for Re <i>s</i> &gt; ½; the identity extends to all <i>s</i> by analytic continuation when Θ<sub><i>f</i></sub> decays at both ends.) The factor <i>ζ</i> here plays the role that 1 − <i>γ</i><sup>−<i>s</i></sup> played on the circle.</p>
-<p><b>So the transform of every θ-function is zero at the zeros of <i>ζ</i>, whatever <i>f</i> is.</b> Because of the shift by ½, a zero <i>ρ</i> of <i>ζ</i> appears at <i>s</i> = <i>ρ</i> − ½. If the Riemann Hypothesis holds these points are all on the imaginary axis, at <i>s</i> = ±14.13<i>i</i>, ±21.02<i>i</i>, ±25.01<i>i</i>, …</p>
+<p>Proof: by the rescaling property the transform of \(f(nx)\) is \(n^{-s} \cdot M(f)(s)\), and \(\sum n^{-s} = \zeta(s)\). Multiplying by \(\sqrt{x}\) replaces \(s\) by \(s + \tfrac12\). (The sum converges for \(\operatorname{Re} s \gt \tfrac12\); the identity extends to all \(s\) by analytic continuation when \(\Theta_f\) decays at both ends.) The factor \(\zeta\) here plays the role that \(1 - \gamma^{-s}\) played on the circle.</p>
+<p><b>So the transform of every θ-function is zero at the zeros of \(\zeta\), whatever \(f\) is.</b> Because of the shift by ½, a zero \(\rho\) of \(\zeta\) appears at \(s = \rho - \tfrac12\). If the Riemann Hypothesis holds these points are all on the imaginary axis, at \(s = \pm 14.13i,\ \pm 21.02i,\ \pm 25.01i,\ \dots\)</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the transform of Θ is zero at the zeros of ζ, for any f</small></div>
@@ -21,37 +21,37 @@
   <div class="lg"><span><i style="background:var(--s2)"></i>the ratio |M(Θ)(iy)| / |M(f)(½ + iy)|</span><span><i style="background:var(--s1)"></i>|ζ(½ + iy)|, computed independently</span></div>
   <div class="tw"><div class="plot" id="p4"><svg role="img" aria-label="Ratio of the two transforms compared with zeta on the critical line"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r2"></div>
-  <figcaption>Top: <i>f</i> is a bump minus a smaller bump, scaled so that ∫ <i>f</i> d<i>x</i> = 0 (the paper's condition for Θ to decay at both ends). Middle: the transform of Θ, computed by integrating the orange curve above, is zero at every dot for every <i>f</i>. Bottom: the ratio of the two transforms equals |<i>ζ</i>(½ + <i>iy</i>)|. The two curves are computed independently and coincide.</figcaption>
+  <figcaption>Top: \(f\) is a bump minus a smaller bump, scaled so that \(\int f\,dx = 0\) (the paper's condition for \(\Theta\) to decay at both ends). Middle: the transform of \(\Theta\), computed by integrating the orange curve above, is zero at every dot for every \(f\). Bottom: the ratio of the two transforms equals \(|\zeta(\tfrac12 + iy)|\). The two curves are computed independently and coincide.</figcaption>
 </figure>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, move <i>f</i> around and change its width. The blue transform changes shape completely; the orange one keeps its zeros at the same heights.</li>
-    <li>Look for a setting where the blue curve itself dips close to zero between two dots. The orange curve dips there as well, but the ratio in the bottom panel does not: it depends only on <i>ζ</i>. (Very close to such a dip the ratio is a quotient of two tiny numbers and gets noisy.)</li>
+    <li>In Lab @@n@@.1, move \(f\) around and change its width. The blue transform changes shape completely; the orange one keeps its zeros at the same heights.</li>
+    <li>Look for a setting where the blue curve itself dips close to zero between two dots. The orange curve dips there as well, but the ratio in the bottom panel does not: it depends only on \(\zeta\). (Very close to such a dip the ratio is a quotient of two tiny numbers and gets noisy.)</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Show that the Mellin transform of <i>f</i>(<i>nx</i>) is <i>n</i><sup>−<i>s</i></sup> · M(<i>f</i>)(<i>s</i>).<details><summary>Solution</summary><p>Substitute <i>u</i> = <i>nx</i>: $$\int_{0}^{\infty} f(nx)\,x^{s}\,\frac{dx}{x} \;=\; \int_{0}^{\infty} f(u)\left(\frac{u}{n}\right)^{s}\frac{du}{u} \;=\; n^{-s}\cdot M(f)(s)$$ The measure d<i>x</i>/<i>x</i> is unchanged by rescaling.</p></details></li>
-    <li>The first zero of <i>ζ</i> is <i>ρ</i> ≈ ½ + 14.13<i>i</i>. Where is the transform of Θ<sub><i>f</i></sub> zero because of it?<details><summary>Solution</summary><p>At <i>s</i> = <i>ρ</i> − ½ ≈ 14.13<i>i</i>, since M(Θ<sub><i>f</i></sub>)(<i>s</i>) contains the factor <i>ζ</i>(<i>s</i> + ½). That is the first dot in the lab.</p></details></li>
-    <li>Why does Θ<sub><i>f</i></sub>(<i>x</i>) blow up as <i>x</i> → 0 unless ∫ <i>f</i> d<i>x</i> = 0?<details><summary>Solution</summary><p>For small <i>x</i> the points <i>nx</i> are closely spaced, and <i>x</i> · Σ <i>f</i>(<i>nx</i>) is a Riemann sum for ∫ <i>f</i>. So Σ <i>f</i>(<i>nx</i>) ≈ (1/<i>x</i>) ∫ <i>f</i>, and Θ<sub><i>f</i></sub>(<i>x</i>) ≈ <i>x</i><sup>−½</sup> ∫ <i>f</i>, which is unbounded unless the integral is 0.</p></details></li>
+    <li>Show that the Mellin transform of \(f(nx)\) is \(n^{-s} \cdot M(f)(s)\).<details><summary>Solution</summary><p>Substitute \(u = nx\): $$\int_{0}^{\infty} f(nx)\,x^{s}\,\frac{dx}{x} \;=\; \int_{0}^{\infty} f(u)\left(\frac{u}{n}\right)^{s}\frac{du}{u} \;=\; n^{-s}\cdot M(f)(s)$$ The measure \(dx/x\) is unchanged by rescaling.</p></details></li>
+    <li>The first zero of \(\zeta\) is \(\rho \approx \tfrac12 + 14.13i\). Where is the transform of \(\Theta_f\) zero because of it?<details><summary>Solution</summary><p>At \(s = \rho - \tfrac12 \approx 14.13i\), since \(M(\Theta_f)(s)\) contains the factor \(\zeta(s + \tfrac12)\). That is the first dot in the lab.</p></details></li>
+    <li>Why does \(\Theta_f(x)\) blow up as \(x \to 0\) unless \(\int f\,dx = 0\)?<details><summary>Solution</summary><p>For small \(x\) the points \(nx\) are closely spaced, and \(x \cdot \sum f(nx)\) is a Riemann sum for \(\int f\). So \(\sum f(nx) \approx \dfrac{1}{x} \int f\), and \(\Theta_f(x) \approx x^{-1/2} \int f\), which is unbounded unless the integral is 0.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-theta-sums">
-  <li data-a="2"><p>The transform of Θ<sub><i>f</i></sub> vanishes at <i>s</i> = <i>ρ</i> − ½ for every zero <i>ρ</i>, whichever <i>f</i> you choose. What does that tell you?</p>
-    <ul><li>That <i>f</i> was chosen specially</li><li>The zeros are a property of summing over the whole numbers, not of <i>f</i></li><li>That Θ<sub><i>f</i></sub> is identically 0</li></ul>
-    <p class="why">M(Θ<sub><i>f</i></sub>)(<i>s</i>) = <i>ζ</i>(<i>s</i> + ½) · M(<i>f</i>)(<i>s</i> + ½). The factor <i>ζ</i> comes from Σ <i>n</i><sup>−<i>s</i></sup> and is the same for every <i>f</i>.</p></li>
-  <li data-a="1"><p>What is the effect of the factor √<i>x</i> in the definition of Θ<sub><i>f</i></sub>?</p>
-    <ul><li>It shifts <i>s</i> by ½, so zeros on the critical line appear at purely imaginary <i>s</i></li><li>It makes the sum converge</li><li>It removes the zeros</li></ul>
-    <p class="why">Multiplying by <i>x</i><sup>½</sup> shifts the Mellin variable by ½. The critical line Re <i>s</i> = ½ becomes the imaginary axis, where the transform is an ordinary Fourier transform in ln <i>x</i>.</p></li>
-  <li data-a="3"><p>Suppose you summed <i>f</i>(<i>nx</i>) over the odd <i>n</i> only. Which factor would appear in front of M(<i>f</i>)?</p>
-    <ul><li><i>ζ</i>(<i>s</i>) + 2<sup>−<i>s</i></sup></li><li><i>ζ</i>(2<i>s</i>)</li><li><i>ζ</i>(<i>s</i>) · (1 − 2<sup>−<i>s</i></sup>)</li></ul>
-    <p class="why">The even <i>n</i> contribute Σ (2<i>m</i>)<sup>−<i>s</i></sup> = 2<sup>−<i>s</i></sup><i>ζ</i>(<i>s</i>). Removing them leaves <i>ζ</i>(<i>s</i>)(1 − 2<sup>−<i>s</i></sup>): the Euler product without the factor for the prime 2.</p></li>
+  <li data-a="2"><p>The transform of \(\Theta_f\) vanishes at \(s = \rho - \tfrac12\) for every zero \(\rho\), whichever \(f\) you choose. What does that tell you?</p>
+    <ul><li>That \(f\) was chosen specially</li><li>The zeros are a property of summing over the whole numbers, not of \(f\)</li><li>That \(\Theta_f\) is identically 0</li></ul>
+    <p class="why">\(M(\Theta_f)(s) = \zeta(s + \tfrac12) \cdot M(f)(s + \tfrac12)\). The factor \(\zeta\) comes from \(\sum n^{-s}\) and is the same for every \(f\).</p></li>
+  <li data-a="1"><p>What is the effect of the factor \(\sqrt{x}\) in the definition of \(\Theta_f\)?</p>
+    <ul><li>It shifts \(s\) by ½, so zeros on the critical line appear at purely imaginary \(s\)</li><li>It makes the sum converge</li><li>It removes the zeros</li></ul>
+    <p class="why">Multiplying by \(x^{1/2}\) shifts the Mellin variable by ½. The critical line \(\operatorname{Re} s = \tfrac12\) becomes the imaginary axis, where the transform is an ordinary Fourier transform in \(\ln x\).</p></li>
+  <li data-a="3"><p>Suppose you summed \(f(nx)\) over the odd \(n\) only. Which factor would appear in front of \(M(f)\)?</p>
+    <ul><li>\(\zeta(s) + 2^{-s}\)</li><li>\(\zeta(2s)\)</li><li>\(\zeta(s) \cdot (1 - 2^{-s})\)</li></ul>
+    <p class="why">The even \(n\) contribute \(\sum (2m)^{-s} = 2^{-s}\zeta(s)\). Removing them leaves \(\zeta(s)(1 - 2^{-s})\): the Euler product without the factor for the prime 2.</p></li>
 </ol>
 
 <script>

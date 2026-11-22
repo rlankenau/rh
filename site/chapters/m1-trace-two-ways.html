@@ -2,16 +2,16 @@
 <p class="lede">A trace formula computes the trace of one operator in two ways and equates the results. In Masullo's proof one computation gives a sum over the zeros of an L-function and the other gives a sum over primes. This chapter works the simplest example, from the paper's introduction, where both sides can be computed directly.</p>
 <p class="note">Based on the toy example in the paper's introduction (pages 11–33), which I read in full. The lab computes both sides numerically; the Lean file <code>RH/Toy.lean</code> states the identity and proves one consequence from it.</p>
 
-<h2>The circle (0, ∞) modulo <i>γ</i></h2>
-<p>Fix <i>γ</i> &gt; 1 and identify <i>t</i> with <i>γt</i> for every <i>t</i> &gt; 0. In the coordinate <i>u</i> = ln <i>t</i> this is the real line modulo ln <i>γ</i>: a circle of circumference ln <i>γ</i>. Lengths on it are measured by d<i>t</i>/<i>t</i> = d<i>u</i>.</p>
-<p>Fix a smooth function <i>φ</i> on (0, ∞) that is zero outside a bounded interval away from 0 (a test function). It defines a convolution operator on functions <i>f</i> on the circle:</p>
-<p class="note">$$\bigl(A(\varphi)f\bigr)(x) \;=\; \int_{0}^{\infty} \varphi(t)\, f\!\left(\frac{x}{t}\right) \frac{dt}{t}$$ Each value of <i>f</i> is replaced by a <i>φ</i>-weighted average of its values at rescaled points.</p>
-<p>A(<i>φ</i>) is linear, and its trace is the sum of its eigenvalues. The trace can be computed in two ways. Both use the Mellin transform, M(<i>φ</i>)(<i>s</i>) = ∫<sub>0</sub><sup>∞</sup> <i>φ</i>(<i>t</i>) <i>t<sup>s</sup></i> d<i>t</i>/<i>t</i>.</p>
+<h2>The circle \((0, \infty)\) modulo \(\gamma\)</h2>
+<p>Fix \(\gamma \gt 1\) and identify \(t\) with \(\gamma t\) for every \(t \gt 0\). In the coordinate \(u = \ln t\) this is the real line modulo \(\ln\gamma\): a circle of circumference \(\ln\gamma\). Lengths on it are measured by \(dt/t = du\).</p>
+<p>Fix a smooth function \(\varphi\) on \((0, \infty)\) that is zero outside a bounded interval away from 0 (a test function). It defines a convolution operator on functions \(f\) on the circle:</p>
+<p class="note">$$\bigl(A(\varphi)f\bigr)(x) \;=\; \int_{0}^{\infty} \varphi(t)\, f\!\left(\frac{x}{t}\right) \frac{dt}{t}$$ Each value of \(f\) is replaced by a \(\varphi\)-weighted average of its values at rescaled points.</p>
+<p>\(A(\varphi)\) is linear, and its trace is the sum of its eigenvalues. The trace can be computed in two ways. Both use the Mellin transform, \(M(\varphi)(s) = \int_{0}^{\infty} \varphi(t)\, t^{s}\, \frac{dt}{t}\).</p>
 <ul>
-  <li><b>From the eigenvalues (the spectral side).</b> The function <i>x</i><sup>−<i>s</i></sup> is well defined on the circle exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> = 2π<i>im</i>/ln <i>γ</i> for an integer <i>m</i>. These are the Fourier modes of the circle. Substituting into the definition gives A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>, so each mode is an eigenfunction with eigenvalue M(<i>φ</i>)(2π<i>im</i>/ln <i>γ</i>). The trace is the sum of these over all <i>m</i>.</li>
-  <li><b>From the integral kernel (the geometric side).</b> Written as an integral over one turn of the circle, (A(<i>φ</i>)<i>f</i>)(<i>x</i>) = ∫ K(<i>x</i>, <i>y</i>) <i>f</i>(<i>y</i>) d<i>y</i>/<i>y</i> with K(<i>x</i>, <i>y</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup>x</i>/<i>y</i>), one term for each number of times around. The trace of an integral operator is the integral of its kernel along the diagonal <i>x</i> = <i>y</i>. There K(<i>x</i>, <i>x</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>), a constant, and the circle has length ln <i>γ</i>.</li>
+  <li><b>From the eigenvalues (the spectral side).</b> The function \(x^{-s}\) is well defined on the circle exactly when \(\gamma^{s} = 1\), that is, \(s = \dfrac{2\pi i m}{\ln\gamma}\) for an integer \(m\). These are the Fourier modes of the circle. Substituting into the definition gives \(A(\varphi)x^{-s} = M(\varphi)(s) \cdot x^{-s}\), so each mode is an eigenfunction with eigenvalue \(M(\varphi)\!\left(\dfrac{2\pi i m}{\ln\gamma}\right)\). The trace is the sum of these over all \(m\).</li>
+  <li><b>From the integral kernel (the geometric side).</b> Written as an integral over one turn of the circle, \(\bigl(A(\varphi)f\bigr)(x) = \int K(x, y)\, f(y)\, \frac{dy}{y}\) with \(K(x, y) = \sum_{k} \varphi\!\left(\dfrac{\gamma^{k}x}{y}\right)\), one term for each number of times around. The trace of an integral operator is the integral of its kernel along the diagonal \(x = y\). There \(K(x, x) = \sum_{k} \varphi(\gamma^{k})\), a constant, and the circle has length \(\ln\gamma\).</li>
 </ul>
-<p class="note">$$\sum_{m} M(\varphi)\!\left(\frac{2\pi i m}{\ln\gamma}\right) \;=\; \ln\gamma \cdot \sum_{k} \varphi(\gamma^{k})$$ Both sums run over all integers. In the coordinate <i>u</i> = ln <i>t</i> this is the Poisson summation formula.</p>
+<p class="note">$$\sum_{m} M(\varphi)\!\left(\frac{2\pi i m}{\ln\gamma}\right) \;=\; \ln\gamma \cdot \sum_{k} \varphi(\gamma^{k})$$ Both sums run over all integers. In the coordinate \(u = \ln t\) this is the Poisson summation formula.</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>both sides of the toy trace formula</small></div>
@@ -26,19 +26,19 @@
   <div class="lg"><span><i style="background:var(--s2)"></i>spectral side, summed over |m| ≤ M</span><span>dashed line: the geometric side</span></div>
   <div class="tw"><div class="plot" id="p2"><svg role="img" aria-label="Partial sums of the spectral side converging to the geometric side"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Top: the geometric side uses the values of <i>φ</i> only at the powers of <i>γ</i> (dashed lines). Bottom: the partial sums of the spectral side over |<i>m</i>| ≤ M converge to the same number. The narrower <i>φ</i> is, the slower its transform decays and the more terms are needed.</figcaption>
+  <figcaption>Top: the geometric side uses the values of \(\varphi\) only at the powers of \(\gamma\) (dashed lines). Bottom: the partial sums of the spectral side over \(|m| \le M\) converge to the same number. The narrower \(\varphi\) is, the slower its transform decays and the more terms are needed.</figcaption>
 </figure>
 
 <h2>How the example corresponds to the paper</h2>
-<p>In the paper the circle is replaced by a much larger group, built from all the completions of a number field, and the operator is again convolution with a test function <i>φ</i>. The two sides of the trace become:</p>
+<p>In the paper the circle is replaced by a much larger group, built from all the completions of a number field, and the operator is again convolution with a test function \(\varphi\). The two sides of the trace become:</p>
 <ul>
-  <li><b>spectral side:</b> one term M(<i>φ</i>)(<i>ρ</i> − ½) for each zero <i>ρ</i> of the L-function, in place of one term for each mode;</li>
-  <li><b>geometric side:</b> each prime <i>p</i> contributes like a circle of circumference ln <i>p</i>, giving terms ln <i>p</i> · <i>φ</i>(<i>p<sup>k</sup></i>) at the prime powers.</li>
+  <li><b>spectral side:</b> one term \(M(\varphi)(\rho - \tfrac12)\) for each zero \(\rho\) of the L-function, in place of one term for each mode;</li>
+  <li><b>geometric side:</b> each prime \(p\) contributes like a circle of circumference \(\ln p\), giving terms \(\ln p \cdot \varphi(p^{k})\) at the prime powers.</li>
 </ul>
-<p>The resulting identity, a sum over zeros equal to a sum over prime powers for every test function <i>φ</i>, is a form of the explicit formula of chapter @@ch:waves@@.</p>
+<p>The resulting identity, a sum over zeros equal to a sum over prime powers for every test function \(\varphi\), is a form of the explicit formula of chapter @@ch:waves@@.</p>
 
 <h2>When the trace is zero</h2>
-<p>If <i>φ</i> is zero outside an interval strictly between 1 and <i>γ</i>, then <i>φ</i>(<i>γ<sup>k</sup></i>) = 0 for every integer <i>k</i>. The geometric side is 0, so the sum of the eigenvalues is 0, although the individual eigenvalues are not. The paper uses this to remove all but finitely many primes: for a fixed <i>φ</i>, every prime <i>p</i> larger than the right end of the interval where <i>φ</i> is nonzero contributes 0.</p>
+<p>If \(\varphi\) is zero outside an interval strictly between 1 and \(\gamma\), then \(\varphi(\gamma^{k}) = 0\) for every integer \(k\). The geometric side is 0, so the sum of the eigenvalues is 0, although the individual eigenvalues are not. The paper uses this to remove all but finitely many primes: for a fixed \(\varphi\), every prime \(p\) larger than the right end of the interval where \(\varphi\) is nonzero contributes 0.</p>
 
 <div class="box">
   <h3>In Lean</h3>
@@ -55,32 +55,32 @@ theorem trace_eq_zero … (hs : tsupport φ ⊆ Ioo 1 γ) :
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Move the bump center until the bump lies between the dashed lines at 1 and <i>γ</i>. Both sides become 0. Then lower M to 1 or 2: the partial sums are not 0, only the full sum is.</li>
-    <li>Make the bump wide enough to cover two powers of <i>γ</i>. The geometric side counts both.</li>
-    <li>Shrink <i>γ</i> toward 1.3. More powers of <i>γ</i> fall inside the bump and the trace grows.</li>
+    <li>Move the bump center until the bump lies between the dashed lines at 1 and \(\gamma\). Both sides become 0. Then lower \(M\) to 1 or 2: the partial sums are not 0, only the full sum is.</li>
+    <li>Make the bump wide enough to cover two powers of \(\gamma\). The geometric side counts both.</li>
+    <li>Shrink \(\gamma\) toward 1.3. More powers of \(\gamma\) fall inside the bump and the trace grows.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Check that A(<i>φ</i>)<i>x</i><sup>−<i>s</i></sup> = M(<i>φ</i>)(<i>s</i>) · <i>x</i><sup>−<i>s</i></sup>.<details><summary>Solution</summary><p>$$\int_{0}^{\infty}\varphi(t)\left(\frac{x}{t}\right)^{-s}\frac{dt}{t} \;=\; x^{-s}\int_{0}^{\infty}\varphi(t)\,t^{s}\,\frac{dt}{t} \;=\; x^{-s}\cdot M(\varphi)(s)$$</p></details></li>
-    <li>Why is <i>x</i><sup>−<i>s</i></sup> a function on the circle only when <i>γ<sup>s</sup></i> = 1?<details><summary>Solution</summary><p>On the circle <i>x</i> and <i>γx</i> are the same point, so a function must take the same value at both. (<i>γx</i>)<sup>−<i>s</i></sup> = <i>γ</i><sup>−<i>s</i></sup> · <i>x</i><sup>−<i>s</i></sup>, which equals <i>x</i><sup>−<i>s</i></sup> exactly when <i>γ<sup>s</sup></i> = 1, that is, <i>s</i> ln <i>γ</i> = 2π<i>im</i>.</p></details></li>
-    <li>Take <i>γ</i> = 3 and a test function <i>φ</i> that is zero outside the interval [2, 10]. Write down the geometric side.<details><summary>Solution</summary><p>The powers of 3 inside [2, 10] are 3 and 9. The trace is ln 3 · (<i>φ</i>(3) + <i>φ</i>(9)).</p></details></li>
+    <li>Check that \(A(\varphi)x^{-s} = M(\varphi)(s) \cdot x^{-s}\).<details><summary>Solution</summary><p>$$\int_{0}^{\infty}\varphi(t)\left(\frac{x}{t}\right)^{-s}\frac{dt}{t} \;=\; x^{-s}\int_{0}^{\infty}\varphi(t)\,t^{s}\,\frac{dt}{t} \;=\; x^{-s}\cdot M(\varphi)(s)$$</p></details></li>
+    <li>Why is \(x^{-s}\) a function on the circle only when \(\gamma^{s} = 1\)?<details><summary>Solution</summary><p>On the circle \(x\) and \(\gamma x\) are the same point, so a function must take the same value at both. \((\gamma x)^{-s} = \gamma^{-s} \cdot x^{-s}\), which equals \(x^{-s}\) exactly when \(\gamma^{s} = 1\), that is, \(s \ln\gamma = 2\pi i m\).</p></details></li>
+    <li>Take \(\gamma = 3\) and a test function \(\varphi\) that is zero outside the interval \([2, 10]\). Write down the geometric side.<details><summary>Solution</summary><p>The powers of 3 inside \([2, 10]\) are 3 and 9. The trace is \(\ln 3 \cdot \bigl(\varphi(3) + \varphi(9)\bigr)\).</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-m1-trace-two-ways">
-  <li data-a="1"><p>For <i>φ</i> ≥ 0 supported inside (1, <i>γ</i>) the trace is 0, yet the eigenvalue of the constant mode, M(<i>φ</i>)(0) = ∫ <i>φ</i> d<i>t</i>/<i>t</i>, is positive. How can both be true?</p>
-    <ul><li>The other eigenvalues are complex numbers with varying phases, and together they cancel it exactly</li><li>The other eigenvalues are all 0</li><li>The trace formula fails for such <i>φ</i></li></ul>
+  <li data-a="1"><p>For \(\varphi \ge 0\) supported inside \((1, \gamma)\) the trace is 0, yet the eigenvalue of the constant mode, \(M(\varphi)(0) = \int \varphi\, \frac{dt}{t}\), is positive. How can both be true?</p>
+    <ul><li>The other eigenvalues are complex numbers with varying phases, and together they cancel it exactly</li><li>The other eigenvalues are all 0</li><li>The trace formula fails for such \(\varphi\)</li></ul>
     <p class="why">The trace is the sum of all eigenvalues, not a statement about each one. That an infinite sum of nonzero terms must total exactly 0 is real information about where the modes are.</p></li>
-  <li data-a="2"><p>Where does the term <i>φ</i>(<i>γ<sup>k</sup></i>) on the geometric side come from?</p>
-    <ul><li>From the <i>k</i>-th eigenvalue</li><li>On the circle, <i>x</i> and <i>γ<sup>k</sup>x</i> are the same point, so the kernel on the diagonal collects <i>φ</i> once for each way of going round <i>k</i> times</li><li>From the <i>k</i>-th derivative of <i>φ</i></li></ul>
-    <p class="why">K(<i>x</i>, <i>x</i>) = Σ<sub><i>k</i></sub> <i>φ</i>(<i>γ<sup>k</sup></i>): the operator moves a point by the factor <i>t</i> with weight <i>φ</i>(<i>t</i>), and it returns to where it started exactly when <i>t</i> is a power of <i>γ</i>.</p></li>
-  <li data-a="3"><p>Replace <i>γ</i> = 2 by <i>γ</i> = 4. What happens to the two sides?</p>
+  <li data-a="2"><p>Where does the term \(\varphi(\gamma^{k})\) on the geometric side come from?</p>
+    <ul><li>From the \(k\)-th eigenvalue</li><li>On the circle, \(x\) and \(\gamma^{k}x\) are the same point, so the kernel on the diagonal collects \(\varphi\) once for each way of going round \(k\) times</li><li>From the \(k\)-th derivative of \(\varphi\)</li></ul>
+    <p class="why">\(K(x, x) = \sum_{k} \varphi(\gamma^{k})\): the operator moves a point by the factor \(t\) with weight \(\varphi(t)\), and it returns to where it started exactly when \(t\) is a power of \(\gamma\).</p></li>
+  <li data-a="3"><p>Replace \(\gamma = 2\) by \(\gamma = 4\). What happens to the two sides?</p>
     <ul><li>Nothing changes</li><li>The modes move twice as far apart, and all powers of 2 still appear</li><li>The modes become twice as dense, and only the even powers of 2 appear, each with weight ln 4</li></ul>
-    <p class="why">Modes sit at 2π<i>im</i>/ln <i>γ</i>, and ln 4 = 2 ln 2 halves the spacing. The geometric side is ln 4 · Σ <i>φ</i>(4<sup><i>k</i></sup>). A longer circle has more modes and fewer returns.</p></li>
+    <p class="why">Modes sit at \(2\pi i m/\ln\gamma\), and \(\ln 4 = 2\ln 2\) halves the spacing. The geometric side is \(\ln 4 \cdot \sum \varphi(4^{k})\). A longer circle has more modes and fewer returns.</p></li>
 </ol>
 
 <script>

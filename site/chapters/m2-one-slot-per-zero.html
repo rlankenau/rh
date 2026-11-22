@@ -1,21 +1,21 @@
 <h1>One slot per zero</h1>
-<p class="lede">Take the smooth functions and regard two as equal when they differ by a θ-function. The paper's first main claim is that an element of the resulting quotient space is determined by one number for each zero of the L-function. The convolution operator acts on this space, and its eigenvalues are the values of M(<i>φ</i>) at the zeros.</p>
+<p class="lede">Take the smooth functions and regard two as equal when they differ by a θ-function. The paper's first main claim is that an element of the resulting quotient space is determined by one number for each zero of the L-function. The convolution operator acts on this space, and its eigenvalues are the values of \(M(\varphi)\) at the zeros.</p>
 <p class="note">Based on §1.2.1 of the paper (pages 13–14), read in full. The identification of the quotient with the zeros rests on the paper's "Structure Theorems", which I have not read.</p>
 
-<h2>The quotient H</h2>
-<p>The paper's first structural claim combines chapters @@ch:circle-slots@@ and @@ch:theta-sums@@. Let S be the space of smooth, rapidly decaying functions on the group where Θ is defined. The θ-functions form a subspace of S. Form the quotient space H: elements of S, with two regarded as equal when they differ by a θ-function.</p>
+<h2>The quotient \(H\)</h2>
+<p>The paper's first structural claim combines chapters @@ch:circle-slots@@ and @@ch:theta-sums@@. Let \(S\) be the space of smooth, rapidly decaying functions on the group where \(\Theta\) is defined. The θ-functions form a subspace of \(S\). Form the quotient space \(H\): elements of \(S\), with two regarded as equal when they differ by a θ-function.</p>
 <ul>
-  <li>The Mellin transforms of elements of S are entire functions of <i>s</i>.</li>
-  <li>The transforms of θ-functions are the multiples of the L-function, shifted by ½. In the zeta case there is an extra factor (<i>s</i> + ½)(<i>s</i> − ½) that cancels its pole.</li>
-  <li>So an element of H is determined by the values of its transform at the zeros, together with derivatives at a zero of higher multiplicity: <b>one slot per zero</b>, counted with multiplicity.</li>
+  <li>The Mellin transforms of elements of \(S\) are entire functions of \(s\).</li>
+  <li>The transforms of θ-functions are the multiples of the L-function, shifted by ½. In the zeta case there is an extra factor \((s + \tfrac12)(s - \tfrac12)\) that cancels its pole.</li>
+  <li>So an element of \(H\) is determined by the values of its transform at the zeros, together with derivatives at a zero of higher multiplicity: <b>one slot per zero</b>, counted with multiplicity.</li>
 </ul>
-<p>Masullo calls 0 → θ-functions → S → H → 0 the fundamental divisor exact sequence. It has the same form as a standard fact in geometry: functions modulo those that vanish on a set of points correspond to functions on that set of points. He credits the idea to Connes. What he claims as new is keeping S and H as topological spaces of smooth functions, where earlier work passed immediately to square-integrable functions.</p>
-<p class="note warn">Lab @@ch:theta-sums@@.1 shows one direction: the transform of every θ-function is a multiple of <i>ζ</i>. The claim also needs the converse, that every suitable multiple of the L-function is the transform of a θ-function, and a statement about the topology of H. The paper says this "requires all the Structure Theorems" plus known facts about L-functions (the convexity bound, and control of 1/<i>L</i> on a sequence of horizontal lines). Those theorems take up a substantial part of the 940 pages. I have not checked them.</p>
+<p>Masullo calls \(0 \to \theta\text{-functions} \to S \to H \to 0\) the fundamental divisor exact sequence. It has the same form as a standard fact in geometry: functions modulo those that vanish on a set of points correspond to functions on that set of points. He credits the idea to Connes. What he claims as new is keeping \(S\) and \(H\) as topological spaces of smooth functions, where earlier work passed immediately to square-integrable functions.</p>
+<p class="note warn">Lab @@ch:theta-sums@@.1 shows one direction: the transform of every θ-function is a multiple of \(\zeta\). The claim also needs the converse, that every suitable multiple of the L-function is the transform of a θ-function, and a statement about the topology of \(H\). The paper says this "requires all the Structure Theorems" plus known facts about L-functions (the convexity bound, and control of \(1/L\) on a sequence of horizontal lines). Those theorems take up a substantial part of the 940 pages. I have not checked them.</p>
 
 
-<h2>The convolution operator on H</h2>
-<p>The convolution operator A(<i>φ</i>) of chapter @@ch:m1-trace-two-ways@@ sends θ-functions to θ-functions, so it acts on the quotient H. On transforms it is multiplication by M(<i>φ</i>)(<i>s</i>), so on the slot belonging to a zero <i>ρ</i> it multiplies by the number M(<i>φ</i>)(<i>ρ</i> − ½). Its trace is the sum of those numbers:</p>
-<p class="note">$$\text{trace} \;=\; \sum_{\rho} N(\rho)\cdot M(\varphi)\!\left(\rho-\tfrac12\right)$$ Here N(<i>ρ</i>) is the multiplicity of the zero. This is the spectral side of the trace formula: the sum over modes in chapter @@ch:m1-trace-two-ways@@, with zeros of <i>ζ</i> in place of zeros of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p>
+<h2>The convolution operator on \(H\)</h2>
+<p>The convolution operator \(A(\varphi)\) of chapter @@ch:m1-trace-two-ways@@ sends θ-functions to θ-functions, so it acts on the quotient \(H\). On transforms it is multiplication by \(M(\varphi)(s)\), so on the slot belonging to a zero \(\rho\) it multiplies by the number \(M(\varphi)(\rho - \tfrac12)\). Its trace is the sum of those numbers:</p>
+<p class="note">$$\text{trace} \;=\; \sum_{\rho} N(\rho)\cdot M(\varphi)\!\left(\rho-\tfrac12\right)$$ Here \(N(\rho)\) is the multiplicity of the zero. This is the spectral side of the trace formula: the sum over modes in chapter @@ch:m1-trace-two-ways@@, with zeros of \(\zeta\) in place of zeros of \(1 - \gamma^{-s}\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the eigenvalues of A(φ): the transform of φ sampled at the zeros</small></div>
@@ -26,40 +26,40 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>|M(φ)(iy)|</span><span>● its value at each zero ρ = ½ + iγ of ζ: the size of one eigenvalue</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Transform of the test function with its values at the zeros of zeta marked"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>The curve is the transform of the test function on the imaginary axis. The operator A(<i>φ</i>) on H has one eigenvalue for each dot. The readout adds them up over the first 30 zeros and their complex conjugates. All of these zeros are on the critical line, so they sit at <i>s</i> = <i>ρ</i> − ½ = ±<i>iγ</i>.</figcaption>
+  <figcaption>The curve is the transform of the test function on the imaginary axis. The operator \(A(\varphi)\) on \(H\) has one eigenvalue for each dot. The readout adds them up over the first 30 zeros and their complex conjugates. All of these zeros are on the critical line, so they sit at \(s = \rho - \tfrac12 = \pm i\gamma\).</figcaption>
 </figure>
 
 <h2>The difficulty</h2>
-<p>The proof uses test functions <i>φ</i> that are zero for <i>t</i> ≤ 1. By property 2 of chapter @@ch:mellin@@, for a zero <i>ρ</i> = <i>β</i> + <i>iγ</i> the eigenvalue M(<i>φ</i>)(<i>ρ</i> − ½) involves the factor |<i>t</i><sup><i>ρ</i> − ½</sup>| = <i>t</i><sup><i>β</i> − ½</sup>, which for <i>t</i> &gt; 1 grows with <i>β</i>. So the eigenvalue is larger for a zero to the right of the critical line than for its mirror image to the left. Nothing so far shows that the sum over all zeros converges, or that it is the trace of an operator on a Hilbert space.</p>
+<p>The proof uses test functions \(\varphi\) that are zero for \(t \le 1\). By property 2 of chapter @@ch:mellin@@, for a zero \(\rho = \beta + i\gamma\) the eigenvalue \(M(\varphi)(\rho - \tfrac12)\) involves the factor \(|t^{\rho - 1/2}| = t^{\beta - 1/2}\), which for \(t \gt 1\) grows with \(\beta\). So the eigenvalue is larger for a zero to the right of the critical line than for its mirror image to the left. Nothing so far shows that the sum over all zeros converges, or that it is the trace of an operator on a Hilbert space.</p>
 
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>Narrow <i>φ</i>. Its transform decays more slowly, so more zeros have eigenvalues of noticeable size.</li>
-    <li>Move the center of <i>φ</i>. The sizes of the eigenvalues barely change, but the trace does: it depends on their phases.</li>
+    <li>Narrow \(\varphi\). Its transform decays more slowly, so more zeros have eigenvalues of noticeable size.</li>
+    <li>Move the center of \(\varphi\). The sizes of the eigenvalues barely change, but the trace does: it depends on their phases.</li>
   </ul>
 </div>
 
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Why does A(<i>φ</i>) send θ-functions to θ-functions?<details><summary>Solution</summary><p>On transforms A(<i>φ</i>) is multiplication by M(<i>φ</i>)(<i>s</i>) (chapter @@ch:mellin@@, property 1). The transform of a θ-function is <i>ζ</i>(<i>s</i> + ½) times an entire function. Multiplying by the entire function M(<i>φ</i>)(<i>s</i>) gives another function of that form.</p></details></li>
-    <li>Suppose <i>ρ</i> were a zero of multiplicity 2. How many numbers does an element of H carry at <i>ρ</i>?<details><summary>Solution</summary><p>Two: the value and the first derivative of its transform at <i>ρ</i> − ½. Adding a multiple of <i>ζ</i>(<i>s</i> + ½) changes neither, because <i>ζ</i>(<i>s</i> + ½) and its first derivative both vanish there.</p></details></li>
-    <li>Let <i>φ</i> be real-valued and let <i>ρ</i> = ½ + <i>iγ</i> be a zero on the critical line. Show that the eigenvalues for <i>ρ</i> and for its conjugate add up to a real number.<details><summary>Solution</summary><p>The two eigenvalues are M(<i>φ</i>)(<i>iγ</i>) and M(<i>φ</i>)(−<i>iγ</i>). For real <i>φ</i> these are complex conjugates of each other, since <i>t</i><sup>−<i>iγ</i></sup> is the conjugate of <i>t</i><sup><i>iγ</i></sup>. Their sum is 2 Re M(<i>φ</i>)(<i>iγ</i>) = 2 ∫ <i>φ</i>(<i>t</i>) cos(<i>γ</i> ln <i>t</i>) d<i>t</i>/<i>t</i>.</p></details></li>
+    <li>Why does \(A(\varphi)\) send θ-functions to θ-functions?<details><summary>Solution</summary><p>On transforms \(A(\varphi)\) is multiplication by \(M(\varphi)(s)\) (chapter @@ch:mellin@@, property 1). The transform of a θ-function is \(\zeta(s + \tfrac12)\) times an entire function. Multiplying by the entire function \(M(\varphi)(s)\) gives another function of that form.</p></details></li>
+    <li>Suppose \(\rho\) were a zero of multiplicity 2. How many numbers does an element of \(H\) carry at \(\rho\)?<details><summary>Solution</summary><p>Two: the value and the first derivative of its transform at \(\rho - \tfrac12\). Adding a multiple of \(\zeta(s + \tfrac12)\) changes neither, because \(\zeta(s + \tfrac12)\) and its first derivative both vanish there.</p></details></li>
+    <li>Let \(\varphi\) be real-valued and let \(\rho = \tfrac12 + i\gamma\) be a zero on the critical line. Show that the eigenvalues for \(\rho\) and for its conjugate add up to a real number.<details><summary>Solution</summary><p>The two eigenvalues are \(M(\varphi)(i\gamma)\) and \(M(\varphi)(-i\gamma)\). For real \(\varphi\) these are complex conjugates of each other, since \(t^{-i\gamma}\) is the conjugate of \(t^{i\gamma}\). Their sum is \(2\operatorname{Re} M(\varphi)(i\gamma) = 2\int \varphi(t)\cos(\gamma\ln t)\,\frac{dt}{t}\).</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-m2-one-slot-per-zero">
-  <li data-a="2"><p>The lab of the previous chapter shows that the transform of a θ-function is a multiple of <i>ζ</i>. Why is the converse also needed for "one slot per zero"?</p>
-    <ul><li>It is not needed</li><li>If some multiples of <i>ζ</i> were not transforms of θ-functions, the quotient H would be larger than one slot per zero</li><li>Because otherwise H would be empty</li></ul>
-    <p class="why">H is S modulo θ-functions. Dividing by a smaller subspace leaves a bigger quotient, with extra elements unrelated to the zeros. The paper's Structure Theorems are what rule that out.</p></li>
-  <li data-a="3"><p>For a test function supported at <i>t</i> &gt; 1, compare the eigenvalue of a hypothetical zero with <i>β</i> = 0.8 with that of its mirror image at <i>β</i> = 0.2.</p>
-    <ul><li>Equal in size</li><li>The one for 0.2 is larger</li><li>The one for 0.8 is larger, because <i>t</i><sup><i>β</i> − ½</sup> is larger for <i>t</i> &gt; 1</li></ul>
-    <p class="why">The eigenvalue is M(<i>φ</i>)(<i>ρ</i> − ½), an integral against <i>t</i><sup><i>ρ</i> − ½</sup>. Zeros to the right of the line are amplified, which is why the full sum over zeros is not obviously the trace of a well-behaved operator.</p></li>
-  <li data-a="1"><p>Why is A(<i>φ</i>) allowed to act on the quotient H at all?</p>
-    <ul><li>Because it sends θ-functions to θ-functions, so "equal up to a θ-function" is preserved</li><li>Because it sends every function to a θ-function</li><li>Because H is finite-dimensional</li></ul>
-    <p class="why">An operator passes to a quotient exactly when it maps the subspace being divided out into itself. On transforms: multiplying a multiple of <i>ζ</i> by M(<i>φ</i>) gives a multiple of <i>ζ</i>.</p></li>
+  <li data-a="2"><p>The lab of the previous chapter shows that the transform of a θ-function is a multiple of \(\zeta\). Why is the converse also needed for "one slot per zero"?</p>
+    <ul><li>It is not needed</li><li>If some multiples of \(\zeta\) were not transforms of θ-functions, the quotient \(H\) would be larger than one slot per zero</li><li>Because otherwise \(H\) would be empty</li></ul>
+    <p class="why">\(H\) is \(S\) modulo θ-functions. Dividing by a smaller subspace leaves a bigger quotient, with extra elements unrelated to the zeros. The paper's Structure Theorems are what rule that out.</p></li>
+  <li data-a="3"><p>For a test function supported at \(t \gt 1\), compare the eigenvalue of a hypothetical zero with \(\beta = 0.8\) with that of its mirror image at \(\beta = 0.2\).</p>
+    <ul><li>Equal in size</li><li>The one for 0.2 is larger</li><li>The one for 0.8 is larger, because \(t^{\beta - 1/2}\) is larger for \(t \gt 1\)</li></ul>
+    <p class="why">The eigenvalue is \(M(\varphi)(\rho - \tfrac12)\), an integral against \(t^{\rho - 1/2}\). Zeros to the right of the line are amplified, which is why the full sum over zeros is not obviously the trace of a well-behaved operator.</p></li>
+  <li data-a="1"><p>Why is \(A(\varphi)\) allowed to act on the quotient \(H\) at all?</p>
+    <ul><li>Because it sends θ-functions to θ-functions, so "equal up to a θ-function" is preserved</li><li>Because it sends every function to a θ-function</li><li>Because \(H\) is finite-dimensional</li></ul>
+    <p class="why">An operator passes to a quotient exactly when it maps the subspace being divided out into itself. On transforms: multiplying a multiple of \(\zeta\) by \(M(\varphi)\) gives a multiple of \(\zeta\).</p></li>
 </ol>
 
 <script>

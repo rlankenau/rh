@@ -1,11 +1,11 @@
 <h1>One slot per mode</h1>
-<p class="lede">A function on the circle of chapter @@ch:m1-trace-two-ways@@ is the same thing as a Mellin transform taken modulo multiples of 1 − <i>γ</i><sup>−<i>s</i></sup>. Such a class is determined by one number for each Fourier mode. This chapter proves the easy half of that statement and checks it numerically.</p>
+<p class="lede">A function on the circle of chapter @@ch:m1-trace-two-ways@@ is the same thing as a Mellin transform taken modulo multiples of \(1 - \gamma^{-s}\). Such a class is determined by one number for each Fourier mode. This chapter proves the easy half of that statement and checks it numerically.</p>
 <p class="note">Based on §1.2.8 of the paper (pages 16–17), read in full. The Lean file <code>RH/Slots.lean</code> proves the statement tested in the lab.</p>
 
 <h2>From the half-line to the circle</h2>
-<p>On the circle of chapter @@ch:m1-trace-two-ways@@, <i>t</i> and <i>γt</i> are the same point. A function <i>ϕ</i> on (0, ∞) gives a function on the circle by summing over all the points that are identified: Φ<sub><i>γ</i></sub>(<i>ϕ</i>)(<i>t</i>) = Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ<sup>k</sup>t</i>), over all integers <i>k</i>.</p>
-<p>Φ<sub><i>γ</i></sub> sends some nonzero functions to 0. The simplest is a difference <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>): the sum over <i>k</i> telescopes. By the rescaling property its Mellin transform is (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>)(<i>s</i>), and the factor 1 − <i>γ</i><sup>−<i>s</i></sup> is zero exactly at <i>s</i> = 2π<i>im</i>/ln <i>γ</i>, the Fourier modes of the circle. The paper states that every function sent to 0 is of this kind:</p>
-<p class="note">Φ<sub><i>γ</i></sub>(<i>ϕ</i>) = 0 exactly when M(<i>ϕ</i>)(<i>s</i>) is 1 − <i>γ</i><sup>−<i>s</i></sup> times an entire function. So a function on the circle corresponds to a transform <em>modulo</em> multiples of 1 − <i>γ</i><sup>−<i>s</i></sup>. Two transforms agree modulo those multiples exactly when they have the same values at the zeros of 1 − <i>γ</i><sup>−<i>s</i></sup>. A function on the circle is therefore determined by one number for each mode <i>m</i>: one slot per zero of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p>
+<p>On the circle of chapter @@ch:m1-trace-two-ways@@, \(t\) and \(\gamma t\) are the same point. A function \(\phi\) on \((0, \infty)\) gives a function on the circle by summing over all the points that are identified: \(\Phi_{\gamma}(\phi)(t) = \sum_{k} \phi(\gamma^{k}t)\), over all integers \(k\).</p>
+<p>\(\Phi_{\gamma}\) sends some nonzero functions to 0. The simplest is a difference \(\phi(t) - \phi(\gamma t)\): the sum over \(k\) telescopes. By the rescaling property its Mellin transform is \((1 - \gamma^{-s}) \cdot M(\phi)(s)\), and the factor \(1 - \gamma^{-s}\) is zero exactly at \(s = 2\pi i m/\ln\gamma\), the Fourier modes of the circle. The paper states that every function sent to 0 is of this kind:</p>
+<p class="note">\(\Phi_{\gamma}(\phi) = 0\) exactly when \(M(\phi)(s)\) is \(1 - \gamma^{-s}\) times an entire function. So a function on the circle corresponds to a transform <em>modulo</em> multiples of \(1 - \gamma^{-s}\). Two transforms agree modulo those multiples exactly when they have the same values at the zeros of \(1 - \gamma^{-s}\). A function on the circle is therefore determined by one number for each mode \(m\): one slot per zero of \(1 - \gamma^{-s}\).</p>
 
 <figure class="lab">
   <div class="title">Lab @@n@@.1 <small>the transform of ϕ(t) − ϕ(γt) is zero at every s = 2πim / ln γ</small></div>
@@ -16,7 +16,7 @@
   <div class="lg"><span><i style="background:var(--s1)"></i>|M(ϕ)(iy)|, a single bump</span><span><i style="background:var(--s2)"></i>|M(ϕ(t) − ϕ(γt))(iy)|</span><span>● the frequencies 2πm / ln γ</span></div>
   <div class="tw"><div class="plot" id="p1"><svg role="img" aria-label="Mellin transforms of a bump and of its difference with a scaled copy"></svg><div class="tip" hidden></div></div></div>
   <div class="readout" id="r1"></div>
-  <figcaption>Both transforms are computed by numerical integration, without using the formula (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>). The transform of the difference is zero at every dot, for every <i>γ</i>; the transform of the bump alone is not.</figcaption>
+  <figcaption>Both transforms are computed by numerical integration, without using the formula \((1 - \gamma^{-s}) \cdot M(\phi)\). The transform of the difference is zero at every dot, for every \(\gamma\); the transform of the bump alone is not.</figcaption>
 </figure>
 
 <div class="box">
@@ -30,7 +30,7 @@
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, sweep <i>γ</i>. The dots move and the zeros of the orange curve move with them: they come from the factor 1 − <i>γ</i><sup>−<i>s</i></sup>, not from the bump.</li>
+    <li>In Lab @@n@@.1, sweep \(\gamma\). The dots move and the zeros of the orange curve move with them: they come from the factor \(1 - \gamma^{-s}\), not from the bump.</li>
     <li>Narrow the bump. Its transform (blue) spreads out to larger heights, and the orange curve spreads with it, but its zeros stay on the dots.</li>
   </ul>
 </div>
@@ -38,23 +38,23 @@
 <div class="ex">
   <h3>Exercises</h3>
   <ol>
-    <li>Show that Φ<sub><i>γ</i></sub> sends <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>) to 0.<details><summary>Solution</summary><p>Φ<sub><i>γ</i></sub> of the difference is Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ<sup>k</sup>t</i>) − Σ<sub><i>k</i></sub> <i>ϕ</i>(<i>γ</i><sup><i>k</i>+1</sup><i>t</i>). The second sum is the first with <i>k</i> shifted by one, and both run over all integers, so they are equal.</p></details></li>
-    <li>For <i>γ</i> = 2, how far apart are the slots on the imaginary axis?<details><summary>Solution</summary><p>They are at <i>s</i> = 2π<i>im</i>/ln 2, so the spacing is 2π/ln 2 ≈ 9.06. That is the default setting of the lab.</p></details></li>
-    <li>A function <i>ϕ</i> has M(<i>ϕ</i>)(0) = 3. Can Φ<sub><i>γ</i></sub>(<i>ϕ</i>) be 0?<details><summary>Solution</summary><p>No. <i>s</i> = 0 is the slot for <i>m</i> = 0, and a function sent to 0 has a transform that vanishes at every slot. Directly: M(<i>ϕ</i>)(0) = ∫ <i>ϕ</i> d<i>t</i>/<i>t</i>, which equals the integral of Φ<sub><i>γ</i></sub>(<i>ϕ</i>) once around the circle.</p></details></li>
+    <li>Show that \(\Phi_{\gamma}\) sends \(\phi(t) - \phi(\gamma t)\) to 0.<details><summary>Solution</summary><p>\(\Phi_{\gamma}\) of the difference is \(\sum_{k} \phi(\gamma^{k}t) - \sum_{k} \phi(\gamma^{k+1}t)\). The second sum is the first with \(k\) shifted by one, and both run over all integers, so they are equal.</p></details></li>
+    <li>For \(\gamma = 2\), how far apart are the slots on the imaginary axis?<details><summary>Solution</summary><p>They are at \(s = \dfrac{2\pi i m}{\ln 2}\), so the spacing is \(\dfrac{2\pi}{\ln 2} \approx 9.06\). That is the default setting of the lab.</p></details></li>
+    <li>A function \(\phi\) has \(M(\phi)(0) = 3\). Can \(\Phi_{\gamma}(\phi)\) be 0?<details><summary>Solution</summary><p>No. \(s = 0\) is the slot for \(m = 0\), and a function sent to 0 has a transform that vanishes at every slot. Directly: \(M(\phi)(0) = \int \phi\, \frac{dt}{t}\), which equals the integral of \(\Phi_{\gamma}(\phi)\) once around the circle.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-circle-slots">
-  <li data-a="2"><p>Two different functions on (0, ∞) give the same function on the circle after summing over powers of <i>γ</i>. What must be true of their Mellin transforms?</p>
-    <ul><li>They are identical</li><li>They agree at every slot 2π<i>im</i>/ln <i>γ</i>, and may differ everywhere else</li><li>They have nothing in common</li></ul>
-    <p class="why">Their difference is sent to 0, so its transform is a multiple of 1 − <i>γ</i><sup>−<i>s</i></sup> and vanishes at the slots. The values at the slots are precisely the Fourier coefficients of the function on the circle.</p></li>
-  <li data-a="1"><p>Polynomials "modulo multiples of <i>x</i> − 3" are determined by one number, the value at 3. What is the corresponding statement in this chapter?</p>
-    <ul><li>Transforms modulo multiples of 1 − <i>γ</i><sup>−<i>s</i></sup> are determined by their values at its zeros</li><li>Transforms are determined by their value at <i>s</i> = 3</li><li>Transforms modulo 1 − <i>γ</i><sup>−<i>s</i></sup> are all equal</li></ul>
-    <p class="why">Adding a multiple of a function cannot change the value where that function is zero, and can change it anywhere else. One slot per zero of 1 − <i>γ</i><sup>−<i>s</i></sup>.</p></li>
+  <li data-a="2"><p>Two different functions on \((0, \infty)\) give the same function on the circle after summing over powers of \(\gamma\). What must be true of their Mellin transforms?</p>
+    <ul><li>They are identical</li><li>They agree at every slot \(2\pi i m/\ln\gamma\), and may differ everywhere else</li><li>They have nothing in common</li></ul>
+    <p class="why">Their difference is sent to 0, so its transform is a multiple of \(1 - \gamma^{-s}\) and vanishes at the slots. The values at the slots are precisely the Fourier coefficients of the function on the circle.</p></li>
+  <li data-a="1"><p>Polynomials "modulo multiples of \(x - 3\)" are determined by one number, the value at 3. What is the corresponding statement in this chapter?</p>
+    <ul><li>Transforms modulo multiples of \(1 - \gamma^{-s}\) are determined by their values at its zeros</li><li>Transforms are determined by their value at \(s = 3\)</li><li>Transforms modulo \(1 - \gamma^{-s}\) are all equal</li></ul>
+    <p class="why">Adding a multiple of a function cannot change the value where that function is zero, and can change it anywhere else. One slot per zero of \(1 - \gamma^{-s}\).</p></li>
   <li data-a="3"><p>Why is the orange curve in the lab zero at every dot, whatever bump you choose?</p>
-    <ul><li>Because the bump is symmetric</li><li>It is a numerical coincidence</li><li>Because it is the transform of <i>ϕ</i>(<i>t</i>) − <i>ϕ</i>(<i>γt</i>), which is (1 − <i>γ</i><sup>−<i>s</i></sup>) · M(<i>ϕ</i>)(<i>s</i>), and the first factor vanishes there</li></ul>
-    <p class="why">The zeros belong to the operation "subtract the rescaling", not to the function it is applied to. The same thing happens with <i>ζ</i> in the next chapter.</p></li>
+    <ul><li>Because the bump is symmetric</li><li>It is a numerical coincidence</li><li>Because it is the transform of \(\phi(t) - \phi(\gamma t)\), which is \((1 - \gamma^{-s}) \cdot M(\phi)(s)\), and the first factor vanishes there</li></ul>
+    <p class="why">The zeros belong to the operation "subtract the rescaling", not to the function it is applied to. The same thing happens with \(\zeta\) in the next chapter.</p></li>
 </ol>
 
 <script>
