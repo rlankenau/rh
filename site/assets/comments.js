@@ -73,7 +73,12 @@
   function place() {
     var sel = window.getSelection(), text = sel && !sel.isCollapsed ? String(sel) : '';
     if (!text.trim() || !main.contains(sel.anchorNode) || !main.contains(sel.focusNode) || box.contains(sel.anchorNode)) { btn.hidden = true; held = null; return; }
-    var r = sel.getRangeAt(0).getBoundingClientRect(), holder = el('div'); holder.appendChild(sel.getRangeAt(0).cloneContents());
+    // a selection that starts or ends inside a formula is widened to take the whole formula
+    var rng = sel.getRangeAt(0).cloneRange(), r = rng.getBoundingClientRect(), holder = el('div');
+    function formula(n) { n = n.nodeType === 1 ? n : n.parentNode; return n && n.closest ? n.closest('.katex') : null; }
+    var k0 = formula(rng.startContainer), k1 = formula(rng.endContainer);
+    if (k0) rng.setStartBefore(k0); if (k1) rng.setEndAfter(k1);
+    holder.appendChild(rng.cloneContents());
     held = { text: plain(holder), node: sel.anchorNode, top: window.scrollY + r.bottom + 8 };
     btn.hidden = false; btn.style.top = held.top + 'px';
     btn.style.left = Math.max(8, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - btn.offsetWidth - 8)) + 'px';

@@ -21,7 +21,28 @@
 <h2>Taylor series: a refresher</h2>
 <p>Near a point \(c\), called the center, a function that has derivatives of every order can be approximated by polynomials built from its derivatives at \(c\):</p>
 <p class="note">$$T_N(x) \;=\; f(c) \;+\; f'(c)\,(x-c) \;+\; \frac{f''(c)}{2!}\,(x-c)^{2} \;+\; \cdots \;+\; \frac{f^{(N)}(c)}{N!}\,(x-c)^{N}$$</p>
-<p>\(T_N\) is the one polynomial of degree \(N\) that has the same value and the same first \(N\) derivatives as \(f\) at \(c\). \(T_1\) is the tangent line. The Taylor series of \(f\) about \(c\) is what you get by never stopping:</p>
+<p>Each term fixes one more thing about the graph at the point \(c\):</p>
+<ul>
+  <li>\(T_0(x) = f(c)\) is a horizontal line. It has the right <b>value</b> at \(c\) and nothing else.</li>
+  <li>\(T_1(x) = f(c) + f'(c)\,(x-c)\) is the tangent line. It has the right value and the right <b>slope</b>.</li>
+  <li>\(T_2\) adds the term \(\dfrac{f''(c)}{2}(x-c)^{2}\) and becomes a parabola. It has the right value, slope and <b>bending</b> (second derivative).</li>
+  <li>\(T_3\) adds a cubic term that makes the third derivative right as well, and so on.</li>
+</ul>
+<p>Adding a term never spoils what the earlier terms achieved, because \((x-c)^{k}\) and its first \(k-1\) derivatives are all 0 at \(c\). The factor \(1/k!\) is there because the \(k\)-th derivative of \((x-c)^{k}\) is \(k!\). So \(T_N\) is the one polynomial of degree \(N\) whose value and first \(N\) derivatives at \(c\) agree with those of \(f\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>the Taylor polynomials of sin x about a center c</small></div>
+  <div class="ctl">
+    <label>Center c <input type="range" id="cP" min="-3" max="3" step="0.01" value="1"><output id="cPv"></output></label>
+    <label>Degree N <input type="range" id="nP" min="0" max="9" step="1" value="1"><output id="nPv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sin x</span><span><i style="background:var(--s2)"></i>the Taylor polynomial of degree N</span><span><b style="color:var(--ok)">●</b> the point (c, sin c)</span></div>
+  <div class="tw"><div class="plot" id="pP"><svg role="img" aria-label="The sine curve and its Taylor polynomial about a movable center"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rP"></div>
+  <figcaption>Degree 0 is a horizontal line through the green point. Degree 1 is the tangent line there. Degree 2 bends the same way as the curve. Each further degree hugs the curve over a wider range around \(c\). The readout shows the polynomial with its coefficients worked out.</figcaption>
+</figure>
+
+<p>The Taylor series of \(f\) about \(c\) is what you get by never stopping:</p>
 <p class="note">$$\sum_{k\ge 0} \frac{f^{(k)}(c)}{k!}\,(x-c)^{k}$$</p>
 <p>Three series about the center \(c = 0\):</p>
 <ul>
@@ -32,7 +53,7 @@
 <p>A Taylor series always converges on an interval that is symmetric about the center, \(|x - c| \lt R\), and diverges for \(|x - c| \gt R\). The number \(R\) is the radius of convergence. It can be infinite, as for \(e^{x}\), or finite, as for \(1/(1-x)\), where \(R = 1\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.2 <small>a function and its Taylor polynomials about the center 0</small></div>
+  <div class="title">Lab @@n@@.3 <small>a function and its Taylor polynomials about the center 0</small></div>
   <div class="ctl">
     <label>Function <select id="fT">
       <option value="0">e^x</option><option value="1">sin x</option><option value="2">1/(1 − x)</option><option value="3">ln(1 + x)</option><option value="4" selected>1/(1 + x²)</option><option value="5">0 for x ≤ 0, e^(−1/x) for x &gt; 0</option>
@@ -59,7 +80,7 @@
 <p>Examples of functions that are <em>not</em> analytic:</p>
 <ul>
   <li><b>\(|x|\) at \(x = 0\).</b> It has a corner there, so it has no derivative and no Taylor series.</li>
-  <li><b>The function \(g\) with \(g(x) = 0\) for \(x \le 0\) and \(g(x) = e^{-1/x}\) for \(x \gt 0\).</b> It has derivatives of every order at every point, including 0, and every derivative at 0 equals 0. Its Taylor series about 0 is therefore \(0 + 0\cdot x + 0\cdot x^{2} + \cdots = 0\). That series converges everywhere, but it equals \(g\) only for \(x \le 0\). So \(g\) is smooth but not analytic at 0. It is the last function in Lab @@n@@.2.</li>
+  <li><b>The function \(g\) with \(g(x) = 0\) for \(x \le 0\) and \(g(x) = e^{-1/x}\) for \(x \gt 0\).</b> It has derivatives of every order at every point, including 0, and every derivative at 0 equals 0. Its Taylor series about 0 is therefore \(0 + 0\cdot x + 0\cdot x^{2} + \cdots = 0\). That series converges everywhere, but it equals \(g\) only for \(x \le 0\). So \(g\) is smooth but not analytic at 0. It is the last function in Lab @@n@@.3.</li>
 </ul>
 
 <h2>Why the extension is forced</h2>
@@ -77,7 +98,7 @@
 <p>On the real line this process cannot get past \(x = 1\). In the complex plane it can: a chain of overlapping discs can go around the bad point, and the function on the far side is still determined.</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.3 <small>the Taylor series of 1/(1 − x) about a center c</small></div>
+  <div class="title">Lab @@n@@.4 <small>the Taylor series of 1/(1 − x) about a center c</small></div>
   <div class="ctl">
     <label>Center c <input type="range" id="c2" min="-3" max="0.8" step="0.01" value="0"><output id="c2v"></output></label>
     <label>Number of terms N <input type="range" id="n2" min="1" max="40" step="1" value="12"><output id="n2v"></output></label>
@@ -95,7 +116,7 @@
 <p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.4 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
+  <div class="title">Lab @@n@@.5 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
   <div class="ctl">
     <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
     <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
@@ -115,10 +136,11 @@
   <h3>Things to try</h3>
   <ul>
     <li>In Lab @@n@@.1, read values at \(x = -1\). The partial sums alternate between 1 and 0 as N changes, while the function is \(\tfrac12\).</li>
-    <li>In Lab @@n@@.2, choose \(1/(1+x^{2})\) and raise the degree. Between −1 and 1 the fit improves; outside it gets worse, although the function itself is perfectly smooth there.</li>
+    <li>In Lab @@n@@.2, step the degree through 0, 1, 2, 3 and watch what each new term fixes. Then slide the center: the polynomial follows the green point along the curve.</li>
+    <li>In Lab @@n@@.3, choose \(1/(1+x^{2})\) and raise the degree. Between −1 and 1 the fit improves; outside it gets worse, although the function itself is perfectly smooth there.</li>
     <li>Choose the last function. No Taylor polynomial about 0 ever leaves the axis, while the function rises for \(x \gt 0\).</li>
-    <li>In Lab @@n@@.3, slide the center from 0 to −3. The series now reproduces the function at \(x = -5\), far outside the original interval.</li>
-    <li>In Lab @@n@@.4, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
+    <li>In Lab @@n@@.4, slide the center from 0 to −3. The series now reproduces the function at \(x = -5\), far outside the original interval.</li>
+    <li>In Lab @@n@@.5, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
     <li>Raise \(\sigma\) past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
   </ul>
 </div>
@@ -142,7 +164,7 @@
   <li data-a="1"><p>Why is there only one analytic continuation?</p>
     <ul><li>Two analytic functions that agree on any interval agree wherever both are defined</li><li>Mathematicians agreed on a convention</li><li>Because the series converges everywhere</li></ul>
     <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of \(\zeta(s)\) where the sum diverges.</p></li>
-  <li data-a="3"><p>In Lab @@n@@.4 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
+  <li data-a="3"><p>In Lab @@n@@.5 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
     <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
     <p class="why">The chain's end is the center plus the vector \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that vector leaves the center, which is the continued function.</p></li>
   <li data-a="2"><p>The function \(1/(1+x^{2})\) is smooth at every real \(x\). Why does its Taylor series about 0 stop converging at \(x = \pm 1\)?</p>
@@ -183,6 +205,20 @@
     { f: function (x) { return 1 / (1 + x * x); }, a: function (k) { return k % 2 ? 0 : (k % 4 ? -1 : 1); }, R: 1, ok: 'for −1 &lt; x &lt; 1' },
     { f: function (x) { return x > 0 ? Math.exp(-1 / x) : 0; }, a: function () { return 0; }, R: Infinity, ok: 'only for x ≤ 0: the series converges everywhere, to 0, which is not the function for x &gt; 0' }
   ];
+  L.bind({ cP: function (v) { return v.toFixed(2); }, nP: null }, function (v) {
+    var c = v.cP, N = v.nP, d = [Math.sin(c), Math.cos(c), -Math.sin(c), -Math.cos(c)], k;
+    function T(x) { var s = 0; for (k = N; k >= 0; k--) s = s * (x - c) + d[k % 4] / FACT[k]; return s; }
+    L.plot('pP', { x: [-6, 6], y: [-2.5, 2.5], xt: [-6, -4, -2, 0, 2, 4, 6], yt: [-2, -1, 0, 1, 2], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: [{ x: c, t: 'c' }], marks: [{ x: c, y: Math.sin(c), c: 'var(--ok)' }],
+      series: [{ n: 'sin x', c: 'var(--s1)', pts: L.sample(-6, 6, 400, false, Math.sin) },
+        { n: 'T', c: 'var(--s2)', pts: L.sample(-6, 6, 600, false, function (x) { var y = T(x); return y > -2.5 && y < 2.5 ? y : NaN; }) }] });
+    var txt = '', shown = Math.min(N, 3), cs = Math.abs(c).toFixed(2), xc = Math.abs(c) < 0.005 ? 'x' : '(x ' + (c < 0 ? '+ ' : '− ') + cs + ')';
+    for (k = 0; k <= shown; k++) {
+      var a = d[k % 4] / FACT[k];
+      txt += (k ? (a < 0 ? ' − ' : ' + ') : (a < 0 ? '−' : '')) + Math.abs(a).toFixed(3) + (k ? ' ' + xc + (k > 1 ? '<sup>' + k + '</sup>' : '') : '');
+    }
+    document.getElementById('rP').innerHTML = '<span>T<sub>' + N + '</sub>(x) = <b>' + txt + (N > shown ? ' + …' : '') + '</b></span><span>value at c: <b>' + d[0].toFixed(3) + '</b>, slope at c: <b>' + d[1].toFixed(3) + '</b></span>';
+  });
   L.bind({ fT: null, nT: null }, function (v) {
     var F = FN[v.fT], N = v.nT;
     function poly(x) { var s = 0, k; for (k = N; k >= 0; k--) s = s * x + F.a(k); return s; }
