@@ -163,9 +163,22 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
 
 /* comments (GitHub issues) */
 .cbtn{position:absolute;z-index:20;font:inherit;font-size:.85rem;color:var(--bg);background:var(--accent);border:0;border-radius:6px;padding:.3rem .65rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.cbox{position:absolute;z-index:21;box-sizing:border-box;background:var(--panel);border:1px solid var(--accent);border-radius:8px;padding:.8rem;box-shadow:0 6px 24px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:.6rem;font-size:.95rem}
+.cbox[hidden]{display:none}
+.cbox blockquote{margin:0;padding:.3rem .6rem;border-left:3px solid var(--rule);color:var(--muted);font-size:.85rem;max-height:6.5em;overflow:auto}
+.cbox textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:.5rem;resize:vertical;width:100%;box-sizing:border-box}
+.cbox textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.cbox .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.cbox button{font:inherit;font-size:.9rem;border-radius:6px;padding:.3rem .8rem;cursor:pointer;border:1px solid var(--rule);background:none;color:var(--fg)}
+.cbox button.send{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
+.cbox button:disabled{opacity:.6;cursor:default}
+.cbox .note{color:var(--muted);font-size:.8rem}
+.cbox .note.bad{color:var(--warn)}
 .comments{max-width:68ch;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.95rem}
 .comments h2{font-size:1.05rem;margin:0 0 .4rem}
 .comments p{margin:0 0 .5rem}
-.comments p span{color:var(--muted);font-size:.85rem;margin-left:.4rem}
+.comments .add{font:inherit;font-size:.9rem;color:var(--accent);background:none;border:1px solid var(--rule);border-radius:6px;padding:.25rem .7rem;cursor:pointer}
+.comments p span{color:var(--muted);font-size:.85rem;margin-left:.6rem}
 .comments ul{margin:0;padding-left:1.2rem}
 .comments li span{color:var(--muted);font-size:.85rem}
+.rvbtn{margin-left:.6rem;font:inherit;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid var(--accent);border-radius:999px;padding:0 .5rem;cursor:pointer}
