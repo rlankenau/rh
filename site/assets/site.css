@@ -186,3 +186,4 @@ table.sym.num{width:auto;min-width:0;font-variant-numeric:tabular-nums}
 table.sym.num td:first-child,table.sym.num td:nth-child(2){font-size:.95rem;color:inherit;width:auto}
 table.sym.num td,table.sym.num th{text-align:right;padding-right:1.5rem}
 main h3{font-size:1.02rem;margin:1.2rem 0 0}
+.ctl button.play{font:inherit;font-size:.9rem;color:var(--bg);background:var(--accent);border:0;border-radius:6px;padding:.25rem .8rem;cursor:pointer;min-width:5.5rem}
