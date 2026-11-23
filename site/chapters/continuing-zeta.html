@@ -1,0 +1,276 @@
+<h1>Continuing zeta</h1>
+<p class="lede">The sum for \(\zeta(s)\) has a value only when the real part of \(s\) is greater than 1. This chapter extends \(\zeta\) to every complex number except \(s = 1\): first to the half-plane \(\sigma \gt 0\) in seven small steps, then to the rest.</p>
+<p>Chapter @@ch:continuation@@ extended \(1/(1-x)\) beyond the interval where its series converges. The same thing can be done for \(\zeta\). The steps start with real \(s\).</p>
+
+<h2>From \(\sigma \gt 1\) to \(\sigma \gt 0\), in seven steps</h2>
+<h3>Step 1. What chapter @@ch:zeta@@ said about the terms left over</h3>
+<p>For \(s \gt 1\), chapter @@ch:zeta@@ compared the terms of the sum with rectangles under the curve \(y = 1/x^{s}\). The conclusion was that the terms after the \(N\)-th add up to about</p>
+<p class="note">$$\int_{N}^{\infty}\frac{dx}{x^{s}} \;=\; \frac{N^{1-s}}{s-1}$$</p>
+<p>So the whole sum is close to the first \(N\) terms plus that amount:</p>
+<p class="note">$$\zeta(s) \;\approx\; \underbrace{1+\frac{1}{2^{s}}+\cdots+\frac{1}{N^{s}}}_{\text{the first } N \text{ terms}} \;+\; \underbrace{\frac{N^{1-s}}{s-1}}_{\text{estimate of the rest}}$$</p>
+<p>Check it at \(s = 2\), where \(\zeta(2) = 1.6449\) and the estimate of the rest is \(1/N\):</p>
+<div class="tw"><table class="sym num">
+<thead><tr><th>\(N\)</th><th>first \(N\) terms</th><th>estimate of the rest, \(1/N\)</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>1.5498</td><td>0.1000</td><td>1.6498</td></tr>
+<tr><td>100</td><td>1.6350</td><td>0.0100</td><td>1.6450</td></tr>
+<tr><td>1,000</td><td>1.6439</td><td>0.0010</td><td>1.6449</td></tr>
+</tbody></table></div>
+<p>The first \(N\) terms alone approach 1.6449 slowly. With the estimate added, the total is already right to two decimal places at \(N = 10\), and the approximation becomes exact as \(N \to \infty\).</p>
+
+<h3>Step 2. Write the same thing so that it can be used for other \(s\)</h3>
+<p>Since \(\dfrac{N^{1-s}}{s-1} = -\dfrac{N^{1-s}}{1-s}\), step 1 says:</p>
+<p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;1+\frac{1}{2^{s}}+\dots+\frac{1}{N^{s}} \;-\; \frac{N^{1-s}}{1-s}\;\right]$$</p>
+<p>For \(s \gt 1\) this is nothing new: the subtracted term tends to 0, and what is left is the original sum.</p>
+
+<h3>Step 3. Notice that the bracket makes sense for every \(s \ne 1\)</h3>
+<p>Look at the two pieces inside the bracket for a fixed \(N\).</p>
+<ul>
+  <li>\(1 + \dfrac{1}{2^{s}} + \dots + \dfrac{1}{N^{s}}\) is a sum of \(N\) numbers. It has a value for every \(s\).</li>
+  <li>\(\dfrac{N^{1-s}}{1-s}\) has a value for every \(s\) except \(s = 1\).</li>
+</ul>
+<p>So the bracket can be computed for any \(s \ne 1\) and any \(N\), including values of \(s\) where the infinite sum diverges. The only question is whether it settles down as \(N\) grows.</p>
+
+<h3>Step 4. Try it where the sum diverges: \(s = \tfrac12\)</h3>
+<p>At \(s = \tfrac12\) the terms are \(1/\sqrt{n}\), and the sum grows without bound. The subtracted term is \(\dfrac{N^{1/2}}{1/2} = 2\sqrt{N}\), which also grows without bound.</p>
+<div class="tw"><table class="sym num">
+<thead><tr><th>\(N\)</th><th>first \(N\) terms</th><th>\(2\sqrt{N}\)</th><th>difference</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>5.0210</td><td>6.3246</td><td>−1.3036</td></tr>
+<tr><td>100</td><td>18.5896</td><td>20.0000</td><td>−1.4104</td></tr>
+<tr><td>1,000</td><td>61.8010</td><td>63.2456</td><td>−1.4445</td></tr>
+<tr><td>10,000</td><td>198.5446</td><td>200.0000</td><td>−1.4554</td></tr>
+</tbody></table></div>
+<p>Both columns run off to infinity, but their difference settles: it approaches \(-1.4604\). That number is \(\zeta(\tfrac12)\).</p>
+
+<h3>Step 5. Why the difference settles</h3>
+<p>The subtracted term is an area under the curve: \(\dfrac{N^{1-s}}{1-s} = \dfrac{1}{1-s} + \displaystyle\int_{1}^{N}\frac{dx}{x^{s}}\). Split that area into the pieces over \([1,2], [2,3], \dots\) and pair each piece with one term of the sum:</p>
+<p class="note">$$\text{bracket} \;=\; 1 \;-\; \frac{1}{1-s} \;+\; \sum_{n=2}^{N}\left(\frac{1}{n^{s}} - \int_{n-1}^{n}\frac{dx}{x^{s}}\right)$$</p>
+<p>Each term in the new sum is the difference between a rectangle and the area under the curve above it, as in the picture of Lab @@ch:zeta@@.1. The curve gets flatter as \(n\) grows, so that difference is small: about \(\dfrac{s}{2\,n^{s+1}}\) in size. The numbers \(1/n^{s+1}\) have a finite sum whenever \(s \gt 0\). So the bracket converges for every \(s \gt 0\) except \(s = 1\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the first N terms, and the same with N<sup>1 − s</sup>/(1 − s) subtracted, for real s</small></div>
+  <div class="ctl">
+    <label>Exponent s <input type="range" id="sC" min="0.1" max="3" step="0.01" value="0.5"><output id="sCv"></output></label>
+    <label>Number of terms N <input type="range" id="nC" min="0" max="4" step="0.02" value="2"><output id="nCv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sum of the first n terms</span><span><i style="background:var(--s2)"></i>the same, minus n<sup>1 − s</sup>/(1 − s)</span><span>dashed line: ζ(s)</span></div>
+  <div class="tw"><div class="plot" id="pC"><svg role="img" aria-label="Partial sums of the zeta series and the corrected partial sums for real s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rC"></div>
+  <figcaption>For \(s \lt 1\) the blue curve leaves the frame and the orange curve levels off at the dashed line. For \(s \gt 1\) both level off at the same value. The dashed line is \(\zeta(s)\) computed by a different method.</figcaption>
+</figure>
+
+<h3>Step 6. The same formula for complex \(s\)</h3>
+<p>Nothing in steps 2 to 5 needs \(s\) to be real. For complex \(s = \sigma + it\) the bracket converges whenever \(\sigma \gt 0\) and \(s \ne 1\).</p>
+<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
+
+<h3>Step 7. Why this is the continuation</h3>
+<ul>
+  <li>The limit of the bracket is a function defined for every \(s\) with \(\sigma \gt 0\) except \(s = 1\).</li>
+  <li>For \(\sigma \gt 1\) it equals the original sum (step 2).</li>
+  <li>It is analytic. (This needs a proof, which uses the fact that the convergence in step 5 is uniform.)</li>
+</ul>
+<p>By the rigidity of chapter @@ch:analytic@@, there is only one analytic function with these properties. So the limit of the bracket is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
+  <div class="ctl">
+    <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
+    <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
+    <label>Number of vectors N <input type="range" id="n3" min="2" max="300" step="1" value="120"><output id="n3v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the chain of vectors</span><span><i style="background:var(--s2)"></i>the chain with the correction subtracted</span><span><b style="color:var(--ok)">●</b> the end of the chain</span><span>● ζ(s), computed independently</span></div>
+  <div class="tw"><div class="plot" id="p3"><svg role="img" aria-label="Partial sums of the zeta series spiralling outward, and the corrected sums converging to zeta of s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="r3"></div>
+  <figcaption>The blue chain widens forever when \(\sigma \lt 1\). The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last vector, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
+</figure>
+
+<h2>From \(\sigma \gt 0\) to the whole plane</h2>
+<p>So far \(\zeta(s)\) is defined for every \(s\) with real part \(\sigma \gt 0\), except \(s = 1\). This section extends it to the remaining half of the plane, in two ways, and then looks at two famous values.</p>
+
+<h3>First way: subtract more of what grows</h3>
+<p>In step 5 the bracket converged because subtracting \(\dfrac{N^{1-s}}{1-s}\) removed the part of the sum that grows fastest. For \(\sigma \le 0\) that is no longer enough: a smaller growing part is left. It can be removed too. The pattern continues, and the first three corrections are:</p>
+<p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;\sum_{n=1}^{N}\frac{1}{n^{s}} \;-\; \underbrace{\frac{N^{1-s}}{1-s}}_{\text{enough for } \sigma \gt 0} \;-\; \underbrace{\frac{1}{2}\cdot\frac{1}{N^{s}}}_{\text{enough for } \sigma \gt -1} \;+\; \underbrace{\frac{s}{12}\cdot\frac{1}{N^{s+1}}}_{\text{enough for } \sigma \gt -3}\;\right]$$</p>
+<p>The second correction is half of the last term. The third comes from the next term of the same expansion (the Euler–Maclaurin formula, which refines the comparison between a sum and an integral). Each further correction moves the boundary further left, and with enough of them any \(s\) is reached. By rigidity, every one of these formulas gives the same function wherever two of them both apply.</p>
+
+<h3>Worked example: \(s = 0\)</h3>
+<p>At \(s = 0\) every term \(1/n^{0}\) equals 1, so the sum of the first \(N\) terms is \(N\). The original sum would be \(1 + 1 + 1 + \cdots\), which has no value. Now apply the corrections:</p>
+<ul>
+  <li>The first correction is \(\dfrac{N^{1}}{1} = N\). Subtracting it leaves \(N - N = 0\).</li>
+  <li>The second correction is half of the last term, \(\tfrac12\). Subtracting it leaves \(-\tfrac12\).</li>
+  <li>The third correction is \(\dfrac{0}{12}\cdot\dfrac1N = 0\).</li>
+</ul>
+<p>The bracket equals \(-\tfrac12\) for every \(N\). So \(\zeta(0) = -\tfrac12\).</p>
+
+<h3>Worked example: \(s = -1\)</h3>
+<p>At \(s = -1\) the terms are \(1/n^{-1} = n\), so the sum of the first \(N\) terms is \(1 + 2 + \cdots + N\). There is an exact formula for that:</p>
+<p class="note">$$1 + 2 + \cdots + N \;=\; \frac{N(N+1)}{2} \;=\; \frac{N^{2}}{2} + \frac{N}{2}$$</p>
+<p>Now the corrections, with \(s = -1\):</p>
+<ul>
+  <li>The first is \(\dfrac{N^{1-s}}{1-s} = \dfrac{N^{2}}{2}\). It is exactly the first growing part of the sum.</li>
+  <li>The second is half of the last term, \(\dfrac{N}{2}\). It is exactly the second growing part.</li>
+  <li>The third is \(\dfrac{s}{12}\cdot\dfrac{1}{N^{s+1}} = \dfrac{-1}{12}\cdot\dfrac{1}{N^{0}} = -\dfrac{1}{12}\).</li>
+</ul>
+<div class="tw"><table class="sym num">
+<thead><tr><th>\(N\)</th><th>\(1 + 2 + \cdots + N\)</th><th>\(N^{2}/2\)</th><th>\(N/2\)</th><th>what is left</th><th>plus \(-\tfrac{1}{12}\)</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>55</td><td>50</td><td>5</td><td>0</td><td>−0.0833</td></tr>
+<tr><td>100</td><td>5,050</td><td>5,000</td><td>50</td><td>0</td><td>−0.0833</td></tr>
+<tr><td>1,000</td><td>500,500</td><td>500,000</td><td>500</td><td>0</td><td>−0.0833</td></tr>
+</tbody></table></div>
+<p>The sum \(1 + 2 + \cdots + N\) grows without bound, and all of its growth is in the two pieces \(N^{2}/2\) and \(N/2\). The continuation removes exactly those pieces. What remains does not depend on \(N\): it is \(-\tfrac{1}{12}\). So \(\zeta(-1) = -\tfrac{1}{12}\).</p>
+<p class="note">The statement "\(1 + 2 + 3 + \cdots = -\tfrac{1}{12}\)" is shorthand for \(\zeta(-1) = -\tfrac{1}{12}\). It does not say that adding the whole numbers gives a negative fraction: that sum has no value. It says that the function which equals \(\sum 1/n^{s}\) where the sum converges has the value \(-\tfrac{1}{12}\) at \(s = -1\). In the same way, "\(1 + 2 + 4 + 8 + \cdots = -1\)" is shorthand for the value of \(1/(1-x)\) at \(x = 2\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.3 <small>ζ(s) along the real axis, and how many corrections are needed to reach each s</small></div>
+  <div class="ctl">
+    <label>s <input type="range" id="sW" min="-2.2" max="3" step="0.01" value="3"><output id="sWv"></output></label>
+    <button type="button" class="play" id="playW">▶ Play</button>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>ζ(s), drawn as far as s has gone</span><span><b style="color:var(--ok)">●</b> the current s</span><span>dashed lines: the boundaries s = 1, 0 and −1</span></div>
+  <div class="tw"><div class="plot" id="pW"><svg role="img" aria-label="Zeta of s for real s, revealed from right to left"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rW"></div>
+  <figcaption>Press Play, or drag the slider from right to left. Right of 1 the sum itself converges. Between 0 and 1 one correction is needed, between −1 and 0 two, and left of −1 three. The curve passes through \(-\tfrac12\) at \(s = 0\), through \(-\tfrac{1}{12}\) at \(s = -1\), and through 0 at \(s = -2\). The readout compares the corrected sum of 200 terms with \(\zeta(s)\) computed by a different method.</figcaption>
+</figure>
+
+<h3>Second way: a chain of discs around the pole</h3>
+<p>The same extension can be reached with Taylor series alone, as for \(1/(1-x)\) in Lab @@ch:continuation@@.2. The only bad point of \(\zeta\) is \(s = 1\). So by the rule of chapter @@ch:analytic@@, the Taylor series of \(\zeta\) about any center \(c\) converges in the disc around \(c\) whose edge passes through 1.</p>
+<p>Start at a center where the original sum converges, for example \(c = 2\). Its disc reaches from 1 to 3. Pick a new center inside that disc, a little above the real axis. The function and all its derivatives are known there, so the Taylor series about the new center is known, and its disc covers points the first disc did not. Repeat. The chain of centers passes over the bad point and comes down on the other side.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.4 <small>continuing ζ around its pole, one disc at a time</small></div>
+  <div class="ctl">
+    <label>Step <input type="range" id="kD" min="0" max="10" step="1" value="0"><output id="kDv"></output></label>
+    <button type="button" class="play" id="playD">▶ Play</button>
+  </div>
+  <div class="lg"><span><i style="background:var(--accent-soft)"></i>where the sum converges (σ &gt; 1)</span><span><i style="background:var(--s2)"></i>discs of the Taylor series</span><span><b style="color:var(--ok)">●</b> the newest center</span><span>○ the pole at s = 1</span></div>
+  <div class="tw"><div class="plot"><svg id="svD" viewBox="0 0 640 360" role="img" aria-label="A chain of overlapping discs in the complex plane passing around the pole of zeta at one"></svg></div></div>
+  <div class="readout" id="rD"></div>
+  <figcaption>The complex plane. Each disc is centered at a point inside the previous disc and reaches exactly to the pole. After eight steps the chain has gone around the pole and covers part of the region \(\sigma \lt 1\); two more steps carry it along the negative real axis. Going around underneath the pole instead gives the same values.</figcaption>
+</figure>
+
+<h3>What Riemann did</h3>
+<p>Riemann did not use either of these step-by-step methods. He found formulas for \(\zeta(s)\) that are valid for every \(s \ne 1\) at once. One of them, the functional equation, is in chapter @@ch:zeta-zeros@@. By rigidity all of these routes give the same function.</p>
+<p class="note">From here on, \(\zeta(s)\) means the extended function, defined for every complex \(s\) except \(s = 1\). At \(s = 1\) it has a pole: it behaves like \(1/(s-1)\), as in Lab @@ch:zeta@@.2.</p>
+
+<div class="try">
+  <h3>Things to try</h3>
+  <ul>
+    <li>In Lab @@n@@.1, set \(s = 0.5\) and raise N. Compare the readout with the table in step 4.</li>
+    <li>Move \(s\) down toward 0.1. The orange curve still levels off, but more slowly.</li>
+    <li>In Lab @@n@@.2, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
+    <li>Raise \(\sigma\) past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
+    <li>In Lab @@n@@.3, press Play and watch the curve pass through \(-\tfrac12\) at \(s = 0\) and \(-\tfrac{1}{12}\) at \(s = -1\). Stop at \(s = -2\): the value is 0.</li>
+    <li>In Lab @@n@@.4, step through the discs one at a time. Each new center is inside the previous disc.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <h3>Exercises</h3>
+  <ol>
+    <li>Use the formula for \(\zeta\) with \(N = 1\), and half of the last term removed, to estimate \(\zeta(\tfrac12)\).<details><summary>Solution</summary><p>\(1 - \tfrac12 - \dfrac{1^{1/2}}{1 - \tfrac12} = 1 - \tfrac12 - 2 = -1.5\). The true value is −1.4604. With \(N = 10\) the same recipe gives −1.4617.</p></details></li>
+    <li>Compute the bracket with all three corrections for \(s = 0\) and \(N = 5\).<details><summary>Solution</summary><p>The first 5 terms are each 1, so their sum is 5. The corrections are \(\dfrac{5^{1}}{1} = 5\), half of the last term \(= \tfrac12\), and \(\dfrac{0}{12}\cdot\dfrac15 = 0\). The bracket is \(5 - 5 - \tfrac12 + 0 = -\tfrac12\), the same as for every other \(N\).</p></details></li>
+    <li>Use \(1^{2} + 2^{2} + \cdots + N^{2} = \dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6}\) to find \(\zeta(-2)\).<details><summary>Solution</summary><p>At \(s = -2\) the terms are \(n^{2}\). The corrections are \(\dfrac{N^{1-s}}{1-s} = \dfrac{N^{3}}{3}\), half of the last term \(= \dfrac{N^{2}}{2}\), and \(\dfrac{s}{12}\cdot\dfrac{1}{N^{s+1}} = -\dfrac{2}{12}N = -\dfrac{N}{6}\), which is added. So the bracket is \(\dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6} - \dfrac{N^{3}}{3} - \dfrac{N^{2}}{2} - \dfrac{N}{6} = 0\) for every \(N\). So \(\zeta(-2) = 0\). Lab @@n@@.3 shows the curve crossing 0 there.</p></details></li>
+  </ol>
+</div>
+
+<h2>Check your understanding</h2>
+<ol class="quiz" data-quiz="ch-continuing-zeta">
+  <li data-a="3"><p>In Lab @@n@@.2 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
+    <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
+    <p class="why">The chain's end is the center plus the vector \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that vector leaves the center, which is the continued function.</p></li>
+  <li data-a="3"><p>At \(s = \tfrac12\) the sum of the first \(N\) terms and the term \(2\sqrt{N}\) both grow without bound. Why does their difference have a limit?</p>
+    <ul><li>Because both are infinite, and infinity minus infinity is 0</li><li>Because the sum eventually stops growing</li><li>Because \(2\sqrt{N}\) is, up to a constant, the area under the curve that the sum approximates, and the leftover rectangle-minus-area pieces have a finite total</li></ul>
+    <p class="why">Each term of the sum is paired with the area under the curve above it. The differences shrink like \(1/n^{s+1}\), fast enough to add up to a finite number.</p></li>
+  <li data-a="1"><p>What does \(\zeta(-1) = -\tfrac{1}{12}\) say about \(1 + 2 + 3 + \cdots\)?</p>
+    <ul><li>Nothing about adding the numbers up: that sum has no value. It gives the value at \(s = -1\) of the function that the sum defines where it converges</li><li>That the partial sums approach \(-\tfrac{1}{12}\)</li><li>That the sum equals \(-\tfrac{1}{12}\) if enough terms are taken</li></ul>
+    <p class="why">The partial sums are \(N^{2}/2 + N/2\) and grow without bound. The continuation removes exactly those growing pieces; \(-\tfrac{1}{12}\) is what is left.</p></li>
+</ol>
+
+<script>
+(function () {
+  var L = Lab, LO = -2, HI = 5;
+  function clip(y) { return y > LO && y < HI ? y : NaN; }
+  L.bind({ sC: function (v) { return v.toFixed(2); }, nC: function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); } }, function (v) {
+    var s = v.sC, N = Math.round(Math.pow(10, v.nC)), pole = Math.abs(s - 1) < 0.005, z = pole ? 0 : L.zeta(s, 0)[0];
+    var lo = Math.min(z, 0) - 1, hi = Math.max(z, 1) + 3, cum = 0, raw = [], cor = [], n, last = 0, at = null;
+    function keep(y) { return y > lo && y < hi ? y : NaN; }
+    for (n = 1; n <= 10000; n++) {
+      cum += Math.pow(n, -s);
+      if (n === N) at = [cum, pole ? NaN : Math.pow(n, 1 - s) / (1 - s)];
+      var k = Math.round(Math.pow(10, Math.round(Math.log10(n) * 100) / 100));
+      if (k === n && n !== last) { raw.push([n, keep(cum)]); if (!pole) cor.push([n, keep(cum - Math.pow(n, 1 - s) / (1 - s))]); last = n; }
+    }
+    L.plot('pC', { x: [1, 10000], y: [lo, hi], log: true, xt: [1, 10, 100, 1000], yt: L.ticks(lo, hi, 5), xl: 'number of terms (log scale)', xn: 'n', dp: 4, h: 280,
+      refs: pole ? [] : [{ y: z, t: 'ζ(s)' }], vlines: [{ x: N, t: 'N' }], series: [{ n: 'sum', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }] });
+    document.getElementById('rC').innerHTML = pole ? '<span>At s = 1 the formula has no value: this is the pole of ζ.</span>'
+      : '<span>first ' + N.toLocaleString() + ' terms: <b>' + at[0].toFixed(4) + '</b></span><span>N<sup>1 − s</sup>/(1 − s) = <b>' + at[1].toFixed(4).replace('-', '−') + '</b></span><span>difference: <b>' + (at[0] - at[1]).toFixed(4).replace('-', '−') + '</b></span><span>ζ(s) = <b>' + z.toFixed(4).replace('-', '−') + '</b></span>';
+  });
+  // a Play button that sweeps a slider from one end to the other
+  function play(btnId, inputId, from, to, ms) {
+    var btn = document.getElementById(btnId), inp = document.getElementById(inputId), timer = null, step = +inp.step || 1;
+    function stop() { clearInterval(timer); timer = null; btn.textContent = '▶ Play'; }
+    btn.addEventListener('click', function () {
+      if (timer) return stop();
+      var n = Math.round(Math.abs(to - from) / step), i = 0, every = Math.max(1, Math.round(n / (ms / 40)));
+      btn.textContent = '❚❚ Pause'; inp.value = from; inp.dispatchEvent(new Event('input', { bubbles: true }));
+      timer = setInterval(function () {
+        i = Math.min(n, i + every); inp.value = from + (to - from) * i / n; inp.dispatchEvent(new Event('input', { bubbles: true }));
+        if (i >= n) stop();
+      }, ms / Math.ceil(n / every));
+    });
+  }
+  function corrected(s, N) {
+    var S = 0, n; for (n = 1; n <= N; n++) S += Math.pow(n, -s);
+    return S - Math.pow(N, 1 - s) / (1 - s) - Math.pow(N, -s) / 2 + s / 12 * Math.pow(N, -s - 1);
+  }
+  var ZC = L.sample(-2.2, 3, 520, false, function (s) { return Math.abs(s - 1) < 0.012 ? NaN : L.zeta(s, 0)[0]; });
+  L.bind({ sW: function (v) { return v.toFixed(2); } }, function (v) {
+    var s = v.sW, pole = Math.abs(s - 1) < 0.012, z = pole ? NaN : L.zeta(s, 0)[0];
+    var how = s > 1 ? 'the sum itself converges' : s > 0 ? '<b>one</b> correction is needed' : s > -1 ? '<b>two</b> corrections are needed' : '<b>three</b> corrections are needed';
+    L.plot('pW', { x: [-2.2, 3], y: [-3, 4], xt: [-2, -1, 0, 1, 2, 3], yt: [-2, 0, 2, 4], xl: 's', xn: 's', dp: 4, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: [{ x: 1, t: '1' }, { x: 0, t: '0' }, { x: -1, t: '−1' }], marks: pole || z > 4 || z < -3 ? [] : [{ x: s, y: z, c: 'var(--ok)' }],
+      series: [{ n: 'ζ(s)', c: 'var(--s1)', pts: ZC.map(function (p) { return [p[0], p[0] >= s - 1e-9 && p[1] > -3 && p[1] < 4 ? p[1] : NaN]; }) }] });
+    document.getElementById('rW').innerHTML = pole ? '<span>s = 1 is the pole: ζ has no value here.</span>'
+      : '<span>here ' + how + '</span><span>corrected sum of 200 terms: <b>' + corrected(s, 200).toFixed(4).replace('-', '−') + '</b></span><span>ζ(s) = <b>' + z.toFixed(4).replace('-', '−') + '</b></span>';
+  });
+  play('playW', 'sW', 3, -2.2, 9000);
+  var CEN = []; (function () { var k; for (k = 0; k <= 8; k++) CEN.push([1 + Math.cos(k * Math.PI / 8), Math.sin(k * Math.PI / 8)]); CEN.push([-0.8, 0]); CEN.push([-2.2, 0]); })();
+  L.bind({ kD: null }, function (v) {
+    var K = v.kD, sc = 80, X = function (x) { return (x + 3) * sc; }, Y = function (y) { return 180 - y * sc; }, h = '', k, c, r;
+    h += '<rect x="' + X(1) + '" y="0" width="' + (640 - X(1)) + '" height="360" style="fill:var(--accent-soft)"/>';
+    h += '<line class="rf" x1="0" x2="640" y1="180" y2="180"/>';
+    for (k = -2; k <= 4; k++) h += '<text class="tk" text-anchor="middle" x="' + X(k) + '" y="196">' + (k < 0 ? '−' + (-k) : k) + '</text>';
+    for (k = 0; k <= K; k++) {
+      c = CEN[k]; r = Math.hypot(c[0] - 1, c[1]);
+      h += '<circle cx="' + X(c[0]) + '" cy="' + Y(c[1]) + '" r="' + r * sc + '" style="fill:var(--s2);fill-opacity:' + (k === K ? 0.22 : 0.07) + ';stroke:var(--s2);stroke-width:' + (k === K ? 2 : 1) + '"/>';
+    }
+    for (k = 0; k <= K; k++) { c = CEN[k]; h += '<circle cx="' + X(c[0]) + '" cy="' + Y(c[1]) + '" r="' + (k === K ? 5 : 3) + '" style="fill:' + (k === K ? 'var(--ok)' : 'var(--s2)') + '"/>'; }
+    h += '<circle cx="' + X(1) + '" cy="180" r="5" style="fill:var(--panel);stroke:var(--fg);stroke-width:2"/><text class="tk" x="' + (X(1) + 9) + '" y="172">pole</text>';
+    h += '<text class="tk" text-anchor="end" x="634" y="354">real part</text>';
+    document.getElementById('svD').innerHTML = h;
+    c = CEN[K]; r = Math.hypot(c[0] - 1, c[1]);
+    document.getElementById('rD').innerHTML = '<span>step <b>' + K + '</b> of 10</span><span>center <b>' + cx(c) + '</b></span><span>radius = distance to the pole = <b>' + r.toFixed(2) + '</b></span><span>this disc reaches real part <b>' + (c[0] - r).toFixed(2).replace('-', '−') + '</b></span>';
+  });
+  play('playD', 'kD', 0, 10, 6000);
+  function frame(pts) {
+    var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    pts.forEach(function (p) { x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]); y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]); });
+    var R = Math.max((y1 - y0) / 2, (x1 - x0) / 3, 0.3) * 1.15, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    return { x: [cx - 1.5 * R, cx + 1.5 * R], y: [cy - R, cy + R] };
+  }
+  function cx(z) { return z[0].toFixed(3) + (z[1] < 0 ? ' − ' : ' + ') + Math.abs(z[1]).toFixed(3) + 'i'; }
+  L.bind({ s3: function (v) { return v.toFixed(2); }, t3: function (v) { return v.toFixed(2); }, n3: null }, function (v) {
+    var sg = v.s3, t = v.t3, re = 0, im = 0, raw = [[0, 0]], cor = [], n, a, th, tr, ti, m, cr, ci, dr = 1 - sg, di = -t, den = dr * dr + di * di, qr, qi, z = L.zeta(sg, t), rad = 0;
+    for (n = 1; n <= v.n3; n++) {
+      a = Math.pow(n, -sg); th = -t * Math.log(n); tr = a * Math.cos(th); ti = a * Math.sin(th); re += tr; im += ti; raw.push([re, im]);
+      m = Math.pow(n, 1 - sg); cr = m * Math.cos(th); ci = m * Math.sin(th); qr = (cr * dr + ci * di) / den; qi = (ci * dr - cr * di) / den; rad = Math.hypot(qr, qi);
+      cor.push([re - qr - tr / 2, im - qi - ti / 2]);
+    }
+    var f = frame(raw.concat(cor, [z])), e = cor[cor.length - 1];
+    L.plot('p3', { x: f.x, y: f.y, xt: L.ticks(f.x[0], f.x[1], 5), yt: L.ticks(f.y[0], f.y[1], 4), xl: 'real part', h: 420, notip: true,
+      series: [{ n: 'chain', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--ok)' }] });
+    document.getElementById('r3').innerHTML = '<span>end of the chain: <b>' + cx([re, im]) + '</b></span><span>length of the correction vector: <b>' + rad.toFixed(3) + '</b></span><span>corrected value: <b>' + cx(e) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span>';
+  });
+})();
+</script>

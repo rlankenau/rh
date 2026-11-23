@@ -25,6 +25,7 @@ PARTS = [
         ("taylor", "Taylor series"),
         ("analytic", "Analytic functions"),
         ("continuation", "Analytic continuation"),
+        ("continuing-zeta", "Continuing zeta"),
         ("zeta-zeros", "The zeros and the Riemann Hypothesis"),
         ("waves", "Zeros as waves"),
         ("quiz-1", "Quiz: Part I"),
