@@ -21,7 +21,7 @@
 <h2>Why the extension is forced</h2>
 <p>Suppose all you knew was the geometric series, valid on \((-1, 1)\). Could some other function agree with it there and differ from \(1/(1-x)\) elsewhere?</p>
 <p>Not an analytic one. By the rigidity of chapter @@ch:analytic@@, two analytic functions that agree on an interval agree everywhere that both are defined. So a function given on a small region has at most one analytic extension to a larger one.</p>
-<p class="note">That extension, when it exists, is the <b>analytic continuation</b>. It is not a convention or a choice of how to assign a value to a divergent sum. It is the same function, seen on more of its domain.</p>
+<p class="note">That extension, when it exists, is the <b>analytic continuation</b>. (Rigidity says there is at most one. It does not say there is one. The section "When there is no continuation" below gives an example with none.) It is not a convention or a choice of how to assign a value to a divergent sum. It is the same function, seen on more of its domain.</p>
 
 <h2>Extending step by step</h2>
 <p>The Taylor series of \(1/(1-x)\) about another center \(c\) is</p>
@@ -41,10 +41,50 @@
   <figcaption>The interval of convergence is centered on \(c\) and always ends at \(x = 1\). Moving the center to the left moves the other end twice as far.</figcaption>
 </figure>
 
+<h2>When there is no continuation</h2>
+<p>Rigidity answers "how many continuations?" with "at most one". Whether there is one at all is a separate question, and the answer depends on the bad points.</p>
+<p>The re-centering process of the last section is stopped only by bad points. The series for \(1/(1-x)\) has a single bad point, at 1. A disc centered at \(c = -0.5\) has radius 1.5 and reaches out to \(-2\), well beyond the original interval. In the complex plane the discs can also pass around the point 1. So the continuation exists everywhere except at that one point.</p>
+<p>Now take a different series:</p>
+<p class="note">$$f(x) \;=\; x + x^{2} + x^{4} + x^{8} + x^{16} + \cdots$$ The exponents are the powers of 2. Like the geometric series, it converges for \(|x| \lt 1\) and defines an analytic function there.</p>
+<p>Where are its bad points? Allow complex inputs \(z\), as in chapter @@ch:analytic@@.</p>
+<ul>
+  <li>At \(z = 1\) every term equals 1, and the sum grows without bound as \(z\) approaches 1.</li>
+  <li>At \(z = -1\) every term after the first equals 1, since the exponents are even. Again the sum grows without bound.</li>
+  <li>At \(z = i\) every term after the second equals 1, since \(i^{4} = 1\). The same happens.</li>
+  <li>In general: if \(z^{2^{m}} = 1\) for some \(m\), then every term from the \(m\)-th on equals 1 at \(z\), and \(z\) is a bad point.</li>
+</ul>
+<p>The equation \(z^{2^{m}} = 1\) has \(2^{m}\) solutions, equally spaced around the circle \(|z| = 1\). So there are 2 bad points, and 4, and 8, and 16, and so on without end. Every arc of the circle, however short, contains one.</p>
+<p class="note">For this function the circle \(|z| = 1\) is a wall of bad points. A disc of convergence cannot contain a bad point, so the Taylor series about any center \(c\) inside the circle has radius exactly \(1 - |c|\): it reaches the circle and stops. No chain of discs gets out. This function has <b>no analytic continuation</b> beyond the circle. The circle is called its natural boundary.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.3 <small>bad points on the circle, and how far a re-centered series can reach</small></div>
+  <div class="ctl">
+    <label>Function <select id="fB"><option value="0">1/(1 − x) = 1 + x + x² + x³ + ⋯</option><option value="1" selected>x + x² + x⁴ + x⁸ + ⋯</option></select></label>
+    <label>Center c <input type="range" id="cB" min="-0.9" max="0.9" step="0.01" value="-0.5"><output id="cBv"></output></label>
+    <label>Radius r of the test circle <input type="range" id="rB" min="0.5" max="0.999" step="0.001" value="0.9"><output id="rBv"></output></label>
+  </div>
+  <div class="lg"><span>○ bad points</span><span><i style="background:var(--muted)"></i>the circle |z| = 1</span><span><b style="color:var(--ok)">●</b> the center c</span><span><i style="background:var(--s2)"></i>the disc where the series about c converges</span><span><i style="background:var(--s1)"></i>the test circle |z| = r</span></div>
+  <div class="tw"><div class="plot"><svg id="svB" viewBox="0 0 640 340" role="img" aria-label="The complex plane with the unit circle, the bad points of the chosen function, and the disc of convergence about the center"></svg></div></div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the size of the function, |f(z)|, at each point of the test circle</span></div>
+  <div class="tw"><div class="plot" id="pB2"><svg role="img" aria-label="Size of the function around a circle of radius r"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rB2"></div>
+  <figcaption>Top: the complex plane. For \(1/(1-x)\) the orange disc sticks out of the circle on the side away from the bad point. For the second function it never does. Bottom: the size of the function going once around the blue test circle. As \(r\) approaches 1, the first function grows at one place only, the angle 0. The second grows at 0°, then also at 180°, at 90° and 270°, at the 45° points, and so on. Its growth is slow, so push \(r\) to 0.999. The picture shows 64 bad points; there are infinitely many.</figcaption>
+</figure>
+
+<h3>How would we know?</h3>
+<ul>
+  <li><b>That a continuation exists:</b> by producing it. Either re-center and check that the new disc reaches past the old boundary, or find a second formula that is analytic on a larger region and agrees with the first where both apply. For \(1/(1-x)\) the second formula is the fraction itself. For \(\zeta\), chapter @@ch:continuing-zeta@@ builds such a formula.</li>
+  <li><b>That none exists:</b> by showing that the bad points block every route, as above.</li>
+  <li><b>Numerically:</b> compute the function on circles approaching the boundary, as in the lab. Growth at isolated places suggests isolated bad points that can be passed. Growth everywhere suggests a wall. This is evidence, not proof.</li>
+</ul>
+<p>There is one more way an extension can fail to be a single function. For \(\ln x\), continuing around the bad point 0 in the two possible directions gives two different answers on the far side. For \(\zeta\) this does not happen: its only bad point is \(s = 1\), and going around it either way gives the same values.</p>
+
 <div class="try">
   <h3>Things to try</h3>
   <ul>
     <li>In Lab @@n@@.1, read values at \(x = -1\). The partial sums alternate between 1 and 0 as N changes, while the function is \(\tfrac12\).</li>
+    <li>In Lab @@n@@.3, choose \(1/(1-x)\) and slide the center. Find where the disc reaches furthest outside the circle.</li>
+    <li>Choose the second function and raise \(r\) from 0.9 to 0.999. Watch the readout at 0°, 180°, 90° and 45°: all four values grow. Then switch to \(1/(1-x)\): only the value at 0° grows.</li>
     <li>In Lab @@n@@.2, slide the center from 0 to −3. The series now reproduces the function at \(x = -5\), far outside the original interval.</li>
   </ul>
 </div>
@@ -91,6 +131,30 @@
   L.bind({ c2: function (v) { return v.toFixed(2); }, n2: null }, function (v) {
     draw('p2', v.c2, v.n2, [{ x: v.c2, t: 'c' }]);
     document.getElementById('r2').innerHTML = '<span>distance from c to the bad point x = 1: <b>' + (1 - v.c2).toFixed(2) + '</b></span><span>the series converges for <b>' + (2 * v.c2 - 1).toFixed(2).replace('-', '−') + ' &lt; x &lt; 1</b></span>';
+  });
+  // natural boundary
+  L.bind({ fB: null, cB: function (v) { return v.toFixed(2); }, rB: function (v) { return v.toFixed(3); } }, function (v) {
+    var lac = v.fB === 1, c = v.cB, r = v.rB, R = lac ? 1 - Math.abs(c) : 1 - c, sc = 110, X = function (x) { return 320 + x * sc; }, Y = function (y) { return 170 - y * sc; }, h = '', k, a;
+    h += '<line class="rf" x1="0" x2="640" y1="170" y2="170"/>';
+    for (k = -2; k <= 2; k++) h += '<text class="tk" text-anchor="middle" x="' + X(k) + '" y="186">' + (k < 0 ? '−' + (-k) : k) + '</text>';
+    h += '<circle cx="320" cy="170" r="' + sc + '" style="fill:none;stroke:var(--muted);stroke-width:1.5"/>';
+    h += '<circle cx="320" cy="170" r="' + r * sc + '" style="fill:none;stroke:var(--s1);stroke-width:1.5;stroke-dasharray:5 4"/>';
+    h += '<circle cx="' + X(c) + '" cy="170" r="' + R * sc + '" style="fill:var(--s2);fill-opacity:.16;stroke:var(--s2);stroke-width:2"/>';
+    for (k = 0; k < (lac ? 64 : 1); k++) { a = k * Math.PI / 32; h += '<circle cx="' + X(Math.cos(a)) + '" cy="' + Y(Math.sin(a)) + '" r="' + (lac ? (k % 16 ? k % 4 ? 2 : 3 : 4.5) : 4.5) + '" style="fill:var(--panel);stroke:var(--fg);stroke-width:1.5"/>'; }
+    h += '<circle cx="' + X(c) + '" cy="170" r="5" style="fill:var(--ok)"/><text class="tk" text-anchor="end" x="634" y="334">real part</text>';
+    document.getElementById('svB').innerHTML = h;
+    function size(th) {
+      var zr = r * Math.cos(th), zi = r * Math.sin(th), sr = 0, si = 0, t, j;
+      if (!lac) return 1 / Math.hypot(1 - zr, zi);
+      for (j = 0; j < 18; j++) { sr += zr; si += zi; t = zr * zr - zi * zi; zi = 2 * zr * zi; zr = t; }
+      return Math.hypot(sr, si);
+    }
+    var pts = L.sample(0, 360, 1440, false, function (d) { return Math.min(size(d * Math.PI / 180), 12); });
+    function at(d) { return size(d * Math.PI / 180).toFixed(2); }
+    L.plot('pB2', { x: [0, 360], y: [0, 12], xt: [0, 90, 180, 270, 360], yt: [0, 3, 6, 9, 12], xl: 'angle around the circle, in degrees', xn: 'angle', dp: 2, xdp: 0, h: 220, series: [{ n: '|f|', c: 'var(--s1)', pts: pts }] });
+    var out = lac ? c - R < -1 - 1e-9 : c - R < -1 - 1e-9 || c + R > 1 + 1e-9;
+    document.getElementById('rB2').innerHTML = '<span>radius of the series about c: <b>' + R.toFixed(2) + '</b></span><span>it converges on the real line for <b>' + (c - R).toFixed(2).replace('-', '−') + ' &lt; x &lt; ' + (c + R).toFixed(2).replace('-', '−') + '</b></span><span>' +
+      (out ? 'the disc <b>reaches outside</b> the circle' : 'the disc <b>stays inside</b> the circle') + '</span><span>|f| on the test circle at 0°: <b>' + at(0) + '</b>, at 180°: <b>' + at(180) + '</b>, at 90°: <b>' + at(90) + '</b>, at 45°: <b>' + at(45) + '</b></span>';
   });
 })();
 </script>
