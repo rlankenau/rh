@@ -18,10 +18,35 @@
 </tbody></table></div>
 <p>The first \(N\) terms alone approach 1.6449 slowly. With the estimate added, the total is already right to two decimal places at \(N = 10\), and the approximation becomes exact as \(N \to \infty\).</p>
 
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.1 <small>the terms after the N-th, and the area that estimates them</small></div>
+  <div class="ctl">
+    <label>Exponent s <input type="range" id="sa" min="1.1" max="3" step="0.01" value="2"><output id="sav"></output></label>
+    <label>N <input type="range" id="na" min="1" max="50" step="1" value="10"><output id="nav"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the terms after the N-th, each drawn as a rectangle of width 1</span><span><i style="background:var(--s2)"></i>the curve y = 1/x<sup>s</sup>; the area under it from N on is the estimate</span></div>
+  <div class="tw"><div class="plot" id="pa"><svg role="img" aria-label="Rectangles for the terms after the N-th under the curve one over x to the s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="ra"></div>
+  <figcaption>Each rectangle is one term of the sum that has not been added yet. Together they fill most of the area under the curve to the right of \(N\), and that area is \(N^{1-s}/(s-1)\). The readout compares the estimate with the true remainder.</figcaption>
+</figure>
+
 <h3>Step 2. Write the same thing so that it can be used for other \(s\)</h3>
 <p>Since \(\dfrac{N^{1-s}}{s-1} = -\dfrac{N^{1-s}}{1-s}\), step 1 says:</p>
 <p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;1+\frac{1}{2^{s}}+\dots+\frac{1}{N^{s}} \;-\; \frac{N^{1-s}}{1-s}\;\right]$$</p>
 <p>For \(s \gt 1\) this is nothing new: the subtracted term tends to 0, and what is left is the original sum.</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>the subtracted term N<sup>1 − s</sup>/(1 − s) as N grows</small></div>
+  <div class="ctl">
+    <label>Exponent s <input type="range" id="sb" min="0.5" max="3" step="0.01" value="2"><output id="sbv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>N<sup>1 − s</sup>/(1 − s)</span></div>
+  <div class="tw"><div class="plot" id="pb"><svg role="img" aria-label="The subtracted term as a function of N"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rb"></div>
+  <figcaption>For \(s \gt 1\) the term shrinks to 0 as \(N\) grows, so subtracting it changes nothing in the limit. Slide \(s\) below 1 to see what happens to it there: it grows without bound. Step 4 deals with that case.</figcaption>
+</figure>
 
 <h3>Step 3. Notice that the bracket makes sense for every \(s \ne 1\)</h3>
 <p>Look at the two pieces inside the bracket for a fixed \(N\).</p>
@@ -30,6 +55,19 @@
   <li>\(\dfrac{N^{1-s}}{1-s}\) has a value for every \(s\) except \(s = 1\).</li>
 </ul>
 <p>So the bracket can be computed for any \(s \ne 1\) and any \(N\), including values of \(s\) where the infinite sum diverges. The only question is whether it settles down as \(N\) grows.</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.3 <small>the two pieces of the bracket, as functions of s, for a fixed N</small></div>
+  <div class="ctl">
+    <label>N <input type="range" id="nc" min="1" max="50" step="1" value="10"><output id="ncv"></output></label>
+    <label>Read the values at s = <input type="range" id="sc2" min="-1" max="3" step="0.01" value="0.5"><output id="sc2v"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the sum of the first N terms</span><span><i style="background:var(--muted)"></i>N<sup>1 − s</sup>/(1 − s)</span><span><i style="background:var(--s2)"></i>the bracket: the first minus the second</span></div>
+  <div class="tw"><div class="plot" id="pc"><svg role="img" aria-label="The finite sum, the subtracted term and the bracket plotted against s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rc"></div>
+  <figcaption>The horizontal axis is \(s\), not \(N\). The blue curve crosses \(s = 1\) without any trouble: a sum of \(N\) numbers has a value for every \(s\). The gray curve breaks only at \(s = 1\). So the orange bracket has a value at every other \(s\), on both sides of 1.</figcaption>
+</figure>
 
 <h3>Step 4. Try it where the sum diverges: \(s = \tfrac12\)</h3>
 <p>At \(s = \tfrac12\) the terms are \(1/\sqrt{n}\), and the sum grows without bound. The subtracted term is \(\dfrac{N^{1/2}}{1/2} = 2\sqrt{N}\), which also grows without bound.</p>
@@ -42,14 +80,10 @@
 <tr><td>10,000</td><td>198.5446</td><td>200.0000</td><td>−1.4554</td></tr>
 </tbody></table></div>
 <p>Both columns run off to infinity, but their difference settles: it approaches \(-1.4604\). That number is \(\zeta(\tfrac12)\).</p>
-
-<h3>Step 5. Why the difference settles</h3>
-<p>The subtracted term is an area under the curve: \(\dfrac{N^{1-s}}{1-s} = \dfrac{1}{1-s} + \displaystyle\int_{1}^{N}\frac{dx}{x^{s}}\). Split that area into the pieces over \([1,2], [2,3], \dots\) and pair each piece with one term of the sum:</p>
-<p class="note">$$\text{bracket} \;=\; 1 \;-\; \frac{1}{1-s} \;+\; \sum_{n=2}^{N}\left(\frac{1}{n^{s}} - \int_{n-1}^{n}\frac{dx}{x^{s}}\right)$$</p>
-<p>Each term in the new sum is the difference between a rectangle and the area under the curve above it, as in the picture of Lab @@ch:zeta@@.1. The curve gets flatter as \(n\) grows, so that difference is small: about \(\dfrac{s}{2\,n^{s+1}}\) in size. The numbers \(1/n^{s+1}\) have a finite sum whenever \(s \gt 0\). So the bracket converges for every \(s \gt 0\) except \(s = 1\).</p>
+<p>Lab @@n@@.4 repeats this table for any \(s\) and \(N\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.1 <small>the first N terms, and the same with N<sup>1 − s</sup>/(1 − s) subtracted, for real s</small></div>
+  <div class="title">Lab @@n@@.4 <small>the first N terms, and the same with N<sup>1 − s</sup>/(1 − s) subtracted, for real s</small></div>
   <div class="ctl">
     <label>Exponent s <input type="range" id="sC" min="0.1" max="3" step="0.01" value="0.5"><output id="sCv"></output></label>
     <label>Number of terms N <input type="range" id="nC" min="0" max="4" step="0.02" value="2"><output id="nCv"></output></label>
@@ -60,20 +94,34 @@
   <figcaption>For \(s \lt 1\) the blue curve leaves the frame and the orange curve levels off at the dashed line. For \(s \gt 1\) both level off at the same value. The dashed line is \(\zeta(s)\) computed by a different method.</figcaption>
 </figure>
 
+<h3>Step 5. Why the difference settles</h3>
+<p>The subtracted term is an area under the curve: \(\dfrac{N^{1-s}}{1-s} = \dfrac{1}{1-s} + \displaystyle\int_{1}^{N}\frac{dx}{x^{s}}\). Split that area into the pieces over \([1,2], [2,3], \dots\) and pair each piece with one term of the sum:</p>
+<p class="note">$$\text{bracket} \;=\; 1 \;-\; \frac{1}{1-s} \;+\; \sum_{n=2}^{N}\left(\frac{1}{n^{s}} - \int_{n-1}^{n}\frac{dx}{x^{s}}\right)$$</p>
+<p>Each term in the new sum is the difference between a rectangle and the area under the curve above it, as in the picture of Lab @@ch:zeta@@.1. The curve gets flatter as \(n\) grows, so that difference is small: about \(\dfrac{s}{2\,n^{s+1}}\) in size. The numbers \(1/n^{s+1}\) have a finite sum whenever \(s \gt 0\). So the bracket converges for every \(s \gt 0\) except \(s = 1\).</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.5 <small>the rectangle-minus-area pieces, and their running total</small></div>
+  <div class="ctl">
+    <label>Exponent s <input type="range" id="se" min="0.1" max="2" step="0.01" value="0.5"><output id="sev"></output></label>
+    <label>N <input type="range" id="ne" min="0" max="3" step="0.02" value="1"><output id="nev"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>rectangles: the terms 1/n<sup>s</sup></span><span><i style="background:var(--s2)"></i>the curve y = 1/x<sup>s</sup></span></div>
+  <div class="tw"><div class="plot" id="pe1"><svg role="img" aria-label="The curve and the rectangles under it"></svg><div class="tip" hidden></div></div></div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>running total of (rectangle − area under the curve above it), for n = 2 to N</span><span>dashed line: its limit</span></div>
+  <div class="tw"><div class="plot" id="pe2"><svg role="img" aria-label="Running total of the differences between each rectangle and the area above it"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="re"></div>
+  <figcaption>Top: each rectangle falls short of the area under the curve above it by a thin sliver. Bottom: the slivers added up. The slivers shrink quickly, so the total levels off, for every \(s \gt 0\). The bracket is \(1 - \frac{1}{1-s}\) plus this total.</figcaption>
+</figure>
+
+
 <h3>Step 6. The same formula for complex \(s\)</h3>
 <p>Nothing in steps 2 to 5 needs \(s\) to be real. For complex \(s = \sigma + it\) the bracket converges whenever \(\sigma \gt 0\) and \(s \ne 1\).</p>
 <p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
 
-<h3>Step 7. Why this is the continuation</h3>
-<ul>
-  <li>The limit of the bracket is a function defined for every \(s\) with \(\sigma \gt 0\) except \(s = 1\).</li>
-  <li>For \(\sigma \gt 1\) it equals the original sum (step 2).</li>
-  <li>It is analytic. (This needs a proof, which uses the fact that the convergence in step 5 is uniform.)</li>
-</ul>
-<p>By the rigidity of chapter @@ch:analytic@@, there is only one analytic function with these properties. So the limit of the bracket is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.2 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
+  <div class="title">Lab @@n@@.6 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
   <div class="ctl">
     <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
     <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
@@ -85,6 +133,27 @@
   <figcaption>The blue chain widens forever when \(\sigma \lt 1\). The orange path is the same chain with the correction removed at each step, and it closes in on the dot. (The lab also removes half of the last vector, a refinement that makes the orange path converge faster.) The dot is computed by a different method, described in chapter @@ch:zeta-zeros@@.</figcaption>
 </figure>
 
+<h3>Step 7. Why this is the continuation</h3>
+<ul>
+  <li>The limit of the bracket is a function defined for every \(s\) with \(\sigma \gt 0\) except \(s = 1\).</li>
+  <li>For \(\sigma \gt 1\) it equals the original sum (step 2).</li>
+  <li>It is analytic. (This needs a proof, which uses the fact that the convergence in step 5 is uniform.)</li>
+</ul>
+<p>By the rigidity of chapter @@ch:analytic@@, there is only one analytic function with these properties. So the limit of the bracket is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.7 <small>the original sum and the bracket, compared for every s between 0.1 and 3</small></div>
+  <div class="ctl">
+    <label>N <input type="range" id="ng" min="0" max="3.5" step="0.02" value="1.5"><output id="ngv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the sum of the first N terms</span><span><i style="background:var(--s2)"></i>the bracket with N terms</span><span><i style="background:var(--ok)"></i>ζ(s)</span></div>
+  <div class="tw"><div class="plot" id="pg"><svg role="img" aria-label="Partial sums and the bracket as functions of s, with zeta"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rg"></div>
+  <figcaption>The horizontal axis is \(s\). Raise \(N\). To the right of 1 the blue and orange curves both settle on the green one: there the bracket is the original sum. To the left of 1 the blue curve keeps rising with \(N\), and the orange curve stops moving. The curve it settles on is the continuation.</figcaption>
+</figure>
+
+
 <h2>From \(\sigma \gt 0\) to the whole plane</h2>
 <p>So far \(\zeta(s)\) is defined for every \(s\) with real part \(\sigma \gt 0\), except \(s = 1\). This section extends it to the remaining half of the plane, in two ways, and then looks at two famous values.</p>
 
@@ -92,6 +161,19 @@
 <p>In step 5 the bracket converged because subtracting \(\dfrac{N^{1-s}}{1-s}\) removed the part of the sum that grows fastest. For \(\sigma \le 0\) that is no longer enough: a smaller growing part is left. It can be removed too. The pattern continues, and the first three corrections are:</p>
 <p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;\sum_{n=1}^{N}\frac{1}{n^{s}} \;-\; \underbrace{\frac{N^{1-s}}{1-s}}_{\text{enough for } \sigma \gt 0} \;-\; \underbrace{\frac{1}{2}\cdot\frac{1}{N^{s}}}_{\text{enough for } \sigma \gt -1} \;+\; \underbrace{\frac{s}{12}\cdot\frac{1}{N^{s+1}}}_{\text{enough for } \sigma \gt -3}\;\right]$$</p>
 <p>The second correction is half of the last term. The third comes from the next term of the same expansion (the Euler–Maclaurin formula, which refines the comparison between a sum and an integral). Each further correction moves the boundary further left, and with enough of them any \(s\) is reached. By rigidity, every one of these formulas gives the same function wherever two of them both apply.</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.8 <small>the bracket with one, two or three corrections, as N grows</small></div>
+  <div class="ctl">
+    <label>s <input type="range" id="sh" min="-2.2" max="0.9" step="0.01" value="-0.5"><output id="shv"></output></label>
+    <label>Corrections <select id="mh"><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option></select></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s2)"></i>the bracket with the chosen number of corrections</span><span>dashed line: ζ(s)</span></div>
+  <div class="tw"><div class="plot" id="ph"><svg role="img" aria-label="The bracket against N for a chosen number of corrections"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rh"></div>
+  <figcaption>At \(s = -0.5\) one correction is not enough: the curve leaves the frame. Two corrections make it settle. Move \(s\) below \(-1\) and two are no longer enough, but three are.</figcaption>
+</figure>
 
 <h3>Worked example: \(s = 0\)</h3>
 <p>At \(s = 0\) every term \(1/n^{0}\) equals 1, so the sum of the first \(N\) terms is \(N\). The original sum would be \(1 + 1 + 1 + \cdots\), which has no value. Now apply the corrections:</p>
@@ -101,6 +183,18 @@
   <li>The third correction is \(\dfrac{0}{12}\cdot\dfrac1N = 0\).</li>
 </ul>
 <p>The bracket equals \(-\tfrac12\) for every \(N\). So \(\zeta(0) = -\tfrac12\).</p>
+
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.9 <small>the sum at s = 0, with the corrections removed one at a time</small></div>
+  <div class="ctl">
+    <label>N <input type="range" id="ni" min="1" max="50" step="1" value="10"><output id="niv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sum of the first n terms</span><span><i style="background:var(--s2)"></i>minus the first correction</span><span><i style="background:var(--ok)"></i>minus the first two</span><span><i style="background:var(--muted)"></i>with all three</span></div>
+  <div class="tw"><div class="plot" id="pi"><svg role="img" aria-label="The sum at s equals 0 and what is left after each correction"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="ri"></div>
+  <figcaption>The blue line is \(n\). After the first correction the line is flat at 0, and after the second it is flat at \(-\tfrac12\). The third correction is 0 here, so the gray line lies on the green one.</figcaption>
+</figure>
 
 <h3>Worked example: \(s = -1\)</h3>
 <p>At \(s = -1\) the terms are \(1/n^{-1} = n\), so the sum of the first \(N\) terms is \(1 + 2 + \cdots + N\). There is an exact formula for that:</p>
@@ -121,8 +215,23 @@
 <p>The sum \(1 + 2 + \cdots + N\) grows without bound, and all of its growth is in the two pieces \(N^{2}/2\) and \(N/2\). The continuation removes exactly those pieces. What remains does not depend on \(N\): it is \(-\tfrac{1}{12}\). So \(\zeta(-1) = -\tfrac{1}{12}\).</p>
 <p class="note">The statement "\(1 + 2 + 3 + \cdots = -\tfrac{1}{12}\)" is shorthand for \(\zeta(-1) = -\tfrac{1}{12}\). It does not say that adding the whole numbers gives a negative fraction: that sum has no value. It says that the function which equals \(\sum 1/n^{s}\) where the sum converges has the value \(-\tfrac{1}{12}\) at \(s = -1\). In the same way, "\(1 + 2 + 4 + 8 + \cdots = -1\)" is shorthand for the value of \(1/(1-x)\) at \(x = 2\).</p>
 
+
 <figure class="lab">
-  <div class="title">Lab @@n@@.3 <small>ζ(s) along the real axis, and how many corrections are needed to reach each s</small></div>
+  <div class="title">Lab @@n@@.10 <small>the sum at s = −1, with the corrections removed one at a time</small></div>
+  <div class="ctl">
+    <label>N <input type="range" id="nj" min="1" max="50" step="1" value="10"><output id="njv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sum of the first n terms</span><span><i style="background:var(--s2)"></i>minus the first correction</span><span><i style="background:var(--ok)"></i>minus the first two</span><span><i style="background:var(--muted)"></i>with all three</span></div>
+  <div class="tw"><div class="plot" id="pj"><svg role="img" aria-label="The sum at s equals −1 and what is left after each correction"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rj"></div>
+  <figcaption>The blue curve is \(1 + 2 + \cdots + n\). The first correction leaves the straight line \(n/2\). The second leaves 0. The third leaves \(-\tfrac{1}{12}\), for every \(n\).</figcaption>
+</figure>
+
+<h3>All real \(s\) at once</h3>
+<p>The two examples are single points on a curve. The next lab draws \(\zeta(s)\) for real \(s\) from 3 down to \(-2.2\), using as many corrections as each \(s\) needs.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.11 <small>ζ(s) along the real axis, and how many corrections are needed to reach each s</small></div>
   <div class="ctl">
     <label>s <input type="range" id="sW" min="-2.2" max="3" step="0.01" value="3"><output id="sWv"></output></label>
     <button type="button" class="play" id="playW">▶ Play</button>
@@ -138,7 +247,7 @@
 <p>Start at a center where the original sum converges, for example \(c = 2\). Its disc reaches from 1 to 3. Pick a new center inside that disc, a little above the real axis. The function and all its derivatives are known there, so the Taylor series about the new center is known, and its disc covers points the first disc did not. Repeat. The chain of centers passes over the bad point and comes down on the other side.</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.4 <small>continuing ζ around its pole, one disc at a time</small></div>
+  <div class="title">Lab @@n@@.12 <small>continuing ζ around its pole, one disc at a time</small></div>
   <div class="ctl">
     <label>Step <input type="range" id="kD" min="0" max="10" step="1" value="0"><output id="kDv"></output></label>
     <button type="button" class="play" id="playD">▶ Play</button>
@@ -156,12 +265,16 @@
 <div class="try">
   <h3>Things to try</h3>
   <ul>
-    <li>In Lab @@n@@.1, set \(s = 0.5\) and raise N. Compare the readout with the table in step 4.</li>
+    <li>In Lab @@n@@.1, set \(s = 2\) and \(N = 10\), then \(N = 50\). Compare the readout with the table in step 1.</li>
+    <li>In Lab @@n@@.3, raise \(N\) and watch the orange curve for \(s \gt 0\). It stops moving. For \(s \lt 0\) it does not.</li>
+    <li>In Lab @@n@@.7, find the smallest \(N\) for which the orange curve is indistinguishable from the green one at \(s = 0.5\).</li>
+    <li>In Lab @@n@@.8, set \(s = -1.5\) and try 1, 2 and 3 corrections.</li>
+    <li>In Lab @@n@@.4, set \(s = 0.5\) and raise N. Compare the readout with the table in step 4.</li>
     <li>Move \(s\) down toward 0.1. The orange curve still levels off, but more slowly.</li>
-    <li>In Lab @@n@@.2, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
+    <li>In Lab @@n@@.6, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
     <li>Raise \(\sigma\) past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
-    <li>In Lab @@n@@.3, press Play and watch the curve pass through \(-\tfrac12\) at \(s = 0\) and \(-\tfrac{1}{12}\) at \(s = -1\). Stop at \(s = -2\): the value is 0.</li>
-    <li>In Lab @@n@@.4, step through the discs one at a time. Each new center is inside the previous disc.</li>
+    <li>In Lab @@n@@.11, press Play and watch the curve pass through \(-\tfrac12\) at \(s = 0\) and \(-\tfrac{1}{12}\) at \(s = -1\). Stop at \(s = -2\): the value is 0.</li>
+    <li>In Lab @@n@@.12, step through the discs one at a time. Each new center is inside the previous disc.</li>
   </ul>
 </div>
 
@@ -170,13 +283,13 @@
   <ol>
     <li>Use the formula for \(\zeta\) with \(N = 1\), and half of the last term removed, to estimate \(\zeta(\tfrac12)\).<details><summary>Solution</summary><p>\(1 - \tfrac12 - \dfrac{1^{1/2}}{1 - \tfrac12} = 1 - \tfrac12 - 2 = -1.5\). The true value is −1.4604. With \(N = 10\) the same recipe gives −1.4617.</p></details></li>
     <li>Compute the bracket with all three corrections for \(s = 0\) and \(N = 5\).<details><summary>Solution</summary><p>The first 5 terms are each 1, so their sum is 5. The corrections are \(\dfrac{5^{1}}{1} = 5\), half of the last term \(= \tfrac12\), and \(\dfrac{0}{12}\cdot\dfrac15 = 0\). The bracket is \(5 - 5 - \tfrac12 + 0 = -\tfrac12\), the same as for every other \(N\).</p></details></li>
-    <li>Use \(1^{2} + 2^{2} + \cdots + N^{2} = \dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6}\) to find \(\zeta(-2)\).<details><summary>Solution</summary><p>At \(s = -2\) the terms are \(n^{2}\). The corrections are \(\dfrac{N^{1-s}}{1-s} = \dfrac{N^{3}}{3}\), half of the last term \(= \dfrac{N^{2}}{2}\), and \(\dfrac{s}{12}\cdot\dfrac{1}{N^{s+1}} = -\dfrac{2}{12}N = -\dfrac{N}{6}\), which is added. So the bracket is \(\dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6} - \dfrac{N^{3}}{3} - \dfrac{N^{2}}{2} - \dfrac{N}{6} = 0\) for every \(N\). So \(\zeta(-2) = 0\). Lab @@n@@.3 shows the curve crossing 0 there.</p></details></li>
+    <li>Use \(1^{2} + 2^{2} + \cdots + N^{2} = \dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6}\) to find \(\zeta(-2)\).<details><summary>Solution</summary><p>At \(s = -2\) the terms are \(n^{2}\). The corrections are \(\dfrac{N^{1-s}}{1-s} = \dfrac{N^{3}}{3}\), half of the last term \(= \dfrac{N^{2}}{2}\), and \(\dfrac{s}{12}\cdot\dfrac{1}{N^{s+1}} = -\dfrac{2}{12}N = -\dfrac{N}{6}\), which is added. So the bracket is \(\dfrac{N^{3}}{3} + \dfrac{N^{2}}{2} + \dfrac{N}{6} - \dfrac{N^{3}}{3} - \dfrac{N^{2}}{2} - \dfrac{N}{6} = 0\) for every \(N\). So \(\zeta(-2) = 0\). Lab @@n@@.11 shows the curve crossing 0 there.</p></details></li>
   </ol>
 </div>
 
 <h2>Check your understanding</h2>
 <ol class="quiz" data-quiz="ch-continuing-zeta">
-  <li data-a="3"><p>In Lab @@n@@.2 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
+  <li data-a="3"><p>In Lab @@n@@.6 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
     <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
     <p class="why">The chain's end is the center plus the vector \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that vector leaves the center, which is the continued function.</p></li>
   <li data-a="3"><p>At \(s = \tfrac12\) the sum of the first \(N\) terms and the term \(2\sqrt{N}\) both grow without bound. Why does their difference have a limit?</p>
@@ -272,5 +385,90 @@
       series: [{ n: 'chain', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }], marks: [{ x: z[0], y: z[1] }, { x: re, y: im, c: 'var(--ok)' }] });
     document.getElementById('r3').innerHTML = '<span>end of the chain: <b>' + cx([re, im]) + '</b></span><span>length of the correction vector: <b>' + rad.toFixed(3) + '</b></span><span>corrected value: <b>' + cx(e) + '</b></span><span>ζ(s) = <b>' + cx(z) + '</b></span>';
   });
+  // ---- one lab per step -----------------------------------------------------
+  function f2(v) { return v.toFixed(2); }
+  function m(v, d) { var t = v.toFixed(d == null ? 4 : d); return (+t === 0 ? t.replace('-', '') : t).replace('-', '−'); }
+  function sp(parts) { return parts.map(function (t) { return '<span>' + t + '</span>'; }).join(''); }
+  function put(id, parts) { document.getElementById(id).innerHTML = sp(parts); }
+  function psum(s, N) { var S = 0, n; for (n = 1; n <= N; n++) S += Math.pow(n, -s); return S; }
+  function tail(s, N) { return Math.pow(N, 1 - s) / (1 - s); }
+  function cl(lo, hi) { return function (y) { return y > lo && y < hi ? y : NaN; }; }
+  var pole = function (s) { return Math.abs(s - 1) < 0.006; };
+  // step 1
+  L.bind({ sa: f2, na: null }, function (v) {
+    var s = v.sa, N = v.na, top = Math.pow(N, -s), S = psum(s, N), est = Math.pow(N, 1 - s) / (s - 1), z = L.zeta(s, 0)[0];
+    L.plot('pa', { x: [N, N + 10], y: [0, top * 1.05], xt: [N, N + 2, N + 4, N + 6, N + 8, N + 10], yt: [0, top / 2, top], yf: function (y) { return y ? +y.toPrecision(2) : 0; }, xl: 'x', notip: true, h: 240,
+      series: [{ n: 'terms', c: 'var(--s1)', pts: L.steps(N, N + 10, function (k) { return Math.pow(k + 1, -s); }) }, { n: 'curve', c: 'var(--s2)', pts: L.sample(N, N + 10, 200, false, function (x) { return Math.pow(x, -s); }) }] });
+    put('ra', ['first ' + N + ' terms: <b>' + m(S) + '</b>', 'estimate of the rest: <b>' + m(est) + '</b>', 'total: <b>' + m(S + est) + '</b>', 'ζ(s) = <b>' + m(z) + '</b>', 'the true rest, ζ(s) − first N terms: <b>' + m(z - S) + '</b>']);
+  });
+  // step 2
+  L.bind({ sb: f2 }, function (v) {
+    var s = v.sb, c = cl(-3, 12);
+    if (pole(s)) { put('rb', ['At s = 1 the term has no value.']); return; }
+    L.plot('pb', { x: [1, 10000], y: [-3, 12], log: true, xt: [1, 10, 100, 1000], yt: [-3, 0, 3, 6, 9, 12], xl: 'N (log scale)', xn: 'N', dp: 4, h: 240, refs: [{ y: 0, t: '' }],
+      series: [{ n: 'N^(1 − s)/(1 − s)', c: 'var(--s2)', pts: L.sample(1, 10000, 200, true, function (N) { return c(tail(s, N)); }) }] });
+    put('rb', ['at N = 10: <b>' + m(tail(s, 10)) + '</b>', 'at N = 1,000: <b>' + m(tail(s, 1000)) + '</b>', 'at N = 100,000: <b>' + m(tail(s, 1e5)) + '</b>',
+      s > 1 ? 'it tends to <b>0</b>: the bracket is the original sum' : 'it <b>grows without bound</b>: see step 4']);
+  });
+  // step 3
+  L.bind({ nc: null, sc2: f2 }, function (v) {
+    var N = v.nc, s0 = v.sc2, c = cl(-10, 15);
+    L.plot('pc', { x: [-1, 3], y: [-10, 15], xt: [-1, 0, 1, 2, 3], yt: [-10, -5, 0, 5, 10, 15], xl: 's', xn: 's', dp: 3, xdp: 2, h: 280, refs: [{ y: 0, t: '' }], vlines: [{ x: 1, t: 's = 1' }, { x: s0 }],
+      series: [{ n: 'sum of ' + N + ' terms', c: 'var(--s1)', pts: L.sample(-1, 3, 400, false, function (s) { return c(psum(s, N)); }) },
+        { n: 'subtracted term', c: 'var(--muted)', pts: L.sample(-1, 3, 400, false, function (s) { return pole(s) ? NaN : c(tail(s, N)); }) },
+        { n: 'bracket', c: 'var(--s2)', pts: L.sample(-1, 3, 400, false, function (s) { return pole(s) ? NaN : c(psum(s, N) - tail(s, N)); }) }] });
+    put('rc', pole(s0) ? ['At s = 1 the second piece, and so the bracket, has no value.'] : ['at s = ' + m(s0, 2) + ', the sum of ' + N + ' terms: <b>' + m(psum(s0, N)) + '</b>', 'N<sup>1 − s</sup>/(1 − s) = <b>' + m(tail(s0, N)) + '</b>', 'bracket: <b>' + m(psum(s0, N) - tail(s0, N)) + '</b>']);
+  });
+  // step 5
+  L.bind({ se: f2, ne: function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); } }, function (v) {
+    if (pole(v.se)) { put('re', ['At s = 1 the bracket has no value: this is the pole of ζ.']); return; }
+    var s = v.se, N = Math.round(Math.pow(10, v.ne)), run = [[1, 0]], C = 0, n, d, dN = 0, CN = 0;
+    function area(n) { return (Math.pow(n, 1 - s) - Math.pow(n - 1, 1 - s)) / (1 - s); }
+    for (n = 2; n <= 1000; n++) { d = Math.pow(n, -s) - area(n); C += d; run.push([n, C]); if (n === N) { dN = d; CN = C; } }
+    var lim = L.zeta(s, 0)[0] - 1 + 1 / (1 - s), lo = Math.min(lim, C) * 1.2 - 0.01;
+    L.plot('pe1', { x: [1, 9], y: [0, 1.05], xt: [1, 2, 3, 4, 5, 6, 7, 8, 9], yt: [0, 0.5, 1], xl: 'x', notip: true, h: 200,
+      series: [{ n: 'terms', c: 'var(--s1)', pts: L.steps(1, 9, function (k) { return Math.pow(k + 1, -s); }) }, { n: 'curve', c: 'var(--s2)', pts: L.sample(1, 9, 200, false, function (x) { return Math.pow(x, -s); }) }] });
+    L.plot('pe2', { x: [1, 1000], y: [lo, 0], log: true, xt: [1, 10, 100, 1000], yt: L.ticks(lo, 0, 4), xl: 'N (log scale)', xn: 'N', dp: 4, h: 220, refs: [{ y: lim, t: 'limit' }], vlines: [{ x: N, t: 'N' }],
+      series: [{ n: 'running total', c: 'var(--s2)', pts: run }] });
+    put('re', N < 2 ? ['the pairing starts at n = 2'] : ['sliver number ' + N.toLocaleString() + ': <b>' + m(dN, 6) + '</b>', 'the estimate −s/(2N<sup>s + 1</sup>): <b>' + m(-s / 2 * Math.pow(N, -s - 1), 6) + '</b>', 'running total: <b>' + m(CN) + '</b>',
+      'bracket = 1 − 1/(1 − s) + total = <b>' + m(1 - 1 / (1 - s) + CN) + '</b>', 'ζ(s) = <b>' + m(L.zeta(s, 0)[0]) + '</b>']);
+  });
+  // step 7
+  var SG = [], LG = []; (function () { var i; for (i = 0; i <= 232; i++) SG.push(0.1 + i * 0.0125); for (i = 1; i <= 3200; i++) LG.push(Math.log(i)); })();
+  var ZG = SG.map(function (s) { return [s, pole(s) ? NaN : cl(-4, 7)(L.zeta(s, 0)[0])]; });
+  L.bind({ ng: function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); } }, function (v) {
+    var N = Math.round(Math.pow(10, v.ng)), c = cl(-4, 7), raw = [], br = [], at = {};
+    SG.forEach(function (s) {
+      var S = 0, n; for (n = 0; n < N; n++) S += Math.exp(-s * LG[n]);
+      raw.push([s, c(S)]); br.push([s, pole(s) ? NaN : c(S - tail(s, N))]);
+      if (Math.abs(s - 0.5) < 1e-9 || Math.abs(s - 2) < 1e-9) at[s.toFixed(1)] = [S, S - tail(s, N)];
+    });
+    L.plot('pg', { x: [0.1, 3], y: [-4, 7], xt: [0.5, 1, 1.5, 2, 2.5, 3], yt: [-4, -2, 0, 2, 4, 6], xl: 's', xn: 's', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }], vlines: [{ x: 1, t: 's = 1' }],
+      series: [{ n: 'ζ(s)', c: 'var(--ok)', pts: ZG }, { n: 'sum of N terms', c: 'var(--s1)', pts: raw }, { n: 'bracket', c: 'var(--s2)', pts: br }] });
+    put('rg', ['at s = 2: sum <b>' + m(at['2.0'][0]) + '</b>, bracket <b>' + m(at['2.0'][1]) + '</b>, ζ(2) = <b>1.6449</b>', 'at s = 0.5: sum <b>' + m(at['0.5'][0]) + '</b>, bracket <b>' + m(at['0.5'][1]) + '</b>, ζ(0.5) = <b>−1.4604</b>']);
+  });
+  // more corrections
+  function bracket(s, N, k) { var b = psum(s, N) - tail(s, N); if (k >= 2) b -= Math.pow(N, -s) / 2; if (k >= 3) b += s / 12 * Math.pow(N, -s - 1); return b; }
+  L.bind({ sh: f2, mh: null }, function (v) {
+    var s = v.sh, k = v.mh, z = L.zeta(s, 0)[0], c = cl(z - 2, z + 2), pts = [], S = 0, n, b, need = s > 0 ? 1 : s > -1 ? 2 : 3;
+    for (n = 1; n <= 1000; n++) { S += Math.pow(n, -s); b = S - tail(s, n); if (k >= 2) b -= Math.pow(n, -s) / 2; if (k >= 3) b += s / 12 * Math.pow(n, -s - 1); pts.push([n, c(b)]); }
+    L.plot('ph', { x: [1, 1000], y: [z - 2, z + 2], log: true, xt: [1, 10, 100, 1000], yt: L.ticks(z - 2, z + 2, 4), xl: 'N (log scale)', xn: 'N', dp: 4, h: 260, refs: [{ y: z, t: 'ζ(s)' }],
+      series: [{ n: 'bracket', c: 'var(--s2)', pts: pts }] });
+    put('rh', ['bracket at N = 1,000: <b>' + (Math.abs(b) > 1e6 ? b.toExponential(1).replace('-', '−') : m(b)) + '</b>', 'ζ(s) = <b>' + m(z) + '</b>',
+      k >= need ? 'this s needs ' + need + (need > 1 ? ' corrections' : ' correction') + ': <b>the bracket settles</b>' : 'this s needs ' + need + ' corrections: <b>the bracket does not settle</b>']);
+  });
+  // worked examples
+  function worked(key, s) {
+    var o = {}; o['n' + key] = null;
+    L.bind(o, function (v) {
+      var N = v['n' + key], c = cl(-1.5, 6), a = [], b1 = [], b2 = [], b3 = [], n;
+      for (n = 1; n <= 50; n++) { a.push([n, c(psum(s, n))]); b1.push([n, c(bracket(s, n, 1))]); b2.push([n, c(bracket(s, n, 2))]); b3.push([n, c(bracket(s, n, 3))]); }
+      L.plot('p' + key, { x: [1, 50], y: [-1.5, 6], xt: [1, 10, 20, 30, 40, 50], yt: [-1, 0, 1, 2, 3, 4, 5, 6], xl: 'n', xn: 'n', dp: 4, xdp: 0, h: 260, vlines: [{ x: N, t: 'N' }],
+        series: [{ n: 'sum', c: 'var(--s1)', pts: a }, { n: 'minus first correction', c: 'var(--s2)', pts: b1 }, { n: 'minus first two', c: 'var(--ok)', pts: b2 }, { n: 'all three', c: 'var(--muted)', dash: 1, pts: b3 }] });
+      put('r' + key, ['sum of the first ' + N + ' terms: <b>' + m(psum(s, N), 0) + '</b>', 'first correction: <b>' + m(tail(s, N), 1) + '</b>', 'second: <b>' + m(Math.pow(N, -s) / 2, 1) + '</b>',
+        'third: <b>' + m(s / 12 * Math.pow(N, -s - 1)) + '</b>', 'what is left: <b>' + m(bracket(s, N, 3)) + '</b>']);
+    });
+  }
+  worked('i', 0); worked('j', -1);
 })();
 </script>
