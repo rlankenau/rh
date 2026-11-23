@@ -53,11 +53,42 @@
   <li><b>The function \(g\) with \(g(x) = 0\) for \(x \le 0\) and \(g(x) = e^{-1/x}\) for \(x \gt 0\).</b> It has derivatives of every order at every point, including 0, and every derivative at 0 equals 0. Its Taylor series about 0 is therefore \(0 + 0\cdot x + 0\cdot x^{2} + \cdots = 0\). That series converges everywhere, but it equals \(g\) only for \(x \le 0\). So \(g\) is smooth but not analytic at 0. It is the last function in Lab @@ch:taylor@@.2.</li>
 </ul>
 
+<p>Both functions fail in the same way: a Taylor series about a center on one side of 0 describes the function only on that side. For \(|x|\), the series about any \(c \gt 0\) is just \(x\), and about any \(c \lt 0\) it is \(-x\). For \(g\), the series about any \(c \lt 0\) is 0, and the series about a center \(c \gt 0\) converges only for \(0 \lt x \lt 2c\): its radius is \(c\), the distance to the bad point at 0.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.2 <small>Taylor polynomials of two functions that are not analytic at 0</small></div>
+  <div class="ctl">
+    <label>Function <select id="fN"><option value="0" selected>g: 0 for x ≤ 0, e^(−1/x) for x &gt; 0</option><option value="1">|x|</option></select></label>
+    <label>Center c <input type="range" id="cN" min="-2" max="2" step="0.01" value="-1"><output id="cNv"></output></label>
+    <label>Degree N <input type="range" id="nN" min="0" max="30" step="1" value="10"><output id="nNv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the function</span><span><i style="background:var(--s2)"></i>its Taylor polynomial of degree N about c</span><span><b style="color:var(--ok)">●</b> the center</span></div>
+  <div class="tw"><div class="plot" id="pN"><svg role="img" aria-label="A function that is not analytic at zero and its Taylor polynomial about a movable center"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rN"></div>
+  <figcaption>Slide the center across 0. With the center on the left, the polynomial follows the left part of the function and ignores the right part. With the center on the right it does the opposite, and it never gets past \(x = 0\) however high the degree.</figcaption>
+</figure>
+
 <h2>Analytic functions are rigid</h2>
 <p>For functions in general, the values on one interval say nothing about the values on another. The function \(g\) above agrees with the zero function on the whole left half of the line and differs from it on the right. For analytic functions this cannot happen:</p>
 <p class="note">If two analytic functions agree on an interval, however short, they agree everywhere that both are defined (on a connected domain). So a function given on a small region has at most one analytic extension to a larger one.</p>
 <p>The reason: if two analytic functions agree near a point \(c\), they have the same derivatives at \(c\), so the same Taylor series about \(c\), so they agree on the whole interval where that series converges. Move the center toward the end of that interval and repeat.</p>
 <p>A familiar special case: a polynomial of degree 2 is determined everywhere by its values at 3 points. An analytic function behaves like a polynomial of infinite degree.</p>
+<p>The lab below does this numerically. It reads the values of a function at a few points inside a short interval, finds the polynomial through those values, and draws that polynomial on the whole axis. For a quadratic, 3 points give the function back exactly. For \(\sin x\), each extra point extends the range over which the polynomial matches, although every point lies inside the same short interval. For the non-analytic \(g\), points taken to the left of 0 give the zero polynomial, and no number of them reveals what \(g\) does on the right.</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.3 <small>rebuilding a function from its values on a short interval</small></div>
+  <div class="ctl">
+    <label>Function <select id="fR"><option value="0">a quadratic</option><option value="1" selected>sin x</option><option value="2">g: 0 for x ≤ 0, e^(−1/x) for x &gt; 0</option></select></label>
+    <label>Middle of the interval <input type="range" id="mR" min="-3" max="3" step="0.01" value="-1.5"><output id="mRv"></output></label>
+    <label>Width of the interval <input type="range" id="wR" min="0.4" max="2" step="0.01" value="1"><output id="wRv"></output></label>
+    <label>Number of points <input type="range" id="nR" min="2" max="12" step="1" value="4"><output id="nRv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>the function</span><span><b style="color:var(--ok)">●</b> the values that are used</span><span><i style="background:var(--s2)"></i>the polynomial through those values</span><span>dashed lines: the interval</span></div>
+  <div class="tw"><div class="plot" id="pR"><svg role="img" aria-label="A function, sample points inside a short interval, and the polynomial through them"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rR"></div>
+  <figcaption>The polynomial is computed only from the green points. Everything it does outside the dashed lines is a prediction. For the two analytic functions the prediction is right, and for \(\sin x\) it reaches further with each added point. For \(g\) with the interval left of 0, the prediction is 0 everywhere.</figcaption>
+</figure>
+
 <p>Chapter @@ch:continuation@@ uses this to extend a function beyond the region where it was first defined.</p>
 
 <div class="try">
@@ -65,6 +96,10 @@
   <ul>
     <li>In Lab @@n@@.1, leave \(c = 0\) and raise the degree. The polynomial improves between −1 and 1 and gets worse outside.</li>
     <li>Slide the center to \(c = 2\). The circle grows until it touches the bad points again, and the interval on the real line widens to match.</li>
+    <li>In Lab @@n@@.2, set the center to 1 and raise the degree. The fit is good between 0 and 2 and nowhere else. Then switch to \(|x|\).</li>
+    <li>In Lab @@n@@.3, choose the quadratic and set the number of points to 2, then 3. Two points give a line; three give the function exactly, and more change nothing.</li>
+    <li>Choose \(\sin x\) and raise the number of points from 4 to 12 without moving the interval.</li>
+    <li>Choose \(g\) and slide the interval from the left of 0 to the right of it.</li>
     <li>Put the center at \(c = -3\). The series now converges at \(x = -6\), far outside the original interval, and still fails beyond the dashed lines.</li>
   </ul>
 </div>
@@ -109,6 +144,46 @@
       series: [{ n: '1/(1 + x²)', c: 'var(--s1)', pts: L.sample(-5.6, 5.6, 400, false, function (x) { return 1 / (1 + x * x); }) },
         { n: 'Taylor polynomial', c: 'var(--s2)', pts: L.sample(-5.6, 5.6, 800, false, function (x) { var q = T(x); return q > -0.6 && q < 1.6 ? q : NaN; }) }] });
     document.getElementById('rA').innerHTML = '<span>distance from c to the bad points: R = √(c² + 1) = <b>' + R.toFixed(3) + '</b></span><span>the series converges for <b>' + (c - R).toFixed(2).replace('-', '−') + ' &lt; x &lt; ' + (c + R).toFixed(2).replace('-', '−') + '</b></span>';
+  });
+  function g(x) { return x > 0 ? Math.exp(-1 / x) : 0; }
+  L.bind({ fN: null, cN: function (v) { return v.toFixed(2); }, nN: null }, function (v) {
+    var c = v.cN, N = v.nN, abs = v.fN === 1, f = abs ? Math.abs : g, a = [], k, msg, vl = [{ x: 0, t: '0' }];
+    if (Math.abs(c) < 0.005) c = 0;
+    if (abs) {
+      a = c === 0 ? null : [Math.abs(c), c > 0 ? 1 : -1];
+      msg = c === 0 ? '<b>no Taylor series</b>: |x| has no derivative at 0' : 'the series is <b>' + (c > 0 ? 'x' : '−x') + '</b>: it equals |x| only for <b>x ' + (c > 0 ? '≥' : '≤') + ' 0</b>';
+    } else if (c <= 0) {
+      a = [0]; msg = 'every derivative at c is 0, so the series is <b>0</b>: it equals g only for <b>x ≤ 0</b>';
+    } else {
+      // from x² g' = g:  a[k+1] = (a[k](1 − 2ck) − (k − 1)a[k−1]) / (c²(k + 1))
+      a = [Math.exp(-1 / c)];
+      for (k = 0; k < N; k++) a.push((a[k] * (1 - 2 * c * k) - (k ? (k - 1) * a[k - 1] : 0)) / (c * c * (k + 1)));
+      msg = 'radius of convergence <b>' + c.toFixed(2) + '</b> (the distance to 0): the series equals g only for <b>0 &lt; x &lt; ' + (2 * c).toFixed(2) + '</b>';
+      vl.push({ x: 2 * c, t: (2 * c).toFixed(2) });
+    }
+    function T(x) { if (!a) return NaN; var s = 0, j; for (j = Math.min(N, a.length - 1); j >= 0; j--) s = s * (x - c) + a[j]; return s; }
+    var lo = abs ? -0.5 : -0.3, hi = abs ? 3 : 1.1;
+    L.plot('pN', { x: [-3, 3], y: [lo, hi], xt: [-3, -2, -1, 0, 1, 2, 3], yt: abs ? [0, 1, 2, 3] : [0, 0.5, 1], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 280, refs: [{ y: 0, t: '' }],
+      vlines: vl, marks: [{ x: c, y: f(c), c: 'var(--ok)' }],
+      series: [{ n: 'function', c: 'var(--s1)', pts: L.sample(-3, 3, 600, false, f) },
+        { n: 'Taylor polynomial', c: 'var(--s2)', pts: L.sample(-3, 3, 600, false, function (x) { var y = T(x); return y > lo && y < hi ? y : NaN; }) }] });
+    document.getElementById('rN').innerHTML = '<span>' + msg + '</span>';
+  });
+  var FR = [function (x) { return 0.15 * x * x - 0.4 * x - 0.5; }, Math.sin, g];
+  L.bind({ fR: null, mR: function (v) { return v.toFixed(2); }, wR: function (v) { return v.toFixed(2); }, nR: null }, function (v) {
+    var f = FR[v.fR], n = v.nR, a = v.mR - v.wR / 2, b = v.mR + v.wR / 2, xs = [], dd = [], i, j, marks = [];
+    for (i = 0; i < n; i++) { xs.push(a + (b - a) * i / (n - 1)); dd.push(f(xs[i])); marks.push({ x: xs[i], y: dd[i], c: 'var(--ok)' }); }
+    for (j = 1; j < n; j++) for (i = n - 1; i >= j; i--) dd[i] = (dd[i] - dd[i - 1]) / (xs[i] - xs[i - j]);  // Newton divided differences
+    function P(x) { var s = dd[n - 1]; for (var k = n - 2; k >= 0; k--) s = s * (x - xs[k]) + dd[k]; return s; }
+    var lo = -2.2, hi = 2.2, good = 0, x;
+    for (x = v.mR; x <= 6 && Math.abs(P(x) - f(x)) < 0.05; x += 0.02) good = x;
+    var left = v.mR; for (x = v.mR; x >= -6 && Math.abs(P(x) - f(x)) < 0.05; x -= 0.02) left = x;
+    L.plot('pR', { x: [-6, 6], y: [lo, hi], xt: [-6, -4, -2, 0, 2, 4, 6], yt: [-2, -1, 0, 1, 2], xl: 'x', xn: 'x', dp: 3, xdp: 2, h: 300, refs: [{ y: 0, t: '' }],
+      vlines: [{ x: a }, { x: b }], marks: marks,
+      series: [{ n: 'function', c: 'var(--s1)', pts: L.sample(-6, 6, 600, false, f) },
+        { n: 'polynomial', c: 'var(--s2)', pts: L.sample(-6, 6, 600, false, function (x) { var y = P(x); return y > lo && y < hi ? y : NaN; }) }] });
+    document.getElementById('rR').innerHTML = '<span>' + n + ' points, all between <b>' + a.toFixed(2).replace('-', '−') + '</b> and <b>' + b.toFixed(2).replace('-', '−') + '</b></span><span>the polynomial stays within 0.05 of the function from <b>' +
+      (left <= -5.98 ? 'the left edge' : left.toFixed(1).replace('-', '−')) + '</b> to <b>' + (good >= 5.98 ? 'the right edge' : good.toFixed(1).replace('-', '−')) + '</b></span>';
   });
 })();
 </script>
