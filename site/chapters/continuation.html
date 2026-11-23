@@ -42,13 +42,79 @@
 </figure>
 
 <h2>Continuing zeta</h2>
-<p>The same thing happens for \(\zeta\). Chapter @@ch:zeta@@ estimated what is left after \(N\) terms of the sum: about \(N^{1-s}/(s-1)\). Turn that around. Take the first \(N\) terms and add the estimate of the rest:</p>
+<p>The same thing can be done for \(\zeta\). This section goes through it in steps, first for real \(s\).</p>
+
+<h3>Step 1. What chapter @@ch:zeta@@ said about the terms left over</h3>
+<p>For \(s \gt 1\), chapter @@ch:zeta@@ compared the terms of the sum with rectangles under the curve \(y = 1/x^{s}\). The conclusion was that the terms after the \(N\)-th add up to about</p>
+<p class="note">$$\int_{N}^{\infty}\frac{dx}{x^{s}} \;=\; \frac{N^{1-s}}{s-1}$$</p>
+<p>So the whole sum is close to the first \(N\) terms plus that amount:</p>
+<p class="note">$$\zeta(s) \;\approx\; \underbrace{1+\frac{1}{2^{s}}+\cdots+\frac{1}{N^{s}}}_{\text{the first } N \text{ terms}} \;+\; \underbrace{\frac{N^{1-s}}{s-1}}_{\text{estimate of the rest}}$$</p>
+<p>Check it at \(s = 2\), where \(\zeta(2) = 1.6449\) and the estimate of the rest is \(1/N\):</p>
+<div class="tw"><table class="sym num">
+<thead><tr><th>\(N\)</th><th>first \(N\) terms</th><th>estimate of the rest, \(1/N\)</th><th>total</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>1.5498</td><td>0.1000</td><td>1.6498</td></tr>
+<tr><td>100</td><td>1.6350</td><td>0.0100</td><td>1.6450</td></tr>
+<tr><td>1,000</td><td>1.6439</td><td>0.0010</td><td>1.6449</td></tr>
+</tbody></table></div>
+<p>The first \(N\) terms alone approach 1.6449 slowly. With the estimate added, the total is already right to two decimal places at \(N = 10\), and the approximation becomes exact as \(N \to \infty\).</p>
+
+<h3>Step 2. Write the same thing so that it can be used for other \(s\)</h3>
+<p>Since \(\dfrac{N^{1-s}}{s-1} = -\dfrac{N^{1-s}}{1-s}\), step 1 says:</p>
 <p class="note">$$\zeta(s) \;=\; \lim_{N\to\infty}\left[\;1+\frac{1}{2^{s}}+\dots+\frac{1}{N^{s}} \;-\; \frac{N^{1-s}}{1-s}\;\right]$$</p>
-<p>For \(\sigma \gt 1\) the extra term tends to 0 and this is the original sum. But the limit exists for every \(s\) with \(\sigma \gt 0\) except \(s = 1\), and it is analytic there. By the rigidity above it is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
-<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
+<p>For \(s \gt 1\) this is nothing new: the subtracted term tends to 0, and what is left is the original sum.</p>
+
+<h3>Step 3. Notice that the bracket makes sense for every \(s \ne 1\)</h3>
+<p>Look at the two pieces inside the bracket for a fixed \(N\).</p>
+<ul>
+  <li>\(1 + \dfrac{1}{2^{s}} + \dots + \dfrac{1}{N^{s}}\) is a sum of \(N\) numbers. It has a value for every \(s\).</li>
+  <li>\(\dfrac{N^{1-s}}{1-s}\) has a value for every \(s\) except \(s = 1\).</li>
+</ul>
+<p>So the bracket can be computed for any \(s \ne 1\) and any \(N\), including values of \(s\) where the infinite sum diverges. The only question is whether it settles down as \(N\) grows.</p>
+
+<h3>Step 4. Try it where the sum diverges: \(s = \tfrac12\)</h3>
+<p>At \(s = \tfrac12\) the terms are \(1/\sqrt{n}\), and the sum grows without bound. The subtracted term is \(\dfrac{N^{1/2}}{1/2} = 2\sqrt{N}\), which also grows without bound.</p>
+<div class="tw"><table class="sym num">
+<thead><tr><th>\(N\)</th><th>first \(N\) terms</th><th>\(2\sqrt{N}\)</th><th>difference</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>5.0210</td><td>6.3246</td><td>−1.3036</td></tr>
+<tr><td>100</td><td>18.5896</td><td>20.0000</td><td>−1.4104</td></tr>
+<tr><td>1,000</td><td>61.8010</td><td>63.2456</td><td>−1.4445</td></tr>
+<tr><td>10,000</td><td>198.5446</td><td>200.0000</td><td>−1.4554</td></tr>
+</tbody></table></div>
+<p>Both columns run off to infinity, but their difference settles: it approaches \(-1.4604\). That number is \(\zeta(\tfrac12)\).</p>
+
+<h3>Step 5. Why the difference settles</h3>
+<p>The subtracted term is an area under the curve: \(\dfrac{N^{1-s}}{1-s} = \dfrac{1}{1-s} + \displaystyle\int_{1}^{N}\frac{dx}{x^{s}}\). Split that area into the pieces over \([1,2], [2,3], \dots\) and pair each piece with one term of the sum:</p>
+<p class="note">$$\text{bracket} \;=\; 1 \;-\; \frac{1}{1-s} \;+\; \sum_{n=2}^{N}\left(\frac{1}{n^{s}} - \int_{n-1}^{n}\frac{dx}{x^{s}}\right)$$</p>
+<p>Each term in the new sum is the difference between a rectangle and the area under the curve above it, as in the picture of Lab @@ch:zeta@@.1. The curve gets flatter as \(n\) grows, so that difference is small: about \(\dfrac{s}{2\,n^{s+1}}\) in size. The numbers \(1/n^{s+1}\) have a finite sum whenever \(s \gt 0\). So the bracket converges for every \(s \gt 0\) except \(s = 1\).</p>
 
 <figure class="lab">
-  <div class="title">Lab @@n@@.3 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
+  <div class="title">Lab @@n@@.3 <small>the first N terms, and the same with N<sup>1 − s</sup>/(1 − s) subtracted, for real s</small></div>
+  <div class="ctl">
+    <label>Exponent s <input type="range" id="sC" min="0.1" max="3" step="0.01" value="0.5"><output id="sCv"></output></label>
+    <label>Number of terms N <input type="range" id="nC" min="0" max="4" step="0.02" value="2"><output id="nCv"></output></label>
+  </div>
+  <div class="lg"><span><i style="background:var(--s1)"></i>sum of the first n terms</span><span><i style="background:var(--s2)"></i>the same, minus n<sup>1 − s</sup>/(1 − s)</span><span>dashed line: ζ(s)</span></div>
+  <div class="tw"><div class="plot" id="pC"><svg role="img" aria-label="Partial sums of the zeta series and the corrected partial sums for real s"></svg><div class="tip" hidden></div></div></div>
+  <div class="readout" id="rC"></div>
+  <figcaption>For \(s \lt 1\) the blue curve leaves the frame and the orange curve levels off at the dashed line. For \(s \gt 1\) both level off at the same value. The dashed line is \(\zeta(s)\) computed by a different method.</figcaption>
+</figure>
+
+<h3>Step 6. The same formula for complex \(s\)</h3>
+<p>Nothing in steps 2 to 5 needs \(s\) to be real. For complex \(s = \sigma + it\) the bracket converges whenever \(\sigma \gt 0\) and \(s \ne 1\).</p>
+<p>In the picture of chapter @@ch:complex-zeta@@: for \(0 \lt \sigma \lt 1\) the chain of vectors does not settle. It circles in an ever wider spiral, and the term \(N^{1-s}/(1-s)\) is exactly the vector from the center of that spiral to the chain's current end. Subtracting it leaves the center, and the center is \(\zeta(s)\).</p>
+
+<h3>Step 7. Why this is the continuation</h3>
+<ul>
+  <li>The limit of the bracket is a function defined for every \(s\) with \(\sigma \gt 0\) except \(s = 1\).</li>
+  <li>For \(\sigma \gt 1\) it equals the original sum (step 2).</li>
+  <li>It is analytic. (This needs a proof, which uses the fact that the convergence in step 5 is uniform.)</li>
+</ul>
+<p>By the rigidity of chapter @@ch:analytic@@, there is only one analytic function with these properties. So the limit of the bracket is <em>the</em> continuation of \(\zeta\) to the half-plane \(\sigma \gt 0\).</p>
+
+<figure class="lab">
+  <div class="title">Lab @@n@@.4 <small>the chain of vectors for σ ≤ 1, and the center of its spiral</small></div>
   <div class="ctl">
     <label>Real part σ <input type="range" id="s3" min="0.1" max="1.5" step="0.01" value="0.5"><output id="s3v"></output></label>
     <label>Imaginary part t <input type="range" id="t3" min="2" max="40" step="0.05" value="14.13"><output id="t3v"></output></label>
@@ -69,7 +135,9 @@
   <ul>
     <li>In Lab @@n@@.1, read values at \(x = -1\). The partial sums alternate between 1 and 0 as N changes, while the function is \(\tfrac12\).</li>
     <li>In Lab @@n@@.2, slide the center from 0 to −3. The series now reproduces the function at \(x = -5\), far outside the original interval.</li>
-    <li>In Lab @@n@@.3, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
+    <li>In Lab @@n@@.3, set \(s = 0.5\) and raise N. Compare the readout with the table in step 4.</li>
+    <li>Move \(s\) down toward 0.1. The orange curve still levels off, but more slowly.</li>
+    <li>In Lab @@n@@.4, set \(\sigma = 0.5\) and \(t = 14.13\). The center of the spiral is at the origin: \(\zeta(s) = 0\) there.</li>
     <li>Raise \(\sigma\) past 1. The blue spiral stops widening and winds inward, and both paths end at the same point.</li>
   </ul>
 </div>
@@ -91,7 +159,7 @@
   <li data-a="1"><p>Why is there only one analytic continuation?</p>
     <ul><li>Two analytic functions that agree on any interval agree wherever both are defined</li><li>Mathematicians agreed on a convention</li><li>Because the series converges everywhere</li></ul>
     <p class="why">Rigidity: the values near one point fix every Taylor coefficient, and so the whole function. This is what makes it legitimate to speak of \(\zeta(s)\) where the sum diverges.</p></li>
-  <li data-a="3"><p>In Lab @@n@@.3 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
+  <li data-a="3"><p>In Lab @@n@@.4 with \(\sigma = 0.5\) the chain of vectors never settles. What is \(\zeta(s)\) in that picture?</p>
     <ul><li>The point where the chain ends</li><li>It does not exist</li><li>The center that the chain spirals around</li></ul>
     <p class="why">The chain's end is the center plus the vector \(N^{1-s}/(1-s)\), whose length grows like \(N^{1-\sigma}\). Removing that vector leaves the center, which is the continued function.</p></li>
 </ol>
@@ -116,6 +184,21 @@
   L.bind({ c2: function (v) { return v.toFixed(2); }, n2: null }, function (v) {
     draw('p2', v.c2, v.n2, [{ x: v.c2, t: 'c' }]);
     document.getElementById('r2').innerHTML = '<span>distance from c to the bad point x = 1: <b>' + (1 - v.c2).toFixed(2) + '</b></span><span>the series converges for <b>' + (2 * v.c2 - 1).toFixed(2).replace('-', '−') + ' &lt; x &lt; 1</b></span>';
+  });
+  L.bind({ sC: function (v) { return v.toFixed(2); }, nC: function (v) { return Math.round(Math.pow(10, v)).toLocaleString(); } }, function (v) {
+    var s = v.sC, N = Math.round(Math.pow(10, v.nC)), pole = Math.abs(s - 1) < 0.005, z = pole ? 0 : L.zeta(s, 0)[0];
+    var lo = Math.min(z, 0) - 1, hi = Math.max(z, 1) + 3, cum = 0, raw = [], cor = [], n, last = 0, at = null;
+    function keep(y) { return y > lo && y < hi ? y : NaN; }
+    for (n = 1; n <= 10000; n++) {
+      cum += Math.pow(n, -s);
+      if (n === N) at = [cum, pole ? NaN : Math.pow(n, 1 - s) / (1 - s)];
+      var k = Math.round(Math.pow(10, Math.round(Math.log10(n) * 100) / 100));
+      if (k === n && n !== last) { raw.push([n, keep(cum)]); if (!pole) cor.push([n, keep(cum - Math.pow(n, 1 - s) / (1 - s))]); last = n; }
+    }
+    L.plot('pC', { x: [1, 10000], y: [lo, hi], log: true, xt: [1, 10, 100, 1000], yt: L.ticks(lo, hi, 5), xl: 'number of terms (log scale)', xn: 'n', dp: 4, h: 280,
+      refs: pole ? [] : [{ y: z, t: 'ζ(s)' }], vlines: [{ x: N, t: 'N' }], series: [{ n: 'sum', c: 'var(--s1)', pts: raw }, { n: 'corrected', c: 'var(--s2)', pts: cor }] });
+    document.getElementById('rC').innerHTML = pole ? '<span>At s = 1 the formula has no value: this is the pole of ζ.</span>'
+      : '<span>first ' + N.toLocaleString() + ' terms: <b>' + at[0].toFixed(4) + '</b></span><span>N<sup>1 − s</sup>/(1 − s) = <b>' + at[1].toFixed(4).replace('-', '−') + '</b></span><span>difference: <b>' + (at[0] - at[1]).toFixed(4).replace('-', '−') + '</b></span><span>ζ(s) = <b>' + z.toFixed(4).replace('-', '−') + '</b></span>';
   });
   function frame(pts) {
     var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;

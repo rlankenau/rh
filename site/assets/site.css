@@ -180,3 +180,9 @@ footer.site{color:var(--muted);font-size:.9rem;margin-top:1rem}
 .comments p span{color:var(--muted);font-size:.85rem;margin-left:.6rem}
 .comments ul{margin:0;padding-left:1.2rem}
 .comments li span{color:var(--muted);font-size:.85rem}
+
+/* small tables of worked numbers */
+table.sym.num{width:auto;min-width:0;font-variant-numeric:tabular-nums}
+table.sym.num td:first-child,table.sym.num td:nth-child(2){font-size:.95rem;color:inherit;width:auto}
+table.sym.num td,table.sym.num th{text-align:right;padding-right:1.5rem}
+main h3{font-size:1.02rem;margin:1.2rem 0 0}
